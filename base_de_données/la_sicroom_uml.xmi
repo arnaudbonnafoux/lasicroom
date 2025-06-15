@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://schema.omg.org/spec/UML/2.1">
+  <xmi:Documentation exporter="umbrello uml modeller 2.37.3 (Applications 22.12.3) http://umbrello.kde.org" exporterVersion="2.0.4"/>
+  <uml:Model xmi:id="m1" name="LaSicRoomModelSimplified">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="folder" name="folder"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="dataType" name="dataType"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="Logical_View" name="Logical View">
+      <uml:Package xmi:id="Datatypes" name="Datatypes" stereotype="folder">
+        <packagedElement xmi:type="uml:DataType" xmi:id="u34x8wCix705N" name="undef" stereotype="dataType"/>
+      </uml:Package>
+      <packagedElement xmi:type="uml:Class" xmi:id="class1" name="utilsateur">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class1_attr1" name="id_utilisateur" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class1_attr2" name="nom" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class1_attr3" name="email" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class1_attr4" name="mot_de_passe" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class1_attr5" name="role" visibility="private" type="u34x8wCix705N"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="class2" name="concert">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr1" name="id_concert" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr2" name="titre" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr3" name="description" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr4" name="date_concert" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr5" name="nb_places_total" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr6" name="nb_places_restantes" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class2_attr7" name="lien_video" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="uz3B3nbVomKp6" name="tarif_plein" visibility="private"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="uWzmF6k8d05lO" name="tarif_abonne" visibility="private"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="class3" name="reservation">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class3_attr1" name="id_reservation" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class3_attr2" name="date_reservation" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class3_attr3" name="id_utilisateur" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class3_attr4" name="id_concert" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="uLCVW0rMvyM3U" name="type_tarif" visibility="private"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="uLWHhKk1OdTUF" name="montant" visibility="private"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="class4" name="accompagnement">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr1" name="id_demande" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr2" name="nom_artiste" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr3" name="email_artiste" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr4" name="style_musical" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr5" name="message" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr6" name="date_envoi" visibility="private" type="u34x8wCix705N"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="class4_attr7" name="traite" visibility="private" type="u34x8wCix705N"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="assoc1" name="UserReservation">
+        <ownedEnd xmi:type="uml:AssociationEnd" xmi:id="assoc1_end1" name="Utilsateur" type="class1" multiplicity="1,n" aggregation="none" isNavigable="true" changeability="changeable"/>
+        <ownedEnd xmi:type="uml:AssociationEnd" xmi:id="assoc1_end2" name="Réservations" type="class3" multiplicity="0,1" aggregation="none" isNavigable="true" changeability="changeable"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="assoc2" name="ConcertReservation">
+        <ownedEnd xmi:type="uml:AssociationEnd" xmi:id="assoc2_end1" name="concert" type="class2" multiplicity="1,n" aggregation="none" isNavigable="true" changeability="changeable"/>
+        <ownedEnd xmi:type="uml:AssociationEnd" xmi:id="assoc2_end2" name="réservations" type="class3" multiplicity="0,1" aggregation="none" isNavigable="true" changeability="changeable"/>
+      </packagedElement>
+      <xmi:Extension extender="umbrello">
+        <diagrams>
+          <diagram xmi.id="uA0c2MsPFOMTx" name="Diagramme de classes" type="1" documentation="" backgroundcolor="#ffffff" fillcolor="#ffffc0" font="Noto Sans,10,-1,0,50,0,0,0,0,0" griddotcolor="#d3d3d3" linecolor="#990000" linewidth="0" textcolor="#000000" usefillcolor="1" showattribassocs="1" showatts="1" showattsig="1" showops="1" showopsig="1" showpackage="1" showpubliconly="0" showscope="1" showstereotype="2" localid="-1" showgrid="0" snapgrid="0" snapcsgrid="0" snapx="25" snapy="25" zoom="93.5762" canvasheight="800" canvaswidth="1100" isopen="1">
+            <widgets>
+              <classwidget xmi.id="class4" localid="urBj935MT4R8K" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="148.316" y="49.537" width="147" height="153" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601"/>
+              <classwidget xmi.id="class1" localid="uUBQDUuMWxRnw" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="98.8571" y="502.101" width="153" height="117" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601"/>
+              <classwidget xmi.id="class2" localid="uxVK9MFzxdMgz" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="716.463" y="371.132" width="189" height="189" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601"/>
+              <classwidget xmi.id="class3" localid="ulhhThd2rZlgi" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="457.26" y="49.0775" width="168" height="135" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601"/>
+            </widgets>
+            <messages/>
+            <associations>
+              <assocwidget xmi.id="assoc1" localid="uFXStA884Tx0f" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,0,50,0,0,0,0,0" autoresize="1" seqnum="" type="503" widgetaid="class1" widgetbid="class3" indexa="0" totalcounta="0" indexb="0" totalcountb="0">
+                <floatingtext xmi.id="uCIBeDvoxM6J5" localid="uHQcdbW5QoDx0" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="193.567" y="461.446" width="27" height="22" isinstance="0" showstereotype="2" text="1,n" pretext="" posttext="" role="701"/>
+                <floatingtext xmi.id="uJC6WhkP10hkb" localid="uDbbnkxxXEVb2" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="172.408" y="413.547" width="75" height="22" isinstance="0" showstereotype="2" text="Utilsateur" pretext="+" posttext="" role="709"/>
+                <floatingtext xmi.id="uo6tSzk0utT9w" localid="uZEMtS6xwsjwU" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="416.857" y="192.506" width="26" height="22" isinstance="0" showstereotype="2" text="0,1" pretext="" posttext="" role="702"/>
+                <floatingtext xmi.id="uA7QaEYmW6fKn" localid="uTzSgeAr7ce62" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="346.459" y="193.433" width="94" height="22" isinstance="0" showstereotype="2" text="Réservations" pretext="+" posttext="" role="710"/>
+                <floatingtext xmi.id="u3reMGiadSFKX" localid="uLkOSOu8GDpPj" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="315.022" y="321.046" width="109" height="22" isinstance="0" showstereotype="2" text="UserReservation" pretext="" posttext="" role="703"/>
+                <linepath layout="Direct">
+                  <startpoint startx="223.565" starty="502.101"/>
+                  <endpoint endx="485.636" endy="184.077"/>
+                </linepath>
+              </assocwidget>
+              <assocwidget xmi.id="assoc2" localid="uQhFbg5AEzFbQ" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,0,50,0,0,0,0,0" autoresize="1" seqnum="" type="503" widgetaid="class2" widgetbid="class3" indexa="0" totalcounta="0" indexb="0" totalcountb="0">
+                <floatingtext xmi.id="ubZR2roMePEsJ" localid="uZfOJ0Jvg086s" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="743.296" y="342.977" width="27" height="22" isinstance="0" showstereotype="2" text="1,n" pretext="" posttext="" role="701"/>
+                <floatingtext xmi.id="udph5YvZpLGKd" localid="uscDRjQIdOsZc" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="702.518" y="335.017" width="61" height="22" isinstance="0" showstereotype="2" text="concert" pretext="+" posttext="" role="709"/>
+                <floatingtext xmi.id="uoJ2zBq0gSyNs" localid="uQvNuPpq16QF5" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="635.144" y="197.491" width="26" height="22" isinstance="0" showstereotype="2" text="0,1" pretext="" posttext="" role="702"/>
+                <floatingtext xmi.id="uBIkiJgd8aYHu" localid="uByYW2KFqvV9Z" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="600.62" y="262.092" width="91" height="22" isinstance="0" showstereotype="2" text="réservations" pretext="+" posttext="" role="710"/>
+                <floatingtext xmi.id="uo0MNEMoLeAyy" localid="uYQgl8ihgDPdk" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="Noto Sans,10,-1,5,50,0,0,0,0,0,Regular" autoresize="1" x="658.814" y="288.048" width="128" height="22" isinstance="0" showstereotype="2" text="ConcertReservation" pretext="" posttext="" role="703"/>
+                <linepath layout="Direct">
+                  <startpoint startx="737.946" starty="371.132"/>
+                  <endpoint endx="593.415" endy="184.077"/>
+                </linepath>
+              </assocwidget>
+            </associations>
+          </diagram>
+        </diagrams>
+      </xmi:Extension>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="Use_Case_View" name="Use Case View"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="Component_View" name="Component View"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="Deployment_View" name="Deployment View"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="Entity_Relationship_Model" name="Entity Relationship Model"/>
+  </uml:Model>
+  <xmi:Extension extender="umbrello">
+    <docsettings viewid="uA0c2MsPFOMTx" documentation="" uniqueid="uLWHhKk1OdTUF"/>
+    <listview>
+      <listitem id="Views" type="800" open="1">
+        <listitem id="Entity_Relationship_Model" type="836" open="1"/>
+        <listitem id="Use_Case_View" type="802" open="1"/>
+        <listitem id="Component_View" type="821" open="1"/>
+        <listitem id="Deployment_View" type="827" open="1"/>
+        <listitem id="Logical_View" type="801" open="1">
+          <listitem id="class4" type="813" open="1">
+            <listitem id="class4_attr6" type="814" open="0"/>
+            <listitem id="class4_attr3" type="814" open="0"/>
+            <listitem id="class4_attr1" type="814" open="0"/>
+            <listitem id="class4_attr5" type="814" open="0"/>
+            <listitem id="class4_attr2" type="814" open="0"/>
+            <listitem id="class4_attr4" type="814" open="0"/>
+            <listitem id="class4_attr7" type="814" open="0"/>
+          </listitem>
+          <listitem id="class2" type="813" open="1">
+            <listitem id="class2_attr4" type="814" open="0"/>
+            <listitem id="class2_attr3" type="814" open="0"/>
+            <listitem id="class2_attr1" type="814" open="0"/>
+            <listitem id="class2_attr7" type="814" open="0"/>
+            <listitem id="class2_attr6" type="814" open="0"/>
+            <listitem id="class2_attr5" type="814" open="0"/>
+            <listitem id="uWzmF6k8d05lO" type="814" open="0"/>
+            <listitem id="uz3B3nbVomKp6" type="814" open="0"/>
+            <listitem id="class2_attr2" type="814" open="0"/>
+          </listitem>
+          <listitem id="uA0c2MsPFOMTx" type="807" label="Diagramme de classes" open="0"/>
+          <listitem id="class3" type="813" open="1">
+            <listitem id="class3_attr2" type="814" open="0"/>
+            <listitem id="class3_attr4" type="814" open="0"/>
+            <listitem id="class3_attr1" type="814" open="0"/>
+            <listitem id="class3_attr3" type="814" open="0"/>
+            <listitem id="uLWHhKk1OdTUF" type="814" open="0"/>
+            <listitem id="uLCVW0rMvyM3U" type="814" open="0"/>
+          </listitem>
+          <listitem id="Datatypes" type="830" open="1"/>
+          <listitem id="class1" type="813" open="1">
+            <listitem id="class1_attr3" type="814" open="0"/>
+            <listitem id="class1_attr1" type="814" open="0"/>
+            <listitem id="class1_attr4" type="814" open="0"/>
+            <listitem id="class1_attr2" type="814" open="0"/>
+            <listitem id="class1_attr5" type="814" open="0"/>
+          </listitem>
+        </listitem>
+      </listitem>
+    </listview>
+  </xmi:Extension>
+</xmi:XMI>

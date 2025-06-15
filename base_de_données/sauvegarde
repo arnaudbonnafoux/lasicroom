@@ -1,0 +1,6 @@
+bash
+sauvegarde
+pg_dump -U ton_utilisateur -h ton_hôte -F c -b -v -f "sicroom_backup.dump" nom_de_la_base
+
+restauration
+pg_restore -U ton_utilisateur -h ton_hôte -d nom_de_la_base -v "sicroom_backup.dump"

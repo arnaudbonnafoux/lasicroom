@@ -1,0 +1,22 @@
+Fonctionnement de la billetterie :
+1. L’utilisateur consulte l’agenda via le site (affichage des concerts à venir).
+2. Il choisit un concert et clique sur "Réserver".
+3. Sur la page de réservation :
+
+   - Il sélectionne le nombre de places souhaitées.
+   - Il choisit le type de tarif : plein ou abonné.
+
+4. Il accède à un récapitulatif de sa réservation (montant total, infos concert, etc.).
+Ce récapitulatif représente le panier final, validé par l'utilisateur, équivalent à une commande payée.
+
+
+
+Règles métier :
+Un utilisateur peut effectuer plusieurs réservations, pour différents concerts.
+Une réservation est émise par un seul utilisateur.
+Un concert peut faire l’objet de plusieurs réservations.
+Une réservation est associée à un seul concert.
+Une réservation peut contenir plusieurs places, mais toujours à un seul tarif (plein OU abonné).
+Le montant total payé est calculé selon :
+ montant = nb_places × tarif_plein ou tarif_abonne en fonction du choix.
+
