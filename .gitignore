@@ -135,4 +135,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Arnaud
+lasicroom_back/node_modules
+lasicroom_back/.env
 /.vscode

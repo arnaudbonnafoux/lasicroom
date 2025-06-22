@@ -1,0 +1,27 @@
+[Page d'accueil]
+      |
+      v
+[Agenda des concerts]
+      |
+      v
+[Clique sur "Réserver"]
+      |
+      v
+[Est-ce que l'utilisateur est connecté ?]
+        |                         |
+       NON                      OUI
+        |                         |
+        v                         v
+[Page de connexion]       [Page Réservation]
+        |                         |
+        v                         |
+[Connexion réussie]               |
+        |                         |
+        v                         v
+[Redirection vers Réservation]  [Formulaire de réservation]
+        |                         |
+        v                         v
+[Sélection du tarif et nb de places]
+        |
+        v
+[Validation / Panier / Confirmation]
