@@ -48,13 +48,17 @@
 │   └── user-solid.svg
 ├── lasicroom_back
 │   ├── app.js
+│   ├── controleurs
 │   ├── db.js
 │   ├── gen_arbo.sh
 │   ├── package.json
-│   └── package-lock.json
+│   ├── package-lock.json
+│   ├── routes
+│   ├── structure.txt
+│   └── tester_routes.sh
 ├── La sicRoom.session.sql
 ├── LICENSE
 ├── README.md
 └── structure.txt
 
-10 directories, 48 files
+12 directories, 50 files

@@ -1,0 +1,35 @@
+Description
+
+Ce code définit un module de routes Express dédié à la gestion des concerts dans une application Node.js. Il commence par importer Express et crée un routeur avec express.Router(), ce qui permet de regrouper les routes liées à une même ressource.
+
+Le contrôleur concertControleur, importé depuis le dossier controleurs, contient la logique métier pour chaque opération sur les concerts. Le routeur définit ensuite quatre routes principales :
+- GET / : récupère la liste des concerts via la méthode obtenirConcerts du contrôleur.
+- POST / : permet de créer un nouveau concert avec la méthode creerConcert.
+- PUT /:id : met à jour un concert existant identifié par son id grâce à la méthode mettreAJourConcert.
+- DELETE /:id : supprime un concert spécifique avec la méthode supprimerConcert.
+
+Enfin, le routeur est exporté pour être utilisé dans le fichier principal de l’application, ce qui permet d’organiser le code de façon modulaire et claire. Ce schéma facilite la maintenance et l’évolution de l’API.
+
+Pseudo code 
+
+Importer le module express
+Créer un routeur express
+
+Importer le contrôleur des concerts
+
+Définir une route GET sur '/' qui appelle la méthode obtenirConcerts du contrôleur
+Définir une route POST sur '/' qui appelle la méthode creerConcert du contrôleur
+Définir une route PUT sur '/:id' qui appelle la méthode mettreAJourConcert du contrôleur
+Définir une route DELETE sur '/:id' qui appelle la méthode supprimerConcert du contrôleur
+
+Exporter le routeur pour l'utiliser dans l'application principale
+
+Méthodes
+
+- require() : pour importer des modules ou fichiers.
+- Router() : méthode d’Express pour créer un routeur.
+- get() : méthode du routeur pour définir une route GET.
+- post() : méthode du routeur pour définir une route POST.
+- put() : méthode du routeur pour définir une route PUT.
+- delete() : méthode du routeur pour définir une route DELETE.
+- module.exports : (syntaxe Node.js) pour exporter le routeur.

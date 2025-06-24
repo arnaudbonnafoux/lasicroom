@@ -1,12 +1,13 @@
 Fonctionnement de la billetterie :
 1. L’utilisateur consulte l’agenda via le site (affichage des concerts à venir).
 2. Il choisit un concert et clique sur "Réserver".
-3. Sur la page de réservation :
+3. Avant d'accéder à la age billetreie, il doit s'inscrire ou se connecté.
+4. Sur la page de réservation :
 
    - Il sélectionne le nombre de places souhaitées.
    - Il choisit le type de tarif : plein ou abonné.
 
-4. Il accède à un récapitulatif de sa réservation (montant total, infos concert, etc.).
+5. Il accède à un récapitulatif de sa réservation (montant total, infos concert, etc.).
 Ce récapitulatif représente le panier final, validé par l'utilisateur, équivalent à une commande payée.
 
 

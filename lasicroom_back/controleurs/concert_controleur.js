@@ -1,5 +1,6 @@
 const baseDeDonnees = require('../db');
 
+//post
 exports.creerConcert = async (requete, reponse) => {
   const {
     titre,
@@ -38,6 +39,7 @@ exports.creerConcert = async (requete, reponse) => {
   }
 };
 
+// put
 exports.mettreAJourConcert = async (requete, reponse) => {
   const { id } = requete.params;
   const { titre, description, date_concert, nb_places_total, lien_video, tarif_plein, tarif_abonne } = requete.body;
@@ -58,6 +60,7 @@ exports.mettreAJourConcert = async (requete, reponse) => {
   }
 };
 
+//delete
 exports.supprimerConcert = async (requete, reponse) => {
   const { id } = requete.params;
   try {
@@ -73,10 +76,12 @@ exports.supprimerConcert = async (requete, reponse) => {
     reponse.status(500).json({ erreur: "Erreur lors de la suppression du concert." });
   }
 };
+
+//get
 exports.obtenirConcerts = async (requete, reponse) => {
   try {
     const resultat = await baseDeDonnees.query('SELECT * FROM concert ORDER BY id_concert');
-    reponse.json(resultat.rows); // ✅ envoie les données au format JSON
+    reponse.json(resultat.rows); 
   } catch (erreur) {
     console.error("Erreur dans obtenirConcerts :", erreur);
     reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
