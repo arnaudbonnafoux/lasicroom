@@ -13,13 +13,15 @@ const concertRoutes = require('./routes/concerts');
 const utilisateurRoutes = require('./routes/utilisateurs');
 const reservationRoutes = require('./routes/reservations');
 const accompagnementRoutes = require('./routes/accompagnements');
+const connexionRoutes = require('./routes/connexions');
 
 app.use('/api/concerts', concertRoutes);
 app.use('/api/utilisateurs', utilisateurRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/accompagnements', accompagnementRoutes);
+app.use('/api/connexions', connexionRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Serveur backend en écoute sur http://localhost:${PORT}`);
 });

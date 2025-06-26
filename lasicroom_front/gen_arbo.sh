@@ -7,7 +7,7 @@ OUTPUT="structure.txt"
 EXCLUDE="node_modules|.git|dist"
 
 # Profondeur maximale
-DEPTH=5
+DEPTH=4
 
 echo "📂 Génération de l'arborescence du projet..."
 tree -L $DEPTH -I "$EXCLUDE" > $OUTPUT

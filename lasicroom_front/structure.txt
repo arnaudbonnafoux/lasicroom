@@ -1,0 +1,70 @@
+.
+├── gen_arbo.sh
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── assets
+│   │   ├── dessin_1.jpeg
+│   │   ├── favicon_io
+│   │   │   ├── android-chrome-192x192.png
+│   │   │   ├── android-chrome-512x512.png
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon-16x16.png
+│   │   │   ├── favicon-32x32.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── nettoie_toutes_images.sh
+│   │   │   └── site.webmanifest
+│   │   ├── link-solid.svg
+│   │   ├── location-pin-solid.svg
+│   │   ├── music-solid.svg
+│   │   ├── nettoie_toutes_images.sh
+│   │   ├── optimiser_images.sh
+│   │   ├── phone-solid.svg
+│   │   ├── photo_10.jpg
+│   │   ├── photo_11.jpg
+│   │   ├── photo_12.jpg
+│   │   ├── photo_12v2.jpg
+│   │   ├── photo_1.jpg
+│   │   ├── photo_1v2.jpg
+│   │   ├── photo_2.jpg
+│   │   ├── photo_4.jpg
+│   │   ├── photo_5.jpg
+│   │   ├── photo_6.jpg
+│   │   ├── photo_7.jpg
+│   │   ├── photo_8.jpg
+│   │   ├── photo_9.jpg
+│   │   ├── play-solid.svg
+│   │   ├── renommer_photos.sh
+│   │   ├── square-envelope-solid.svg
+│   │   └── user-group-solid.svg
+│   ├── composants
+│   ├── gen_arbo.sh
+│   ├── index.css
+│   ├── index.js
+│   ├── pages
+│   │   ├── accompagnement.js
+│   │   ├── accueil.js
+│   │   ├── admin
+│   │   │   ├── gestion_accompagnement.js
+│   │   │   ├── gestion_concerts.js
+│   │   │   └── gestion_reservations.js
+│   │   ├── agenda.js
+│   │   ├── billetterie.js
+│   │   ├── connexion.js
+│   │   ├── inscription.js
+│   │   └── options.js
+│   ├── services
+│   └── structure.txt
+└── structure.txt
+
+9 directories, 59 files
