@@ -1,0 +1,15 @@
+.header-container {
+  background-color: #6b5ca5;
+  color: white;
+  padding: 1rem;
+  border-radius: 0 0 15px 15px;
+  text-align: center;
+}
+
+.header-logo {
+  height: 60px;
+}
+
+.header-title {
+  color: #e4d4ff;
+}

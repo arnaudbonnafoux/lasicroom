@@ -1,16 +1,12 @@
-// src/composants/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-//import './Navbar.css';//
+import '../styles/navbar.css';
 
 const Navbar = () => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Accueil</Link></li>
-        <li><Link to="/agenda">Agenda</Link></li>
-        <li><Link to="/accompagnement">Accompagnement</Link></li>
-      </ul>
+    <nav className="navbar-custom">
+      <a href="/" className="nav-link">Accueil</a>
+      <a href="/agenda" className="nav-link">Agenda</a>
+      <a href="/accompagnement" className="nav-link">Accompagnement</a>
     </nav>
   );
 };

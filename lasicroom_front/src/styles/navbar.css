@@ -1,0 +1,13 @@
+.navbar-custom {
+  background-color: #fdebd0;
+  padding: 0.75rem;
+  border-radius: 0 0 15px 15px;
+  text-align: end;
+  font-weight: bold;
+}
+
+.navbar-custom .nav-link {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #6b5ca5;
+}

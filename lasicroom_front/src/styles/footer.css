@@ -1,0 +1,30 @@
+.footer-custom {
+  background-color: #6b5ca5;
+  color: white;
+  border-radius: 15px;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: underline;
+}
+
+.footer-credit {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}

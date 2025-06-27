@@ -36,6 +36,9 @@
 │   ├── square-envelope-solid.svg
 │   └── user-group-solid.svg
 ├── composants
+│   ├── Footer.js
+│   ├── Header.js
+│   └── Navbar.js
 ├── gen_arbo.sh
 ├── index.css
 ├── index.js
@@ -52,6 +55,11 @@
 │   ├── inscription.js
 │   └── options.js
 ├── services
-└── structure.txt
+├── structure.txt
+└── styles
+    ├── accueil.css
+    ├── footer.css
+    ├── header.css
+    └── navbar.css
 
-7 directories, 48 files
+8 directories, 55 files
