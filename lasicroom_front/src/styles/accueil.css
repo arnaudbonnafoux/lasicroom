@@ -1,34 +1,53 @@
-.bloc-bienvenue {
-  background-color: #f8f9fa; /* Bootstrap's bg-light */
+.présentation {
+  background-color: #fdebd0; /* Bootstrap's bg-light */
   padding: 1rem;
   border-radius: 0.375rem; /* Bootstrap's rounded */
   text-align: justify;
+  color: #6b5ca5;
 }
 
-.bloc-bienvenue h2,
-.bloc-bienvenue p:first-of-type {
+.présentation h2,
+.presentation p:first-of-type {
+  color:#6b5ca5;
   text-align: center;
 }
 
-.bloc-infos {
-  background-image: url('/public/images/photo_12v2.jpg');
+.infos {
+  text-align: center;
+  background-image: url('/public/images/photo_3.jpg');
   background-size: cover;
-  border: 1px solid #aaa;
+  border: 1px solid #fff;
   padding: 1rem;
   border-radius: 10px;
   color: #6b5ca5;
   font-weight: bold;
 }
 
-.direct-live {
-  background-image: url('/public/images/photo_12v2.jpg');
+li {
+  list-style: none;
+}
+
+.balances {
+  align-items: center;
+  background-image: url('/public/images/photo_3.jpg');
   background-size: cover;
 }
 
-.direct-live h2 {
+.balances h2 {
+  text-align: center;
   color: #a280ff;
 }
 
-.direct-arrow {
+.flèche_balances {
   font-size: 2rem;
+}
+
+.animation_1 {
+    animation: clignote 5s infinite;
+}
+
+@keyframes clignote {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }

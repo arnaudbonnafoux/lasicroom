@@ -3,10 +3,10 @@ import '../styles/navbar.css';
 
 const Navbar = () => {
   return (
-    <nav className="navbar-custom">
-      <a href="/" className="nav-link">Accueil</a>
-      <a href="/agenda" className="nav-link">Agenda</a>
-      <a href="/accompagnement" className="nav-link">Accompagnement</a>
+    <nav className="navbar">
+      <a href="/" className="navbar_liens">Accueil</a>
+      <a href="/agenda" className="navbar_liens">Agenda</a>
+      <a href="/accompagnement" className="navbar_liens">Accompagnement</a>
     </nav>
   );
 };

@@ -1,15 +1,15 @@
-.header-container {
+.header {
+  margin : 10px 10px 0px 10px;
   background-color: #6b5ca5;
-  color: white;
   padding: 1rem;
-  border-radius: 0 0 15px 15px;
+  border-radius: 12px;
   text-align: center;
 }
 
-.header-logo {
+.logo {
   height: 60px;
 }
 
-.header-title {
+.title {
   color: #e4d4ff;
 }
