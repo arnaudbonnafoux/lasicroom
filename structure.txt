@@ -8,57 +8,179 @@
 │   └── sauvegarde
 ├── bash
 │   └── commandes_tree
+├── bootstrap
+│   ├── admin.html
+│   ├── billetterie.html
+│   └── index.html
+├── cd
 ├── documentation
+│   ├── back-end
+│   │   ├── pseudo_code_app.js.pdf
+│   │   ├── pseudo_code_app.js.txt
+│   │   ├── pseudo_code_concert_controleur.js.pdf
+│   │   ├── pseudo_code_concert_controleur.js.txt
+│   │   ├── pseudo_code_db.js.pdf
+│   │   ├── pseudo_code_db.js.txt
+│   │   ├── pseudo_code_route_concert.js.pdf
+│   │   └── pseudo_code_route_concert.js.txt
 │   ├── flux_utilisateur.txt
+│   ├── front-end
 │   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
-│   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
-│   └── structure_projet.txt
+│   └── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
 ├── figma
 │   ├── La sicRoom
+│   │   ├── page_accompagnement.png
+│   │   ├── page_accueil.png
+│   │   ├── page_admin.png
+│   │   ├── page_agenda.png
+│   │   └── page_billetterie.png
 │   ├── La sicRoom.fig
 │   └── mobile
+│       ├── page_accompagnement.png
+│       ├── page_accueil.png
+│       ├── page_agenda.png
+│       └── page_billetterie.png
 ├── gen_arbo.sh
-├── images
-│   ├── cart-shopping-solid.svg
-│   ├── dessin_1.jpeg
-│   ├── favicon_io
-│   ├── link-solid.svg
-│   ├── location-pin-solid.svg
-│   ├── music-solid.svg
-│   ├── nettoie_toutes_images.sh
-│   ├── optimiser_images.sh
-│   ├── phone-solid.svg
-│   ├── photo_10.jpg
-│   ├── photo_11.jpg
-│   ├── photo_12.jpg
-│   ├── photo_12v2.jpg
-│   ├── photo_1.jpg
-│   ├── photo_1v2.jpg
-│   ├── photo_2.jpg
-│   ├── photo_4.jpg
-│   ├── photo_5.jpg
-│   ├── photo_6.jpg
-│   ├── photo_7.jpg
-│   ├── photo_8.jpg
-│   ├── photo_9.jpg
-│   ├── play-solid.svg
-│   ├── renommer_photos.sh
-│   ├── square-envelope-solid.svg
-│   ├── user-group-solid.svg
-│   └── user-solid.svg
 ├── lasicroom_back
 │   ├── app.js
 │   ├── controleurs
+│   │   ├── accompagnement_controleur.js
+│   │   ├── concert_controleur.js
+│   │   ├── connexion_controleur.js
+│   │   ├── reservation_controleur.js
+│   │   └── utilisateur_controleur.js
 │   ├── db.js
 │   ├── gen_arbo.sh
+│   ├── images
+│   │   ├── nettoie_toutes_images.sh
+│   │   ├── optimiser_images.sh
+│   │   ├── photo_1.jpg
+│   │   ├── photo_2.jpg
+│   │   ├── photo_3.jpg
+│   │   ├── photo_4.jpg
+│   │   ├── photo_5.jpg
+│   │   ├── photo_6.jpg
+│   │   ├── photo_7.jpg
+│   │   ├── photo_8.jpg
+│   │   └── renommer_photos.sh
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── routes
-│   ├── structure.txt
-│   └── tester_routes.sh
+│   │   ├── accompagnements.js
+│   │   ├── concerts.js
+│   │   ├── connexions.js
+│   │   ├── reservations.js
+│   │   └── utilisateurs.js
+│   └── structure.txt
+├── lasicroom_front
+│   ├── build
+│   │   ├── asset-manifest.json
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── cart-shopping-solid.svg
+│   │   │   ├── dessin_1.jpg
+│   │   │   ├── link-solid.svg
+│   │   │   ├── location-pin-solid.svg
+│   │   │   ├── music-solid.svg
+│   │   │   ├── nettoie_toutes_images.sh
+│   │   │   ├── optimiser_images.sh
+│   │   │   ├── phone-solid.svg
+│   │   │   ├── photo_1.jpg
+│   │   │   ├── photo_2.jpg
+│   │   │   ├── photo_3.jpg
+│   │   │   ├── photo_4.jpg
+│   │   │   ├── play-solid.svg
+│   │   │   ├── renommer_photos.sh
+│   │   │   ├── square-envelope-solid.svg
+│   │   │   ├── user-group-solid.svg
+│   │   │   └── user-solid.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── static
+│   │       ├── css
+│   │       │   ├── main.701e69f1.css
+│   │       │   └── main.701e69f1.css.map
+│   │       ├── js
+│   │       │   ├── main.033a89fa.js
+│   │       │   ├── main.033a89fa.js.LICENSE.txt
+│   │       │   └── main.033a89fa.js.map
+│   │       └── media
+│   │           └── photo_3.3438d76643b7613e63c9.jpg
+│   ├── gen_arbo.sh
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── Postgres_1.session.sql
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── cart-shopping-solid.svg
+│   │   │   ├── dessin_1.jpg
+│   │   │   ├── link-solid.svg
+│   │   │   ├── location-pin-solid.svg
+│   │   │   ├── music-solid.svg
+│   │   │   ├── nettoie_toutes_images.sh
+│   │   │   ├── optimiser_images.sh
+│   │   │   ├── phone-solid.svg
+│   │   │   ├── photo_1.jpg
+│   │   │   ├── photo_2.jpg
+│   │   │   ├── photo_3.jpg
+│   │   │   ├── photo_4.jpg
+│   │   │   ├── play-solid.svg
+│   │   │   ├── renommer_photos.sh
+│   │   │   ├── square-envelope-solid.svg
+│   │   │   ├── user-group-solid.svg
+│   │   │   └── user-solid.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── composants
+│   │   │   ├── Footer.js
+│   │   │   ├── Header.js
+│   │   │   └── Navbar.js
+│   │   ├── gen_arbo.sh
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── pages
+│   │   │   ├── accompagnement.js
+│   │   │   ├── accueil.js
+│   │   │   ├── admin
+│   │   │   │   ├── gestion_accompagnement.js
+│   │   │   │   ├── gestion_concerts.js
+│   │   │   │   └── gestion_reservations.js
+│   │   │   ├── agenda.js
+│   │   │   ├── billetterie.js
+│   │   │   ├── conditions_utilisation.js
+│   │   │   ├── connexion.js
+│   │   │   ├── inscription.js
+│   │   │   ├── mentions_legales.js
+│   │   │   └── options.js
+│   │   ├── structure.txt
+│   │   └── styles
+│   │       ├── accompagnement.css
+│   │       ├── accueil.css
+│   │       ├── agenda.css
+│   │       ├── billetterie.css
+│   │       ├── conditions_utilisation.css
+│   │       ├── footer.css
+│   │       ├── gestion_accompagnement.css
+│   │       ├── gestion_concerts.css
+│   │       ├── gestion_reservations.css
+│   │       ├── header.css
+│   │       ├── mentions_legales.css
+│   │       └── navbar.css
+│   └── structure.txt
 ├── La sicRoom.session.sql
 ├── LICENSE
 ├── README.md
 └── structure.txt
 
-12 directories, 50 files
+29 directories, 155 files

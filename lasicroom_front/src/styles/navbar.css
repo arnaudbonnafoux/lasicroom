@@ -1,14 +1,11 @@
 .navbar {
   margin: 10px;
-  display: flex;
-  justify-content: flex-start;
   background-color: #fdebd0;
-  padding: 0.75rem;
   border-radius: 12px;
-  font-weight: bold;
 }
 
-.navbar .navbar_liens {
+.navbar_liens {
+  font-weight: bold;
   margin: 0 1rem;
   text-decoration: none;
   color: #6b5ca5;

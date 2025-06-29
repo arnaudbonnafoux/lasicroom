@@ -8,6 +8,10 @@ import Billetterie from './pages/billetterie';
 import Accompagnement from './pages/accompagnement';
 import Options from './pages/options';
 
+// Cadre légales
+import MentionsLegales from './pages/mentions_legales';
+import ConditionsUtilisation from './pages/conditions_utilisation';
+
 // Admin
 import GestionConcerts from './pages/admin/gestion_concerts';
 import GestionReservations from './pages/admin/gestion_reservations';
@@ -26,9 +30,15 @@ function App() {
         <Route path="/billetterie" element={<Billetterie />} />
         <Route path="/accompagnement" element={<Accompagnement />} />
         <Route path="/options" element={<Options />} />
+
+        {/*Authentification*/}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
 
+        {/* Cadre légale */}
+        <Route path="/mentions_legales" element={<MentionsLegales />} />
+        <Route path="/conditions_utilisation" element={<ConditionsUtilisation />} />
+      
         {/* Admin */}
         <Route path="/admin/concerts" element={<GestionConcerts />} />
         <Route path="/admin/reservations" element={<GestionReservations />} />

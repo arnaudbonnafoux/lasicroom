@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
-import '../styles/billetterie.css'
+import '../styles/mentions_legales.css';
 
-const Billetterie = () => {
+const MentionsLegales = () => {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ const Billetterie = () => {
   );
 };
 
-export default Billetterie;
+export default MentionsLegales;
