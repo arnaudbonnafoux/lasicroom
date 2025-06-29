@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="liens_footer">
         <Link to="/mentions_legales" className='color_liens'>Mentions légales</Link>
         <Link to="/conditions_utilisation" className='color_liens'>Conditions d'utilisation</Link>
-        <Link to="/gestion_concert" className='color_liens'>Admin</Link>
+        <Link to="/admin/concerts" className='color_liens'>Admin</Link>
       </div>
 
       <p className="licence">&copy; 2025 duanrA</p>

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../composants/Navbar';
+import Footer from '../composants/Footer';
+import Header from '../composants/Header';
+import '../styles/connexion.css'
 
 function Connexion() {
   const [email, setEmail] = useState('');
@@ -21,7 +25,7 @@ function Connexion() {
       if (reponse.ok) {
         const donnees = await reponse.json();
         console.log('Utilisateur connecté :', donnees);
-        // 🔁 Redirection vers la page billetterie après succès
+        //Redirection vers la page billetterie après succès
         navigate('/billetterie');
       } else {
         const erreurReponse = await reponse.json();
@@ -34,6 +38,8 @@ function Connexion() {
 
   return (
     <div>
+      <Header />
+      <Navbar />
       <h2>Connexion</h2>
       {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
       <form onSubmit={handleSubmit}>
@@ -53,6 +59,7 @@ function Connexion() {
         /><br />
         <button type="submit">Se connecter</button>
       </form>
+      <Footer />
     </div>
   );
 }

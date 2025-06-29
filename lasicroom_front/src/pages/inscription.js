@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../composants/Navbar';
+import Footer from '../composants/Footer';
+import Header from '../composants/Header';
+import '../styles/inscription.css'
 
 function Inscription() {
   const [nom, setNom] = useState('');
@@ -33,6 +37,8 @@ function Inscription() {
 
   return (
     <div>
+      <Header />
+      <Navbar />
       <h2>Inscription</h2>
       <form onSubmit={gererSoumission}>
         <input
@@ -63,6 +69,7 @@ function Inscription() {
         <button type="submit">S'inscrire</button>
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
       </form>
+      <Footer />
     </div>
   );
 }

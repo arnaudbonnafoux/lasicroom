@@ -1,0 +1,12 @@
+.navbar {
+  margin: 10px;
+  background-color: #fdebd0;
+  border-radius: 12px;
+}
+
+.navbar_liens {
+  font-weight: bold;
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #6b5ca5;
+}

@@ -22,7 +22,7 @@ const Accompagnement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/accompagnement', formData);
+      await axios.post('http://localhost:3001/api/accompagnements', formData);
       alert('Demande envoyée avec succès !');
       setFormData({
         nom_artiste: '',

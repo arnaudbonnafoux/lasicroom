@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Pages principales
+// Pages utilisateurs
 import Accueil from './pages/accueil';
 import Agenda from './pages/agenda';
 import Billetterie from './pages/billetterie';
 import Accompagnement from './pages/accompagnement';
 import Options from './pages/options';
 
-// Cadre légales
+// Cadre légale
 import MentionsLegales from './pages/mentions_legales';
 import ConditionsUtilisation from './pages/conditions_utilisation';
 
@@ -21,6 +21,7 @@ import GestionAccompagnement from './pages/admin/gestion_accompagnement';
 import Connexion from './pages/connexion';
 import Inscription from './pages/inscription';
 
+//Routes
 function App() {
   return (
     <Router>
