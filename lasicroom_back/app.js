@@ -12,12 +12,14 @@ app.use(cors());
 app.use(express.json()); // Pour traiter les requêtes JSON
 
 // Routes API (bd)
+const artisteRoutes = require('./routes/artistes');
 const concertRoutes = require('./routes/concerts');
 const utilisateurRoutes = require('./routes/utilisateurs');
 const reservationRoutes = require('./routes/reservations');
 const accompagnementRoutes = require('./routes/accompagnements');
 const connexionRoutes = require('./routes/connexions');
 
+app.use('/api/artistes', artisteRoutes);
 app.use('/api/concerts', concertRoutes);
 app.use('/api/utilisateurs', utilisateurRoutes);
 app.use('/api/reservations', reservationRoutes);
@@ -27,7 +29,7 @@ app.use('/api/connexions', connexionRoutes);
 // React 
 app.use(express.static(path.join(__dirname, '../lasicroom_front/build')));
 
-/* Fallback
+/* Fallback à définir
 app.get('*', (requete, reponse) => {
   reponse.sendFile(path.join(__dirname, '../lasicroom_front/build', 'index.html'));
 });*/

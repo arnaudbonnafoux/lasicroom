@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar_admin from '../../composants/Navbar_admin';
 import Footer from '../../composants/Footer';
 import Header from '../../composants/Header';
-import '../../styles/gestion_concerts.css';
+import '../../styles/gestion_artistes.css';
 
-const GestionConcerts = () => {
+const GestionArtistes = () => {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ const GestionConcerts = () => {
   );
 };
 
-export default GestionConcerts;
+export default GestionArtistes;

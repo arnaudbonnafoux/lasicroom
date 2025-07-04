@@ -8,6 +8,7 @@ const Navbar_admin = () => {
       <Link to="/admin/concerts" className="navbar_liens">Concerts</Link>
       <Link to="/admin/reservations" className="navbar_liens">Réservation</Link>
       <Link to="/admin/accompagnement" className="navbar_liens">Accompagnement</Link>
+      <Link to="/admin/artistes" className="navbar_liens">Artistes</Link>
     </nav>
   );
 };

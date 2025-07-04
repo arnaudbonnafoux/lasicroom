@@ -16,6 +16,7 @@ import ConditionsUtilisation from './pages/conditions_utilisation';
 import GestionConcerts from './pages/admin/gestion_concerts';
 import GestionReservations from './pages/admin/gestion_reservations';
 import GestionAccompagnement from './pages/admin/gestion_accompagnement';
+import GestionArtistes from './pages/admin/gestion_artistes';
 
 // Authentification
 import Connexion from './pages/connexion';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/admin/concerts" element={<GestionConcerts />} />
         <Route path="/admin/reservations" element={<GestionReservations />} />
         <Route path="/admin/accompagnement" element={<GestionAccompagnement />} />
+        <Route path="/admin/artistes" element={<GestionArtistes />} />
       </Routes>
     </Router>
   );

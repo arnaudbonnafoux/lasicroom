@@ -1,0 +1,102 @@
+C’est normal d’avoir encore des difficultés avec les jointures et les implications côté admin : ce sont deux sujets denses, mais essentiels dans une application comme la tienne. Voici une explication claire et concrète adaptée à ton projet **La sicRoom** :
+
+---
+
+## 🔗 1. **Comprendre la jointure entre `concert` et `artiste`**
+
+### 🌱 La structure
+
+Tu as :
+
+* Une table `concert` avec un champ `id_artiste` (clé étrangère)
+* Une table `artiste` avec des infos sur le groupe (nom, style, lien, etc.)
+
+### 🔄 La relation
+
+Un **concert** → programme **un seul artiste**
+Un **artiste** → peut être **programmé dans un seul concert**
+
+Donc **relation 1-1** dans ton modèle actuel.
+
+### 🧠 La jointure SQL
+
+Quand tu veux afficher un concert **avec les infos de l’artiste**, tu fais une jointure :
+
+```sql
+SELECT concert.*, artiste.nom_artiste, artiste.photo
+FROM concert
+LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste;
+```
+
+💡 Cela veut dire :
+
+> “Je veux tous les concerts, et pour chacun, ajoute-moi les infos de l’artiste associé.”
+
+---
+
+## 🛠 2. **Côté admin : que doit faire l’administrateur ?**
+
+Voici les **étapes concrètes** que l’admin devra suivre :
+
+### a) **Créer un artiste**
+
+* Nom
+* Style musical
+* Description
+* Photo (fichier image)
+* Lien vidéo (YouTube, etc.)
+
+➡️ **Formulaire de gestion des artistes**
+➡️ Sauvegarde dans la table `artiste`
+
+---
+
+### b) **Créer un concert**
+
+* Titre
+* Description
+* Date
+* Tarif plein / abonné
+* Nombre de places
+* **Choisir un artiste (dans une liste)** déjà enregistré
+
+➡️ Tu enregistres dans `concert` en liant via `id_artiste`.
+
+---
+
+### c) **Afficher les concerts**
+
+Quand l’admin consulte la liste des concerts, il peut voir :
+
+* Le nom du concert
+* La date
+* Le nom de l’artiste associé
+* Et potentiellement un aperçu de la photo ou du lien vidéo
+
+➡️ Ce genre d'affichage repose sur la **jointure** entre `concert` et `artiste`.
+
+---
+
+## ✅ Exemple visuel (résultat de la jointure)
+
+| Concert       | Date       | Artiste          | Style           | Lien vidéo      |
+| ------------- | ---------- | ---------------- | --------------- | --------------- |
+| Rock en Seine | 2025-09-12 | The Broken Beats | Rock alternatif | youtube.com/xxx |
+| Nuit Jazz     | 2025-10-01 | BlueVibe         | Jazz fusion     | youtube.com/yyy |
+
+---
+
+## 🧭 Conclusion
+
+* Les **jointures** te permettent de relier les **informations entre plusieurs tables**.
+* Côté admin, cela se traduit par :
+
+  * Deux interfaces : création artistes / création concerts
+  * Et une gestion liée (un concert choisit un artiste existant)
+
+---
+
+Souhaites-tu que je t’aide à :
+
+* Créer un **formulaire admin React** pour créer un concert avec choix d’un artiste ?
+* Ou à créer un exemple de **page d’agenda affichant les données liées** ?

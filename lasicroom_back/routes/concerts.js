@@ -1,3 +1,4 @@
+//Routes vérifiées
 const express = require('express');
 const routeur = express.Router();
 const concertControleur = require('../controleurs/concert_controleur');
@@ -11,37 +12,36 @@ module.exports = routeur;
 
 /* 
 Test route get :
-curl -X GET http://localhost:3000/api/concerts | jq
+curl -X GET http://localhost:3001/api/concerts | jq
 
 Test route post :
-curl -X POST http://localhost:3000/api/concerts \
+curl -X POST http://localhost:3001/api/concerts \
 -H "Content-Type: application/json" \
 -d '{
-  "titre": "Concert Test",
-  "description": "Un concert test",
-  "date_concert": "2025-07-10T20:00:00.000Z",
+  "titre": "Concert Test2",
+  "description": "Un concert test2",
+  "date_concert": "2025-08-10T20:00:00.000Z",
   "nb_places_total": 100,
   "nb_places_restantes": 100,
-  "lien_video": "https://youtu.be/example",
   "tarif_plein": 25.00,
-  "tarif_abonne": 15.00
+  "tarif_abonne": 15.00,
+  "id_artiste": 4
 }' | jq
 
-Test route put :
-curl -X PUT http://localhost:3000/api/concerts/8 \
+Test route put : Attention de bien choisir l'id.
+curl -X PUT http://localhost:3001/api/concerts/10 \
 -H "Content-Type: application/json" \
 -d '{
-  "titre": "Concert Modifié",
+  "titre": "Concert Modifié avec artiste_4",
   "description": "Description mise à jour",
   "date_concert": "2025-07-11T20:30:00.000Z",
   "nb_places_total": 150,
   "nb_places_restantes": 130,
-  "lien_video": "https://youtu.be/updated",
   "tarif_plein": 30.00,
-  "tarif_abonne": 20.00
+  "tarif_abonne": 20.00,
+  "id_artiste": 4
 }' | jq
 
 Test route delete :
-curl -X DELETE http://localhost:3000/api/concerts/8 | jq
-
+curl -X DELETE http://localhost:3001/api/concerts/8 | jq
 */

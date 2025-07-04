@@ -2,19 +2,35 @@
 ├── app.js
 ├── controleurs
 │   ├── accompagnement_controleur.js
+│   ├── artiste_controleur.js
 │   ├── concert_controleur.js
+│   ├── connexion_controleur.js
 │   ├── reservation_controleur.js
 │   └── utilisateur_controleur.js
 ├── db.js
 ├── gen_arbo.sh
+├── images
+│   ├── nettoie_toutes_images.sh
+│   ├── optimiser_images.sh
+│   ├── photo_1.jpg
+│   ├── photo_2.jpg
+│   ├── photo_3.jpg
+│   ├── photo_4.jpg
+│   ├── photo_5.jpg
+│   ├── photo_6.jpg
+│   ├── photo_7.jpg
+│   ├── photo_8.jpg
+│   └── renommer_photos.sh
+├── lasicroom2.session.sql
 ├── package.json
 ├── package-lock.json
 ├── routes
 │   ├── accompagnements.js
+│   ├── artistes.js
 │   ├── concerts.js
+│   ├── connexions.js
 │   ├── reservations.js
 │   └── utilisateurs.js
-├── structure.txt
-└── tester_routes.sh
+└── structure.txt
 
-3 directories, 15 files
+4 directories, 30 files

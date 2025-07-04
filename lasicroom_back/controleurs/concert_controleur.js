@@ -7,17 +7,16 @@ exports.creerConcert = async (requete, reponse) => {
     description,
     date_concert,
     nb_places_total,
-    lien_video,
     tarif_plein,
-    tarif_abonne
+    tarif_abonne,
+    id_artiste
   } = requete.body;
 
   try {
     const resultat = await baseDeDonnees.query(
       `INSERT INTO concert (
         titre, description, date_concert,
-        nb_places_total, nb_places_restantes,
-        lien_video, tarif_plein, tarif_abonne
+        nb_places_total, nb_places_restantes, tarif_plein, tarif_abonne, id_artiste
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *`,
       [
@@ -26,9 +25,9 @@ exports.creerConcert = async (requete, reponse) => {
         date_concert,
         nb_places_total,
         nb_places_total, // Initialise les places restantes au total
-        lien_video,
         tarif_plein,
-        tarif_abonne
+        tarif_abonne,
+        id_artiste
       ]
     );
 
@@ -42,14 +41,13 @@ exports.creerConcert = async (requete, reponse) => {
 // put
 exports.mettreAJourConcert = async (requete, reponse) => {
   const { id } = requete.params;
-  const { titre, description, date_concert, nb_places_total, lien_video, tarif_plein, tarif_abonne } = requete.body;
+  const { titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste } = requete.body;
   try {
     const resultat = await baseDeDonnees.query(
       `UPDATE concert
-       SET titre = $1, description = $2, date_concert = $3, nb_places_total = $4,
-           lien_video = $5, tarif_plein = $6, tarif_abonne = $7
+       SET titre = $1, description = $2, date_concert = $3, nb_places_total = $4, tarif_plein = $5, tarif_abonne = $6, id_artiste = $7
        WHERE id_concert = $8 RETURNING *`,
-      [titre, description, date_concert, nb_places_total, lien_video, tarif_plein, tarif_abonne, id]
+      [titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste, id]
     );
     if (resultat.rowCount === 0) {
       return reponse.status(404).json({ message: "Concert non trouvé." });
@@ -77,11 +75,63 @@ exports.supprimerConcert = async (requete, reponse) => {
   }
 };
 
-//get
+/*get
 exports.obtenirConcerts = async (requete, reponse) => {
   try {
     const resultat = await baseDeDonnees.query('SELECT * FROM concert ORDER BY id_concert');
     reponse.json(resultat.rows); 
+  } catch (erreur) {
+    console.error("Erreur dans obtenirConcerts :", erreur);
+    reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
+  }
+};*/
+
+/*get
+exports.obtenirConcerts = async (requete, reponse) => {
+  try {
+    const resultat = await baseDeDonnees.query(`
+  SELECT 
+    concert.*, 
+    artiste.nom_artiste, 
+    artiste.style_musical, 
+    artiste.photo, 
+    artiste.lien_video
+  FROM concert
+  LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste
+  ORDER BY concert.id_concert
+`);
+
+    reponse.json(resultat.rows);
+  } catch (erreur) {
+    console.error("Erreur dans obtenirConcerts :", erreur);
+    reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
+  }
+};*/
+
+// GET enrichi avec jointure artiste
+exports.obtenirConcerts = async (requete, reponse) => {
+  try {
+    const resultat = await baseDeDonnees.query(`
+      SELECT 
+        concert.id_concert,
+        concert.titre,
+        concert.description,
+        concert.date_concert,
+        concert.nb_places_total,
+        concert.nb_places_restantes,
+        concert.tarif_plein,
+        concert.tarif_abonne,
+        concert.id_artiste,
+        artiste.nom_artiste,
+        artiste.style_musical,
+        artiste.description AS description_artiste,
+        artiste.photo,
+        artiste.lien_video
+      FROM concert
+      LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste
+      ORDER BY concert.id_concert
+    `);
+    reponse.json(resultat.rows);
   } catch (erreur) {
     console.error("Erreur dans obtenirConcerts :", erreur);
     reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
