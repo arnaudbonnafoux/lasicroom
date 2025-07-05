@@ -30,9 +30,9 @@
 │       │   ├── main.0bf00574.css
 │       │   └── main.0bf00574.css.map
 │       ├── js
-│       │   ├── main.d65af945.js
-│       │   ├── main.d65af945.js.LICENSE.txt
-│       │   └── main.d65af945.js.map
+│       │   ├── main.b9ed817a.js
+│       │   ├── main.b9ed817a.js.LICENSE.txt
+│       │   └── main.b9ed817a.js.map
 │       └── media
 │           └── photo_3.3438d76643b7613e63c9.jpg
 ├── gen_arbo.sh
@@ -81,7 +81,9 @@
 │   │   ├── accueil.js
 │   │   ├── admin
 │   │   │   ├── gestion_accompagnement.js
+│   │   │   ├── gestion_artistes.js
 │   │   │   ├── gestion_concerts.js
+│   │   │   ├── gestion_connexion.js
 │   │   │   └── gestion_reservations.js
 │   │   ├── agenda.js
 │   │   ├── billetterie.js
@@ -100,6 +102,7 @@
 │       ├── connexion.css
 │       ├── footer.css
 │       ├── gestion_accompagnement.css
+│       ├── gestion_artistes.css
 │       ├── gestion_concerts.css
 │       ├── gestion_reservations.css
 │       ├── header.css
@@ -110,4 +113,4 @@
 │       └── options.css
 └── structure.txt
 
-14 directories, 97 files
+14 directories, 100 files

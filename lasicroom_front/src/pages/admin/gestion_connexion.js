@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../composants/Navbar';
-import Footer from '../composants/Footer';
-import Header from '../composants/Header';
-import '../styles/connexion.css'
+import Navbar_admin from '../../composants/Navbar_admin';
+import Footer from '../../composants/Footer';
+import Header from '../../composants/Header';
+import '../../styles/connexion.css'
 
-function Connexion() {
+function GestionConnexion() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [erreur, setErreur] = useState('');
@@ -31,7 +31,7 @@ function Connexion() {
         }
         console.log('Utilisateur connecté :', donnees);
         // Redirection vers la page billetterie après succès
-        navigate('/billetterie');
+        navigate('/admin/concerts');
       } else {
         const erreurReponse = await reponse.json();
         setErreur(erreurReponse.message || 'Échec de la connexion');
@@ -44,7 +44,7 @@ function Connexion() {
   return (
     <div>
       <Header />
-      <Navbar />
+      <Navbar_admin />
       <h2>Connexion</h2>
       {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
       <form onSubmit={handleSubmit}>
@@ -69,4 +69,4 @@ function Connexion() {
   );
 }
 
-export default Connexion;
+export default GestionConnexion;

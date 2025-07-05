@@ -10,8 +10,8 @@ module.exports = routeur;
 curl -X POST http://localhost:3001/api/connexions \
 -H "Content-Type: application/json" \
 -d '{
-  "email": "alice@example.com",
-  "mot_de_passe": "password123"
-}'
+  "email": "jean.dupont@example.com",
+  "mot_de_passe": "mdp123"
+}' | jq
  Attention, l'utilisateur doit exister dans la base. 
 */

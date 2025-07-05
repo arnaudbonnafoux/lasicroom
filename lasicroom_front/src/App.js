@@ -13,6 +13,7 @@ import MentionsLegales from './pages/mentions_legales';
 import ConditionsUtilisation from './pages/conditions_utilisation';
 
 // Admin
+import GestionConnexion from './pages/admin/gestion_connexion';
 import GestionConcerts from './pages/admin/gestion_concerts';
 import GestionReservations from './pages/admin/gestion_reservations';
 import GestionAccompagnement from './pages/admin/gestion_accompagnement';
@@ -36,6 +37,8 @@ function App() {
         {/*Authentification*/}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
+        
+        <Route path="/admin/connexion" element={<GestionConnexion />} />
 
         {/* Cadre légale */}
         <Route path="/mentions_legales" element={<MentionsLegales />} />

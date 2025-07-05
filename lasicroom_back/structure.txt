@@ -22,6 +22,8 @@
 │   ├── photo_8.jpg
 │   └── renommer_photos.sh
 ├── lasicroom2.session.sql
+├── middlewares
+│   └── authMiddleware.js
 ├── package.json
 ├── package-lock.json
 ├── routes
@@ -33,4 +35,4 @@
 │   └── utilisateurs.js
 └── structure.txt
 
-4 directories, 30 files
+5 directories, 31 files

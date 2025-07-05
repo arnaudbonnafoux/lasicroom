@@ -1,10 +1,13 @@
 .
 ├── base_de_données
-│   ├── diagramme_UML.png
+│   ├── backup_lasicroom2.sql
+│   ├── diagramme_UML_v2.png
 │   ├── fonctionnement_billetterie.odt
 │   ├── fonctionnement_billetterie.txt
+│   ├── jointure_sql.txt
 │   ├── la_sicroom_schema.sql
 │   ├── la_sicroom_uml.xmi
+│   ├── requête_jointure.sql
 │   └── sauvegarde
 ├── bash
 │   └── commandes_tree
@@ -45,6 +48,7 @@
 │   ├── app.js
 │   ├── controleurs
 │   │   ├── accompagnement_controleur.js
+│   │   ├── artiste_controleur.js
 │   │   ├── concert_controleur.js
 │   │   ├── connexion_controleur.js
 │   │   ├── reservation_controleur.js
@@ -63,10 +67,14 @@
 │   │   ├── photo_7.jpg
 │   │   ├── photo_8.jpg
 │   │   └── renommer_photos.sh
+│   ├── lasicroom2.session.sql
+│   ├── middlewares
+│   │   └── authMiddleware.js
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── routes
 │   │   ├── accompagnements.js
+│   │   ├── artistes.js
 │   │   ├── concerts.js
 │   │   ├── connexions.js
 │   │   ├── reservations.js
@@ -104,9 +112,9 @@
 │   │       │   ├── main.0bf00574.css
 │   │       │   └── main.0bf00574.css.map
 │   │       ├── js
-│   │       │   ├── main.d65af945.js
-│   │       │   ├── main.d65af945.js.LICENSE.txt
-│   │       │   └── main.d65af945.js.map
+│   │       │   ├── main.b9ed817a.js
+│   │       │   ├── main.b9ed817a.js.LICENSE.txt
+│   │       │   └── main.b9ed817a.js.map
 │   │       └── media
 │   │           └── photo_3.3438d76643b7613e63c9.jpg
 │   ├── gen_arbo.sh
@@ -155,7 +163,9 @@
 │   │   │   ├── accueil.js
 │   │   │   ├── admin
 │   │   │   │   ├── gestion_accompagnement.js
+│   │   │   │   ├── gestion_artistes.js
 │   │   │   │   ├── gestion_concerts.js
+│   │   │   │   ├── gestion_connexion.js
 │   │   │   │   └── gestion_reservations.js
 │   │   │   ├── agenda.js
 │   │   │   ├── billetterie.js
@@ -174,6 +184,7 @@
 │   │       ├── connexion.css
 │   │       ├── footer.css
 │   │       ├── gestion_accompagnement.css
+│   │       ├── gestion_artistes.css
 │   │       ├── gestion_concerts.css
 │   │       ├── gestion_reservations.css
 │   │       ├── header.css
@@ -188,4 +199,4 @@
 ├── README.md
 └── structure.txt
 
-29 directories, 160 files
+30 directories, 170 files
