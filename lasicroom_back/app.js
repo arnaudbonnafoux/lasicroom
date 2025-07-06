@@ -11,6 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // Pour traiter les requêtes JSON
 
+//Dossier statique photos des concerts. 
+app.use('/photos_artistes', express.static(path.join(__dirname, 'photos_artistes')));
+
 // Routes API (bd)
 const artisteRoutes = require('./routes/artistes');
 const concertRoutes = require('./routes/concerts');

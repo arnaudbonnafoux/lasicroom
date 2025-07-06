@@ -1,0 +1,20 @@
+Parfait, bien joué ! ✅
+
+Tu as maintenant un système complet où :
+
+* 🎫 Une **réservation** décrémente automatiquement le nombre de **places restantes** dans `concert`.
+* 🔁 Le **trigger fonctionne** comme prévu.
+* 🧹 Les anciennes données ont été nettoyées proprement.
+
+---
+
+### 💡 Étapes suivantes possibles (si besoin) :
+
+1. **Empêcher une réservation si `nb_places_restantes = 0`** :
+   Tu peux ajouter une contrainte ou une vérification via une fonction avant insertion.
+
+2. **Afficher un message clair côté front quand le concert est complet.**
+
+3. **Créer une fonction de rollback** si jamais une réservation est annulée (pour ré-incrémenter le nombre de places).
+
+Souhaites-tu que je t’aide à mettre en place un **contrôle pour bloquer la réservation si plus de places** ?

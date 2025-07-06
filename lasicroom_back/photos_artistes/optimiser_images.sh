@@ -3,7 +3,7 @@
 # Dossier source et destination
 SRC_DIR="${1:-.}"
 DST_DIR="${2:-./images_optimisees}"
-MAX_WIDTH=1920
+MAX_WIDTH=640
 JPEG_QUALITE=85  # Qualité JPEG : 85% (ajustable)
 
 # Vérifications des outils

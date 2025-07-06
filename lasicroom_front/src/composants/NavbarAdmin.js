@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar_admin.css';
 
-const Navbar_admin = () => {
+const NavbarAdmin = () => {
   return (
     <nav className="navbar">
       <Link to="/admin/concerts" className="navbar_liens">Concerts</Link>
@@ -13,4 +13,4 @@ const Navbar_admin = () => {
   );
 };
 
-export default Navbar_admin;
+export default NavbarAdmin;

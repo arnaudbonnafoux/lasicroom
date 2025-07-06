@@ -9,7 +9,12 @@
 │   └── utilisateur_controleur.js
 ├── db.js
 ├── gen_arbo.sh
-├── images
+├── lasicroom2.session.sql
+├── middlewares
+│   └── authMiddleware.js
+├── package.json
+├── package-lock.json
+├── photos_artistes
 │   ├── nettoie_toutes_images.sh
 │   ├── optimiser_images.sh
 │   ├── photo_1.jpg
@@ -21,11 +26,6 @@
 │   ├── photo_7.jpg
 │   ├── photo_8.jpg
 │   └── renommer_photos.sh
-├── lasicroom2.session.sql
-├── middlewares
-│   └── authMiddleware.js
-├── package.json
-├── package-lock.json
 ├── routes
 │   ├── accompagnements.js
 │   ├── artistes.js

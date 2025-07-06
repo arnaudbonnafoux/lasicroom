@@ -1,0 +1,36 @@
+arnaud@probook:~/Bureau/apprentissage/javascript_node.js/algorithmes$ node fonction_de_hachage.js 
+alice123 => $2b$10$tlj8ptnteUS6/daEI7nWiuEJ6d8Qjr4s6YAHKjKqZGgcPMSbIJWLa
+bob123 => $2b$10$ris8WbZ/vLjbXrYIqgSS8eR80eQVEIZ8j6HKANXryUMoekf9rFyRm
+claire123 => $2b$10$iLuqc752uKNuONRGLUVXHOysFUqShq0LVsfK804Loby4oPLWRBPuS
+david123 => $2b$10$bPC3XEeVUQ1.K5JSDDYusOWJ/1nHJil3DfKN9UDJgIMTmpC4tR28i
+emma123 => $2b$10$vVcq0py.hzWIouGnQXjR5.F9jtflgrGg.Fwj3HOH2go.u8l.hKkG6
+arnaud@probook:~/Bureau/apprentissage/javascript_node.js/algorithmes$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

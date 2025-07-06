@@ -34,10 +34,11 @@ function App() {
         <Route path="/accompagnement" element={<Accompagnement />} />
         <Route path="/options" element={<Options />} />
 
-        {/*Authentification*/}
+        {/*Inscription et Authentification utilisateurs*/}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         
+        {/*Authentification_admin */}
         <Route path="/admin/connexion" element={<GestionConnexion />} />
 
         {/* Cadre légale */}

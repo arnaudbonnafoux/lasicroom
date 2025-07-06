@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
-import { Link } from 'react-router-dom';
+import CardConcert from '../composants/CardConcert'; // <-- import du composant
 import '../styles/agenda.css';
 
 const Agenda = () => {
+  const [concerts, setConcerts] = useState([]);
+
+  useEffect(() => {
+    // Appel à l'API pour récupérer les concerts
+    fetch('http://localhost:3001/api/concerts')
+      .then((res) => res.json())
+      .then((data) => setConcerts(data))
+      .catch((error) => console.error("Erreur lors du chargement des concerts :", error));
+  }, []);
+
   return (
     <div>
       <Header />
@@ -14,17 +24,14 @@ const Agenda = () => {
       <main>
         <h1>Agenda des concerts</h1>
 
-        <section className="concerts-grid">
-          {/* Exemple d’un concert affiché dynamiquement */}
-          <div>
-            <img src="/images/groupe1.jpg" alt="Groupe 1" className="concert-image" />
-            <h3>Groupe 1</h3>
-            <p>Vendredi 10 octobre 2025</p>
-            <Link to="/options" className="btn btn-primary style_bouton mt-2">
-              Réserver
-            </Link>
-          </div>
-          {/* Ajoute d'autres cartes ici selon les données */}
+        <section>
+          {concerts.length > 0 ? (
+            concerts.map((concert) => (
+              <CardConcert key={concert.id_concert} concert={concert} />
+            ))
+          ) : (
+            <p>Aucun concert à venir pour le moment.</p>
+          )}
         </section>
       </main>
 
