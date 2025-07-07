@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../composants/Header';
 import Footer from '../composants/Footer';
 import Navbar from '../composants/Navbar';
-import '../styles/accompagnement.css';
+import '../styles/accompagnement.css'; // Tu peux y garder ton CSS perso si besoin
 
 const Accompagnement = () => {
   const [formData, setFormData] = useState({
@@ -40,33 +40,47 @@ const Accompagnement = () => {
     <div>
       <Header />
       <Navbar />
-      <div className="accompagnement-container">
-        <div className="formulaire">
-          <h2>Inscription pour être accompagné chez nous !</h2>
-          <form onSubmit={handleSubmit}>
-            <label>Nom du groupe :</label>
-            <input type="text" name="nom_artiste" value={formData.nom_artiste} onChange={handleChange} required />
-            
-            <label>Email :</label>
-            <input type="email" name="email_artiste" value={formData.email_artiste} onChange={handleChange} required />
-            
-            <label>Style musical :</label>
-            <input type="text" name="style_musical" value={formData.style_musical} onChange={handleChange} />
-            
-            <label>Message :</label>
-            <textarea name="message" rows="4" value={formData.message} onChange={handleChange}></textarea>
 
-            <button type="submit">Envoyer</button>
-          </form>
-        </div>
+      <div className="container my-4">
+        <div className="row">
+          {/* Formulaire à gauche */}
+          <div className="col-md-8 image_form">
+            <h2 className="mb-4">Inscription</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="form-label">Nom du groupe :</label>
+                <input type="text" name="nom_artiste" className="form-control" value={formData.nom_artiste} onChange={handleChange} required />
+              </div>
 
-        <div className="bloc-texte">
-          <p><strong>Vous êtes un groupe ou un·e artiste solo ?</strong></p>
-          <p>Vous souhaitez bénéficier d’un accompagnement personnalisé (résidences, formations, mise à disposition d’espaces, conseils…) ?</p>
-          <p>Remplissez ce formulaire et nous vous contacterons rapidement pour discuter de votre projet.</p>
-          <p>Rejoignez la communauté de la sicRoom !</p>
+              <div className="mb-3">
+                <label className="form-label">Email :</label>
+                <input type="email" name="email_artiste" className="form-control" value={formData.email_artiste} onChange={handleChange} required />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Style musical :</label>
+                <input type="text" name="style_musical" className="form-control" value={formData.style_musical} onChange={handleChange} />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Message :</label>
+                <textarea name="message" rows="4" className="form-control" value={formData.message} onChange={handleChange}></textarea>
+              </div>
+
+              <button type="submit" className="btn btn-primary">Envoyer</button>
+            </form>
+          </div>
+
+          {/* Texte à droite */}
+          <div className="col-md-4 image_texte bloc_texte">
+            <h2>Vous êtes un groupe ou un·e artiste solo ?</h2>
+            <p>Vous souhaitez bénéficier d’un accompagnement personnalisé (résidences, formations, mise à disposition d’espaces, conseils…) ?</p>
+            <p>Remplissez ce formulaire et nous vous contacterons rapidement pour discuter de votre projet.</p>
+            <p>Rejoignez la communauté de la sicRoom !</p>
+          </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );

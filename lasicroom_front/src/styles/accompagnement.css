@@ -1,0 +1,46 @@
+textarea:focus,
+input:focus {
+    border-color: #6b5ca5;
+    box-shadow: 0 0 0 0.2rem rgba(107, 92, 165, 0.25);
+}
+
+.btn-primary {
+    background-color: #6b5ca5;
+    border-color: #6b5ca5;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #58459f;
+    border-color: #58459f;
+}
+
+.image_form {
+    border-radius: 12px;
+    background-image: url('../../public/images/photo_4.jpg');
+    background-position: center;
+    /* centre l'image dans le bloc */
+}
+
+.image_texte {
+    border-radius: 12px;
+    background-image: url('../../public/images/photo_3.jpg');
+    background-position: center;
+    /* centre l'image dans le bloc */
+}
+
+H2,
+label {
+    padding-top: 35px;
+    color: #58459f;
+}
+
+.bloc_texte {
+    text-align:start;
+    color: #6b5ca5;
+    border: 1px solid #fff;
+}
+
+p {
+    padding: 10px;
+}

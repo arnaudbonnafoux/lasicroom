@@ -18,7 +18,7 @@ const Accueil = () => {
             <img src="/images/photo_2.jpg" alt="Concert" className="img-fluid rounded" />
           </div>
 
-          <div className="col-md-3 présentation">
+          <div className="col-md-3 presentation">
             <h2>Bienvenue à la sicRoom</h2>
             <p>Votre scène de musiques actuelles</p>
             <p>
@@ -42,7 +42,7 @@ const Accueil = () => {
         <div className="row mt-4 bg-light p-4 rounded balances">
           <div className="col-md-8 animation_1">
             <h2>
-              Le direct live des balances <span className="flèche_balances">→</span>
+              Le direct live des balances <span className="fleche_balances">→</span>
             </h2>
           </div>
           <div className="col-md-4">

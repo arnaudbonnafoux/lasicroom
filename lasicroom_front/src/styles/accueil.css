@@ -1,4 +1,4 @@
-.présentation {
+.presentation {
   background-color: #fdebd0; /* Bootstrap's bg-light */
   padding: 1rem;
   border-radius: 0.375rem; /* Bootstrap's rounded */
@@ -6,9 +6,7 @@
   color: #6b5ca5;
 }
 
-.présentation h2,
-.presentation p:first-of-type {
-  color:#6b5ca5;
+h2 {
   text-align: center;
 }
 
@@ -35,10 +33,10 @@ li {
 
 .balances h2 {
   text-align: center;
-  color: #a280ff;
+  color: #6b5ca5;
 }
 
-.flèche_balances {
+.fleche_balances {
   font-size: 2rem;
 }
 
