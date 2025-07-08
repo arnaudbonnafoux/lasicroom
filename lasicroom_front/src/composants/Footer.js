@@ -4,26 +4,26 @@ import '../styles/footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="icons">
+    <footer>
+      <div className='div_footer'>
         <a href="mailto:lasicroom@laposte.net">
-          <img src="/images/square-envelope-solid.svg" alt="Envoyer un e-mail" className='img_footer' />
+          <img src="/images/square-envelope-solid.svg" alt="Envoyer un e-mail" className='dimension_icones'/>
         </a>
         <a href="tel:+33344212283">
-          <img src="/images/phone-solid.svg" alt="Téléphone" className='img_footer' />
+          <img src="/images/phone-solid.svg" alt="Téléphone" className='dimension_icones'/>
         </a>
         <a href="https://maps.app.goo.gl/SEfrYKpRFXwN6DWL8" target="_blank" rel="noopener noreferrer">
-          <img src="/images/location-pin-solid.svg" alt="Localisation" className='img_footer'/>
+          <img src="/images/location-pin-solid.svg" alt="Localisation" className='dimension_icones'/>
         </a>
       </div>
 
-      <div className="liens_footer">
-        <Link to="/mentions_legales" className='color_liens'>Mentions légales</Link>
-        <Link to="/conditions_utilisation" className='color_liens'>Conditions d'utilisation</Link>
-        <Link to="/admin/connexion" className='color_liens'>Admin</Link>
+      <div style={{textAlign:'center'}}>
+        <Link to="/mentions_legales" className='liens_footer'>Mentions légales</Link>
+        <Link to="/conditions_utilisation"className='liens_footer'>Conditions d'utilisation</Link>
+        <Link to="/admin/connexion"className='liens_footer'>Admin</Link>
       </div>
 
-      <p className="licence">&copy; 2025 duanrA</p>
+      <p style={{textAlign:'center', color:'#f5f5f5', fontSize:'10px', paddingBottom:'10px'}} className="licence">&copy; 2025 duanrA</p>
     </footer>
   );
 };

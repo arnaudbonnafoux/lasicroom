@@ -22,7 +22,7 @@ const Agenda = () => {
       <Header />
       <Navbar />
 
-      <main className="agenda-main">
+      <main>
         <h1>Agenda des concerts</h1>
 
         <section>

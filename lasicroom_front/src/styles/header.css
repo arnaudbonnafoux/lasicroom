@@ -1,15 +1,14 @@
-.header {
-  margin : 10px 10px 0px 10px;
-  background-color: #6b5ca5;
-  padding: 1rem;
-  border-radius: 12px;
-  text-align: center;
+.div_header {
+    display: flex;
+}
+
+.titre {
+    margin: auto;
+    color : #f5f5f5;
+    font-size: xx-large;
 }
 
 .logo {
-  height: 60px;
-}
-
-.title {
-  color: #e4d4ff;
+    padding: 16px;
+    width: 150px;
 }

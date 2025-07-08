@@ -1,15 +1,13 @@
-.carte_concert {
+.card_concert {
   padding: 12px;
   width: calc(20% - 24px);
   box-sizing: border-box;
   border-radius: 12px;
-  background-color: #fff;
-  color: #6b5ca5;
+  background-color: rgba(255, 140, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Image */
 .image_card {
   width: 95%;
   height: 200px;
@@ -17,60 +15,7 @@
   border-radius: 12px;
 }
 
-/* Bloc texte */
-.bloc_div {
-  padding: 12px 0;
-}
-
-/* Titre */
-h3 {
-  text-align: center;
-  font-size: medium;
-}
-
-/* Hover animation */
 .animation_card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
   transform: translateY(-5px);
-}
-
-/* Bouton "Réserver" */
-.bloc_div a {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 16px;
-  background-color: #6b5ca5;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.bloc_div a:hover {
-  background-color: #574b91;
-}
-
-/* Responsive (optionnel mais recommandé) */
-@media (max-width: 1200px) {
-  .carte-concert {
-    width: calc(25% - 24px);
-  }
-}
-
-@media (max-width: 900px) {
-  .carte-concert {
-    width: calc(33.33% - 24px);
-  }
-}
-
-@media (max-width: 600px) {
-  .carte-concert {
-    width: calc(50% - 24px);
-  }
-}
-
-@media (max-width: 400px) {
-  .carte-concert {
-    width: 100%;
-  }
 }

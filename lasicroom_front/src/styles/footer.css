@@ -1,33 +1,30 @@
-.footer {
-  margin : 10px 10px 10px 10px;
-  background-color: #6b5ca5;
-  color: white;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
+.dimension_icones {
+    padding: 32px 0 32px 0;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
 }
 
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 3rem;
+.dimension_icones:hover {
+    transform: scale(1.2); /* effet visuel agréable */
 }
 
-.img_footer {
-  width: 30px;
-  height: 30px;
+.liens_footer {
+    font-size: small;
+    text-decoration: none;
+    padding-right: 12px;
+    color: #f5f5f5;
+    /*font-weight: 500;*/
 }
 
-.licence {
-  font-size: smaller;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+.liens_footer:hover {
+    text-decoration: underline;
 }
 
-.color_liens {
-  font-size: smaller;
-  padding : 0 10px 0 10px;
-  color: white;
+.div_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 256px;
 }
+

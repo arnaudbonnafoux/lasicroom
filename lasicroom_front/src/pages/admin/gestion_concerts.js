@@ -18,9 +18,9 @@ const GestionConcerts = () => {
       <Header />
       <NavbarAdmin />
       
-      <main className="contenu-admin">
+      <main>
         <h1>Gestion des concerts</h1>
-        <button className="btn-deconnexion" onClick={handleDeconnexion}>
+        <button onClick={handleDeconnexion}>
           Déconnexion
         </button>
         {/* Tu pourras ajouter ici la liste des concerts à gérer */}

@@ -41,46 +41,46 @@ const Accompagnement = () => {
       <Header />
       <Navbar />
 
-      <div className="container my-4">
-        <div className="row">
-          {/* Formulaire à gauche */}
-          <div className="col-md-8 image_form">
-            <h2 className="mb-4">Inscription</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label">Nom du groupe :</label>
-                <input type="text" name="nom_artiste" className="form-control" value={formData.nom_artiste} onChange={handleChange} required />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">Email :</label>
-                <input type="email" name="email_artiste" className="form-control" value={formData.email_artiste} onChange={handleChange} required />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">Style musical :</label>
-                <input type="text" name="style_musical" className="form-control" value={formData.style_musical} onChange={handleChange} />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">Message :</label>
-                <textarea name="message" rows="4" className="form-control" value={formData.message} onChange={handleChange}></textarea>
-              </div>
-
-              <button type="submit" className="btn btn-primary">Envoyer</button>
-            </form>
-          </div>
-
-          {/* Texte à droite */}
-          <div className="col-md-4 image_texte bloc_texte">
-            <h2>Vous êtes un groupe ou un·e artiste solo ?</h2>
-            <p>Vous souhaitez bénéficier d’un accompagnement personnalisé (résidences, formations, mise à disposition d’espaces, conseils…) ?</p>
-            <p>Remplissez ce formulaire et nous vous contacterons rapidement pour discuter de votre projet.</p>
-            <p>Rejoignez la communauté de la sicRoom !</p>
-          </div>
+      <h1>Accompagnement</h1>
+      <div className='div_accompagnement'>
+        <img src='/images/photo_1.jpg' alt="photo scène" />
+        <div className='texte_accompagnement'>
+          <h2>Vous êtes un groupe ou un·e artiste solo ?</h2>
+          <p>Vous souhaitez bénéficier d’un accompagnement personnalisé
+            (résidences, formations, mise à disposition d’espaces, conseils…) ?</p>
+          <p>Remplissez ce formulaire et nous vous contacterons rapidement pour discuter de votre projet.</p>
+          <p>Rejoignez la communauté de la sicRoom !</p>
         </div>
       </div>
 
+      {/* Form */}
+
+        <div className='div_form'>
+          <h2>Inscription</h2>
+          <form className='formulaire' onSubmit={handleSubmit}>
+            <div>
+              <label>Nom du groupe :</label>
+              <input type="text" name="nom_artiste" value={formData.nom_artiste} onChange={handleChange} required />
+            </div>
+
+            <div>
+              <label>Email :</label>
+              <input type="email" name="email_artiste" value={formData.email_artiste} onChange={handleChange} required />
+            </div>
+
+            <div>
+              <label>Style musical :</label>
+              <input type="text" name="style_musical" value={formData.style_musical} onChange={handleChange} />
+            </div>
+
+            <div>
+              <label>Message :</label>
+              <textarea name="message" rows="4" value={formData.message} onChange={handleChange}></textarea>
+            </div>
+
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
       <Footer />
     </div>
   );

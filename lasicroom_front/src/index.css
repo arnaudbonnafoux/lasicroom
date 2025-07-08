@@ -1,0 +1,38 @@
+body {
+    background-image:url('../public/images/photo_3.jpg');
+    /*background: color #fff;*/
+    font-family: sans-serif;
+    color: #1D2D44;
+}
+
+img {
+    border-radius: 12px;
+}
+
+nav {
+    border-radius: 12px;
+    margin-top: 12px;
+    padding: 12px;
+    border: 12px;
+    background-color: rgba(255, 140, 0, 0.3);
+    display: inline-block;
+    /* La balise nav s'adapte à la dimension de son conetnu.*/
+
+}
+
+header {
+    border-radius: 12px;
+    background-color: rgba(25, 25, 112, 0.4);
+}
+
+footer {
+    margin-top: 12px;
+    border-radius: 12px;
+    background-color: rgba(25, 25, 112, 0.4);
+}
+
+H1 {
+    font-size: xx-large;
+    padding: 64px 0 64px 0;
+    text-align: center;   
+}
