@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
+import { useNavigate } from 'react-router-dom';
 import CardConcert from '../composants/CardConcert';
+
+//import { Link } from 'react-router-dom';
 import '../styles/agenda.css';
 
 const Agenda = () => {
+  const navigate = useNavigate();
   const [concerts, setConcerts] = useState([]);
 
   useEffect(() => {
@@ -34,6 +38,13 @@ const Agenda = () => {
             <p>Aucun concert à venir pour le moment.</p>
           )}
         </section>
+            <div style={{ textAlign: 'center', margin: '20px 0' }}>
+      <button onClick={() => navigate('/options')}>Réserver</button>
+    </div>
+          {/*
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <Link to="/options">Réserver</Link>
+        </div>*/}
       </main>
 
       <Footer />

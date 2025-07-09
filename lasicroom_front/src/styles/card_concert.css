@@ -19,3 +19,13 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
   transform: translateY(-5px);
 }
+
+.card_concert.fullwidth {
+  width: 75%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+.card_concert.fullwidth .image_card {
+  height: 350px;
+  object-fit: cover;
+}

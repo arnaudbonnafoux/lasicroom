@@ -9,6 +9,7 @@
 }
 
 .logo {
+    border-radius: 12px;
     padding: 16px;
     width: 150px;
 }

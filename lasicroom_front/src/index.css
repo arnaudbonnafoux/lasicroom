@@ -14,7 +14,7 @@ nav {
     margin-top: 12px;
     padding: 12px;
     border: 12px;
-    background-color: rgba(255, 140, 0, 0.3);
+    background-color: rgba(255, 140, 0, 0.4);
     display: inline-block;
     /* La balise nav s'adapte à la dimension de son conetnu.*/
 
@@ -33,6 +33,22 @@ footer {
 
 H1 {
     font-size: xx-large;
-    padding: 64px 0 64px 0;
+    padding: 24px 0 64px 0;
     text-align: center;   
 }
+
+button {
+    font-size: large;
+    padding: 16px;
+    border-radius: 12px;
+    color:#1D2D44;
+    font-weight: bold;
+    background-color:rgba(30, 144, 255, 0.5);
+    /*background-color: #1e90ff;*/
+    /*background-color: rgba(255, 140, 0, 0.6);*/
+}
+
+button:hover {
+    background-color:rgba(30, 144, 255, 1);
+}
+

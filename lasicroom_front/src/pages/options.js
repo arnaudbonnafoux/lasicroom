@@ -8,12 +8,15 @@ import '../styles/options.css'
 const Options = () => {
   const navigate = useNavigate();
 
+
   const allerConnexion = () => {
     navigate('/connexion');
+
   };
 
   const allerInscription = () => {
     navigate('/inscription');
+
   };
 
   return (
