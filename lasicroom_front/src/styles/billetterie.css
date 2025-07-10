@@ -26,6 +26,7 @@ form {
 
 /* Styles des selects */
 select {
+    background-color: rgba(255, 140, 0, 0.2);
     padding: 10px;
     font-size: 1rem;
     margin-top: 12px;
