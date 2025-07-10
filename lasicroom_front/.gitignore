@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Arnaud
+lasicroom_front/Postgres_1.session.sql
