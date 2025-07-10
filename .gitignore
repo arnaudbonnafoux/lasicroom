@@ -139,11 +139,11 @@ dist
 lasicroom_back/node_modules
 lasicroom_front/node_modules
 lasicroom_back/.env
-.vscode
+.vscode/
 base_de_données
-bash
-boostrap
-figma
+bash/
+boostrap/
+figma/
 documentation/
 La sicRoom.session.sql
 
