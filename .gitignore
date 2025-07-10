@@ -140,9 +140,9 @@ lasicroom_back/node_modules
 lasicroom_front/node_modules
 lasicroom_back/.env
 .vscode/
-base_de_données
+base_de_données/
 bash/
-boostrap/
+bootstrap/
 figma/
 documentation/
 La sicRoom.session.sql
