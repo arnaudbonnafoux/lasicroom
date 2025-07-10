@@ -146,5 +146,7 @@ bootstrap/
 figma/
 documentation/
 La sicRoom.session.sql
+lasicroom_back/lasicroom2.session.sql
+lasicroom_front/Postgres_1.session.sql
 
 
