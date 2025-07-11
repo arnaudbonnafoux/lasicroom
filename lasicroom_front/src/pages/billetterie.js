@@ -3,9 +3,12 @@ import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import CardConcert from '../composants/CardConcert';
+import { useNavigate } from 'react-router-dom';
 import '../styles/billetterie.css';
 
 const Billetterie = () => {
+  // Supprimer la variable naviagate pour continuer le projet. 
+  const navigate = useNavigate();
   const [concerts, setConcerts] = useState([]);
   const [selectedConcertId, setSelectedConcertId] = useState(null);
   const [selectedConcert, setSelectedConcert] = useState(null);
@@ -78,7 +81,8 @@ const Billetterie = () => {
           </select>
         </form>
       </div>
-        <button className='btn_payer' disabled={!selectedConcert}>Payer</button>
+      {/* Modifler le onClick, pour insérer les données dans la base élève*/}
+        <button onClick={() => navigate('/')} className='btn_payer' disabled={!selectedConcert}>Payer</button>
 
       <Footer />
     </div>
