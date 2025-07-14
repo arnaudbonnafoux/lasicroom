@@ -1,0 +1,79 @@
+Bien sûr ! Voici un **plan clair et complet** des étapes à partir du moment où l’utilisateur clique sur le bouton **Payer** dans ta page billetterie, jusqu’à la confirmation du paiement avec Stripe :
+
+---
+
+# Étapes détaillées après clic sur **Payer**
+
+---
+
+### 1. **Récupérer les données de la réservation**
+
+* Depuis ta page Billetterie, tu récupères toutes les infos nécessaires :
+
+  * Le concert sélectionné (id, titre, prix).
+  * Le nombre de billets plein tarif et abonné choisis.
+  * Le total à payer (calculé avec tarifs et quantités).
+
+---
+
+### 2. **Envoyer la réservation au backend**
+
+* Tu envoies ces données à ton API backend pour :
+
+  * Créer une nouvelle réservation en base de données, en statut “en attente de paiement”.
+  * Obtenir un identifiant unique (ex : `reservationId`) pour cette réservation.
+
+---
+
+### 3. **Créer une session de paiement Stripe**
+
+* Toujours dans ton backend, avec le `reservationId` et le montant total, tu appelles l’API Stripe pour créer une session de paiement (Checkout Session).
+* Stripe te renvoie une URL sécurisée où l’utilisateur pourra payer.
+
+---
+
+### 4. **Rediriger l’utilisateur vers Stripe**
+
+* Depuis le frontend, tu rediriges l’utilisateur vers cette URL Stripe.
+* L’utilisateur entre ses données bancaires et procède au paiement.
+
+---
+
+### 5. **Stripe confirme le paiement**
+
+* Après le paiement, Stripe redirige l’utilisateur vers une page de succès (que tu définis).
+* Ton backend reçoit un **webhook Stripe** (un message automatique) pour confirmer que le paiement a bien été effectué.
+
+---
+
+### 6. **Mettre à jour la réservation**
+
+* Sur réception du webhook, ton backend :
+
+  * Change le statut de la réservation en “payée”.
+  * Peut déclencher l’envoi d’un mail de confirmation à l’utilisateur, etc.
+
+---
+
+### 7. **Afficher la confirmation au client**
+
+* Ton frontend affiche un message ou une page de confirmation finale.
+
+---
+
+# Résumé simplifié
+
+| Étape                    | Où ?     | Description                                          |
+| ------------------------ | -------- | ---------------------------------------------------- |
+| 1. Récupérer données     | Frontend | Préparer données réservation et montant total        |
+| 2. Créer réservation     | Backend  | Enregistrer réservation en base, statut “en attente” |
+| 3. Créer session Stripe  | Backend  | Appeler Stripe, créer session paiement               |
+| 4. Rediriger client      | Frontend | Rediriger vers URL Stripe                            |
+| 5. Confirmation paiement | Backend  | Recevoir webhook Stripe, valider paiement            |
+| 6. Mise à jour statut    | Backend  | Marquer réservation comme payée                      |
+| 7. Afficher confirmation | Frontend | Afficher message succès au client                    |
+
+---
+
+Si tu veux, je peux t’aider à coder chacune de ces étapes en React côté frontend et en Node.js côté backend.
+Tu veux qu’on commence par laquelle ?

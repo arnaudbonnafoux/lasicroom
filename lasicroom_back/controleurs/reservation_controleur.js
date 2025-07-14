@@ -12,7 +12,7 @@ exports.obtenirReservations = async (requete, reponse) => {
 };
 
 //post
-exports.creerReservation = async (requete, reponse) => {
+/*exports.creerReservation = async (requete, reponse) => {
     const {
         date_reservation,
         id_utilisateur,
@@ -64,7 +64,7 @@ exports.creerReservation = async (requete, reponse) => {
         console.error("Erreur dans creerReservation :", erreur);
         reponse.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
     }
-};
+};*/
 
 // delete
 exports.supprimerReservation = async (requete, reponse) => {
@@ -104,3 +104,56 @@ exports.supprimerReservation = async (requete, reponse) => {
 
 
 
+exports.creerReservation = async (requete, reponse) => {
+    
+
+    const {
+        id_utilisateur,
+        id_concert,
+        type_tarif,
+        montant
+    } = requete.body;
+console.log(`Réservation reçue pour id_concert=${id_concert}, id_utilisateur=${id_utilisateur}`);
+    try {
+        const verificationConcert = await baseDeDonnees.query(
+            `SELECT nb_places_restantes FROM concert WHERE id_concert = $1`,
+            [id_concert]
+        );
+
+        if (verificationConcert.rowCount === 0) {
+            return reponse.status(404).json({ erreur: "Concert non trouvé." });
+        }
+
+        const placesRestantes = verificationConcert.rows[0].nb_places_restantes;
+
+        if (placesRestantes <= 0) {
+            return reponse.status(409).json({ erreur: "Aucune place restante pour ce concert." });
+        }
+
+        const resultat = await baseDeDonnees.query(
+            `INSERT INTO reservation (
+                id_utilisateur, id_concert, type_tarif, montant)
+             VALUES ($1, $2, $3, $4)
+             RETURNING *`,
+            [
+                id_utilisateur,
+                id_concert,
+                type_tarif,
+                montant
+            ]
+        );
+
+        /*await baseDeDonnees.query(
+            `UPDATE concert
+             SET nb_places_restantes = nb_places_restantes - 1
+             WHERE id_concert = $1`,
+            [id_concert]
+        );*/
+
+        reponse.status(201).json(resultat.rows[0]);
+
+    } catch (erreur) {
+        console.error("Erreur dans creerReservation :", erreur);
+        reponse.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
+    }
+};

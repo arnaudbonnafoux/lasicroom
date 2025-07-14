@@ -28,8 +28,6 @@ function Connexion() {
         // Stocke le token dans la session
         if (donnees.token) {
           sessionStorage.setItem('token', donnees.token);
-          
-          sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur)); // modif
         }
         console.log('Utilisateur connecté :', donnees);
         // Redirection vers la page billetterie après succès
