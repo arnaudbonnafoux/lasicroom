@@ -1,7 +1,7 @@
 const baseDeDonnees = require('../db');
 
 // get
-exports.obtenirReservations = async (requete, reponse) => {
+/*exports.obtenirReservations = async (requete, reponse) => {
     try {
         const resultat = await baseDeDonnees.query('SELECT * FROM reservation ORDER BY date_reservation DESC');
         reponse.status(200).json(resultat.rows);
@@ -9,7 +9,7 @@ exports.obtenirReservations = async (requete, reponse) => {
         console.error('Erreur lors de la récupération des réservations :', erreur);
         reponse.status(500).json({ erreur: "Erreur lors de la récupération des réservations" });
     }
-};
+};*/
 
 //post
 /*exports.creerReservation = async (requete, reponse) => {
@@ -156,4 +156,28 @@ console.log(`Réservation reçue pour id_concert=${id_concert}, id_utilisateur=$
         console.error("Erreur dans creerReservation :", erreur);
         reponse.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
     }
+};
+//const baseDeDonnees = require('../db');
+
+exports.obtenirReservations = async (requete, reponse) => {
+  try {
+    const resultat = await baseDeDonnees.query(`
+      SELECT 
+        r.id_reservation,
+        u.nom AS nom_utilisateur,
+        u.email,
+        c.titre AS titre_concert,
+        r.type_tarif,
+        r.montant
+      FROM reservation r
+      JOIN utilisateur u ON r.id_utilisateur = u.id_utilisateur
+      JOIN concert c ON r.id_concert = c.id_concert
+      ORDER BY r.id_reservation
+    `);
+
+    reponse.json(resultat.rows);
+  } catch (erreur) {
+    console.error("Erreur dans obtenirReservations :", erreur);
+    reponse.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
+  }
 };

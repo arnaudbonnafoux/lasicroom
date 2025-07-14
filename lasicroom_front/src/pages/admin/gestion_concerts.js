@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 import Footer from '../../composants/Footer';
-import Header from '../../composants/Header';
+import Header from '../../composants/HeaderAdmin';
 import '../../styles/gestion_concerts.css';
 
 const GestionConcerts = () => {
