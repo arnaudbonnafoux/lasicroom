@@ -17,6 +17,7 @@
 ├── photos_artistes
 │   ├── nettoie_toutes_images.sh
 │   ├── optimiser_images.sh
+│   ├── photo_10.jpg
 │   ├── photo_1.jpg
 │   ├── photo_2.jpg
 │   ├── photo_3.jpg
@@ -25,6 +26,7 @@
 │   ├── photo_6.jpg
 │   ├── photo_7.jpg
 │   ├── photo_8.jpg
+│   ├── photo_9.jpg
 │   └── renommer_photos.sh
 ├── routes
 │   ├── accompagnements.js
@@ -35,4 +37,4 @@
 │   └── utilisateurs.js
 └── structure.txt
 
-5 directories, 31 files
+5 directories, 33 files

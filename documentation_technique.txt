@@ -1,0 +1,17 @@
+Documentation de l'application La sicRoom
+
+
+Sommaire
+
+1. Présentation
+2. Architecture générale
+3. Technologies utilisées
+4. Installation & Configuration
+5. Structure des dossiers
+6. Fonctionnalités principales
+7. API (si applicable)
+8. Sécurité
+9. Tests
+10. Déploiement
+11. Annexes
+

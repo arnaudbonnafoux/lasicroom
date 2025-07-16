@@ -62,9 +62,11 @@ input {
 
 /* index.css ou global.css */
 table {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 24px;
   border-collapse: collapse;
-  margin: 20px 0;
+  /*margin: 20px 0;*/
   font-size: 1rem;
   text-align: left;
 }
