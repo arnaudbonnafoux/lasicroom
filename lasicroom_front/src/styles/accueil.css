@@ -12,13 +12,16 @@
 }
 
 .texte {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
     border-radius: 12px;
     width: 25%;
-    background-color: rgba(255, 140, 0, 0.1);
+    background-color: rgba(255, 140, 0, 0.025);
 }
 
 .info {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
     border-radius: 12px;
     width: 25%;
-    background-color: rgba(25, 25, 112, 0.1);
+    background-color: rgba(30, 144, 255, 0.025);
+    /*background-color: rgba(25, 25, 112, 0.1);*/
 }

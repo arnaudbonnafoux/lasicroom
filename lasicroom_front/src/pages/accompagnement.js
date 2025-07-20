@@ -43,7 +43,7 @@ const Accompagnement = () => {
 
       <h1>Accompagnement</h1>
       <div className='div_accompagnement'>
-        <img src='/images/photo_1.jpg' alt='Un piano sur une scène'/>
+        <img style={{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)'}} src='/images/photo_1.jpg' alt='Un piano sur une scène'/>
         <div className='texte_accompagnement'>
           <h2>Vous êtes un groupe ou un·e artiste solo ?</h2>
           <p>Vous souhaitez bénéficier d’un accompagnement personnalisé

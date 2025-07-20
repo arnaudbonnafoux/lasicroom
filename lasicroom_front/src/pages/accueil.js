@@ -16,7 +16,7 @@ const Accueil = () => {
 
         <div className='div_accueil'>
           <div>
-            <img src="/images/photo_2.jpg" alt="Concert" />
+            <img style={{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)'}} src="/images/photo_2.jpg" alt="Concert" />
           </div>
 
           <div className='texte'>

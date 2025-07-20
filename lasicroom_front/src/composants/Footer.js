@@ -18,8 +18,8 @@ const Footer = () => {
       </div>
 
       <div style={{textAlign:'center'}}>
-        <Link to="/mentions_legales" className='liens_footer'>Mentions légales</Link>
-        <Link to="/conditions_utilisation"className='liens_footer'>CGU</Link>
+        <Link to="/mentions_legales" className='liens_footer'>Mentions légales|</Link>
+        <Link to="/conditions_utilisation"className='liens_footer'>CGU|</Link>
         <Link to="/admin/connexion"className='liens_footer'>Admin</Link>
       </div>
 

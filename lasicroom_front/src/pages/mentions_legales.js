@@ -8,7 +8,7 @@ const MentionsLegales = () => {
     <div>
       <Header />
       <Navbar />
-      <main>
+      <main style={{ padding: '2rem', maxWidth: '800px', margin: 'auto' }}>
         <h1>Mentions légales</h1>
 
         <p><strong>Éditeur du site :</strong></p>
