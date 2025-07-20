@@ -158,4 +158,6 @@ lasicroom_front/structure.txt
 lasicroom_back/structure.txt
 lasicroom_back/gen_arbo.sh
 lasicroom_back/script_licence.sh
-lasicroom_back/.vscode
+lasicroom_back/.vscode 
+
+structure.txt
