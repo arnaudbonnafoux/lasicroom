@@ -152,4 +152,9 @@ Projet - Développement du site web de La sicRoom – Salle de concert SMAC.doc
 Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
 docs/
 gen_arbo.sh
+lasicroom_front/gen_arbo.sh
+lasicroom_front/structure.txt
 
+lasicroom_back/structure.txt
+lasicroom_back/gen_arbo.sh
+lasicroom_back/script_licence.sh
