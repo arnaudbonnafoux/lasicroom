@@ -1,0 +1,198 @@
+.
+├── base_de_données
+│   ├── backup_lasicroom2.sql
+│   ├── diagramme_UML_v2.png
+│   ├── étapes_suivantes.txt
+│   ├── fonctionnement_billetterie.odt
+│   ├── fonctionnement_billetterie.txt
+│   ├── jointure_sql.txt
+│   ├── la_sicroom_schema.sql
+│   ├── la_sicroom_uml.xmi
+│   ├── mdp_utilisateur.txt
+│   ├── requête_jointure.sql
+│   └── sauvegarde
+├── bash
+│   └── commandes_tree
+├── bootstrap
+│   ├── admin.html
+│   ├── billetterie.html
+│   └── index.html
+├── docs
+│   ├── stripe
+│   └── test.js
+├── documentation_technique.txt
+├── figma
+│   ├── La sicRoom
+│   │   ├── page_accompagnement.png
+│   │   ├── page_accueil.png
+│   │   ├── page_admin.png
+│   │   ├── page_agenda.png
+│   │   └── page_billetterie.png
+│   ├── La sicRoom.fig
+│   └── mobile
+│       ├── page_accompagnement.png
+│       ├── page_accueil.png
+│       ├── page_agenda.png
+│       └── page_billetterie.png
+├── gen_arbo.sh
+├── lasicroom_back
+│   ├── app.js
+│   ├── controleurs
+│   │   ├── accompagnement_controleur.js
+│   │   ├── artiste_controleur.js
+│   │   ├── concert_controleur.js
+│   │   ├── connexion_controleur.js
+│   │   ├── reservation_controleur.js
+│   │   └── utilisateur_controleur.js
+│   ├── db.js
+│   ├── gen_arbo.sh
+│   ├── lasicroom2.session.sql
+│   ├── middlewares
+│   │   └── authMiddleware.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── photos_artistes
+│   │   ├── nettoie_toutes_images.sh
+│   │   ├── optimiser_images.sh
+│   │   ├── photo_10.jpg
+│   │   ├── photo_1.jpg
+│   │   ├── photo_2.jpg
+│   │   ├── photo_3.jpg
+│   │   ├── photo_4.jpg
+│   │   ├── photo_5.jpg
+│   │   ├── photo_6.jpg
+│   │   ├── photo_7.jpg
+│   │   ├── photo_8.jpg
+│   │   ├── photo_9.jpg
+│   │   └── renommer_photos.sh
+│   ├── routes
+│   │   ├── accompagnements.js
+│   │   ├── artistes.js
+│   │   ├── concerts.js
+│   │   ├── connexions.js
+│   │   ├── reservations.js
+│   │   └── utilisateurs.js
+│   └── structure.txt
+├── lasicroom_front
+│   ├── build
+│   │   ├── asset-manifest.json
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── cart-shopping-solid.svg
+│   │   │   ├── dessin_1.jpg
+│   │   │   ├── link-solid.svg
+│   │   │   ├── location-pin-solid.svg
+│   │   │   ├── music-solid.svg
+│   │   │   ├── nettoie_toutes_images.sh
+│   │   │   ├── optimiser_images.sh
+│   │   │   ├── phone-solid.svg
+│   │   │   ├── photo_1.jpg
+│   │   │   ├── photo_2.jpg
+│   │   │   ├── photo_3.jpg
+│   │   │   ├── photo_4.jpg
+│   │   │   ├── play-solid.svg
+│   │   │   ├── renommer_photos.sh
+│   │   │   ├── square-envelope-solid.svg
+│   │   │   ├── user-group-solid.svg
+│   │   │   └── user-solid.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── static
+│   │       ├── css
+│   │       │   ├── main.08046ba2.css
+│   │       │   └── main.08046ba2.css.map
+│   │       └── js
+│   │           ├── main.ed8df163.js
+│   │           ├── main.ed8df163.js.LICENSE.txt
+│   │           └── main.ed8df163.js.map
+│   ├── gen_arbo.sh
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── Postgres_1.session.sql
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── cart-shopping-solid.svg
+│   │   │   ├── dessin_1.jpg
+│   │   │   ├── link-solid.svg
+│   │   │   ├── location-pin-solid.svg
+│   │   │   ├── music-solid.svg
+│   │   │   ├── nettoie_toutes_images.sh
+│   │   │   ├── optimiser_images.sh
+│   │   │   ├── phone-solid.svg
+│   │   │   ├── photo_1.jpg
+│   │   │   ├── photo_2.jpg
+│   │   │   ├── photo_3.jpg
+│   │   │   ├── photo_4.jpg
+│   │   │   ├── play-solid.svg
+│   │   │   ├── renommer_photos.sh
+│   │   │   ├── square-envelope-solid.svg
+│   │   │   ├── user-group-solid.svg
+│   │   │   └── user-solid.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── composants
+│   │   │   ├── CardConcert.js
+│   │   │   ├── Footer.js
+│   │   │   ├── HeaderAdmin.js
+│   │   │   ├── Header.js
+│   │   │   ├── NavbarAdmin.js
+│   │   │   └── Navbar.js
+│   │   ├── gen_arbo.sh
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── pages
+│   │   │   ├── accompagnement.js
+│   │   │   ├── accueil.js
+│   │   │   ├── admin
+│   │   │   │   ├── gestion_accompagnement.js
+│   │   │   │   ├── gestion_artistes.js
+│   │   │   │   ├── gestion_concerts.js
+│   │   │   │   ├── gestion_connexion.js
+│   │   │   │   └── gestion_reservations.js
+│   │   │   ├── agenda.js
+│   │   │   ├── billetterie.js
+│   │   │   ├── conditions_utilisation.js
+│   │   │   ├── connexion.js
+│   │   │   ├── inscription.js
+│   │   │   ├── mentions_legales.js
+│   │   │   └── options.js
+│   │   ├── structure.txt
+│   │   └── styles
+│   │       ├── accompagnement.css
+│   │       ├── accueil.css
+│   │       ├── agenda.css
+│   │       ├── billetterie.css
+│   │       ├── card_concert.css
+│   │       ├── conditions_utilisation.css
+│   │       ├── connexion.css
+│   │       ├── footer.css
+│   │       ├── gestion_accompagnement.css
+│   │       ├── gestion_artistes.css
+│   │       ├── gestion_concerts.css
+│   │       ├── gestion_reservations.css
+│   │       ├── header.css
+│   │       ├── inscription.css
+│   │       ├── mentions_legales.css
+│   │       ├── navbar_admin.css
+│   │       ├── navbar.css
+│   │       └── options.css
+│   └── structure.txt
+├── La sicRoom.session.sql
+├── LICENSE
+├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
+├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
+├── README.md
+└── structure.txt
+
+26 directories, 170 files
