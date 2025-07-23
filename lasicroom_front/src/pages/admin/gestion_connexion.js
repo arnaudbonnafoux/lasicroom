@@ -44,10 +44,11 @@ function GestionConnexion() {
   return (
     <div>
       <Header />
+      <main className='image_main'>
       {/*<NavbarAdmin />*/}
-      <h2>Connexion</h2>
+      {/*<h2>Connexion</h2>*/}
       {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className='fond_form' onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
@@ -64,6 +65,7 @@ function GestionConnexion() {
         /><br />
         <button type="submit">Se connecter</button>
       </form>
+      </main>
       <Footer />
     </div>
   );

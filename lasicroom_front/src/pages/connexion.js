@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../composants/Navbar';
+//import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import '../styles/connexion.css'
@@ -28,7 +28,7 @@ function Connexion() {
         // Stocke le token dans la session
         if (donnees.token) {
           sessionStorage.setItem('token', donnees.token);
-          
+
           sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur)); // modif
         }
         console.log('Utilisateur connecté :', donnees);
@@ -46,26 +46,29 @@ function Connexion() {
   return (
     <div>
       <Header />
-      <Navbar />
-      <h2>Connexion</h2>
-      {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        /><br />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={motDePasse}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          required
-        /><br />
-        <button type="submit">Se connecter</button>
-      </form>
+      {/*<Navbar />*/}
+{/*<h2>Connexion</h2>*/}
+      <main className='image_main'>
+        
+        {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+        <form className='fond_form' onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          /><br />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={motDePasse}
+            onChange={(e) => setMotDePasse(e.target.value)}
+            required
+          /><br />
+          <button type="submit">Se connecter</button>
+        </form>
+      </main>
       <Footer />
     </div>
   );

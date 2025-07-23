@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../composants/Navbar';
+//import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import '../styles/inscription.css'
@@ -38,9 +38,10 @@ function Inscription() {
   return (
     <div>
       <Header />
-      <Navbar />
-      <h2>Inscription</h2>
-      <form onSubmit={gererSoumission}>
+      {/*<Navbar />*/}
+      {/*<h2>Inscription</h2>*/}
+      <main className='image_main'>
+      <form className='fond_form' onSubmit={gererSoumission}>
         <input
           type="text"
           placeholder="Nom"
@@ -71,6 +72,7 @@ function Inscription() {
         <button type="submit">S'inscrire</button>
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
       </form>
+      </main>
       <Footer />
     </div>
   );
