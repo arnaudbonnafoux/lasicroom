@@ -8,7 +8,9 @@ const CardConcert = ({ concert, fullWidth = false }) => {
       <p>{new Date(concert.date_concert).toLocaleDateString()}</p>
       <img
         className='image_card'
-        src={`http://localhost:3001/${concert.photo}`}
+        //src={`http://localhost:3001/${concert.photo}`}
+        //src={`/photos_artistes/${concert.photo}`}
+        src={`/${concert.photo}`}
         alt={concert.nom_artiste}
       />
     </div>

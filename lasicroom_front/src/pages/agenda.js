@@ -13,7 +13,8 @@ const Agenda = () => {
   const [concerts, setConcerts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/concerts')
+    //fetch('http://localhost:3001/api/concerts')
+    fetch('/api/concerts')
       .then((res) => res.json())
       .then((data) => setConcerts(data))
       .catch((error) =>

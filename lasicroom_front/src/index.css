@@ -14,7 +14,7 @@ nav {
   margin-top: 12px;
   padding: 12px;
   border: 12px;
-  background-color: rgba(30, 144, 255, 0.5);
+  background-color: rgba(30, 144, 255, 0.7);
   /*background-color: rgba(255, 140, 0, 0.2);*/
   display: inline-block;
   /* La balise nav s'adapte à la dimension de son conetnu.*/
@@ -23,13 +23,15 @@ nav {
 
 header {
   border-radius: 12px;
-  background-color: rgba(25, 25, 112, 0.4);
+  /*background-color: rgba(25, 25, 112, 0.4);*/
+  background-color: #1D2D44;
 }
 
 footer {
   margin-top: 12px;
   border-radius: 12px;
-  background-color: rgba(25, 25, 112, 0.4);
+  /*background-color: rgba(25, 25, 112, 0.4);*/
+  background-color: #1D2D44;
 }
 
 H1 {
@@ -44,13 +46,13 @@ button {
   border-radius: 12px;
   color: #1D2D44;
   font-weight: bold;
-  background-color: rgba(30, 144, 255, 0.3);
+  background-color: rgba(30, 144, 255, 0.7);
   /*background-color: #1e90ff;*/
   /*background-color: rgba(255, 140, 0, 0.6);*/
 }
 
 button:hover {
-  background-color: rgba(30, 144, 255, 0.6);
+  background-color: rgba(30, 144, 255, 1);
 }
 
 li {
