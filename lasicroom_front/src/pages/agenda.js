@@ -2,24 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
-import { useNavigate } from 'react-router-dom';
 import CardConcert from '../composants/CardConcert';
-
-//import { Link } from 'react-router-dom';
+import Modal from '../composants/Modal';
+import Options from './options';
 import '../styles/agenda.css';
 
 const Agenda = () => {
-  const navigate = useNavigate();
   const [concerts, setConcerts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    //fetch('http://localhost:3001/api/concerts')
     fetch('/api/concerts')
-      .then((res) => res.json())
-      .then((data) => setConcerts(data))
-      .catch((error) =>
-        console.error("Erreur lors du chargement des concerts :", error)
-      );
+      .then(res => res.json())
+      .then(data => setConcerts(data))
+      .catch(console.error);
   }, []);
 
   return (
@@ -29,23 +25,23 @@ const Agenda = () => {
 
       <main>
         <h1>Agenda des concerts</h1>
-
         <section>
           {concerts.length > 0 ? (
-            concerts.map((concert) => (
+            concerts.map(concert => (
               <CardConcert key={concert.id_concert} concert={concert} />
             ))
           ) : (
             <p>Aucun concert à venir pour le moment.</p>
           )}
         </section>
-            <div style={{ textAlign: 'center', margin: '20px 0' }}>
-      <button onClick={() => navigate('/options')}>Réserver</button>
-    </div>
-          {/*
+
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-          <Link to="/options">Réserver</Link>
-        </div>*/}
+          <button onClick={() => setIsModalOpen(true)}>Réserver</button>
+        </div>
+
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <Options />
+        </Modal>
       </main>
 
       <Footer />

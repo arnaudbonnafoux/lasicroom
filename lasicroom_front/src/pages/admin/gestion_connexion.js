@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavbarAdmin from '../../composants/NavbarAdmin';
+//import NavbarAdmin from '../../composants/NavbarAdmin';
 import Footer from '../../composants/Footer';
 import Header from '../../composants/HeaderAdmin';
 import '../../styles/connexion.css'
@@ -44,7 +44,7 @@ function GestionConnexion() {
   return (
     <div>
       <Header />
-      <NavbarAdmin />
+      {/*<NavbarAdmin />*/}
       <h2>Connexion</h2>
       {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
       <form onSubmit={handleSubmit}>
