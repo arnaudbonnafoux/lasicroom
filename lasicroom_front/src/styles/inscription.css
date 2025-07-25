@@ -1,12 +1,13 @@
 .image_main {
     border-radius :12px;
-    height: 75vh;
-    background-image: url('../../public/images/photo_1.jpg');
+    height: 100vh;
+    background-image: url('/public/images/photo_1.jpg');
     background-repeat: no-repeat;
-    /*background-size: contain;*/
     background-position: center;
+    background-size: contain;
 }
 
 .fond_form {
     background-color: transparent;
 }
+
