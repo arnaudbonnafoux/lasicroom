@@ -9,7 +9,7 @@ const GestionReservations = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/reservations')
+    fetch('/api/reservations')
       .then(response => {
         if (!response.ok) throw new Error('Erreur lors du chargement des réservations');
         return response.json();

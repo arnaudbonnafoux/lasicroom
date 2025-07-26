@@ -16,7 +16,8 @@ function GestionConnexion() {
     setErreur('');
 
     try {
-      const reponse = await fetch('http://localhost:3001/api/connexions', {
+       const reponse = await fetch('/api/connexions', {
+      //const reponse = await fetch('http://localhost:3001/api/connexions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

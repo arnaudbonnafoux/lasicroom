@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../composants/Header';
 import Footer from '../composants/Footer';
 import Navbar from '../composants/Navbar';
-import '../styles/accompagnement.css'; // Tu peux y garder ton CSS perso si besoin
+import '../styles/accompagnement.css';
 
 const Accompagnement = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const Accompagnement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/accompagnements', formData);
+      await axios.post('/api/accompagnements', formData);
       alert('Demande envoyée avec succès !');
       setFormData({
         nom_artiste: '',
@@ -43,7 +43,7 @@ const Accompagnement = () => {
 
       <h1>Accompagnement</h1>
       <div className='div_accompagnement'>
-        <img style={{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)'}} src='/images/photo_1.jpg' alt='Un piano sur une scène'/>
+        <img style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }} src='/images/photo_1.jpg' alt='Un piano sur une scène' />
         <div className='texte_accompagnement'>
           <h2>Vous êtes un groupe ou un·e artiste solo ?</h2>
           <p>Vous souhaitez bénéficier d’un accompagnement personnalisé
@@ -55,32 +55,32 @@ const Accompagnement = () => {
 
       {/* Form */}
 
-        <div className='div_form'>
-          <h2>Inscription</h2>
-          <form className='formulaire' onSubmit={handleSubmit}>
-            <div>
-              <label>Nom du groupe :</label>
-              <input type="text" name="nom_artiste" value={formData.nom_artiste} onChange={handleChange} required />
-            </div>
+      <div className='div_form'>
+        <h2>Inscription</h2>
+        <form className='formulaire' onSubmit={handleSubmit}>
+          <div>
+            <label>Nom du groupe :</label>
+            <input type="text" name="nom_artiste" value={formData.nom_artiste} onChange={handleChange} required />
+          </div>
 
-            <div>
-              <label>Email :</label>
-              <input type="email" name="email_artiste" value={formData.email_artiste} onChange={handleChange} required />
-            </div>
+          <div>
+            <label>Email :</label>
+            <input type="email" name="email_artiste" value={formData.email_artiste} onChange={handleChange} required />
+          </div>
 
-            <div>
-              <label>Style musical :</label>
-              <input type="text" name="style_musical" value={formData.style_musical} onChange={handleChange} />
-            </div>
+          <div>
+            <label>Style musical :</label>
+            <input type="text" name="style_musical" value={formData.style_musical} onChange={handleChange} />
+          </div>
 
-            <div>
-              <label>Message :</label>
-              <textarea name="message" rows="4" value={formData.message} onChange={handleChange}></textarea>
-            </div>
+          <div>
+            <label>Message :</label>
+            <textarea name="message" rows="4" value={formData.message} onChange={handleChange}></textarea>
+          </div>
 
-            <button type="submit">Envoyer</button>
-          </form>
-        </div>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
       <Footer />
     </div>
   );

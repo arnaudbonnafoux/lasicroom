@@ -1,4 +1,3 @@
-// src/pages/Billetterie.js
 import React, { useState, useEffect } from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
@@ -16,7 +15,7 @@ const Billetterie = () => {
 
   // Charger les concerts au montage
   useEffect(() => {
-    fetch('http://localhost:3001/api/concerts')
+    fetch('/api/concerts')
       .then((res) => res.json())
       .then((data) => setConcerts(data))
       .catch((error) => console.error("Erreur lors du chargement des concerts :", error));
@@ -45,7 +44,7 @@ const Billetterie = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/reservations', {
+           const response = await fetch('/api/reservations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reservation)

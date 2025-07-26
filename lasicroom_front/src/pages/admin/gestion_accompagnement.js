@@ -9,7 +9,8 @@ const GestionAccompagnement = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/accompagnements')
+    //fetch('http://localhost:3001/api/accompagnements')
+    fetch('/api/accompagnements')
       .then(response => response.json())
       .then(data => setDemandes(data))
       .catch(error => console.error('Erreur lors de la récupération des demandes :', error));

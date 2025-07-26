@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import '../styles/connexion.css'
@@ -16,7 +15,7 @@ function Connexion() {
     setErreur('');
 
     try {
-      const reponse = await fetch('http://localhost:3001/api/connexions', {
+      const reponse = await fetch('/api/connexions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,9 +46,9 @@ function Connexion() {
     <div>
       <Header />
       {/*<Navbar />*/}
-{/*<h2>Connexion</h2>*/}
+      {/*<h2>Connexion</h2>*/}
       <main className='image_main'>
-        
+
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
         <form className='fond_form' onSubmit={handleSubmit}>
           <input

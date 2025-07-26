@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/accueil.css';
 
 const Accueil = () => {
@@ -16,7 +15,7 @@ const Accueil = () => {
 
         <div className='div_accueil'>
           <div>
-            <img style={{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)'}} src="/images/photo_2.jpg" alt="Concert" />
+            <img style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }} src="/images/photo_2.jpg" alt="Concert" />
           </div>
 
           <div className='texte'>
@@ -51,7 +50,6 @@ const Accueil = () => {
               style={{
                 marginTop: '10px',
                 marginBottom: '10px',
-                /*borderRadius: '4px',*/
                 boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)',
                 borderRadius: '12px'
               }}
@@ -64,8 +62,6 @@ const Accueil = () => {
               encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
-
-            {/*<img src="/images/photo_1.jpg" alt="Direct" />*/}
           </div>
         </div>
       </main>
