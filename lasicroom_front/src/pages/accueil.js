@@ -40,12 +40,15 @@ const Accueil = () => {
         </div>
 
         <div className='div_live_streaming'>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/*<div style={{ display: 'flex', alignItems: 'center' }}>
             <h2>
               Le direct live des balances <span>→</span>
             </h2>
-          </div>
+          </div>*/}
           <div>
+            <h2 style={{textAlign:'center'}}>
+              Le direct live des balances
+            </h2>
             <iframe
               style={{
                 marginTop: '10px',
@@ -57,6 +60,25 @@ const Accueil = () => {
               height="315"
               src="https://www.youtube.com/embed/YeHvUcdZ9t8?si=wO0bi7QKvHXASxtv"
               title="YouTube video player"
+              Border="none"
+              allow="accelerometer; autoplay; clipboard-write; 
+              encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div>
+            <h2 style={{textAlign:'center'}}>Playlist de nos artistes !</h2>
+            <iframe
+              style={{
+                marginTop: '10px',
+                marginBottom: '10px',
+                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)',
+                borderRadius: '12px'
+              }}
+              width="560"
+              height="315"
+              src="https://widget.deezer.com/widget/dark/playlist/1973876342"
+              title="Playlist Deezer"
               Border="none"
               allow="accelerometer; autoplay; clipboard-write; 
               encrypted-media; gyroscope; picture-in-picture; web-share"

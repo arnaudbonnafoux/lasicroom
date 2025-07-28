@@ -10,7 +10,7 @@ const GestionArtistes = () => {
 
   useEffect(() => {
     //fetch('http://localhost:3001/api/artistes')
-        fetch('/api/artistes')
+    fetch('/api/artistes')
       .then(response => {
         if (!response.ok) throw new Error('Erreur lors du chargement des artistes');
         return response.json();
@@ -31,12 +31,11 @@ const GestionArtistes = () => {
 
       <main>
         <h1>Gestion des artistes</h1>
-        <button onClick={handleDeconnexion}>Déconnexion</button>
 
         <table>
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>Nom</th>
               <th>Style musical</th>
               <th>Description</th>
@@ -61,6 +60,9 @@ const GestionArtistes = () => {
             ))}
           </tbody>
         </table>
+                <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
+          <button onClick={handleDeconnexion}>Déconnexion</button>
+        </div>
       </main>
 
       <Footer />

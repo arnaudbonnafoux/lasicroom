@@ -44,11 +44,7 @@ const GestionConcerts = () => {
 
       <main>
         <h1>Gestion des concerts</h1>
-
-        <button onClick={handleDeconnexion}>
-          Déconnexion
-        </button>
-
+ 
         {loading && <p>Chargement en cours...</p>}
         {error && <p style={{ color: 'red' }}>Erreur : {error}</p>}
 
@@ -84,6 +80,11 @@ const GestionConcerts = () => {
             </tbody>
           </table>
         )}
+               <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
+          <button onClick={handleDeconnexion}>
+            Déconnexion
+          </button>
+        </div>
       </main>
 
       <Footer />

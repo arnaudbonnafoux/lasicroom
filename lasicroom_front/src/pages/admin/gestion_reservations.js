@@ -30,12 +30,11 @@ const GestionReservations = () => {
 
       <main>
         <h1>Gestion des réservations</h1>
-        <button onClick={handleDeconnexion}>Déconnexion</button>
 
         <table>
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>Utilisateur</th>
               <th>Email</th>
               <th>Concert</th>
@@ -56,6 +55,9 @@ const GestionReservations = () => {
             ))}
           </tbody>
         </table>
+                <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
+          <button onClick={handleDeconnexion}>Déconnexion</button>
+        </div>
       </main>
 
       <Footer />
