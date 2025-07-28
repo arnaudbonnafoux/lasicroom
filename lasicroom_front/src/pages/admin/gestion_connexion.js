@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import NavbarAdmin from '../../composants/NavbarAdmin';
-import Footer from '../../composants/Footer';
-import Header from '../../composants/HeaderAdmin';
+import Navbar from '../../composants/Navbar';
 import '../../styles/connexion.css'
 
 function GestionConnexion() {
@@ -16,8 +14,8 @@ function GestionConnexion() {
     setErreur('');
 
     try {
-       const reponse = await fetch('/api/connexions', {
-      //const reponse = await fetch('http://localhost:3001/api/connexions', {
+      const reponse = await fetch('/api/connexions', {
+        //const reponse = await fetch('http://localhost:3001/api/connexions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,30 +42,33 @@ function GestionConnexion() {
 
   return (
     <div>
-      <Header />
-      <main className='image_main'>
-      {/*<NavbarAdmin />*/}
-      {/*<h2>Connexion</h2>*/}
-      {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-      <form className='fond_form' onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        /><br />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={motDePasse}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          required
-        /><br />
-        <button type="submit">Se connecter</button>
-      </form>
+      <Navbar />
+      <main className='display_main'>
+
+        <div>
+          <h2 style={{ textAlign: 'center', fontSize: 'xx-large' }}>Connexion</h2>
+          {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+          <form className='style_form' onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            /><br />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={motDePasse}
+              onChange={(e) => setMotDePasse(e.target.value)}
+              required
+            /><br />
+            <button type="submit">Se connecter</button>
+          </form>
+        </div>
+        <img src="/images/photo_2.jpg"
+          alt='Le public devant la scène' className='style_image' />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../composants/Footer';
-import Header from '../composants/Header';
+//import Footer from '../composants/Footer';
+//import Header from '../composants/Header';
+import Navbar from '../composants/Navbar';
 import '../styles/connexion.css'
 
 function Connexion() {
@@ -44,13 +45,14 @@ function Connexion() {
 
   return (
     <div>
-      <Header />
-      {/*<Navbar />*/}
-      {/*<h2>Connexion</h2>*/}
-      <main className='image_main'>
+      {/*<Header />*/}
+      <Navbar />
+      <main className='display_main'>
 
+      <div>
+      <h2 style={{textAlign:'center', fontSize:'xx-large'}}>Connexion</h2>
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-        <form className='fond_form' onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='style_form'>
           <input
             type="email"
             placeholder="Email"
@@ -67,8 +69,11 @@ function Connexion() {
           /><br />
           <button type="submit">Se connecter</button>
         </form>
+        </div>
+          <img src="/images/photo_2.jpg" 
+          alt='Le public devant la scène' className='style_image'/>
       </main>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 }

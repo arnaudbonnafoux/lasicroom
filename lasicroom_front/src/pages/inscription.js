@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import Navbar from '../composants/Navbar';
-import Footer from '../composants/Footer';
-import Header from '../composants/Header';
+import Navbar from '../composants/Navbar';
+//import Footer from '../composants/Footer';
+//import Header from '../composants/Header';
 import '../styles/inscription.css'
 
 function Inscription() {
@@ -37,43 +37,49 @@ function Inscription() {
 
   return (
     <div>
-      <Header />
-      {/*<Navbar />*/}
-      {/*<h2>Inscription</h2>*/}
-      <main className='image_main'>
-        <form className='fond_form' onSubmit={gererSoumission}>
-          <input
-            type="text"
-            placeholder="Nom"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={motDePasse}
-            onChange={(e) => setMotDePasse(e.target.value)}
-            required
-          />
-          {/*
+      {/*<Header />*/}
+      <Navbar />
+
+      <main className='display_main'>
+
+        <div>
+          <h2 style={{ textAlign: 'center', fontSize: 'xx-large' }}>Inscription</h2>
+          <form className='fond_form' onSubmit={gererSoumission}>
+            <input
+              type="text"
+              placeholder="Nom"
+              value={nom}
+              onChange={(e) => setNom(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={motDePasse}
+              onChange={(e) => setMotDePasse(e.target.value)}
+              required
+            />
+            {/*
         <select value={role} onChange={(e) => setRole(e.target.value)}>     
           <option value="utilisateur">Utilisateur</option>
           <option value="admin">Admin</option>
         </select>
         */}
-          <button type="submit">S'inscrire</button>
-          {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-        </form>
+            <button type="submit">S'inscrire</button>
+            {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+          </form>
+        </div>
+        <img src="/images/photo_1.jpg"
+          alt='Un clavier sur une scène' className='style_image' />
       </main>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 }
