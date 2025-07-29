@@ -26,3 +26,17 @@
     gap: 256px;
 }
 
+@media screen and (max-width:400px) {
+    .liens_footer {
+        font-size: 10px;
+    }
+
+    .div_footer {
+        gap:88px;
+    }
+
+    .dimension_icones {
+        width: 20px;
+    }
+}
+

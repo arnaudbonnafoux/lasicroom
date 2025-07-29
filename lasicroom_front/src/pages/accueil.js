@@ -14,8 +14,8 @@ const Accueil = () => {
         <h1>Bienvenue à la sicRoom !</h1>
 
         <div className='div_accueil'>
-          <div>
-            <img style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }} src="/images/photo_2.jpg" alt="Concert" />
+          <div className='div_image'>
+            <img className='image_présentation' style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }} src="/images/photo_2.jpg" alt="Concert" />
           </div>
 
           <div className='texte'>
@@ -45,7 +45,7 @@ const Accueil = () => {
               Le direct live des balances <span>→</span>
             </h2>
           </div>*/}
-          <div>
+          <div className='div_frame'>
             <h2 style={{textAlign:'center'}}>
               Le direct live des balances
             </h2>
@@ -66,7 +66,7 @@ const Accueil = () => {
               allowFullScreen
             ></iframe>
           </div>
-          <div>
+          <div className='div_frame'>
             <h2 style={{textAlign:'center'}}>Playlist de nos artistes !</h2>
             <iframe
               style={{

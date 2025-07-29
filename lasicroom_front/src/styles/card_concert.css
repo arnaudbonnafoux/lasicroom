@@ -29,3 +29,9 @@
   height: 350px;
   object-fit: cover;
 }
+
+@media screen and (max-width:400px) {
+.card_concert.fullwidth {
+  width: 95%;
+}
+}

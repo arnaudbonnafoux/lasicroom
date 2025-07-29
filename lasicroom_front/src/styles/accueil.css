@@ -24,3 +24,50 @@
     width: 25%;
     background-color: rgba(30, 144, 255, 0.075);
 }
+
+/* 
+Média queries
+Mobile */
+@media screen and (max-width:400px) {
+
+    /* jusqu'à 400px*/
+    .div_accueil,
+    .div_live_streaming {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .texte,
+    .info,
+    .image_présentation {
+        text-align: justify;
+        font-size: medium;
+        width: 95%;
+    }
+
+    .texte, .info {
+        margin-top: 16px;
+    }
+
+    .div_image {
+        text-align: center;
+    }
+
+    iframe {
+        width: 95%;
+    }
+
+    .div_frame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: larger;
+    }
+
+    h2 {
+        font-size: large;
+    }
+}

@@ -98,3 +98,16 @@ tr:hover {
 form {
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 }
+
+@media screen and (max-width:400px) {
+
+  h1 {
+    padding: 0px;
+    font-size: x-large;
+  }
+
+  button {
+    padding: 10px;
+    font-size: small;
+  }
+}

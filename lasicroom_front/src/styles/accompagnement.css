@@ -16,8 +16,7 @@
     text-align: center;
 }
 
-.div_form {
-    
+.div_form {  
     margin-top: 32px;
     text-align: center;
 }
@@ -36,6 +35,7 @@
     text-align: left;
     width: 100%;
     max-width: 500px;
+    margin-bottom: 16px;
 }
 
 .formulaire input,
@@ -45,4 +45,29 @@
     border-radius: 6px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+
+@media screen and (max-width:400px) {
+
+    .formulaire {
+        text-align: center;
+        max-width: 60%;
+    }
+
+    .div_accompagnement {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img_accomp {
+        width: 95%;
+    }
+
+    .texte_accompagnement {
+        text-align:left;
+        padding: 6px;
+        width: 95%;
+        font-size: medium;
+    }
 }
