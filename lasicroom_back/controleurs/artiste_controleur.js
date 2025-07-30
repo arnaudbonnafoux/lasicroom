@@ -1,15 +1,26 @@
 const baseDeDonnees = require('../db');
 
 //get
-exports.obtenirArtiste = async (requete, reponse) => {
+exports.obtenirArtiste = async (req, res) => {
   try {
-    const resultat = await baseDeDonnees.query('SELECT * FROM artiste ORDER BY id_artiste');
-    reponse.json(resultat.rows);
-  } catch (erreur) {
-    console.error("Erreur dans obtenirArtistes :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la récupération des artistes." });
+    const { nom } = req.query;
+
+    if (nom) {
+      const resultat = await baseDeDonnees.query(
+        'SELECT * FROM artiste WHERE LOWER(nom_artiste) = LOWER($1)',
+        [nom]
+      );
+      return res.json(resultat.rows);
+    }
+
+    const tousLesArtistes = await baseDeDonnees.query('SELECT * FROM artiste');
+    res.json(tousLesArtistes.rows);
+
+  } catch (err) {
+    console.error("Erreur dans obtenirArtiste :", err);
+    res.status(500).json({ erreur: "Erreur lors de la récupération des artistes." });
   }
-}
+};
 
 //post
 exports.creerArtiste = async (requete, reponse) => {
@@ -43,6 +54,7 @@ exports.creerArtiste = async (requete, reponse) => {
   }
 };
 
+//put
 exports.mettreAJourArtiste = async (requete, reponse) => {
   const { id } = requete.params;
   const { nom_artiste, style_musical, description, photo, lien_video } = requete.body;
@@ -65,7 +77,6 @@ exports.mettreAJourArtiste = async (requete, reponse) => {
     reponse.status(500).json({ erreur: "Erreur lors de la mise à jour de l'artiste." });
   }
 };
-
 
 //delete
 exports.supprimerArtiste = async (requete, reponse) => {

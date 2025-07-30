@@ -40,11 +40,6 @@ const Accueil = () => {
         </div>
 
         <div className='div_live_streaming'>
-          {/*<div style={{ display: 'flex', alignItems: 'center' }}>
-            <h2>
-              Le direct live des balances <span>→</span>
-            </h2>
-          </div>*/}
           <div className='div_frame'>
             <h2 style={{textAlign:'center'}}>
               Le direct live des balances

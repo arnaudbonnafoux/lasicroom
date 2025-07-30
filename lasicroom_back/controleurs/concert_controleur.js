@@ -75,40 +75,7 @@ exports.supprimerConcert = async (requete, reponse) => {
   }
 };
 
-/*get
-exports.obtenirConcerts = async (requete, reponse) => {
-  try {
-    const resultat = await baseDeDonnees.query('SELECT * FROM concert ORDER BY id_concert');
-    reponse.json(resultat.rows); 
-  } catch (erreur) {
-    console.error("Erreur dans obtenirConcerts :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
-  }
-};*/
-
-/*get
-exports.obtenirConcerts = async (requete, reponse) => {
-  try {
-    const resultat = await baseDeDonnees.query(`
-  SELECT 
-    concert.*, 
-    artiste.nom_artiste, 
-    artiste.style_musical, 
-    artiste.photo, 
-    artiste.lien_video
-  FROM concert
-  LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste
-  ORDER BY concert.id_concert
-`);
-
-    reponse.json(resultat.rows);
-  } catch (erreur) {
-    console.error("Erreur dans obtenirConcerts :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
-  }
-};*/
-
-// GET enrichi avec jointure artiste
+// GET (jointure avec la table artiste)
 exports.obtenirConcerts = async (requete, reponse) => {
   try {
     const resultat = await baseDeDonnees.query(`

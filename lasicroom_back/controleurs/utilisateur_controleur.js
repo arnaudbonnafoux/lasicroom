@@ -32,27 +32,6 @@ exports.obtenirIdUtilisateur = async (requete, reponse) => {
     }
 };
 
-/*post
-exports.creerUtilisateur = async (requete, reponse) => {
-    const {
-        nom,
-        email,
-        mot_de_passe,
-        role
-    } = requete.body;
-
-    try {
-        const resultatRequete = await baseDeDonnees.query(
-            `INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES ($1, $2, $3, $4) RETURNING *`,
-            [nom, email, mot_de_passe, role]
-        );
-        reponse.status(201).json(resultatRequete.rows[0]);
-    } catch (erreur) {
-        console.error("Erreur dans la création de l'utilisateur :", erreur);
-        reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });
-    }
-};*/
-
 // put
 exports.modifierUtilisateur = async (requete, reponse) => {
     const { id } = requete.params;
@@ -99,6 +78,7 @@ exports.supprimerUtilisateur = async (requete, reponse) => {
     }
 };
 
+//post
 exports.creerUtilisateur = async (requete, reponse) => {
   const { nom, email, mot_de_passe, role } = requete.body;
 

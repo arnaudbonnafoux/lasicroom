@@ -1,4 +1,3 @@
-//Routes testées
 const express = require('express');
 const routeur = express.Router();
 const concertControleur = require('../controleurs/artiste_controleur');

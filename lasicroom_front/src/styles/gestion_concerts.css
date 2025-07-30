@@ -4,12 +4,58 @@
 }
 
 .div_tableau table {
-  min-width: 900px; /* ajuste en fonction du nombre de colonnes */
+  min-width: 900px;
+  /* ajuste en fonction du nombre de colonnes */
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   border: 1px solid #ccc;
   text-align: left;
+}
+
+.form_ajout_concert {
+  background-color: rgba(25, 25, 112, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 50%;
+  margin: 36px auto;
+  padding: 20px;
+  /*border: 1px solid #ccc;*/
+  border-radius: 12px;
+}
+
+.style_h2 {
+  padding: 12px auto;
+  text-align: center;
+}
+
+.button_table {
+  border: none;
+  margin: 0 auto;
+  width: 70%;
+  font-size: smaller;
+  padding: 6px;
+  margin-top: 6px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.button_form {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.input_form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.textarea_form {
+  width: 50%;
+  margin: 0 auto;
+  padding: 12px 0 12px 0;
 }
