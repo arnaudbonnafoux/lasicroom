@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:767px) {
   .modal-content {
     max-width: 250px;
   }

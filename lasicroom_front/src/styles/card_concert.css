@@ -3,7 +3,7 @@
   width: calc(20% - 24px);
   box-sizing: border-box;
   border-radius: 12px;
-  background-color: rgba(255, 140, 0, 0.025);
+  background-color: rgba(255, 140, 0, 0.050);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -25,13 +25,38 @@
   max-width: 800px;
   margin: 20px auto;
 }
+
 .card_concert.fullwidth .image_card {
   height: 350px;
   object-fit: cover;
 }
 
-@media screen and (max-width:400px) {
-.card_concert.fullwidth {
-  width: 95%;
+/* Mobile */
+@media screen and (max-width:767px) {
+  .card_concert {
+    width: 95%;
+  }
+
+  .card_concert.fullwidth {
+    width: 95%;
+  }
 }
+
+/* Tablette */
+ @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .card_concert {
+    width: 95%;
+  }
+
+  .card_concert.fullwidth {
+    width: 95%;
+  }
+
+  .card_concert {
+    width: calc(50% - 24px);
+    /* 2 éléments par ligne avec un espacement */
+    margin: 12px;
+    box-sizing: border-box;
+  }
 }

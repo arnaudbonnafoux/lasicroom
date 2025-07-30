@@ -13,12 +13,34 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 }
 
-@media screen and (max-width:400px) {
+/* Mobile */
+@media screen and (max-width:767px) {
 
     .display_main {
         flex-direction:column-reverse;
     }
     .style_image {
         max-width: 95%;
+    }
+}
+
+/* Tablette */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .display_main {
+        flex-direction:column-reverse;
+    }
+    .style_image {
+
+        max-width: 75%;
+    }
+
+    .style_form {
+        margin-top: 0px;
+    }
+
+    .style_h2 {
+        margin-top: 0px;
+        margin-bottom: 12px;
     }
 }

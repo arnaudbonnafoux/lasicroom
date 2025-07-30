@@ -50,7 +50,7 @@ function Connexion() {
       <main className='display_main'>
 
       <div>
-      <h2 style={{textAlign:'center', fontSize:'xx-large'}}>Connexion</h2>
+      <h2 className='style_h2' style={{textAlign:'center', fontSize:'xx-large'}}>Connexion</h2>
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
         <form onSubmit={handleSubmit} className='style_form'>
           <input

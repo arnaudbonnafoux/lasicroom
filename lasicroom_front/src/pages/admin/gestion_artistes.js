@@ -31,36 +31,37 @@ const GestionArtistes = () => {
 
       <main>
         <h1>Gestion des artistes</h1>
-
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nom</th>
-              <th>Style musical</th>
-              <th>Description</th>
-              <th>Vidéo</th>
-            </tr>
-          </thead>
-          <tbody>
-            {artistes.map((artiste, index) => (
-              <tr key={artiste.id_artiste}>
-                <td>{index + 1}</td>
-                <td>{artiste.nom_artiste}</td>
-                <td>{artiste.style_musical}</td>
-                <td>{artiste.description}</td>
-                <td>
-                  {artiste.lien_video ? (
-                    <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
-                  ) : (
-                    '—'
-                  )}
-                </td>
+        <div className='div_tableau'>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Style musical</th>
+                <th>Description</th>
+                <th>Vidéo</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-                <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
+            </thead>
+            <tbody>
+              {artistes.map((artiste, index) => (
+                <tr key={artiste.id_artiste}>
+                  <td>{index + 1}</td>
+                  <td>{artiste.nom_artiste}</td>
+                  <td>{artiste.style_musical}</td>
+                  <td>{artiste.description}</td>
+                  <td>
+                    {artiste.lien_video ? (
+                      <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
+                    ) : (
+                      '—'
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px' }}>
           <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>
       </main>

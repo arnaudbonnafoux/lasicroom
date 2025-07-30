@@ -14,22 +14,17 @@ nav {
   padding: 12px;
   border: 12px;
   background-color: rgba(30, 144, 255, 0.7);
-  /*background-color: rgba(255, 140, 0, 0.2);*/
   display: inline-block;
-  /* La balise nav s'adapte à la dimension de son conetnu.*/
-
 }
 
 header {
   border-radius: 12px;
-  /*background-color: rgba(25, 25, 112, 0.4);*/
   background-color: #1D2D44;
 }
 
 footer {
   margin-top: 12px;
   border-radius: 12px;
-  /*background-color: rgba(25, 25, 112, 0.4);*/
   background-color: #1D2D44;
 }
 
@@ -99,7 +94,8 @@ form {
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 }
 
-@media screen and (max-width:400px) {
+/* Mobile */
+@media screen and (max-width:767px) {
 
   h1 {
     padding: 0px;
@@ -108,6 +104,14 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 
   button {
     padding: 10px;
+    font-size: small;
+  }
+
+  table {
+    font-size: small;
+  }
+
+  p {
     font-size: small;
   }
 }

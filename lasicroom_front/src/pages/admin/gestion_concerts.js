@@ -49,6 +49,7 @@ const GestionConcerts = () => {
         {error && <p style={{ color: 'red' }}>Erreur : {error}</p>}
 
         {!loading && !error && (
+          <div className='div_tableau'> 
           <table>
             <thead>
               <tr>
@@ -79,6 +80,7 @@ const GestionConcerts = () => {
               ))}
             </tbody>
           </table>
+          </div>
         )}
                <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
           <button onClick={handleDeconnexion}>

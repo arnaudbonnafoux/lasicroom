@@ -27,7 +27,7 @@ const GestionAccompagnement = () => {
       <NavbarAdmin />
       <main>
         <h1>Gestion des demandes d'accompagnement</h1>
-
+<div className='div_tableau'>
         <table>
           <thead>
             <tr>
@@ -54,6 +54,7 @@ const GestionAccompagnement = () => {
             ))}
           </tbody>
         </table>
+        </div>
         <div style={{ display: 'flex', justifyContent: 'center', padding:'24px' }}>
           <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>

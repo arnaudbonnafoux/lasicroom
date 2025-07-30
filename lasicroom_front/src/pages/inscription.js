@@ -43,8 +43,8 @@ function Inscription() {
       <main className='display_main'>
 
         <div>
-          <h2 style={{ textAlign: 'center', fontSize: 'xx-large' }}>Inscription</h2>
-          <form className='fond_form' onSubmit={gererSoumission}>
+          <h2 className='style_h2' style={{ textAlign: 'center', fontSize: 'xx-large' }}>Inscription</h2>
+          <form className='style_form' onSubmit={gererSoumission}>
             <input
               type="text"
               placeholder="Nom"

@@ -46,8 +46,8 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
-@media screen and (max-width:400px) {
+/* Mobile */
+@media screen and (max-width:767px) {
 
     .formulaire {
         text-align: center;
@@ -71,3 +71,30 @@
         font-size: medium;
     }
 }
+
+/* Tablette */
+@media screen and (max-width:768px) and (max-width: 1024px) {
+
+    .formulaire {
+        text-align: center;
+        max-width: 65%;
+    }
+
+    .div_accompagnement {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img_accomp {
+        max-width: 640px;
+    }
+
+    .texte_accompagnement {
+        text-align:left;
+        padding: 6px;
+        width: 95%;
+        font-size: medium;
+    }
+}
+

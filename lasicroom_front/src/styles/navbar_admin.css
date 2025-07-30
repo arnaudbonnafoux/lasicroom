@@ -2,3 +2,14 @@
     padding-right: 12px;
     text-decoration: none;
 }
+
+.liens:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+@media screen and (max-width:767px) {
+    .liens {
+        font-size: x-small;
+    }
+}

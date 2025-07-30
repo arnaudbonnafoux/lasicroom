@@ -9,8 +9,13 @@
     text-decoration: underline;
 }
 
-@media screen and (max-width:400px) {
+/* Mobile */
+@media screen and (max-width:767px) {
     .liens {
-        font-size: small;
+        font-size: medium;
     }
+
+    .liens:hover {
+    text-decoration: underline;
+}
 }
