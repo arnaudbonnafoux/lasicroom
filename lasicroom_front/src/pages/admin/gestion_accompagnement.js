@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../composants/HeaderAdmin';
 import NavbarAdmin from '../../composants/NavbarAdmin';
-import Footer from '../../composants/Footer';
+//import Footer from '../../composants/Footer';
 
 const GestionAccompagnement = () => {
   const [demandes, setDemandes] = useState([]);
@@ -37,7 +37,7 @@ const GestionAccompagnement = () => {
               <th>Style musical</th>
               <th>Message</th>
               <th>Date d'envoi</th>
-              <th>Traitée ?</th>
+              {/*<th>Traitée ?</th>*/}
             </tr>
           </thead>
           <tbody>
@@ -49,7 +49,7 @@ const GestionAccompagnement = () => {
                 <td>{demande.style_musical}</td>
                 <td>{demande.message}</td>
                 <td>{new Date(demande.date_envoi).toLocaleString()}</td>
-                <td>{demande.traite ? 'Oui' : 'Non'}</td>
+                {/*<td>{demande.traite ? 'Oui' : 'Non'}</td>*/}
               </tr>
             ))}
           </tbody>
@@ -59,7 +59,7 @@ const GestionAccompagnement = () => {
           <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>
       </main>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 };

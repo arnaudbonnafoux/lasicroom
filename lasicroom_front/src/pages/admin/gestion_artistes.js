@@ -1,23 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
-//import Footer from '../../composants/Footer';
-//import Header from '../../composants/HeaderAdmin';
+import '../../styles/gestion_artistes.css';
+import HeaderAdmin from '../../composants/HeaderAdmin';
 
 const GestionArtistes = () => {
   const [artistes, setArtistes] = useState([]);
   const [selectedArtiste, setSelectedArtiste] = useState(null);
+  const [newArtiste, setNewArtiste] = useState({
+    nom_artiste: '',
+    style_musical: '',
+    description: '',
+    photo: null,
+    lien_video: ''
+  });
+
+  const [updatedPhoto, setUpdatedPhoto] = useState(null); // Nouvelle photo pour PUT
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/artistes')
-      .then(response => {
-        if (!response.ok) throw new Error('Erreur lors du chargement des artistes');
-        return response.json();
-      })
-      .then(data => setArtistes(data))
-      .catch(error => console.error(error));
+    fetchArtistes();
   }, []);
+
+  const fetchArtistes = async () => {
+    try {
+      const response = await fetch('/api/artistes');
+      if (!response.ok) throw new Error('Erreur lors du chargement des artistes');
+      const data = await response.json();
+      setArtistes(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
@@ -25,92 +40,128 @@ const GestionArtistes = () => {
   };
 
   const handleEditClick = (artiste) => {
-    setSelectedArtiste({ ...artiste }); // clone pour édition locale
+    setSelectedArtiste({ ...artiste });
+    setUpdatedPhoto(null); // Réinitialiser la photo modifiée
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('nom_artiste', selectedArtiste.nom_artiste);
+    formData.append('style_musical', selectedArtiste.style_musical);
+    formData.append('description', selectedArtiste.description);
+    formData.append('lien_video', selectedArtiste.lien_video);
+    if (updatedPhoto) {
+      formData.append('photo', updatedPhoto);
+    }
+
     try {
       const response = await fetch(`/api/artistes/${selectedArtiste.id_artiste}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(selectedArtiste)
+        body: formData
       });
 
       if (!response.ok) throw new Error("Erreur lors de la mise à jour");
 
       alert("Artiste mis à jour !");
       setSelectedArtiste(null);
-      const res = await fetch('/api/artistes');
-      const data = await res.json();
-      setArtistes(data);
-
+      fetchArtistes();
     } catch (err) {
       alert("Échec de la mise à jour : " + err.message);
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Confirmer la suppression de cet artiste ?")) return;
+
+    try {
+      const response = await fetch(`/api/artistes/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error("Erreur lors de la suppression");
+
+      alert("Artiste supprimé !");
+      fetchArtistes();
+    } catch (err) {
+      alert("Échec de la suppression : " + err.message);
+    }
+  };
+
+  const handleAddArtiste = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('nom_artiste', newArtiste.nom_artiste);
+    formData.append('style_musical', newArtiste.style_musical);
+    formData.append('description', newArtiste.description);
+    formData.append('photo', newArtiste.photo);
+    formData.append('lien_video', newArtiste.lien_video);
+
+    try {
+      const response = await fetch('/api/artistes', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Erreur lors de l'ajout de l'artiste");
+
+      alert("Artiste ajouté !");
+      setNewArtiste({
+        nom_artiste: '',
+        style_musical: '',
+        description: '',
+        photo: null,
+        lien_video: ''
+      });
+      fetchArtistes();
+    } catch (err) {
+      alert("Échec de l'ajout : " + err.message);
+    }
+  };
+
   return (
     <div>
-      {/*<Header />*/}
+      <HeaderAdmin />
       <NavbarAdmin />
 
       <main>
         <h1>Gestion des artistes</h1>
 
+        {/* Formulaire d'ajout */}
+        <form className='form_ajout_artiste' onSubmit={handleAddArtiste} encType="multipart/form-data">
+          <h2 className='style_h2'>Ajouter un artiste</h2>
+          <input type="text" placeholder="Nom" value={newArtiste.nom_artiste} onChange={(e) => setNewArtiste({ ...newArtiste, nom_artiste: e.target.value })} required />
+          <input type="text" placeholder="Style musical" value={newArtiste.style_musical} onChange={(e) => setNewArtiste({ ...newArtiste, style_musical: e.target.value })} />
+          <textarea placeholder="Description" value={newArtiste.description} onChange={(e) => setNewArtiste({ ...newArtiste, description: e.target.value })} />
+          <input type="file" accept="image/*" onChange={(e) => setNewArtiste({ ...newArtiste, photo: e.target.files[0] })} required />
+          <input type="text" placeholder="Lien vidéo" value={newArtiste.lien_video} onChange={(e) => setNewArtiste({ ...newArtiste, lien_video: e.target.value })} />
+          <button className='button_form' type="submit">Ajouter l'artiste</button>
+        </form>
+
+        {/* Formulaire de modification */}
         {selectedArtiste && (
-          <form onSubmit={handleUpdate} className="form-edition">
-            <h2>Modifier un artiste</h2>
-            <label>Nom :
-              <input
-                type="text"
-                value={selectedArtiste.nom_artiste || ''}
-                onChange={e => setSelectedArtiste({ ...selectedArtiste, nom_artiste: e.target.value })}
-              />
-            </label>
-            <label>Style musical :
-              <input
-                type="text"
-                value={selectedArtiste.style_musical || ''}
-                onChange={e => setSelectedArtiste({ ...selectedArtiste, style_musical: e.target.value })}
-              />
-            </label>
-            <label>Description :
-              <textarea
-                value={selectedArtiste.description || ''}
-                onChange={e => setSelectedArtiste({ ...selectedArtiste, description: e.target.value })}
-              />
-            </label>
-            <label>Photo :
-              <input
-                type="text"
-                value={selectedArtiste.photo || ''}
-                onChange={e => setSelectedArtiste({ ...selectedArtiste, photo: e.target.value })}
-              />
-            </label>
-            <label>Lien vidéo :
-              <input
-                type="text"
-                value={selectedArtiste.lien_video || ''}
-                onChange={e => setSelectedArtiste({ ...selectedArtiste, lien_video: e.target.value })}
-              />
-            </label>
-            <div style={{ marginTop: '12px' }}>
-              <button type="submit">Valider la modification</button>
-              <button type="button" onClick={() => setSelectedArtiste(null)} style={{ marginLeft: '8px' }}>Annuler</button>
+          <form className='form_ajout_artiste' onSubmit={handleUpdate} encType="multipart/form-data">
+            <h2 className='style_h2'>Modifier un artiste</h2>
+
+            <input className='input_form' type="text" value={selectedArtiste.nom_artiste || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, nom_artiste: e.target.value })} />
+            <input className='input_form' type="text" value={selectedArtiste.style_musical || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, style_musical: e.target.value })} />
+            <textarea className='textarea_form' value={selectedArtiste.description || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, description: e.target.value })} />
+            <input className='input_form' type="file" accept="image/*" onChange={(e) => setUpdatedPhoto(e.target.files[0])} />
+            <input className='input_form' type="text" value={selectedArtiste.lien_video || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, lien_video: e.target.value })} />
+
+            <div>
+              <button className='button_form' type="submit">Valider</button>
+              <button className='button_form' type="button" onClick={() => setSelectedArtiste(null)}>Annuler</button>
             </div>
           </form>
         )}
 
-        <div className='div_tableau'>
+        <h2 className='style_h2'>Liste des artistes</h2>
+        <div className="div_tableau">
           <table>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Nom</th>
-                <th>Style musical</th>
+                <th>Style</th>
                 <th>Description</th>
                 <th>Vidéo</th>
                 <th>Actions</th>
@@ -123,15 +174,12 @@ const GestionArtistes = () => {
                   <td>{artiste.nom_artiste}</td>
                   <td>{artiste.style_musical}</td>
                   <td>{artiste.description}</td>
-                  <td>
-                    {artiste.lien_video ? (
-                      <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
-                    ) : (
-                      '—'
-                    )}
+                  <td>{artiste.lien_video ? (
+                      <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>) : '—'}
                   </td>
                   <td>
-                    <button onClick={() => handleEditClick(artiste)}>Modifier</button>
+                    <button className='button_table' onClick={() => handleEditClick(artiste)}>Modifier</button>
+                    <button className='button_table' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
                   </td>
                 </tr>
               ))}
@@ -143,8 +191,6 @@ const GestionArtistes = () => {
           <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>
       </main>
-
-      {/*<Footer />*/}
     </div>
   );
 };

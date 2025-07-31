@@ -1,5 +1,18 @@
 const express = require('express');
 const routeur = express.Router();
+const artisteControleur = require('../controleurs/artiste_controleur');
+const upload = require('../middlewares/multerConfig');
+
+routeur.get('/', artisteControleur.obtenirArtiste);
+routeur.post('/', upload.single('photo'), artisteControleur.creerArtiste); // <-- ici
+routeur.put('/:id', upload.single('photo'), artisteControleur.mettreAJourArtiste);
+routeur.delete('/:id', artisteControleur.supprimerArtiste);
+
+module.exports = routeur;
+
+/*
+const express = require('express');
+const routeur = express.Router();
 const concertControleur = require('../controleurs/artiste_controleur');
 
 routeur.get('/', concertControleur.obtenirArtiste);
@@ -7,9 +20,9 @@ routeur.post('/', concertControleur.creerArtiste);
 routeur.put('/:id', concertControleur.mettreAJourArtiste);
 routeur.delete('/:id', concertControleur.supprimerArtiste);
 
-module.exports = routeur;
+module.exports = routeur;*/
 
-/* 
+/*
 Test route get :
 curl -X GET http://localhost:3001/api/artistes | jq
 

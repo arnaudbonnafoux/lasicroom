@@ -36,10 +36,10 @@ td {
 .button_table {
   border: none;
   margin: 0 auto;
-  width: 70%;
+  width: 85%;
   font-size: smaller;
-  padding: 6px;
-  margin-top: 6px;
+  padding: 12px;
+  margin-top: 12px;
   cursor: pointer;
   box-shadow: none;
 }

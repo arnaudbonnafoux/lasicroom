@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 //import Footer from '../../composants/Footer';
-//import Header from '../../composants/HeaderAdmin';
+import HeaderAdmin from '../../composants/HeaderAdmin';
 import '../../styles/gestion_concerts.css';
 
 const GestionConcerts = () => {
@@ -167,13 +167,14 @@ const GestionConcerts = () => {
 
   return (
     <div>
-      {/*<Header />*/}
+      <HeaderAdmin />
       <NavbarAdmin />
 
       <main>
         <h1>Gestion des concerts</h1>
-        <h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>
+        {/*<h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>*/}
         <form onSubmit={handleSubmit} className="form_ajout_concert">
+          <h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>
           <input className='input_form' type="text" placeholder="Titre" value={titre} onChange={e => setTitre(e.target.value)} required />
           <textarea className='textarea_form' placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} required />
           <input className='input_form' type="datetime-local" value={dateConcert} onChange={e => setDateConcert(e.target.value)} required />
