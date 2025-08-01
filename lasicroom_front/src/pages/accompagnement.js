@@ -75,7 +75,7 @@ const Accompagnement = () => {
 
           <div>
             <label>Message :</label>
-            <textarea name="message" rows="4" value={formData.message} onChange={handleChange} style={{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)'}}></textarea>
+            <textarea name="message" rows="4" value={formData.message} onChange={handleChange} style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}></textarea>
           </div>
 
           <button type="submit">Envoyer</button>

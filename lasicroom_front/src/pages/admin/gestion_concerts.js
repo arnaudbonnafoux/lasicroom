@@ -195,7 +195,7 @@ const GestionConcerts = () => {
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>#</th>
                   <th>Titre</th>
                   <th>Description</th>
                   <th>Date</th>
@@ -208,9 +208,9 @@ const GestionConcerts = () => {
                 </tr>
               </thead>
               <tbody>
-                {concerts.map((concert) => (
+                {concerts.map((concert, index) => (
                   <tr key={concert.id_concert}>
-                    <td>{concert.id_concert}</td>
+                    <td>{index + 1}</td>
                     <td>{concert.titre}</td>
                     <td>{concert.description}</td>
                     <td>{new Date(concert.date_concert).toLocaleString()}</td>

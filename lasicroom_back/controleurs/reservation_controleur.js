@@ -45,7 +45,7 @@ exports.creerReservation = async (requete, reponse) => {
         type_tarif,
         montant
     } = requete.body;
-console.log(`Réservation reçue pour id_concert=${id_concert}, id_utilisateur=${id_utilisateur}`);
+//console.log(`Réservation reçue pour id_concert=${id_concert}, id_utilisateur=${id_utilisateur}`);
     try {
         const verificationConcert = await baseDeDonnees.query(
             `SELECT nb_places_restantes FROM concert WHERE id_concert = $1`,

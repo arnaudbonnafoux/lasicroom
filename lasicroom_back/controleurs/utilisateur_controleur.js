@@ -98,6 +98,8 @@ exports.creerUtilisateur = async (requete, reponse) => {
     delete utilisateur.mot_de_passe;
 
     reponse.status(201).json(utilisateur);
+    //res.status(201).json({ utilisateur }); //modif 01/08/2025
+
   } catch (erreur) {
     console.error("Erreur dans la création de l'utilisateur :", erreur);
     reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });

@@ -24,3 +24,20 @@ exports.creerDemande = async (requete, reponse) => {
   }
 };
 
+// delete
+exports.supprimerDemande = async (requete, reponse) => {
+   const { id } = requete.params;
+   try {
+    const resultat = await baseDeDonnees.query(
+      `DELETE FROM accompagnement WHERE id_demande = $1 RETURNING *`,
+      [id]
+    );
+    if (resultat.rowCount === 0) {
+      return reponse.status(404).json({ message: "Demande non trouvée"});
+    }
+    reponse.json({ message: "Demande supprimée."});
+   } catch (erreur) {
+    console.error(erreur);
+    reponse.status(500).json({ erreur: "erreur lors de la suppression de la demande."})
+   }
+};

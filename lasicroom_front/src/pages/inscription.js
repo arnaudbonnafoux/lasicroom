@@ -25,8 +25,12 @@ function Inscription() {
       const donnees = await reponse.json();
 
       if (reponse.ok) {
+        //sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));// modif 01/08/2025
+
         // Redirection vers la billetterie après inscription réussie
-        navigate('/billetterie');
+        //navigate('/billetterie');
+
+        navigate('/connexion')//solution provisoire. 
       } else {
         setErreur(donnees.message || 'Erreur lors de l’inscription.');
       }
@@ -42,8 +46,11 @@ function Inscription() {
 
       <main className='display_main'>
 
-        <div>
-          <h2 className='style_h2' style={{ textAlign: 'center', fontSize: 'xx-large' }}>Inscription</h2>
+        <div className='div_form'>
+          <h2 className='style_h2' style={{textAlign:'center'}}>Inscription</h2>
+          <p style={{textAlign:'justify'}}>Une fois inscrit, vous serez redirigé vers la page connexion du site.<br />
+            Une fois dans la page connexion, entrez votre adresse e-mail et votre mot de passe utilisés lors de votre inscription.<br />
+            Connectez-vous et la réservation en ligne, sera accessible. Merci !</p>
           <form className='style_form' onSubmit={gererSoumission}>
             <input
               type="text"

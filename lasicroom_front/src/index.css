@@ -36,6 +36,7 @@ H1 {
 
 button {
 /*box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);*/
+  cursor: pointer;
   font-size: large;
   padding: 16px;
   border-radius: 12px;
@@ -54,19 +55,16 @@ li {
 
 input {
   padding: 16px;
-  /*box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);*/
   border-radius: 12px;
   background-color: white;
 }
 
-/* index.css ou global.css */
 table {
   border-radius: 12px;
   width: 85%;
   margin: 0 auto;
   margin-top: 24px;
   border-collapse: collapse;
-  /*margin: 20px 0;*/
   font-size: 1rem;
   text-align: left;
 }
@@ -86,11 +84,12 @@ tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-tr:hover {
+/*tr:hover {
   background-color: #f1f1f1;
-}
+}*/
 
 form {
+background-color: #f9f9f9;
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 }
 
@@ -103,7 +102,11 @@ textarea {
 
   h1 {
     padding: 0px;
-    font-size: x-large;
+    font-size: large;
+  }
+
+  h2 {
+    font-size: medium;
   }
 
   button {
@@ -117,5 +120,23 @@ textarea {
 
   p {
     font-size: small;
+  }
+
+  table {
+    font-size: small;
+  }
+}
+
+/* Tablette */
+@media screen and (max-width: 810px) and (max-width : 1024px) {
+
+  table {
+    font-size: small;
+  }
+
+  th,
+  td {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
   }
 }

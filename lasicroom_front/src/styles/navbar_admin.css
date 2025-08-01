@@ -10,6 +10,11 @@
 /* Mobile */
 @media screen and (max-width:767px) {
     .liens {
-        font-size: x-small;
+        font-size: 10px;
+        padding-right: 8px;
     }
+    
+    .liens:hover {
+    text-decoration: underline;
+}
 }

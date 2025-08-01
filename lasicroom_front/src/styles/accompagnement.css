@@ -26,11 +26,9 @@
 }
 
 
-.formulaire {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
+.formulaire {   
     padding: 24px;
     border-radius: 12px;
-    background-color: rgba(25, 25, 112, 0.1);
     display: inline-block;
     text-align: left;
     width: 100%;
@@ -46,6 +44,7 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
 /* Mobile */
 @media screen and (max-width:767px) {
 
@@ -73,7 +72,7 @@
 }
 
 /* Tablette */
-@media screen and (max-width:768px) and (max-width: 1024px) {
+@media screen and (max-width:810px) and (max-width: 1024px) {
 
     .formulaire {
         text-align: center;

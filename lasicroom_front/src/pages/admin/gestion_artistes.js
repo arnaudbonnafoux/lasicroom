@@ -128,17 +128,17 @@ const GestionArtistes = () => {
         {/* Formulaire d'ajout */}
         <form className='form_ajout_artiste' onSubmit={handleAddArtiste} encType="multipart/form-data">
           <h2 className='style_h2'>Ajouter un artiste</h2>
-          <input type="text" placeholder="Nom" value={newArtiste.nom_artiste} onChange={(e) => setNewArtiste({ ...newArtiste, nom_artiste: e.target.value })} required />
-          <input type="text" placeholder="Style musical" value={newArtiste.style_musical} onChange={(e) => setNewArtiste({ ...newArtiste, style_musical: e.target.value })} />
-          <textarea placeholder="Description" value={newArtiste.description} onChange={(e) => setNewArtiste({ ...newArtiste, description: e.target.value })} />
-          <input type="file" accept="image/*" onChange={(e) => setNewArtiste({ ...newArtiste, photo: e.target.files[0] })} required />
-          <input type="text" placeholder="Lien vidéo" value={newArtiste.lien_video} onChange={(e) => setNewArtiste({ ...newArtiste, lien_video: e.target.value })} />
+          <input className='input_form' type="text" placeholder="Nom" value={newArtiste.nom_artiste} onChange={(e) => setNewArtiste({ ...newArtiste, nom_artiste: e.target.value })} required />
+          <input className='input_form' type="text" placeholder="Style musical" value={newArtiste.style_musical} onChange={(e) => setNewArtiste({ ...newArtiste, style_musical: e.target.value })} />
+          <textarea className='textarea_form' placeholder="Description" value={newArtiste.description} onChange={(e) => setNewArtiste({ ...newArtiste, description: e.target.value })} />
+          <input className='input_form' type="file" accept="image/*" onChange={(e) => setNewArtiste({ ...newArtiste, photo: e.target.files[0] })} required />
+          <input className='input_form' type="text" placeholder="Lien vidéo" value={newArtiste.lien_video} onChange={(e) => setNewArtiste({ ...newArtiste, lien_video: e.target.value })} />
           <button className='button_form' type="submit">Ajouter l'artiste</button>
         </form>
 
         {/* Formulaire de modification */}
         {selectedArtiste && (
-          <form className='form_ajout_artiste' onSubmit={handleUpdate} encType="multipart/form-data">
+          <form className='form_modif_artiste' onSubmit={handleUpdate} encType="multipart/form-data">
             <h2 className='style_h2'>Modifier un artiste</h2>
 
             <input className='input_form' type="text" value={selectedArtiste.nom_artiste || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, nom_artiste: e.target.value })} />
@@ -147,7 +147,7 @@ const GestionArtistes = () => {
             <input className='input_form' type="file" accept="image/*" onChange={(e) => setUpdatedPhoto(e.target.files[0])} />
             <input className='input_form' type="text" value={selectedArtiste.lien_video || ''} onChange={e => setSelectedArtiste({ ...selectedArtiste, lien_video: e.target.value })} />
 
-            <div>
+            <div className='div_button'>
               <button className='button_form' type="submit">Valider</button>
               <button className='button_form' type="button" onClick={() => setSelectedArtiste(null)}>Annuler</button>
             </div>
@@ -159,7 +159,7 @@ const GestionArtistes = () => {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
+                <th>#</th>
                 <th>Nom</th>
                 <th>Style</th>
                 <th>Description</th>

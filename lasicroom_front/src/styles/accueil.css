@@ -15,14 +15,14 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
     border-radius: 12px;
     width: 25%;
-    background-color: rgba(255, 140, 0, 0.050);
+    background-color: rgba(255, 140, 0, 0.025);
 }
 
 .info {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
     border-radius: 12px;
     width: 25%;
-    background-color: rgba(30, 144, 255, 0.075);
+    background-color: rgba(30, 144, 255, 0.050);
 }
 
 /* 
