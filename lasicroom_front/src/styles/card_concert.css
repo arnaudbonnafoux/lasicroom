@@ -32,6 +32,37 @@
   object-fit: cover;
 }
 
+.video_link {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.video_link a {
+  color: #e63946;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.video_link a:hover {
+  text-decoration: underline;
+}
+
+.tarifs {
+  margin: 0.5rem 0;
+}
+
+.tarifs p {
+  margin: 0.2rem 0;
+  font-size: small;
+}
+.titre_concert {
+  font-size: large;
+}
+
+.titre_artiste {
+  font-size: x-large;
+}
+
 /* Mobile */
 @media screen and (max-width:767px) {
   .card_concert {

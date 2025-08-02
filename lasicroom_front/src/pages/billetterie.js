@@ -1,32 +1,44 @@
+// Import Hooks
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+// Import composants
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import CardConcert from '../composants/CardConcert';
-import { useNavigate } from 'react-router-dom';
+// Import Styles
 import '../styles/billetterie.css';
 
 const Billetterie = () => {
-  const navigate = useNavigate();
-  const [concerts, setConcerts] = useState([]);
-  const [selectedConcertId, setSelectedConcertId] = useState(null);
-  const [selectedConcert, setSelectedConcert] = useState(null);
-  const [tarif, setTarif] = useState('plein'); // 'plein' ou 'abonne'
 
-  // Charger les concerts au montage
-  useEffect(() => {
+  // Navigation
+  const navigate = useNavigate();
+
+  /*  État du composant
+  const [valeur, setValeur] = useState(valeurInitiale);
+  Quand un état change, un effet peut être déclenché via useEffect, en fonction des dépendances déclarées.
+  => Principe de la programmation événementielle
+  */
+  const [concerts, setConcerts] = useState([]); // [] => Tabbleau vide
+  const [selectedConcertId, setSelectedConcertId] = useState(null); // valeur null => rien de sélectionner
+  const [selectedConcert, setSelectedConcert] = useState(null);
+  const [tarif, setTarif] = useState('plein'); // Valeur initiale => 'plein' par défaut
+
+  // Charger les données de la table concert via une API
+  useEffect(() => { 
     fetch('/api/concerts')
       .then((res) => res.json())
       .then((data) => setConcerts(data))
       .catch((error) => console.error("Erreur lors du chargement des concerts :", error));
-  }, []);
+  }, []); // [] => Charge les données uniquement au démarrage
 
-  // Définir le concert sélectionné
+  // Mise à jour du concert sélectionné
   useEffect(() => {
     const concert = concerts.find(c => c.id_concert === Number(selectedConcertId));
     setSelectedConcert(concert);
   }, [selectedConcertId, concerts]);
 
+  // Fonction "handlePayer" (fonction fléchée asynchrone et anonyme)
   const handlePayer = async () => {
     const utilisateurStr = sessionStorage.getItem('utilisateur');
     const utilisateur = utilisateurStr ? JSON.parse(utilisateurStr) : null;
@@ -44,7 +56,7 @@ const Billetterie = () => {
     };
 
     try {
-           const response = await fetch('/api/reservations', {
+      const response = await fetch('/api/reservations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reservation)
