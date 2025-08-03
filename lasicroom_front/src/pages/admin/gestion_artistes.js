@@ -7,14 +7,6 @@ import HeaderAdmin from '../../composants/HeaderAdmin';
 const GestionArtistes = () => {
   const navigate = useNavigate();
 
-  /* Code ajouté le 03/08/2025
-    useEffect(() => {
-    const utilisateur = JSON.parse(sessionStorage.getItem('utilisateur'));
-    if (!utilisateur || utilisateur.role !== 'admin') {
-      navigate('/');
-    }
-  }, [navigate]);*/
-
   const [artistes, setArtistes] = useState([]);
   const [selectedArtiste, setSelectedArtiste] = useState(null);
   const [newArtiste, setNewArtiste] = useState({
@@ -25,12 +17,7 @@ const GestionArtistes = () => {
     lien_video: ''
   });
 
-  const [updatedPhoto, setUpdatedPhoto] = useState(null); // Nouvelle photo pour PUT
-
-  useEffect(() => {
-    fetchArtistes();
-  }, []);
-
+  const [updatedPhoto, setUpdatedPhoto] = useState(null);
   const fetchArtistes = async () => {
     try {
       const response = await fetch('/api/artistes');
@@ -42,6 +29,10 @@ const GestionArtistes = () => {
     }
   };
 
+  useEffect(() => {
+    fetchArtistes();
+  }, []);
+
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
@@ -49,11 +40,12 @@ const GestionArtistes = () => {
 
   const handleEditClick = (artiste) => {
     setSelectedArtiste({ ...artiste });
-    setUpdatedPhoto(null); // Réinitialiser la photo modifiée
+    setUpdatedPhoto(null);
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append('nom_artiste', selectedArtiste.nom_artiste);
     formData.append('style_musical', selectedArtiste.style_musical);
@@ -63,9 +55,14 @@ const GestionArtistes = () => {
       formData.append('photo', updatedPhoto);
     }
 
+    const token = sessionStorage.getItem('token');
+
     try {
       const response = await fetch(`/api/artistes/${selectedArtiste.id_artiste}`, {
         method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
         body: formData
       });
 
@@ -82,8 +79,16 @@ const GestionArtistes = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Confirmer la suppression de cet artiste ?")) return;
 
+    const token = sessionStorage.getItem('token');
+
     try {
-      const response = await fetch(`/api/artistes/${id}`, { method: 'DELETE' });
+      const response = await fetch(`/api/artistes/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
       if (!response.ok) throw new Error("Erreur lors de la suppression");
 
       alert("Artiste supprimé !");
@@ -103,9 +108,14 @@ const GestionArtistes = () => {
     formData.append('photo', newArtiste.photo);
     formData.append('lien_video', newArtiste.lien_video);
 
+    const token = sessionStorage.getItem('token');
+
     try {
       const response = await fetch('/api/artistes', {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
         body: formData
       });
 
@@ -183,8 +193,8 @@ const GestionArtistes = () => {
                   <td>{artiste.style_musical}</td>
                   <td>{artiste.description}</td>
                   <td>{artiste.lien_video ? (
-                      <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>) : '—'}
-                  </td>
+                    <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
+                  ) : '—'}</td>
                   <td>
                     <button className='button_table' onClick={() => handleEditClick(artiste)}>Modifier</button>
                     <button className='button_table' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
