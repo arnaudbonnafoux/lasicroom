@@ -6,7 +6,6 @@ routeur.get('/', accompagnementControleur.listerDemandes);
 routeur.post('/', accompagnementControleur.creerDemande);
 routeur.delete('/:id', accompagnementControleur.supprimerDemande);
 
-
 module.exports = routeur;
 
 /*

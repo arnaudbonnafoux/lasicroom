@@ -10,6 +10,43 @@ function GestionConnexion() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+  e.preventDefault();
+  setErreur('');
+
+  try {
+    const reponse = await fetch('/api/connexions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, mot_de_passe: motDePasse }),
+    });
+
+    if (reponse.ok) {
+      const donnees = await reponse.json();
+
+      // Stocke le token et l'utilisateur dans la session
+      if (donnees.token) {
+        sessionStorage.setItem('token', donnees.token);
+        sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
+      }
+
+      // Redirection selon le rôle
+      if (donnees.utilisateur.role === 'admin') {
+        navigate('/admin/concerts');
+      } else {
+        navigate('/');  // Redirige vers la page d'accueil si pas admin
+      }
+    } else {
+      const erreurReponse = await reponse.json();
+      setErreur(erreurReponse.message || 'Échec de la connexion');
+    }
+  } catch (err) {
+    setErreur('Erreur réseau ou serveur');
+  }
+};
+
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
     setErreur('');
 
@@ -24,12 +61,15 @@ function GestionConnexion() {
       });
       if (reponse.ok) {
         const donnees = await reponse.json();
+
         // Stocke le token dans la session
         if (donnees.token) {
           sessionStorage.setItem('token', donnees.token);
+          //modif début
+          sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));//modif 03/08/2025 Retirer cette ligne si problème. 
         }
-        console.log('Utilisateur connecté :', donnees);
-        // Redirection vers la page billetterie après succès
+
+        //console.log('Utilisateur connecté :', donnees);
         navigate('/admin/concerts');
       } else {
         const erreurReponse = await reponse.json();
@@ -38,7 +78,7 @@ function GestionConnexion() {
     } catch (err) {
       setErreur('Erreur réseau ou serveur');
     }
-  };
+  };*/
 
   return (
     <div>

@@ -5,6 +5,16 @@ import '../../styles/gestion_artistes.css';
 import HeaderAdmin from '../../composants/HeaderAdmin';
 
 const GestionArtistes = () => {
+  const navigate = useNavigate();
+
+  /* Code ajouté le 03/08/2025
+    useEffect(() => {
+    const utilisateur = JSON.parse(sessionStorage.getItem('utilisateur'));
+    if (!utilisateur || utilisateur.role !== 'admin') {
+      navigate('/');
+    }
+  }, [navigate]);*/
+
   const [artistes, setArtistes] = useState([]);
   const [selectedArtiste, setSelectedArtiste] = useState(null);
   const [newArtiste, setNewArtiste] = useState({
@@ -16,8 +26,6 @@ const GestionArtistes = () => {
   });
 
   const [updatedPhoto, setUpdatedPhoto] = useState(null); // Nouvelle photo pour PUT
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchArtistes();
