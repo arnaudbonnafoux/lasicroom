@@ -40,9 +40,11 @@ const Billetterie = () => {
 
   // Fonction "handlePayer" (fonction fléchée asynchrone et anonyme)
   const handlePayer = async () => {
+    //const utilisateurStr = localStorage.getItem('utilisateur');
     const utilisateurStr = sessionStorage.getItem('utilisateur');
     const utilisateur = utilisateurStr ? JSON.parse(utilisateurStr) : null;
-
+    console.log("Utilisateur depuis sessionStorage :", utilisateur);
+    
     if (!utilisateur || !selectedConcert) {
       alert("Utilisateur non connecté ou concert non sélectionné.");
       return;

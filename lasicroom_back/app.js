@@ -31,6 +31,7 @@ const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || '0.0.0.0';
 
 app.listen(PORT, HOST, () => {
-  console.log('http://lasicroom.local/');
-  console.log('http://ip_publique/');
+  console.log('https://lasicroom.local/');
+  console.log('https://ip_publique/');
 });
+// Protocole hhtps => certificat auto-signé

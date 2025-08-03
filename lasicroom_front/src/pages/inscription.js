@@ -25,12 +25,14 @@ function Inscription() {
       const donnees = await reponse.json();
 
       if (reponse.ok) {
-        //sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));// modif 01/08/2025
+        //localStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur)); 
 
-        // Redirection vers la billetterie après inscription réussie
+        sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));// modif 01/08/2025
+
+        //Redirection vers la billetterie après inscription réussie
         //navigate('/billetterie');
 
-        navigate('/connexion')//solution provisoire. 
+        navigate('/connexion') //solution provisoire. modif 03/08/2025
       } else {
         setErreur(donnees.message || 'Erreur lors de l’inscription.');
       }

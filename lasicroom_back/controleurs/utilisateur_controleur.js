@@ -78,6 +78,34 @@ exports.supprimerUtilisateur = async (requete, reponse) => {
     }
 };
 
+exports.creerUtilisateur = async (requete, reponse) => {
+  const { nom, email, mot_de_passe, role } = requete.body;
+
+  try {
+    const motDePasseHashe = await bcrypt.hash(mot_de_passe, 10);
+
+    const resultatRequete = await baseDeDonnees.query(
+      `INSERT INTO utilisateur (nom, email, mot_de_passe, role)
+       VALUES ($1, $2, $3, $4)
+       RETURNING *`,
+      [nom, email, motDePasseHashe, role]
+    );
+
+    const utilisateur = resultatRequete.rows[0];
+    delete utilisateur.mot_de_passe;
+
+    return reponse.status(201).json({ utilisateur }); // ✅ return important
+  } catch (erreur) {
+    console.error("Erreur dans la création de l'utilisateur :", erreur);
+
+    // Empêche de renvoyer une deuxième réponse si déjà envoyée
+    if (!reponse.headersSent) {
+      return reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });
+    }
+  }
+};
+
+/*
 //post
 exports.creerUtilisateur = async (requete, reponse) => {
   const { nom, email, mot_de_passe, role } = requete.body;
@@ -97,11 +125,11 @@ exports.creerUtilisateur = async (requete, reponse) => {
     const utilisateur = resultatRequete.rows[0];
     delete utilisateur.mot_de_passe;
 
-    reponse.status(201).json(utilisateur);
-    //res.status(201).json({ utilisateur }); //modif 01/08/2025
+    //reponse.status(201).json(utilisateur); //modif 03/08/2025
+    reponse.status(201).json({ utilisateur }); //modif 01/08/2025
 
   } catch (erreur) {
     console.error("Erreur dans la création de l'utilisateur :", erreur);
     reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });
   }
-};
+};*/
