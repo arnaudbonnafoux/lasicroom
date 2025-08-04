@@ -1,52 +1,44 @@
-// Import Hooks
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Import composants
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import CardConcert from '../composants/CardConcert';
-// Import Styles
 import '../styles/billetterie.css';
 
 const Billetterie = () => {
-
-  // Navigation
   const navigate = useNavigate();
 
-  /*  État du composant
-  const [valeur, setValeur] = useState(valeurInitiale);
-  Quand un état change, un effet peut être déclenché via useEffect, en fonction des dépendances déclarées.
-  => Principe de la programmation événementielle
-  */
-  const [concerts, setConcerts] = useState([]); // [] => Tabbleau vide
-  const [selectedConcertId, setSelectedConcertId] = useState(null); // valeur null => rien de sélectionner
+  const [concerts, setConcerts] = useState([]);
+  const [selectedConcertId, setSelectedConcertId] = useState(null);
   const [selectedConcert, setSelectedConcert] = useState(null);
-  const [tarif, setTarif] = useState('plein'); // Valeur initiale => 'plein' par défaut
+  const [tarif, setTarif] = useState('plein');
 
-  // Charger les données de la table concert via une API
   useEffect(() => { 
     fetch('/api/concerts')
       .then((res) => res.json())
       .then((data) => setConcerts(data))
       .catch((error) => console.error("Erreur lors du chargement des concerts :", error));
-  }, []); // [] => Charge les données uniquement au démarrage
+  }, []);
 
-  // Mise à jour du concert sélectionné
   useEffect(() => {
     const concert = concerts.find(c => c.id_concert === Number(selectedConcertId));
     setSelectedConcert(concert);
   }, [selectedConcertId, concerts]);
 
-  // Fonction "handlePayer" (fonction fléchée asynchrone et anonyme)
   const handlePayer = async () => {
-    //const utilisateurStr = localStorage.getItem('utilisateur');
     const utilisateurStr = sessionStorage.getItem('utilisateur');
     const utilisateur = utilisateurStr ? JSON.parse(utilisateurStr) : null;
-    console.log("Utilisateur depuis sessionStorage :", utilisateur);
-    
-    if (!utilisateur || !selectedConcert) {
-      alert("Utilisateur non connecté ou concert non sélectionné.");
+    const token = sessionStorage.getItem('token');
+
+    if (!utilisateur) {
+      alert("Vous devez être connecté pour réserver.");
+      navigate('/connexion');
+      return;
+    }
+
+    if (!selectedConcert) {
+      alert("Veuillez sélectionner un concert.");
       return;
     }
 
@@ -60,14 +52,16 @@ const Billetterie = () => {
     try {
       const response = await fetch('/api/reservations', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`  // Envoi du token pour authentification
+        },
         body: JSON.stringify(reservation)
       });
 
       if (response.ok) {
         alert("Réservation effectuée avec succès !");
-        sessionStorage.clear(); // Déconnexion
-        navigate('/'); // Redirection vers accueil
+        navigate('/'); // Ou une autre page après réservation
       } else {
         const erreur = await response.json();
         alert("Erreur lors de la réservation : " + (erreur.message || "inconnue"));

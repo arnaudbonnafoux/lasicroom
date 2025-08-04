@@ -1,8 +1,6 @@
-// ... imports inchangés
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
-//import Footer from '../../composants/Footer';
 import HeaderAdmin from '../../composants/HeaderAdmin';
 import '../../styles/gestion_concerts.css';
 
@@ -24,6 +22,8 @@ const GestionConcerts = () => {
   const [tarifAbonne, setTarifAbonne] = useState('');
   const [nomArtiste, setNomArtiste] = useState('');
 
+  const token = sessionStorage.getItem('token');
+
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
@@ -31,9 +31,9 @@ const GestionConcerts = () => {
 
   const fetchConcerts = async () => {
     try {
-      const response = await fetch('/api/concerts');
-      if (!response.ok) throw new Error('Erreur lors du chargement des concerts');
-      const data = await response.json();
+      const res = await fetch('/api/concerts');
+      if (!res.ok) throw new Error('Erreur lors du chargement des concerts');
+      const data = await res.json();
       setConcerts(data);
     } catch (err) {
       setError(err.message);
@@ -49,17 +49,25 @@ const GestionConcerts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!token) {
+      alert("Session expirée, veuillez vous reconnecter.");
+      navigate('/');
+      return;
+    }
+
     try {
+      // Vérifier si l'artiste existe déjà
       const artisteRes = await fetch(`/api/artistes?nom=${encodeURIComponent(nomArtiste)}`);
       const artistes = await artisteRes.json();
       let idArtiste = artistes.length > 0 ? artistes[0].id_artiste : null;
 
+      // Créer l’artiste si nécessaire
       if (!idArtiste) {
         const creationRes = await fetch('/api/artistes', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify({
             nom_artiste: nomArtiste,
@@ -70,7 +78,13 @@ const GestionConcerts = () => {
           }),
         });
 
-        if (!creationRes.ok) throw new Error('Erreur lors de la création de l’artiste');
+        if (creationRes.status === 401 || creationRes.status === 403) {
+          alert("Vous n’êtes pas autorisé.");
+          handleDeconnexion();
+          return;
+        }
+
+        if (!creationRes.ok) throw new Error("Erreur lors de la création de l’artiste");
         const newArtiste = await creationRes.json();
         idArtiste = newArtiste.id_artiste;
       }
@@ -86,34 +100,27 @@ const GestionConcerts = () => {
         id_artiste: idArtiste,
       };
 
-      if (editMode && editingConcertId) {
-        // PUT
-        const res = await fetch(`/api/concerts/${editingConcertId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-          },
-          body: JSON.stringify(concertPayload),
-        });
+      const url = editMode ? `/api/concerts/${editingConcertId}` : '/api/concerts';
+      const method = editMode ? 'PUT' : 'POST';
 
-        if (!res.ok) throw new Error("Échec de la mise à jour");
-        alert("Concert mis à jour !");
-      } else {
-        // POST
-        const res = await fetch('/api/concerts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-          },
-          body: JSON.stringify(concertPayload),
-        });
+      const res = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(concertPayload),
+      });
 
-        if (!res.ok) throw new Error("Erreur lors de la création du concert");
-        alert("Concert ajouté !");
+      if (res.status === 401 || res.status === 403) {
+        alert("Vous n’êtes pas autorisé.");
+        handleDeconnexion();
+        return;
       }
 
+      if (!res.ok) throw new Error(editMode ? "Échec de la mise à jour" : "Erreur lors de la création");
+
+      alert(editMode ? "Concert mis à jour !" : "Concert ajouté !");
       resetForm();
       fetchConcerts();
 
@@ -141,9 +148,15 @@ const GestionConcerts = () => {
       const res = await fetch(`/api/concerts/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          'Authorization': `Bearer ${token}`,
         },
       });
+
+      if (res.status === 401 || res.status === 403) {
+        alert("Vous n’êtes pas autorisé.");
+        handleDeconnexion();
+        return;
+      }
 
       if (!res.ok) throw new Error("Erreur lors de la suppression");
       alert("Concert supprimé");
@@ -172,7 +185,6 @@ const GestionConcerts = () => {
 
       <main>
         <h1>Gestion des concerts</h1>
-        {/*<h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>*/}
         <form onSubmit={handleSubmit} className="form_ajout_concert">
           <h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>
           <input className='input_form' type="text" placeholder="Titre" value={titre} onChange={e => setTitre(e.target.value)} required />
@@ -234,11 +246,8 @@ const GestionConcerts = () => {
           <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>
       </main>
-
-      {/*<Footer />*/}
     </div>
   );
 };
 
 export default GestionConcerts;
-

@@ -3,6 +3,20 @@ const routeur = express.Router();
 const reservationControleur = require('../controleurs/reservation_controleur');
 const authMiddleware = require('../middlewares/authMiddleware');
 
+// Route publique
+routeur.post('/', reservationControleur.creerReservation);
+
+// Routes protégées
+routeur.get('/', authMiddleware, reservationControleur.obtenirReservations);
+routeur.delete('/:id', authMiddleware, reservationControleur.supprimerReservation);
+
+module.exports = routeur;
+
+/*const express = require('express');
+const routeur = express.Router();
+const reservationControleur = require('../controleurs/reservation_controleur');
+const authMiddleware = require('../middlewares/authMiddleware');
+
 routeur.get('/', reservationControleur.obtenirReservations);
 routeur.post('/', reservationControleur.creerReservation);
 routeur.delete('/:id', reservationControleur.supprimerReservation);
@@ -11,7 +25,7 @@ routeur.delete('/:id', reservationControleur.supprimerReservation);
 routeur.post('/', authMiddleware, reservationControleur.creerReservation);
 routeur.get('/', authMiddleware, reservationControleur.obtenirReservations);
 
-module.exports = routeur;
+module.exports = routeur;*/
 
 /*
 Test route get :

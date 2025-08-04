@@ -32,7 +32,7 @@ exports.obtenirIdUtilisateur = async (requete, reponse) => {
     }
 };
 
-// put
+/*put
 exports.modifierUtilisateur = async (requete, reponse) => {
     const { id } = requete.params;
     const { nom, email, mot_de_passe } = requete.body;
@@ -76,7 +76,7 @@ exports.supprimerUtilisateur = async (requete, reponse) => {
         console.error("Erreur dans supprimerUtilisateur :", erreur);
         reponse.status(500).json({ erreur: "Erreur lors de la suppression de l'utilisateur." });
     }
-};
+};*/
 
 exports.creerUtilisateur = async (requete, reponse) => {
   const { nom, email, mot_de_passe, role } = requete.body;
@@ -105,31 +105,3 @@ exports.creerUtilisateur = async (requete, reponse) => {
   }
 };
 
-/*
-//post
-exports.creerUtilisateur = async (requete, reponse) => {
-  const { nom, email, mot_de_passe, role } = requete.body;
-
-  try {
-    // Hachage du mot de passe avant insertion
-    const motDePasseHashe = await bcrypt.hash(mot_de_passe, 10);
-
-    const resultatRequete = await baseDeDonnees.query(
-      `INSERT INTO utilisateur (nom, email, mot_de_passe, role)
-       VALUES ($1, $2, $3, $4)
-       RETURNING *`,
-      [nom, email, motDePasseHashe, role]
-    );
-
-    // Ne retourne pas le mot de passe dans la réponse
-    const utilisateur = resultatRequete.rows[0];
-    delete utilisateur.mot_de_passe;
-
-    //reponse.status(201).json(utilisateur); //modif 03/08/2025
-    reponse.status(201).json({ utilisateur }); //modif 01/08/2025
-
-  } catch (erreur) {
-    console.error("Erreur dans la création de l'utilisateur :", erreur);
-    reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });
-  }
-};*/

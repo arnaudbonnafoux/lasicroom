@@ -6,6 +6,7 @@ import Header from '../../composants/HeaderAdmin';
 
 const GestionReservations = () => {
   const [reservations, setReservations] = useState([]);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,17 +15,30 @@ const GestionReservations = () => {
 
   const fetchReservations = async () => {
     try {
-      const response = await fetch('/api/reservations');
-      if (!response.ok) throw new Error('Erreur lors du chargement des réservations');
+      const response = await fetch('/api/reservations', {
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+        },
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Accès non autorisé. Veuillez vous reconnecter.');
+        }
+        throw new Error('Erreur lors du chargement des réservations');
+      }
+
       const data = await response.json();
       setReservations(data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      setError(err.message);
+      console.error(err);
     }
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm('Supprimer cette réservation ?')) return;
+
     try {
       const response = await fetch(`/api/reservations/${id}`, {
         method: 'DELETE',
@@ -32,11 +46,13 @@ const GestionReservations = () => {
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
         },
       });
+
       if (!response.ok) throw new Error('Erreur lors de la suppression');
+
       alert('Réservation supprimée');
-      fetchReservations(); // recharge la liste
+      fetchReservations(); // Recharge la liste
     } catch (err) {
-      alert("Erreur : " + err.message);
+      alert('Erreur : ' + err.message);
     }
   };
 
@@ -52,6 +68,9 @@ const GestionReservations = () => {
 
       <main>
         <h1>Gestion des réservations</h1>
+
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
         <div className='div_tableau'>
           <table>
             <thead>
@@ -75,14 +94,19 @@ const GestionReservations = () => {
                   <td>{reservation.type_tarif}</td>
                   <td>{parseFloat(reservation.montant).toFixed(2)}</td>
                   <td>
-                    <button
-                      onClick={() => handleDelete(reservation.id_reservation)}
-                    >
+                    <button onClick={() => handleDelete(reservation.id_reservation)}>
                       Supprimer
                     </button>
                   </td>
                 </tr>
               ))}
+              {reservations.length === 0 && (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: 'center' }}>
+                    Aucune réservation trouvée.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
