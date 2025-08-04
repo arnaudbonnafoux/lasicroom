@@ -17,16 +17,3 @@ routeur.post('/', utilisateurControleur.creerUtilisateur);
 module.exports = routeur;
 
 
-/*const express = require('express');
-const routeur = express.Router();
-const utilisateurControleur = require('../controleurs/utilisateur_controleur');
-
-routeur.get('/', utilisateurControleur.obtenirUtilisateur);
-routeur.get('/:id', utilisateurControleur.obtenirIdUtilisateur);
-routeur.post('/', utilisateurControleur.creerUtilisateur);
-//routeur.put('/:id', utilisateurControleur.modifierUtilisateur);
-//routeur.delete('/:id', utilisateurControleur.supprimerUtilisateur);
-
-module.exports = routeur;
-*/
-

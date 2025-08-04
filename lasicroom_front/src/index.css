@@ -13,7 +13,7 @@ nav {
   margin-top: 12px;
   padding: 12px;
   border: 12px;
-  background-color: rgba(30, 144, 255, 0.7);
+  background-color: rgba(30, 144, 255, 0.1);
   display: inline-block;
 }
 
@@ -42,7 +42,7 @@ button {
   border-radius: 12px;
   color: #1D2D44;
   font-weight: bold;
-  background-color: rgba(30, 144, 255, 0.7);
+  background-color: rgba(30, 144, 255, 0.1);
 }
 
 button:hover {

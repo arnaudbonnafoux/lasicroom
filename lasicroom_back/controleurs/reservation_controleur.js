@@ -37,8 +37,8 @@ exports.supprimerReservation = async (requete, reponse) => {
 };
 
 
-//post
-exports.creerReservation = async (requete, reponse) => {   
+// post
+exports.creerReservation = async (requete, reponse) => {
     const {
         id_utilisateur,
         id_concert,
@@ -75,14 +75,6 @@ exports.creerReservation = async (requete, reponse) => {
                 montant
             ]
         );
-
-        /*await baseDeDonnees.query(
-            `UPDATE concert
-             SET nb_places_restantes = nb_places_restantes - 1
-             WHERE id_concert = $1`,
-            [id_concert]
-        );*/
-
         reponse.status(201).json(resultat.rows[0]);
 
     } catch (erreur) {
@@ -91,10 +83,10 @@ exports.creerReservation = async (requete, reponse) => {
     }
 };
 
-//get
+// get
 exports.obtenirReservations = async (requete, reponse) => {
-  try {
-    const resultat = await baseDeDonnees.query(`
+    try {
+        const resultat = await baseDeDonnees.query(`
       SELECT 
         r.id_reservation,
         u.nom AS nom_utilisateur,
@@ -108,9 +100,9 @@ exports.obtenirReservations = async (requete, reponse) => {
       ORDER BY r.id_reservation
     `);
 
-    reponse.json(resultat.rows);
-  } catch (erreur) {
-    console.error("Erreur dans obtenirReservations :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
-  }
+        reponse.json(resultat.rows);
+    } catch (erreur) {
+        console.error("Erreur dans obtenirReservations :", erreur);
+        reponse.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
+    }
 };

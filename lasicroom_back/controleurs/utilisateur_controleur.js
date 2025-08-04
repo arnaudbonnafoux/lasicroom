@@ -1,5 +1,6 @@
 const baseDeDonnees = require('../db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // get
 exports.obtenirUtilisateur = async (requete, reponse) => {
@@ -32,52 +33,7 @@ exports.obtenirIdUtilisateur = async (requete, reponse) => {
     }
 };
 
-/*put
-exports.modifierUtilisateur = async (requete, reponse) => {
-    const { id } = requete.params;
-    const { nom, email, mot_de_passe } = requete.body;
-
-    try {
-        const resultatRequete = await baseDeDonnees.query(
-            `UPDATE utilisateur
-       SET nom = $1, email = $2, mot_de_passe = $3
-       WHERE id_utilisateur = $4
-       RETURNING *`,
-            [nom, email, mot_de_passe, id]
-        );
-
-        if (resultatRequete.rowCount === 0) {
-            return reponse.status(404).json({ message: "Utilisateur non trouvé." });
-        }
-
-        reponse.status(200).json(resultatRequete.rows[0]);
-    } catch (erreur) {
-        console.error("Erreur dans modifierUtilisateur :", erreur);
-        reponse.status(500).json({ erreur: "Erreur lors de la mise à jour de l'utilisateur." });
-    }
-};
-
-// delete
-exports.supprimerUtilisateur = async (requete, reponse) => {
-    const { id } = requete.params;
-
-    try {
-        const resultatRequete = await baseDeDonnees.query(
-            'DELETE FROM utilisateur WHERE id_utilisateur = $1 RETURNING *',
-            [id]
-        );
-
-        if (resultatRequete.rowCount === 0) {
-            return reponse.status(404).json({ message: "Utilisateur non trouvé." });
-        }
-
-        reponse.status(200).json({ message: "Utilisateur supprimé avec succès." });
-    } catch (erreur) {
-        console.error("Erreur dans supprimerUtilisateur :", erreur);
-        reponse.status(500).json({ erreur: "Erreur lors de la suppression de l'utilisateur." });
-    }
-};*/
-
+// post
 exports.creerUtilisateur = async (requete, reponse) => {
   const { nom, email, mot_de_passe, role } = requete.body;
 
@@ -94,14 +50,26 @@ exports.creerUtilisateur = async (requete, reponse) => {
     const utilisateur = resultatRequete.rows[0];
     delete utilisateur.mot_de_passe;
 
-    return reponse.status(201).json({ utilisateur }); // ✅ return important
+    // 🔐 Générer un token JWT
+    const token = jwt.sign(
+      { id: utilisateur.id, role: utilisateur.role },
+      process.env.JWT_SECRET || 'votre_cle_secrete',
+      { expiresIn: '2h' }
+    );
+
+    return reponse.status(201).json({ utilisateur, token });
+
   } catch (erreur) {
     console.error("Erreur dans la création de l'utilisateur :", erreur);
-
-    // Empêche de renvoyer une deuxième réponse si déjà envoyée
     if (!reponse.headersSent) {
       return reponse.status(500).json({ message: "Erreur lors de l'ajout de l'utilisateur" });
     }
   }
 };
+
+
+
+
+
+
 

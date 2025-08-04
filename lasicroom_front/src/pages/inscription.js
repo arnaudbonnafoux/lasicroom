@@ -14,32 +14,69 @@ function Inscription() {
   const navigate = useNavigate();
 
   const gererSoumission = async (e) => {
-    e.preventDefault();
-    try {
-      const reponse = await fetch('/api/utilisateurs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nom, email, mot_de_passe: motDePasse, role: 'utilisateur' }),//modif
-      });
+  e.preventDefault();
 
-      const donnees = await reponse.json();
+  try {
+    const reponse = await fetch('/api/utilisateurs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nom,
+        email,
+        mot_de_passe: motDePasse,
+        role: 'utilisateur',
+      }),
+    });
 
-      if (reponse.ok) {
-        //localStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur)); 
+    const donnees = await reponse.json();
 
-        sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));// modif 01/08/2025
+    if (reponse.ok && donnees.utilisateur) {
+      // Enregistrement direct de l'utilisateur en session
+      sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
 
-        //Redirection vers la billetterie après inscription réussie
-        //navigate('/billetterie');
-
-        navigate('/connexion') //solution provisoire. modif 03/08/2025
-      } else {
-        setErreur(donnees.message || 'Erreur lors de l’inscription.');
-      }
-    } catch (err) {
-      setErreur("Erreur de connexion au serveur.");
+      // Redirection directe vers la billetterie en tant qu'utilisateur connecté
+      navigate('/billetterie');
+    } else {
+      setErreur(donnees.message || 'Erreur lors de l’inscription.');
     }
-  };
+  } catch (err) {
+    console.error('Erreur de connexion au serveur:', err);
+    setErreur("Erreur de connexion au serveur.");
+  }
+};
+
+
+  /*const gererSoumission = async (e) => {
+  e.preventDefault();
+
+  try {
+    const reponse = await fetch('/api/utilisateurs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nom,
+        email,
+        mot_de_passe: motDePasse,
+        role: 'utilisateur',
+      }),
+    });
+
+    const donnees = await reponse.json();
+
+    if (reponse.ok && donnees.utilisateur) {
+      // Enregistre les données utilisateur dans la session
+      sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
+
+      // Redirige vers la page de connexion
+      navigate('/connexion');
+    } else {
+      setErreur(donnees.message || 'Erreur lors de l’inscription.');
+    }
+  } catch (err) {
+    console.error('Erreur réseau ou serveur :', err);
+    setErreur("Erreur de connexion au serveur.");
+  }
+};*/
 
   return (
     <div>
