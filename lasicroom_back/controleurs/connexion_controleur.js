@@ -44,7 +44,7 @@ exports.connecterUtilisateur = async (requete, reponse) => {
       message: "Connexion réussie.",
       token,
       utilisateur: {
-        id: utilisateur.id_utilisateur,
+        id_utilisateur: utilisateur.id_utilisateur,
         nom: utilisateur.nom,
         email: utilisateur.email,
         role: utilisateur.role

@@ -14,7 +14,7 @@ const Billetterie = () => {
   const [selectedConcert, setSelectedConcert] = useState(null);
   const [tarif, setTarif] = useState('plein');
 
-  useEffect(() => { 
+  useEffect(() => {
     fetch('/api/concerts')
       .then((res) => res.json())
       .then((data) => setConcerts(data))
@@ -43,7 +43,7 @@ const Billetterie = () => {
     }
 
     const reservation = {
-      id_utilisateur: utilisateur.id_utilisateur, 
+      id_utilisateur: utilisateur.id_utilisateur,
       //id_utilisateur: utilisateur.id,
       id_concert: selectedConcert.id_concert,
       type_tarif: tarif,
@@ -53,7 +53,7 @@ const Billetterie = () => {
     try {
       const response = await fetch('/api/reservations', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`  // Envoi du token pour authentification
         },
@@ -77,7 +77,6 @@ const Billetterie = () => {
       <Header />
       <Navbar />
       <h1>Billetterie</h1>
-
       <div className="bloc">
         <label htmlFor="concert-select">Choisissez un concert :</label>
         <select
