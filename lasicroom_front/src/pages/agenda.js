@@ -9,14 +9,23 @@ import '../styles/agenda.css';
 
 const Agenda = () => {
   const [concerts, setConcerts] = useState([]);
+  const [loading, setLoading] = useState(true);  // état de chargement
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch('/api/concerts')
       .then(res => res.json())
-      .then(data => setConcerts(data))
-      .catch(console.error);
+      .then(data => {
+        setConcerts(data);
+        setLoading(false); // chargement terminé
+      })
+      .catch(error => {
+        console.error(error);
+        setLoading(false); // chargement terminé malgré l’erreur
+      });
   }, []);
+
+  if (loading) return <p>Chargement...</p>;
 
   return (
     <div>

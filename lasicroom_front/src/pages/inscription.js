@@ -14,36 +14,36 @@ function Inscription() {
   const navigate = useNavigate();
 
   const gererSoumission = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const reponse = await fetch('/api/utilisateurs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nom,
-        email,
-        mot_de_passe: motDePasse,
-        role: 'utilisateur',
-      }),
-    });
+    try {
+      const reponse = await fetch('/api/utilisateurs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nom,
+          email,
+          mot_de_passe: motDePasse,
+          role: 'utilisateur',
+        }),
+      });
 
-    const donnees = await reponse.json();
+      const donnees = await reponse.json();
 
-    if (reponse.ok && donnees.utilisateur) {
-      // Enregistrement direct de l'utilisateur en session
-      sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
+      if (reponse.ok && donnees.utilisateur) {
+        // Enregistrement direct de l'utilisateur en session
+        sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
 
-      // Redirection directe vers la billetterie en tant qu'utilisateur connecté
-      navigate('/billetterie');
-    } else {
-      setErreur(donnees.message || 'Erreur lors de l’inscription.');
+        // Redirection directe vers la billetterie en tant qu'utilisateur connecté
+        navigate('/billetterie');
+      } else {
+        setErreur(donnees.message || 'Erreur lors de l’inscription.');
+      }
+    } catch (err) {
+      console.error('Erreur de connexion au serveur:', err);
+      setErreur("Erreur de connexion au serveur.");
     }
-  } catch (err) {
-    console.error('Erreur de connexion au serveur:', err);
-    setErreur("Erreur de connexion au serveur.");
-  }
-};
+  };
 
 
   /*const gererSoumission = async (e) => {
@@ -86,11 +86,12 @@ function Inscription() {
       <main className='display_main'>
 
         <div className='div_form'>
-          <h2 className='style_h2' style={{textAlign:'center'}}>Inscription</h2>
-          <p style={{textAlign:'justify'}}>Une fois inscrit, vous serez redirigé vers la page connexion du site.<br />
+          <h2 className='style_h2' style={{ textAlign: 'center' }}>Inscription</h2>
+          {/*<p style={{textAlign:'justify'}}>Une fois inscrit, vous serez redirigé vers la page connexion du site.<br />
             Une fois dans la page connexion, entrez votre adresse e-mail et votre mot de passe utilisés lors de votre inscription.<br />
-            Connectez-vous et la réservation en ligne, sera accessible. Merci !</p>
+            Connectez-vous et la réservation en ligne, sera accessible. Merci !</p>*/}
           <form className='style_form' onSubmit={gererSoumission}>
+
             <input
               type="text"
               placeholder="Nom"
