@@ -33,7 +33,7 @@ function Inscription() {
       if (reponse.ok && donnees.utilisateur) {
         // Enregistrement direct de l'utilisateur en session
         sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
-
+        sessionStorage.setItem('token', donnees.token);
         // Redirection directe vers la billetterie en tant qu'utilisateur connecté
         navigate('/billetterie');
       } else {
@@ -44,39 +44,6 @@ function Inscription() {
       setErreur("Erreur de connexion au serveur.");
     }
   };
-
-
-  /*const gererSoumission = async (e) => {
-  e.preventDefault();
-
-  try {
-    const reponse = await fetch('/api/utilisateurs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nom,
-        email,
-        mot_de_passe: motDePasse,
-        role: 'utilisateur',
-      }),
-    });
-
-    const donnees = await reponse.json();
-
-    if (reponse.ok && donnees.utilisateur) {
-      // Enregistre les données utilisateur dans la session
-      sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
-
-      // Redirige vers la page de connexion
-      navigate('/connexion');
-    } else {
-      setErreur(donnees.message || 'Erreur lors de l’inscription.');
-    }
-  } catch (err) {
-    console.error('Erreur réseau ou serveur :', err);
-    setErreur("Erreur de connexion au serveur.");
-  }
-};*/
 
   return (
     <div>

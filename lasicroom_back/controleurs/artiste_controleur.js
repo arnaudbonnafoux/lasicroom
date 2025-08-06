@@ -70,8 +70,8 @@ exports.mettreAJourArtiste = async (req, res) => {
 };
 
 //delete
-exports.supprimerArtiste = async (requete, reponse) => {
-  const { id } = requete.params;
+exports.supprimerArtiste = async (req, res) => {
+  const { id } = req.params;
   try {
     const resultat = await baseDeDonnees.query(
       'DELETE FROM artiste WHERE id_artiste = $1 RETURNING *',
@@ -80,9 +80,9 @@ exports.supprimerArtiste = async (requete, reponse) => {
     if (resultat.rowCount === 0) {
       return reponse.status(404).json({ message: "Artiste non trouvé." });
     }
-    reponse.json({ message: "Artiste supprimé avec succès." });
+    res.json({ message: "Artiste supprimé avec succès." });
   } catch (erreur) {
     console.error(erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la suppression de l'artiste." });
+    res.status(500).json({ erreur: "Erreur lors de la suppression de l'artiste." });
   }
 };

@@ -27,15 +27,6 @@ const GestionAccompagnement = () => {
       });
   }, [navigate]);
 
-  /*useEffect(() => {
-    fetch('/api/accompagnements')
-
-
-      .then(response => response.json())
-      .then(data => setDemandes(data))
-      .catch(error => console.error('Erreur lors de la récupération des demandes :', error));
-  }, []);*/
-
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
@@ -65,26 +56,6 @@ const GestionAccompagnement = () => {
       }
     }
   };
-
-  /*const handleDelete = async (id) => {
-    if (window.confirm('Confirmer la suppression de cette demande ?')) {
-      try {
-        const res = await fetch(`/api/accompagnements/${id}`, {
-          method: 'DELETE',
-        });
-
-        if (res.ok) {
-          setDemandes((prev) => prev.filter((demande) => demande.id_demande !== id));
-          alert('Demande supprimée avec succès.');
-        } else {
-          alert('Erreur lors de la suppression.');
-        }
-      } catch (error) {
-        console.error('Erreur suppression :', error);
-        alert('Erreur serveur lors de la suppression.');
-      }
-    }
-  };*/
 
   return (
     <div>

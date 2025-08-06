@@ -8,8 +8,8 @@ const CLE_SECRETE = process.env.CLE_SECRETE;
 //Clé secrète à sécuriser dans les variables d'environnement//
 //const CLE_SECRETE = 'votre_cle_secrete';//
 
-exports.connecterUtilisateur = async (requete, reponse) => {
-  const { email, mot_de_passe } = requete.body;
+exports.connecterUtilisateur = async (req, res) => {
+  const { email, mot_de_passe } = req.body;
 
   try {
     const resultat = await baseDeDonnees.query(
@@ -18,7 +18,7 @@ exports.connecterUtilisateur = async (requete, reponse) => {
     );
 
     if (resultat.rowCount === 0) {
-      return reponse.status(401).json({ message: "Email ou mot de passe incorrect." });
+      return res.status(401).json({ message: "Email ou mot de passe incorrect." });
     }
 
     const utilisateur = resultat.rows[0];
@@ -26,7 +26,7 @@ exports.connecterUtilisateur = async (requete, reponse) => {
     const motDePasseValide = await bcrypt.compare(mot_de_passe, utilisateur.mot_de_passe);
 
     if (!motDePasseValide) {
-      return reponse.status(401).json({ message: "Email ou mot de passe incorrect_2." });
+      return res.status(401).json({ message: "Email ou mot de passe incorrect_2." });
     }
 
     // Générer le token
@@ -40,7 +40,7 @@ exports.connecterUtilisateur = async (requete, reponse) => {
     );
 
     // Réponse
-    reponse.json({
+    res.json({
       message: "Connexion réussie.",
       token,
       utilisateur: {
@@ -53,7 +53,7 @@ exports.connecterUtilisateur = async (requete, reponse) => {
 
   } catch (erreur) {
     console.error("Erreur de connexion :", erreur);
-    reponse.status(500).json({ message: "Erreur serveur lors de la connexion." });
+    res.status(500).json({ message: "Erreur serveur lors de la connexion." });
   }
 };
 

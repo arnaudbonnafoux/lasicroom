@@ -1,8 +1,8 @@
 const baseDeDonnees = require('../db');
 
 // delete
-exports.supprimerReservation = async (requete, reponse) => {
-    const { id } = requete.params;
+exports.supprimerReservation = async (req, res) => {
+    const { id } = req.params;
 
     try {
         // Vérifier que la réservation existe
@@ -11,7 +11,7 @@ exports.supprimerReservation = async (requete, reponse) => {
         );
 
         if (resultat.rowCount === 0) {
-            return reponse.status(404).json({ message: "Réservation non trouvée" });
+            return res.status(404).json({ message: "Réservation non trouvée" });
         }
 
         const reservation = resultat.rows[0];
@@ -28,24 +28,28 @@ exports.supprimerReservation = async (requete, reponse) => {
         );
 
         // Répondre au client
-        reponse.json({ message: "Réservation supprimée avec succès." });
+        res.json({ message: "Réservation supprimée avec succès." });
 
     } catch (erreur) {
         console.error("Erreur lors de la suppression :", erreur);
-        reponse.status(500).json({ erreur: "Erreur lors de la suppression de la réservation" });
+        res.status(500).json({ erreur: "Erreur lors de la suppression de la réservation" });
     }
 };
 
 
 // post
-exports.creerReservation = async (requete, reponse) => {
+exports.creerReservation = async (req, res) => {
     const {
-        id_utilisateur,
+        //id_utilisateur, modif
         id_concert,
         type_tarif,
         montant
-    } = requete.body;
-    console.log('Requête reçue pour créer une réservation:', requete.body);
+    } = req.body;
+
+    const id_utilisateur = req.utilisateur.id;
+    console.log('Requête reçue pour créer une réservation:', req.body); //Test
+
+    
 
     try {
         const verificationConcert = await baseDeDonnees.query(
@@ -54,13 +58,13 @@ exports.creerReservation = async (requete, reponse) => {
         );
 
         if (verificationConcert.rowCount === 0) {
-            return reponse.status(404).json({ erreur: "Concert non trouvé." });
+            return res.status(404).json({ erreur: "Concert non trouvé." });
         }
 
         const placesRestantes = verificationConcert.rows[0].nb_places_restantes;
 
         if (placesRestantes <= 0) {
-            return reponse.status(409).json({ erreur: "Aucune place restante pour ce concert." });
+            return res.status(409).json({ erreur: "Aucune place restante pour ce concert." });
         }
 
         const resultat = await baseDeDonnees.query(
@@ -75,16 +79,16 @@ exports.creerReservation = async (requete, reponse) => {
                 montant
             ]
         );
-        reponse.status(201).json(resultat.rows[0]);
+        res.status(201).json(resultat.rows[0]);
 
     } catch (erreur) {
         console.error("Erreur dans creerReservation :", erreur);
-        reponse.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
+        res.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
     }
 };
 
 // get
-exports.obtenirReservations = async (requete, reponse) => {
+exports.obtenirReservations = async (req, res) => {
     try {
         const resultat = await baseDeDonnees.query(`
       SELECT 
@@ -100,9 +104,9 @@ exports.obtenirReservations = async (requete, reponse) => {
       ORDER BY r.id_reservation
     `);
 
-        reponse.json(resultat.rows);
+        res.json(resultat.rows);
     } catch (erreur) {
         console.error("Erreur dans obtenirReservations :", erreur);
-        reponse.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
+        res.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
     }
 };

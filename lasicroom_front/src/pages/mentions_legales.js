@@ -26,7 +26,8 @@ const MentionsLegales = () => {
 
         <p><strong>Propriété intellectuelle :</strong></p>
         <p>
-          Tous les éléments présents sur le site (textes, images, vidéos, logos, etc.) sont la propriété exclusive de la sicRoom ou de ses partenaires. Toute reproduction ou diffusion sans autorisation est strictement interdite.
+          Tous les éléments présents sur le site (textes, images, vidéos, logos, etc.) sont la propriété exclusive de la sicRoom ou de ses partenaires. 
+          Toute reproduction ou diffusion sans autorisation est strictement interdite.
         </p>
       </main>
       <Footer />

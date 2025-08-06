@@ -1,7 +1,7 @@
 const baseDeDonnees = require('../db');
 
 //post
-exports.creerConcert = async (requete, reponse) => {
+exports.creerConcert = async (req, res) => {
   const {
     titre,
     description,
@@ -10,7 +10,7 @@ exports.creerConcert = async (requete, reponse) => {
     tarif_plein,
     tarif_abonne,
     id_artiste
-  } = requete.body;
+  } = req.body;
 
   try {
     const resultat = await baseDeDonnees.query(
@@ -31,16 +31,16 @@ exports.creerConcert = async (requete, reponse) => {
       ]
     );
 
-    reponse.status(201).json(resultat.rows[0]);
+    res.status(201).json(resultat.rows[0]);
   } catch (erreur) {
     console.error("Erreur dans creerConcert :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de l'ajout du concert." });
+    res.status(500).json({ erreur: "Erreur lors de l'ajout du concert." });
   }
 };
 
 // put
-exports.mettreAJourConcert = async (requete, reponse) => {
-  const { id } = requete.params;
+exports.mettreAJourConcert = async (req, res) => {
+  const { id } = req.params;
   const { titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste } = requete.body;
   try {
     const resultat = await baseDeDonnees.query(
@@ -50,33 +50,33 @@ exports.mettreAJourConcert = async (requete, reponse) => {
       [titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste, id]
     );
     if (resultat.rowCount === 0) {
-      return reponse.status(404).json({ message: "Concert non trouvé." });
+      return res.status(404).json({ message: "Concert non trouvé." });
     }
-    reponse.json(resultat.rows[0]);
+    res.json(resultat.rows[0]);
   } catch (erreur) {
-    reponse.status(500).json({ erreur: "Erreur lors de la mise à jour du concert." });
+    res.status(500).json({ erreur: "Erreur lors de la mise à jour du concert." });
   }
 };
 
 //delete
-exports.supprimerConcert = async (requete, reponse) => {
-  const { id } = requete.params;
+exports.supprimerConcert = async (req, res) => {
+  const { id } = req.params;
   try {
     const resultat = await baseDeDonnees.query(
       'DELETE FROM concert WHERE id_concert = $1 RETURNING *',
       [id]
     );
     if (resultat.rowCount === 0) {
-      return reponse.status(404).json({ message: "Concert non trouvé." });
+      return res.status(404).json({ message: "Concert non trouvé." });
     }
-    reponse.json({ message: "Concert supprimé avec succès." });
+    res.json({ message: "Concert supprimé avec succès." });
   } catch (erreur) {
-    reponse.status(500).json({ erreur: "Erreur lors de la suppression du concert." });
+    res.status(500).json({ erreur: "Erreur lors de la suppression du concert." });
   }
 };
 
 // GET (jointure avec la table artiste)
-exports.obtenirConcerts = async (requete, reponse) => {
+exports.obtenirConcerts = async (req, res) => {
   try {
     const resultat = await baseDeDonnees.query(`
       SELECT 
@@ -98,9 +98,9 @@ exports.obtenirConcerts = async (requete, reponse) => {
       LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste
       ORDER BY concert.id_concert
     `);
-    reponse.json(resultat.rows);
+    res.json(resultat.rows);
   } catch (erreur) {
     console.error("Erreur dans obtenirConcerts :", erreur);
-    reponse.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
+    res.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
   }
 };

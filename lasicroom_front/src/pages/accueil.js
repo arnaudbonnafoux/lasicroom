@@ -41,7 +41,7 @@ const Accueil = () => {
 
         <div className='div_live_streaming'>
           <div className='div_frame'>
-            <h2 style={{textAlign:'center'}}>
+            <h2 style={{ textAlign: 'center' }}>
               Le direct live des balances
             </h2>
             <iframe
@@ -62,7 +62,7 @@ const Accueil = () => {
             ></iframe>
           </div>
           <div className='div_frame'>
-            <h2 style={{textAlign:'center'}}>Playlist de nos artistes !</h2>
+            <h2 style={{ textAlign: 'center' }}>Playlist de nos artistes !</h2>
             <iframe
               style={{
                 marginTop: '10px',

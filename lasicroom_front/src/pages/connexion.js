@@ -49,29 +49,29 @@ function Connexion() {
       <Navbar />
       <main className='display_main'>
 
-      <div>
-      <h2 className='style_h2' style={{textAlign:'center', fontSize:'xx-large'}}>Connexion</h2>
-        {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-        <form onSubmit={handleSubmit} className='style_form'>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          /><br />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={motDePasse}
-            onChange={(e) => setMotDePasse(e.target.value)}
-            required
-          /><br />
-          <button type="submit">Se connecter</button>
-        </form>
+        <div>
+          <h2 className='style_h2' style={{ textAlign: 'center', fontSize: 'xx-large' }}>Connexion</h2>
+          {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+          <form onSubmit={handleSubmit} className='style_form'>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            /><br />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={motDePasse}
+              onChange={(e) => setMotDePasse(e.target.value)}
+              required
+            /><br />
+            <button type="submit">Se connecter</button>
+          </form>
         </div>
-          <img src="/images/photo_2.jpg" 
-          alt='Le public devant la scène' className='style_image'/>
+        <img src="/images/photo_2.jpg"
+          alt='Le public devant la scène' className='style_image' />
       </main>
       {/*<Footer />*/}
     </div>

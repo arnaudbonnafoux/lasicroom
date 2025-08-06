@@ -174,4 +174,13 @@ Cela facilite les phases de tests, de démonstration, mais aussi l’utilisation
 
 ## 11. Annexes
 
-...
+À faire : 
+* optimisation & mise en place d'une compression pour les photos. 
+* sécurité
+* accessibilité
+* SEO
+* Mise en place de Stripe (module de paiement)
+* Mise en place du Live streaming à partir de chaîne youtube. 
+* Automatisation des test de routes en localhost et avec ip publique (script bash).
+* Rédiger documentation technique.
+

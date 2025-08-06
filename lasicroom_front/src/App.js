@@ -39,14 +39,14 @@ function App() {
         {/*Inscription et Authentification utilisateurs*/}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
-        
+
         {/*Authentification_admin */}
         <Route path="/admin/connexion" element={<GestionConnexion />} />
 
         {/* Cadre légale */}
         <Route path="/mentions_legales" element={<MentionsLegales />} />
         <Route path="/conditions_utilisation" element={<ConditionsUtilisation />} />
-      
+
         {/* Admin */}
         <Route path="/admin/concerts" element={<GestionConcerts />} />
         <Route path="/admin/reservations" element={<GestionReservations />} />

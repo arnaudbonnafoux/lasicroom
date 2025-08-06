@@ -43,8 +43,7 @@ const Billetterie = () => {
     }
 
     const reservation = {
-      id_utilisateur: utilisateur.id_utilisateur,
-      //id_utilisateur: utilisateur.id,
+      //id_utilisateur: utilisateur.id_utilisateur, modif
       id_concert: selectedConcert.id_concert,
       type_tarif: tarif,
       montant: tarif === 'plein' ? selectedConcert.tarif_plein : selectedConcert.tarif_abonne
