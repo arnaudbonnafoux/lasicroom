@@ -8,8 +8,9 @@ const CLE_SECRETE = process.env.CLE_SECRETE;
 // get
 exports.obtenirUtilisateur = async (req, res) => {
   try {
-    const resultatRequete = await baseDeDonnees.query(`SELECT * FROM utilisateur`);
-    reponse.status(200).json(resultatRequete.rows);
+    //const resultatRequete = await baseDeDonnees.query(`SELECT * FROM utilisateur`);
+    const resultatRequete = await baseDeDonnees.query(`SELECT id_utilisateur, nom, email, role FROM utilisateur`);
+    res.status(200).json(resultatRequete.rows);
   } catch (erreur) {
     console.error("Erreur dans obtenirUtilisateur :", erreur);
     res.status(500).json({ erreur: "Erreur lors de la récupération de l'utilisateur." });

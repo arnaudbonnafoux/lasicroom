@@ -41,7 +41,7 @@ exports.creerConcert = async (req, res) => {
 // put
 exports.mettreAJourConcert = async (req, res) => {
   const { id } = req.params;
-  const { titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste } = requete.body;
+  const { titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste } = req.body;
   try {
     const resultat = await baseDeDonnees.query(
       `UPDATE concert

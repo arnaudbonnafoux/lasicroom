@@ -9,7 +9,8 @@ module.exports = (req, res, next) => {
   const token = authHeader.split(' ')[1];
   try {
     const decoded = jwt.verify(token, CLE_SECRETE);
-    console.log("🔓 Token décodé :", decoded); // Test
+    // Test
+    //console.log("🔓 Token décodé :", decoded);
     req.utilisateur = decoded;
     next();
   } catch (err) {

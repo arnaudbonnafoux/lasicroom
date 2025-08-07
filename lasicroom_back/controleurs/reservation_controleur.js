@@ -47,7 +47,8 @@ exports.creerReservation = async (req, res) => {
     } = req.body;
 
     const id_utilisateur = req.utilisateur.id;
-    console.log('Requête reçue pour créer une réservation:', req.body); //Test
+    // Test
+    //console.log('Requête reçue pour créer une réservation:', req.body);
 
     
 

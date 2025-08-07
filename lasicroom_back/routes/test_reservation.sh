@@ -1,46 +1,53 @@
 #!/bin/bash
-API_URL="https://localhost/api/reservations"
-LOGIN_URL="$API_URL/connexions"
-EMAIL="alice@example.com"
-MOT_DE_PASSE="alice123"
 
-echo "🔐 Connexion d'Alice (admin)..."
-REPONSE=$(curl -s -X POST "$API_URL/connexions" -H "Content-Type: application/json" -d "{\"email\": \"$EMAIL\", \"mot_de_passe\": \"$MOT_DE_PASSE\"}")
+# ✅ CONFIG
+BASE_URL="https://lasicroom.local/api/reservations"
+AUTH_URL="https://lasicroom.local/api/connexions"
+TMP_FILE="tmp_reservation_id.txt"
 
-TOKEN=$(echo "$REPONSE" | jq -r '.token')
-if [ "$TOKEN" = "null" ] || [ -z "$TOKEN" ]; then
-  echo "❌ Échec de l'authentification."
+# 🔐 1. Connexion de l'admin Alice
+echo "🔐 Connexion d'Alice..."
+TOKEN=$(curl -sk -X POST "$AUTH_URL" -H "Content-Type: application/json" -d '{"email":"alice@example.com","mot_de_passe":"alice123"}' | jq -r .token)
+
+if [ "$TOKEN" == "null" ] || [ -z "$TOKEN" ]; then
+  echo "❌ Erreur : impossible de récupérer un token."
   exit 1
 fi
-echo "✅ Token reçu."
+echo "✅ Token obtenu."
 
-# Créer une réservation (publique)
-echo "🎫 Création d'une réservation (publique)..."
-REPONSE_CREATION=$(curl -s -X POST "$API_URL/reservations" \
+# 🎯 2. Choix du concert (≠ id_concert 8 déjà réservé par Alice)
+ID_CONCERT=5 # <-- Assure-toi que ce concert a des places restantes dans ta BDD
+TARIF="plein"
+MONTANT=20.00 # <-- Adapte selon la grille tarifaire du concert 5
+
+# 📝 3. Création d’une réservation
+echo -e "\n📝 Création d’une réservation pour le concert $ID_CONCERT..."
+REPONSE=$(curl -sk -X POST "$BASE_URL" \
+  -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
-    "id_utilisateur": 1,
-    "id_concert": 1,
-    "type_tarif": "plein",
-    "montant": 20.00
-  }')
+  -d "{
+    \"id_concert\": $ID_CONCERT,
+    \"type_tarif\": \"$TARIF\",
+    \"montant\": $MONTANT
+  }" | tee /dev/tty)
 
-echo "$REPONSE_CREATION" | jq
+ID_RESERVATION=$(echo "$REPONSE" | jq -r .id_reservation)
 
-ID_RESERVATION=$(echo "$REPONSE_CREATION" | jq -r '.id_reservation')
-if [ "$ID_RESERVATION" = "null" ]; then
-  echo "❌ La réservation n'a pas pu être créée."
+if [ "$ID_RESERVATION" == "null" ] || [ -z "$ID_RESERVATION" ]; then
+  echo "❌ Erreur : réservation non créée."
   exit 1
 fi
+echo "$ID_RESERVATION" > "$TMP_FILE"
+echo "✅ Réservation créée avec l'ID : $ID_RESERVATION"
 
-# Obtenir les réservations (protégé)
-echo "📋 Récupération des réservations..."
-curl -s -X GET "$API_URL/reservations" \
-  -H "Authorization: Bearer $TOKEN" | jq
+# 📋 4. Consultation des réservations (admin)
+echo -e "\n📋 Récupération des réservations (GET)..."
+curl -sk -H "Authorization: Bearer $TOKEN" "$BASE_URL" | jq .
 
-# Supprimer la réservation (protégé)
-echo "🗑️ Suppression de la réservation $ID_RESERVATION..."
-curl -s -X DELETE "$API_URL/reservations/$ID_RESERVATION" \
-  -H "Authorization: Bearer $TOKEN" | jq
+# 🗑️ 5. Suppression de la réservation (DELETE)
+echo -e "\n🗑️ Suppression de la réservation $ID_RESERVATION..."
+curl -sk -X DELETE "$BASE_URL/$ID_RESERVATION" \
+  -H "Authorization: Bearer $TOKEN" | jq .
 
-echo "✅ Test terminé."
+# 🧹 Nettoyage
+rm -f "$TMP_FILE"
