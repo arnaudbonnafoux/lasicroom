@@ -1,186 +1,167 @@
-# Documentation technique de l'application La sicRoom
-
----
-
-## Sommaire
-
-1. Présentation
-2. Architecture générale
-3. Technologies utilisées
-4. Installation & Configuration
-5. Structure des dossiers
-6. Fonctionnalités principales
-7. API (si applicable)
-8. Sécurité
-9. Tests
-10. Déploiement
-11. Annexes
+# Documentation technique – Projet "La sicRoom"
 
 ---
 
 ## 1. Présentation
 
-Le projet consiste à développer une application web pour une salle de concert S.M.A.C., spécialisée dans les musiques actuelles : La sicRoom. Cette plateforme doit permettre de présenter la programmation musicale, vendre des billets en ligne, proposer un espace d’accompagnement pour les artistes, et rendre accessible du contenu multimédia (vidéos, live stream, ressources pédagogiques).
-Le site s’adresse à plusieurs types d’utilisateurs : le grand public, les artistes locaux, et les administrateurs de la salle.
-
-**Licence**
-
-Ce projet est sous licence libre **Non-Commercial - ShareAlike**.
-Voir le fichier [LICENSE](./LICENSE) pour les détails.
-L’usage commercial est strictement interdit sans l’accord explicite de l’auteur (duanrA).
+- Voir : `README.md`
+- Cahier des charges
+- Maquette Figma
+- Intégration de l’IA dans le workflow : rôle, apports et limites
+- Accès local : [https://lasicroom.local/](https://lasicroom.local/)
 
 ---
 
 ## 2. Architecture générale
 
-### 2.1 Front-end (React)
-
-* **Technologie** : ReactJS (create-react-app)
-* **Port en développement** : `3000`
-* **Production** : build statique déployé dans `/lasicroom_front/build`
-* **Rôle** :
-
-  * Interface utilisateur (pages, formulaires, affichages)
-  * Communication avec le backend via des appels API (`fetch` vers `/api/*`)
-* **Gestion des routes** : React Router
-* **Statique servie via Nginx** (build React dans `/build`)
-
-### 2.2 Back-end (Node.js + Express)
-
-* **Technologie** : Node.js avec Express
-* **Port** : `3001`
-* **Rôle** :
-
-  * API REST : `/api/artistes`, `/api/concerts`, `/api/utilisateurs`, `/api/reservations`, `/api/accompagnements`, `/api/connexions`
-  * Authentification et gestion des sessions
-  * Accès aux fichiers statiques (exemple : photos via `/photos_artistes`)
-* **Middleware utilisés** :
-
-  * `express.json()` pour parser les requêtes JSON
-  * Routes modularisées dans `/routes/*`
-* **Dossier statique** : `/photos_artistes` (servi par Express)
-
-### 2.3 Nginx (serveur web en frontal)
-
-* **Rôle** :
-
-  * Sert les fichiers statiques du front (React build)
-  * Fait du reverse proxy pour la partie API (redirige `/api/*` vers `localhost:3001`)
-  * Fait du reverse proxy pour les images statiques `/photos_artistes/*` vers Express backend
-  * Gère la SPA React avec `try_files` pour la navigation côté client
-* **Configuration** :
-
-  * Écoute sur le port 80
-  * Proxy\_pass vers backend Node.js (localhost:3001)
-  * Sert le React build à la racine
-
-### 2.4 Communication Front ↔ Back
-
-* En production, le front appelle l’API via des URLs relatives (`/api/*`).
-* Nginx fait le proxy vers le backend Node.js.
-* En développement, le front est sur `localhost:3000` et le backend sur `localhost:3001`.
-* En production, front et back sont servis sur le même domaine via Nginx, donc CORS n’est pas nécessaire.
-
-### 2.5 Déploiement
-
-* L’application est déployée sur un serveur personnel accessible via une adresse IP publique (exemple : `ip publique`).
-* Nginx expose l’application React et l’API via la même adresse/IP.
-* Backend Node.js écoute localement sur le port 3001, non exposé directement à l’extérieur.
-* Le front et le back communiquent via proxy Nginx pour éviter les problèmes CORS.
+- Voir : `structure.txt` (organisation des dossiers et fichiers)
 
 ---
 
 ## 3. Technologies utilisées
 
-### Nginx
-
-Dans ce projet, Nginx agit comme un point d’entrée unique pour toutes les requêtes qui arrivent sur le serveur. Son rôle principal est de rediriger ces requêtes vers la bonne partie de l’application, selon leur type :
-
-* Pour les requêtes qui concernent les données et fonctionnalités (comme les concerts, artistes, réservations), Nginx les envoie au serveur Node.js qui gère le backend.
-* Pour les images des artistes, Nginx transmet aussi les demandes au serveur Node.js qui les sert directement.
-* Pour tout ce qui concerne l’interface utilisateur (le site web React), Nginx sert directement les fichiers statiques du frontend, sans passer par Node.js.
-
-Cette organisation permet de centraliser la gestion des requêtes, d’optimiser les performances en servant directement les fichiers statiques, et de faciliter la maintenance en séparant clairement le frontend et le backend.
-
-### Node.js
-
-Node.js sert de serveur backend dans ce projet. C’est lui qui gère la logique métier, les échanges avec la base de données, et fournit les données nécessaires à l’application web via des APIs.
-Il traite les requêtes liées aux concerts, artistes, utilisateurs, réservations, et autres fonctionnalités.
-Node.js s’occupe aussi de servir les fichiers statiques des photos d’artistes, permettant ainsi à l’application frontend d’afficher les images correctement.
-Grâce à Node.js, le backend peut répondre rapidement aux demandes du frontend et gérer efficacement toutes les opérations côté serveur.
+- **Système** : Linux  
+- **Serveur web** : Nginx  
+- **Backend** : Node.js avec Express  
+- **Base de données** : PostgreSQL  
+- **Frontend** : React (JSX)
 
 ---
 
-## 4. Installation & Configuration
+## 4. Paradigmes de programmation
 
-...
+- **Programmation orientée objet (POO)**  
+  Utilisée côté backend pour structurer les entités et la logique métier.
 
----
+- **Programmation fonctionnelle**  
+  Présente dans React : fonctions pures, hooks (`useState`, `useEffect`), composition de composants, etc.
 
-## 5. Structure des dossiers
+- **Programmation événementielle (frontend)**  
+  Le frontend réagit aux événements utilisateur (clics, soumissions de formulaires, navigation…).  
+  Les appels API via `axios` ou `fetch` sont déclenchés dans ce contexte.  
+  Bien qu'ils ne soient pas intrinsèquement événementiels, ils sont étroitement liés à ce paradigme lorsqu'ils sont utilisés en réponse à des événements.
 
-Structure des dossiers accessibles via les fichiers structure généré par un script Bash.
-
----
-
-## 6. Fonctionnalités principales
-
-### Ajout automatique d'un artiste lors de la création d'un concert
-
-Lorsqu’un administrateur ajoute un nouveau concert via l’interface dédiée, le backend vérifie si l’artiste spécifié existe déjà dans la base de données. 
-Si ce n’est pas le cas, un nouvel enregistrement minimal est automatiquement ajouté dans la table `artiste` (avec le nom, et éventuellement d'autres champs par défaut).
-
-Cela permet d’accélérer la saisie côté administration tout en garantissant l'intégrité des relations entre les tables `concert` et `artiste`. L’administrateur peut ensuite aller compléter les informations de l’artiste (photo, description, etc.) dans la page de **gestion des artistes**.
-
-Cette logique est gérée côté backend, dans le contrôleur des concerts (`concert_controleur.js`). Elle repose sur une requête de type :
-
-```sql
-INSERT INTO artiste (nom) SELECT ? FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM artiste WHERE nom = ?);
-```
-
-Cette approche évite les doublons et garantit la cohérence des données entre les modules.
+- **Architecture MVC simplifiée**  
+  - **Model** : gestion des données avec PostgreSQL  
+  - **Controller** : logique métier avec Express  
+  - **View** : interface utilisateur avec React (côté client)
 
 ---
 
-## 7. API (si applicable)
+## 5. Installation & Configuration
 
-...
-
----
-
-## 8. Sécurité
-
-...
+- Dépôt GitHub : [https://github.com/arnaudbonnafoux/projet_perso.git](https://github.com/arnaudbonnafoux/projet_perso.git)
 
 ---
 
-## 9. Tests
+## 6. Fonctionnalités principales *(en cours de développement)*
 
-...
+- **Réservation de billets en ligne**  
+  → Connexion requise (sinon : inscription via formulaire)
 
----
+- **Formulaire d’accompagnement**  
+  → Accessible sans être connecté
 
-## 10. Déploiement
+- **Live Streaming via YouTube** *(fonctionnalité prévue)*
 
-L’application est déployée sur un serveur où elle est accessible à la fois en réseau local et depuis l’extérieur via une adresse IP publique.
-
-* En réseau local, tu peux accéder à l’application en utilisant l’adresse IP locale du serveur ou un nom de domaine local configuré (par exemple lasicroom.local).
-* Depuis l’extérieur, l’application est accessible via l’adresse IP publique du serveur, ce qui permet de la consulter depuis n’importe quel appareil connecté à Internet, comme un smartphone ou un ordinateur distant.
-
-Cette double accessibilité est possible grâce à la configuration du serveur et du routeur, notamment avec la redirection des ports appropriée, et à l’utilisation de Nginx qui centralise les requêtes entrantes.
-Cela facilite les phases de tests, de démonstration, mais aussi l’utilisation en production.
+- Démo locale : [https://lasicroom.local/](https://lasicroom.local/)
 
 ---
 
-## 11. Annexes
+## 7. Frontend (React)
 
-À faire : 
-* optimisation & mise en place d'une compression pour les photos. 
-* sécurité
-* accessibilité
-* SEO
-* Mise en place de Stripe (module de paiement)
-* Mise en place du Live streaming à partir de chaîne youtube. 
-* Automatisation des test de routes en localhost et avec ip publique (script bash).
-* Rédiger documentation technique.
+- Interfaces utilisateur et administrateur
+- Voir : `structure.txt` du frontend
 
+### Technologies et concepts utilisés
+
+- **React** :
+  - JSX
+  - Hooks : `useState`, `useEffect`, `useNavigate`, etc.
+  - Props
+  - `react-router-dom` (routing) – voir `App.js`
+  - Axios & Fetch pour communiquer avec le backend
+  - `.map()` pour le rendu dynamique
+  - `sessionStorage()` pour stocker le token
+  - Build React servi par Nginx : `lasicroom_front/build/index.html`
+
+> React permet de créer ses propres balises HTML (composants), via des fonctions JS retournant du JSX (syntaxe proche du HTML).
+
+- **CSS** :
+  - Flexbox
+  - Media Queries (responsive design)
+  - Pseudo-classes
+  - Transitions et animations (`@keyframes`)
+
+---
+
+## 8. Backend (Node.js / Express)
+
+- Voir : `structure.txt` du backend
+- Communication avec le frontend via Nginx en **proxy inversé**
+- Le backend n'est **pas exposé publiquement**
+- Voir : fichier de configuration Nginx
+
+### Express : API RESTful (CRUD)
+
+- Modules utilisés :
+  - `pg` (connexion PostgreSQL)
+  - `dotenv` (fichier `.env`)
+  - `path` (gestion des chemins)
+  - `bcrypt` (hashage de mot de passe)
+  - `jsonwebtoken` (authentification par token)
+  - `multer` (upload de fichiers)
+
+- Dossier statique des photos artistes :  
+  `lasicroom_back/photos_artistes` (servi par Nginx)
+
+---
+
+## 9. Sécurité, SEO, Optimisation & Accessibilité *(à faire)*
+
+- Authentification renforcée
+- Optimisation des performances (cache, minification…)
+- Accessibilité (normes WCAG, navigation clavier, etc.)
+- SEO (balises méta, titres, sitemap…)
+
+---
+
+## 10. Tests
+
+- Tests manuels via **scripts Bash**
+- Démonstrations fonctionnelles
+- Tests automatisés avec **Jest** *(prévu)*
+
+---
+
+## 11. Déploiement & démonstration
+
+- Déploiement local via **Nginx** (proxy inversé)
+- **Certificat SSL** auto-signé (via OpenSSL)
+- Hébergement local
+- Démonstration disponible sur :  
+  [https://IP/](https://IP/)
+
+---
+
+## 12. Annexes
+
+- **Mentions légales** et **CGU** (conformité RGPD)
+- **Licence** : fichier `LICENSE`  
+  → Licence **Non-Commercial – ShareAlike**
+- **Dépôt légal** : prévu à la **BNF**
+
+---
+
+## 13. À faire (roadmap)
+
+- 🔄 Compression & optimisation des images
+- 🔐 Sécurisation complète du backend
+- ♿ Accessibilité (normes, tests)
+- 🔍 Référencement SEO (Google, balisage)
+- 💳 Intégration de Stripe pour les paiements
+- 📺 Mise en place du live streaming YouTube
+- 🧪 Tests automatisés avec Jest
+- 📝 Rédaction complète de la documentation technique
+
+---
