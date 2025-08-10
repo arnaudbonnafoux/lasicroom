@@ -94,7 +94,7 @@ const GestionReservations = () => {
                   <td>{reservation.type_tarif}</td>
                   <td>{parseFloat(reservation.montant).toFixed(2)}</td>
                   <td>
-                    <button onClick={() => handleDelete(reservation.id_reservation)}>
+                    <button className='button_supprimer' onClick={() => handleDelete(reservation.id_reservation)}>
                       Supprimer
                     </button>
                   </td>

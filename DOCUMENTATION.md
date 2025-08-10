@@ -4,8 +4,10 @@
 
 ## 1. Présentation
 
-- Voir : `README.md`
-- Cahier des charges
+Le projet consiste à développer une application web pour une salle de concert S.M.A.C., spécialisée dans les musiques actuelles : La sicRoom. Cette plateforme doit permettre de présenter la programmation musicale, vendre des billets en ligne, proposer un espace d’accompagnement pour les artistes, et rendre accessible du contenu multimédia (vidéos, live stream, ressources pédagogiques).
+Le site s’adresse à plusieurs types d’utilisateurs : le grand public, les artistes locaux, et les administrateurs de la salle.
+
+- C.F. Cahier des charges
 - Maquette Figma
 - Intégration de l’IA dans le workflow : rôle, apports et limites
 - Accès local : [https://lasicroom.local/](https://lasicroom.local/)
@@ -15,6 +17,10 @@
 ## 2. Architecture générale
 
 - Voir : `structure.txt` (organisation des dossiers et fichiers)
+- Le plan de site est construit sur 3 espaces distincts :
+                                  Espace libre pour découvir la salle et sa programmation.
+                                  Espace personnel (la billeterie + page accueil).
+                                  Espace admin pour la gestion de la programmation de la salle. 
 
 ---
 
@@ -155,13 +161,20 @@
 
 ## 13. À faire (roadmap)
 
-- 🔄 Compression & optimisation des images
-- 🔐 Sécurisation complète du backend
-- ♿ Accessibilité (normes, tests)
-- 🔍 Référencement SEO (Google, balisage)
-- 💳 Intégration de Stripe pour les paiements
-- 📺 Mise en place du live streaming YouTube
-- 🧪 Tests automatisés avec Jest
-- 📝 Rédaction complète de la documentation technique
+- ✔️ Compression & optimisation des images
+- ✔️ Sécurisation complète du backend
+- ✔️ Accessibilité (normes, tests)
+- ✔️ Référencement SEO (Google, balisage)
+- ✔️ Intégration de Stripe pour les paiements
+- ✔️ Mise en place du live streaming YouTube
+- ✔️ Tests automatisés avec Jest
+- ✔️ Rédaction complète de la documentation technique
+- ✔️ Intégration de Sass et de Redux ?
+- ✔️ Créer un espace personnel (menu, historique des réservaitons, ressources pédagogique)
+- ✔️ Un envoi de mail pour confirmer une réservation.
+- ✔️ Le bouton de connexion de l'admin à déplacer
+- ✔️ Revoir le css et la responsivité pour les tableau côté admin.
+- ✔️ Côté admin, insérer des modales pour les tableaux modification. 
+- ✔️ Revoir le dic info.
 
 ---

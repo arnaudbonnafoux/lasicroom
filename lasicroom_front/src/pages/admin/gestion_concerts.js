@@ -233,7 +233,7 @@ const GestionConcerts = () => {
                     <td>{concert.nom_artiste || '—'}</td>
                     <td>
                       <button className='button_table' onClick={() => handleEdit(concert)}>Modifier</button>
-                      <button className='button_table' onClick={() => handleDelete(concert.id_concert)}>Supprimer</button>
+                      <button className='button_table button_supprimer' onClick={() => handleDelete(concert.id_concert)}>Supprimer</button>
                     </td>
                   </tr>
                 ))}

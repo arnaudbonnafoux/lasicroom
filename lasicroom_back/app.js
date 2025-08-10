@@ -30,8 +30,8 @@ app.use('/api/connexions', connexionRoutes);
 const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || '0.0.0.0';
 
-app.listen(PORT, HOST, () => {
+app.listen(PORT, HOST, () => { 
   console.log('https://lasicroom.local/');
   console.log('https://ip_publique/');
 });
-// Protocole hhtps => certificat auto-signé
+// le backend écoute a cette adresse : http://localhost:3001

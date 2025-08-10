@@ -197,7 +197,7 @@ const GestionArtistes = () => {
                   ) : '—'}</td>
                   <td>
                     <button className='button_table' onClick={() => handleEditClick(artiste)}>Modifier</button>
-                    <button className='button_table' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
+                    <button className='button_table button_supprimer' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
                   </td>
                 </tr>
               ))}

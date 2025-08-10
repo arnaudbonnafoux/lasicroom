@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
-import Header from '../composants/Header';
+import HeaderUser from '../composants/HeaderUser';
 import CardConcert from '../composants/CardConcert';
 import '../styles/billetterie.css';
 
@@ -73,7 +73,7 @@ const Billetterie = () => {
 
   return (
     <div>
-      <Header />
+      <HeaderUser />
       <Navbar />
       <h1>Billetterie</h1>
       <div className="bloc">

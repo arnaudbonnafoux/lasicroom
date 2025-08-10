@@ -42,11 +42,25 @@ button {
   border-radius: 12px;
   color: #1D2D44;
   font-weight: bold;
-  background-color: rgba(30, 144, 255, 0.1);
+  background-color: rgba(30, 144, 255, 0.7);
 }
 
 button:hover {
   background-color: rgba(30, 144, 255, 1);
+}
+
+.button_supprimer {
+  cursor: pointer;
+  /*font-size: large;*/
+  /*padding: 16px;*/
+  border-radius: 12px;
+  color: #1D2D44;
+  font-weight: bold;
+  background-color: rgba(220, 20, 60, 0.7);
+}
+
+.button_supprimer:hover {
+  background-color: rgba(220, 20, 60, 1);
 }
 
 li {
