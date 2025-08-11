@@ -146,6 +146,10 @@ const GestionArtistes = () => {
       <HeaderAdmin />
       <NavbarAdmin />
 
+        <div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
+          <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
+        </div>
+
       <main>
         <h1>Gestion des artistes</h1>
 
@@ -275,10 +279,6 @@ const GestionArtistes = () => {
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px' }}>
-          <button onClick={handleDeconnexion}>Déconnexion</button>
         </div>
       </main>
     </div>

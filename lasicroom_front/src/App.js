@@ -5,12 +5,14 @@ import './App.css';
 
 // Pages utilisateurs
 import Accueil from './pages/accueil';
+import AccueilUser from './pages/accueil_user';
 import Agenda from './pages/agenda';
 import Billetterie from './pages/billetterie';
 import Accompagnement from './pages/accompagnement';
 import Options from './pages/options';
 import Dashboard from './pages/dashboard';
 import AgendaUser from './pages/agenda_user';
+
 
 // Cadre légale
 import MentionsLegales from './pages/mentions_legales';
@@ -26,6 +28,7 @@ import GestionArtistes from './pages/admin/gestion_artistes';
 // Authentification
 import Connexion from './pages/connexion';
 import Inscription from './pages/inscription';
+import ConnexionUser from './pages/connexion_user';
 
 //Routes
 function App() {
@@ -33,6 +36,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Accueil />} />
+        <Route path="accueil_user" element={<AccueilUser />} />
         <Route path="/agenda" element={<Agenda />} />
         <Route path="/billetterie" element={<Billetterie />} />
         <Route path="/accompagnement" element={<Accompagnement />} />
@@ -40,9 +44,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/agenda_user" element={<AgendaUser />} />
 
+
         {/*Inscription et Authentification utilisateurs*/}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
+        <Route path="/connexion_user" element={<ConnexionUser />} />
 
         {/*Authentification_admin */}
         <Route path="/admin/connexion" element={<GestionConnexion />} />

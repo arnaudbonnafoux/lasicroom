@@ -188,6 +188,9 @@ const GestionConcerts = () => {
     <div>
       <HeaderAdmin />
       <NavbarAdmin />
+      <div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
+        <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
+      </div>
 
       <main>
         <h1>Gestion des concerts</h1>
@@ -250,9 +253,6 @@ const GestionConcerts = () => {
           </div>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px' }}>
-          <button onClick={handleDeconnexion}>Déconnexion</button>
-        </div>
 
         {/* Modale d'édition */}
         {isModalOpen && (

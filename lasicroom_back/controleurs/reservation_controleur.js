@@ -102,7 +102,7 @@ exports.obtenirReservations = async (req, res) => {
       FROM reservation r
       JOIN utilisateur u ON r.id_utilisateur = u.id_utilisateur
       JOIN concert c ON r.id_concert = c.id_concert
-      ORDER BY r.id_reservation
+      ORDER BY r.id_reservation DESC
     `);
 
         res.json(resultat.rows);

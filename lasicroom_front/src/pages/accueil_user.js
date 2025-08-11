@@ -1,49 +1,48 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../composants/Navbar';
+import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
-import Header from '../composants/Header';
+import HeaderUser from '../composants/HeaderUser';
 import '../styles/accueil.css';
 
-const Accueil = () => {
+const AccueilUser = () => {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  /*const handleLoginClick = () => {
     navigate('/connexion_user');
+  };*/
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    navigate('/'); // Retour à la racine
   };
-
   return (
     <div>
-      <Header />
-      <Navbar />
-      {/* Bouton connexion aligné à droite */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
-        <button
-          onClick={handleLoginClick}
-        >
-          Connexion
-        </button>
+      <HeaderUser />
+      <NavbarUser />
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
       </div>
       <main>
-        <h1>Bienvenue à la sicRoom !</h1>
+        <h1>Bienvenue sur ton Espace Perso !</h1>
 
         <div className='div_accueil'>
           <div className='div_image'>
             <img
               className='image_présentation'
               style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}
-              src="/images/photo_2.jpg"
+              src="/images/photo_10.jpg"
               alt="Concert"
             />
           </div>
 
           <div className='texte'>
-            <h2 style={{ textAlign: 'center' }}>La sic Room !?</h2>
+            <h2 style={{ textAlign: 'center' }}>Un espcae perso !?</h2>
             <p style={{ padding: '12px' }}>
-              La sicRoom est une Scène de Musiques Actuelles (SMAC) dédiée à la création, la diffusion et le
-              partage des musiques d’aujourd’hui, dans toute leur diversité. Rock, pop, rap, électro, métal,
-              chanson, et bien plus encore : notre programmation reflète la richesse et l’énergie de la scène
-              musicale contemporaine.
+              Grâce à cet espace, tu as la possibilité d'accéder à la billetterie sans te connecter et surtout à un récapitulatif de toutes tes réservations.
+              En plus de ces fonctionnalités de base, tu auras accès à notre <strong>live streaming</strong> qui te permettra de suivre les balances des groupes programmés à la SicRoom.
+              Elles se déroulent généralement à 18h et sont une occasion de découvrir les coulisses et le off des groupes juste avant leur show...
+              Bientôt, une rubrique sera consacrée à des ressources pédagogiques qui te permettront de recevoir des conseils de la part des sicos programmés chez nous !
+              Pour quitter cet espace, rends toi sur la page réservation et déconnecte toi. 
             </p>
           </div>
 
@@ -106,4 +105,4 @@ const Accueil = () => {
   );
 };
 
-export default Accueil;
+export default AccueilUser;
