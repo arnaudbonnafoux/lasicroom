@@ -11,4 +11,8 @@ routeur.post('/', authMiddleware, reservationControleur.creerReservation); //mod
 routeur.get('/', authMiddleware, isAdmin, reservationControleur.obtenirReservations);
 routeur.delete('/:id', authMiddleware, isAdmin, reservationControleur.supprimerReservation);
 
+
+// Route pour le dashboard
+routeur.get('/mine', authMiddleware, reservationControleur.getReservationsByUser);
+
 module.exports = routeur;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../composants/Navbar';
+import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import CardConcert from '../composants/CardConcert';
@@ -61,7 +61,7 @@ const Billetterie = () => {
 
       if (response.ok) {
         alert("Réservation effectuée avec succès !");
-        navigate('/'); // Ou une autre page après réservation
+        navigate('/dashboard'); // Ou une autre page après réservation MODIF 11/08/2025
       } else {
         const erreur = await response.json();
         alert("Erreur lors de la réservation : " + (erreur.message || "inconnue"));
@@ -70,11 +70,18 @@ const Billetterie = () => {
       alert("Erreur serveur ou réseau.");
     }
   };
+    const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    navigate('/'); // Retour à la racine
+  };
 
   return (
     <div>
       <HeaderUser />
-      <Navbar />
+      <NavbarUser />
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
+      </div>
       <h1>Billetterie</h1>
       <div className="bloc">
         <label htmlFor="concert-select">Choisissez un concert :</label>

@@ -1,26 +1,44 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import '../styles/accueil.css';
 
 const Accueil = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/connexion');
+  };
+
   return (
     <div>
       <Header />
       <Navbar />
-
+      {/* Bouton connexion aligné à droite */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
+        <button
+          onClick={handleLoginClick}
+        >
+          Connexion
+        </button>
+      </div>
       <main>
         <h1>Bienvenue à la sicRoom !</h1>
 
         <div className='div_accueil'>
           <div className='div_image'>
-            <img className='image_présentation' style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }} src="/images/photo_2.jpg" alt="Concert" />
+            <img
+              className='image_présentation'
+              style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}
+              src="/images/photo_2.jpg"
+              alt="Concert"
+            />
           </div>
 
           <div className='texte'>
             <h2 style={{ textAlign: 'center' }}>La sic Room !?</h2>
-
             <p style={{ padding: '12px' }}>
               La sicRoom est une Scène de Musiques Actuelles (SMAC) dédiée à la création, la diffusion et le
               partage des musiques d’aujourd’hui, dans toute leur diversité. Rock, pop, rap, électro, métal,

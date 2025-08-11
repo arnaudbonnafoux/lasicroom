@@ -170,11 +170,11 @@ Le site s’adresse à plusieurs types d’utilisateurs : le grand public, les a
 - ✔️ Tests automatisés avec Jest
 - ✔️ Rédaction complète de la documentation technique
 - ✔️ Intégration de Sass et de Redux ?
-- ✔️ Créer un espace personnel (menu, historique des réservaitons, ressources pédagogique)
+- ✔️ Créer un espace personnel (menu, historique des réservaitons, ressources pédagogique) => créer un dashbord
 - ✔️ Un envoi de mail pour confirmer une réservation.
 - ✔️ Le bouton de connexion de l'admin à déplacer
 - ✔️ Revoir le css et la responsivité pour les tableau côté admin.
 - ✔️ Côté admin, insérer des modales pour les tableaux modification. 
-- ✔️ Revoir le dic info.
+- ✔️ Revoir le div info.
 
 ---

@@ -111,3 +111,49 @@ exports.obtenirReservations = async (req, res) => {
         res.status(500).json({ erreur: "Erreur lors de la récupération des réservations." });
     }
 };
+
+/*
+exports.getReservationsByUser = async (req, res) => {
+  try {
+    const id_utilisateur = req.utilisateur.id;
+
+    const query = `
+      SELECT r.id_reservation, r.date_reservation, r.type_tarif, r.montant,
+             c.titre AS titre_concert,
+             c.date_concert
+      FROM reservation r
+      JOIN concert c ON r.id_concert = c.id_concert
+      WHERE r.id_utilisateur = $1
+      ORDER BY r.date_reservation DESC
+    `;
+
+    const { rows } = await baseDeDonnees.query(query, [id_utilisateur]);
+    res.json(rows);
+  } catch (err) {
+    console.error('Erreur getReservationsByUser:', err);
+    res.status(500).json({ message: "Erreur serveur lors de la récupération des réservations" });
+  }
+};*/
+
+exports.getReservationsByUser = async (req, res) => {
+  try {
+    const { id } = req.utilisateur;
+
+    const query = `
+      SELECT r.id_reservation, r.date_reservation, r.type_tarif, r.montant,
+             c.titre AS concert, c.date_concert
+      FROM reservation r
+      JOIN concert c ON r.id_concert = c.id_concert
+      WHERE r.id_utilisateur = $1
+      ORDER BY r.date_reservation DESC
+    `;
+
+    const { rows } = await baseDeDonnees.query(query, [id]);
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+

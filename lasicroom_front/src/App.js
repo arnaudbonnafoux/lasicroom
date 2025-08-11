@@ -9,6 +9,8 @@ import Agenda from './pages/agenda';
 import Billetterie from './pages/billetterie';
 import Accompagnement from './pages/accompagnement';
 import Options from './pages/options';
+import Dashboard from './pages/dashboard';
+import AgendaUser from './pages/agenda_user';
 
 // Cadre légale
 import MentionsLegales from './pages/mentions_legales';
@@ -35,6 +37,8 @@ function App() {
         <Route path="/billetterie" element={<Billetterie />} />
         <Route path="/accompagnement" element={<Accompagnement />} />
         <Route path="/options" element={<Options />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/agenda_user" element={<AgendaUser />} />
 
         {/*Inscription et Authentification utilisateurs*/}
         <Route path="/connexion" element={<Connexion />} />
