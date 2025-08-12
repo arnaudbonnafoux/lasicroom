@@ -74,17 +74,17 @@ td {
 }
 
 .modal_content {
-  background: white;
+  background: #f5f5f5;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
+  border-radius: 12px;
+  max-width: 75%;
   width: 90%;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.75);
 }
 
-.modal_actions {
+/*.modal_actions {
   margin-top: 16px;
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-}
+}*/

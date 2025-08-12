@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
-
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const token = sessionStorage.getItem('token');
 
@@ -33,7 +32,7 @@ const Dashboard = () => {
       </div>*/}
 
 
-      <main>
+      <main style={{height:'100vh'}}>
         <h1>Mes réservations</h1>
         <table>
           <thead>

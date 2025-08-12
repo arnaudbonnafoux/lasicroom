@@ -10,16 +10,21 @@ img {
 
 nav {
   border-radius: 12px;
-  margin-top: 12px;
+  /*margin-top: 12px;*/
   padding: 12px;
   border: 12px;
   background-color: rgba(30, 144, 255, 0.1);
   display: inline-block;
 }
+/*
+.div_navbar {
+  margin-top: 12px;
+}*/
 
 header {
   border-radius: 12px;
   background-color: #1D2D44;
+  margin-bottom: 12px;
 }
 
 footer {
@@ -28,7 +33,7 @@ footer {
   background-color: #1D2D44;
 }
 
-H1 {
+h1 {
   font-size: xx-large;
   padding: 24px 0 64px 0;
   text-align: center;
@@ -38,7 +43,7 @@ button {
   /*box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);*/
   cursor: pointer;
   font-size: 12px;
-  padding: 16px;
+  padding: 10px;
   border-radius: 12px;
   color: #1D2D44;
   font-weight: bold;
@@ -52,7 +57,7 @@ button:hover {
 .button_supprimer {
   cursor: pointer;
   font-size: 12px;
-  /*padding: 16px;*/
+  padding: 10px;
   border-radius: 12px;
   color: #1D2D44;
   font-weight: bold;

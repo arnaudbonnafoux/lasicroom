@@ -70,18 +70,18 @@ const Billetterie = () => {
       alert("Erreur serveur ou réseau.");
     }
   };
-    const handleLogout = () => {
+    /*const handleLogout = () => {
     sessionStorage.removeItem('token');
-    navigate('/'); // Retour à la racine
-  };
+    navigate('/'); 
+  };*/
 
   return (
     <div>
       <HeaderUser />
       <NavbarUser />
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      {/*<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
-      </div>
+      </div>*/}
       <h1>Billetterie</h1>
       <div className="bloc">
         <label htmlFor="concert-select">Choisissez un concert :</label>

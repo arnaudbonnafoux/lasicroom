@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 import '../../styles/gestion_artistes.css';
 import HeaderAdmin from '../../composants/HeaderAdmin';
 
 const GestionArtistes = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [artistes, setArtistes] = useState([]);
   const [selectedArtiste, setSelectedArtiste] = useState(null);
@@ -35,10 +35,10 @@ const GestionArtistes = () => {
     fetchArtistes();
   }, []);
 
-  const handleDeconnexion = () => {
+  /*const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
-  };
+  };*/
 
   const handleEditClick = (artiste) => {
     setSelectedArtiste({ ...artiste });
@@ -146,9 +146,9 @@ const GestionArtistes = () => {
       <HeaderAdmin />
       <NavbarAdmin />
 
-        <div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
+        {/*<div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
           <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
-        </div>
+        </div>*/}
 
       <main>
         <h1>Gestion des artistes</h1>

@@ -15,15 +15,11 @@ const Accueil = () => {
   return (
     <div>
       <Header />
-      <Navbar />
-      {/* Bouton connexion aligné à droite */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
-        <button
-          onClick={handleLoginClick}
-        >
-          Connexion
-        </button>
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Navbar />
+        <button onClick={handleLoginClick}>Connexion</button>
       </div>
+
       <main>
         <h1>Bienvenue à la sicRoom !</h1>
 

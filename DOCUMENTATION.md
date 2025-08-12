@@ -19,16 +19,16 @@ Le site s’adresse à plusieurs types d’utilisateurs : le grand public, les a
 - Voir : `structure.txt` (organisation des dossiers et fichiers)
 - Le plan de site est construit sur 3 espaces distincts :
                                   Espace libre pour découvir la salle et sa programmation.
-                                  Espace personnel (la billeterie + page accueil).
+                                  Espace personnel (la billeterie + page accueil + dashboard).
                                   Espace admin pour la gestion de la programmation de la salle. 
 
 ---
 
 ## 3. Technologies utilisées
 
-- **Système** : Linux  
+- **Système** : Linux-GNU | Debien 12 
 - **Serveur web** : Nginx  
-- **Backend** : Node.js avec Express  
+- **Backend** : Node.js | Express  
 - **Base de données** : PostgreSQL  
 - **Frontend** : React (JSX)
 

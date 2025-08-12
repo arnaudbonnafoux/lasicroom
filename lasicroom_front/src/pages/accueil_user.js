@@ -18,8 +18,9 @@ const AccueilUser = () => {
   return (
     <div>
       <HeaderUser />
-      <NavbarUser />
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <NavbarUser />
+
         <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
       </div>
       <main>

@@ -187,8 +187,8 @@ const GestionConcerts = () => {
   return (
     <div>
       <HeaderAdmin />
-      <NavbarAdmin />
-      <div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <NavbarAdmin />
         <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
       </div>
 
