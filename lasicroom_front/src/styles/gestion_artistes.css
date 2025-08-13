@@ -4,14 +4,14 @@
 }
 
 .div_tableau table {
-  min-width: 900px; /* ajuste en fonction du nombre de colonnes */
+  min-width: 750px;
+  /* pas plus petit que 810px*/
   border-collapse: collapse;
 }
 
-th, td {
-  padding: 12px;
+th,
+td {
   border: 1px solid #ccc;
-  text-align: left;
 }
 
 
@@ -20,19 +20,9 @@ th, td {
   text-align: center;
 }
 
-.button_table {
-  border: none;
-  margin: 0 auto;
-  width: 85%;
-  font-size: smaller;
-  padding: 12px;
-  margin-top: 12px;
-  /*cursor: pointer;*/
-  box-shadow: none;
-}
-
 .button_form {
-  width: 45%;
+  font-weight: bold;
+  width: 35%;
   margin: 0 auto;
 }
 
@@ -48,13 +38,13 @@ th, td {
 }
 
 .form_ajout_artiste {
+  background-color: rgba(30, 144, 255, 0.050);
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 50%;
   margin: 36px auto;
   padding: 20px;
-  /*border: 1px solid #ccc;*/
   border-radius: 12px;
 }
 
@@ -65,12 +55,7 @@ th, td {
   width: 50%;
   margin: 36px auto;
   padding: 20px;
-  /*border: 1px solid #ccc;*/
   border-radius: 12px;
-}
-
-.div_button {
-  margin: 0 auto;
 }
 
 /* Modale */
@@ -80,7 +65,7 @@ th, td {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,13 +77,13 @@ th, td {
   padding: 20px;
   border-radius: 12px;
   max-width: 75%;
-  width: 90%;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.75);
+  width: 95%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
 }
 
-/*.modal_actions {
+.modal_actions {
   margin-top: 16px;
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
-}*/
+  justify-content: center;
+}

@@ -78,7 +78,7 @@ const Accompagnement = () => {
             <textarea name="message" rows="4" value={formData.message} onChange={handleChange} style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}></textarea>
           </div>
 
-          <button type="submit">Envoyer</button>
+          <button className='button_bleu' type="submit">Envoyer</button>
         </form>
       </div>
       <Footer />

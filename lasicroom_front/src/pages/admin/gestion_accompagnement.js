@@ -90,7 +90,7 @@ const GestionAccompagnement = () => {
                   <td>{demande.message}</td>
                   <td>{new Date(demande.date_envoi).toLocaleString()}</td>
                   <td>
-                    <button className='button_supprimer' onClick={() => handleDelete(demande.id_demande)}>Supprimer</button>
+                    <button className='button_tab' onClick={() => handleDelete(demande.id_demande)}>Supprimer</button>
                   </td>
                 </tr>
               ))}

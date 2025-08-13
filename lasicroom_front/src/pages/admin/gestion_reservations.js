@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 import Footer from '../../composants/Footer';
 import Header from '../../composants/HeaderAdmin';
+import '../../styles/gestion_reservations.css'
 
 const GestionReservations = () => {
   const [reservations, setReservations] = useState([]);
@@ -97,7 +98,7 @@ const GestionReservations = () => {
                   <td>{reservation.type_tarif}</td>
                   <td>{parseFloat(reservation.montant).toFixed(2)}</td>
                   <td>
-                    <button className='button_supprimer' onClick={() => handleDelete(reservation.id_reservation)}>
+                    <button className='button_tab' onClick={() => handleDelete(reservation.id_reservation)}>
                       Supprimer
                     </button>
                   </td>

@@ -5,7 +5,6 @@
 
 .div_tableau table {
   min-width: 900px;
-  /* ajuste en fonction du nombre de colonnes */
   border-collapse: collapse;
 }
 
@@ -13,17 +12,27 @@ th,
 td {
   padding: 12px;
   border: 1px solid #ccc;
-  text-align: left;
+  /*text-align: left;*/
 }
 
 .form_ajout_concert {
+  background-color: rgba(255, 140, 0, 0.025);
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 50%;
   margin: 36px auto;
   padding: 20px;
-  /*border: 1px solid #ccc;*/
+  border-radius: 12px;
+}
+
+.form_modif_concert {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 50%;
+  margin: 36px auto;
+  padding: 20px;
   border-radius: 12px;
 }
 
@@ -32,18 +41,8 @@ td {
   text-align: center;
 }
 
-.button_table {
-  border: none;
-  margin: 0 auto;
-  width: 85%;
-  font-size: smaller;
-  padding: 12px;
-  margin-top: 12px;
-  cursor: pointer;
-  box-shadow: none;
-}
-
 .button_form {
+  font-weight: bold;
   width: 35%;
   margin: 0 auto;
 }
@@ -74,17 +73,17 @@ td {
 }
 
 .modal_content {
-  background: #f5f5f5;
+  width: 95%;
+  max-width: 75%;
+  text-align: center;
   padding: 20px;
   border-radius: 12px;
-  max-width: 75%;
-  width: 90%;
   box-shadow: 0 8px 16px rgba(0,0,0,0.75);
 }
 
-/*.modal_actions {
+.modal_actions {
   margin-top: 16px;
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
-}*/
+  justify-content: center;
+}

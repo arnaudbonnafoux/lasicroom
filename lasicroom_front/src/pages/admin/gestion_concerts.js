@@ -187,9 +187,9 @@ const GestionConcerts = () => {
   return (
     <div>
       <HeaderAdmin />
-      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className='div_navbar'>
         <NavbarAdmin />
-        <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
+        <button className='button_rouge' onClick={handleDeconnexion}>Déconnexion</button>
       </div>
 
       <main>
@@ -243,8 +243,8 @@ const GestionConcerts = () => {
                     <td>{concert.tarif_abonne} €</td>
                     <td>{concert.nom_artiste || '—'}</td>
                     <td>
-                      <button className='button_table' onClick={() => handleEdit(concert)}>Modifier</button>
-                      <button className='button_table button_supprimer' onClick={() => handleDelete(concert.id_concert)}>Supprimer</button>
+                      <button className='button_tab' onClick={() => handleEdit(concert)}>Modifier</button>
+                      <button className='button_tab' style={{marginTop:'6px'}} onClick={() => handleDelete(concert.id_concert)}>Supprimer</button>
                     </td>
                   </tr>
                 ))}
@@ -259,7 +259,7 @@ const GestionConcerts = () => {
           <div className="modal_overlay" onClick={() => setIsModalOpen(false)}>
             <div className="modal_content" onClick={(e) => e.stopPropagation()}>
               <h2>Modifier le concert</h2>
-              <form onSubmit={handleSubmit}>
+              <form className='form_modif_concert' onSubmit={handleSubmit}>
                 <input
                   className='input_form'
                   type="text"
@@ -316,7 +316,7 @@ const GestionConcerts = () => {
                 />
                 <div className="modal_actions">
                   <button type="submit" className="button_form">Mettre à jour</button>
-                  <button type="button" className="button_form button_supprimer" onClick={() => setIsModalOpen(false)}>Annuler</button>
+                  <button type="button" className="button_form" onClick={() => setIsModalOpen(false)}>Annuler</button>
                 </div>
               </form>
             </div>

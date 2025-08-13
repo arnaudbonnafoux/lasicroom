@@ -51,7 +51,7 @@ const AgendaUser = () => {
         </section>
 
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-          <button onClick={() => navigate('/billetterie')}>
+          <button className='button_bleu' onClick={() => navigate('/billetterie')}>
             Réserver
           </button>
         </div>

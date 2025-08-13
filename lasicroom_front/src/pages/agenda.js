@@ -45,7 +45,7 @@ const Agenda = () => {
         </section>
 
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-          <button onClick={() => setIsModalOpen(true)}>Réserver</button>
+          <button className='button_bleu' onClick={() => setIsModalOpen(true)}>Réserver</button>
         </div>
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

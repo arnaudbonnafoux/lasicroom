@@ -15,9 +15,9 @@ const Accueil = () => {
   return (
     <div>
       <Header />
-      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className='div_navbar'>
         <Navbar />
-        <button onClick={handleLoginClick}>Connexion</button>
+        <button className='button_bleu' onClick={handleLoginClick}>👉Connexion</button>
       </div>
 
       <main>
@@ -44,8 +44,8 @@ const Accueil = () => {
           </div>
 
           <div className='info'>
-            <h2 style={{ textAlign: 'center' }}>Infos !</h2>
-            <ul>
+            <h2 style={{ textAlign: 'center' }}>⚠️ Infos !</h2>
+            <ul className='animation_1'>
               <li><strong>Prochain concert : le Samedi 21 mai avec Titi et son orchestre !</strong></li>
               <li><strong>Le concert de Kamélia est annulé.</strong></li>
               <li><strong>Inline Block trio sera en résidence le jeudi 17 juin.</strong></li>

@@ -21,7 +21,7 @@ const AccueilUser = () => {
       <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
         <NavbarUser />
 
-        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
+        <button className='button_rouge' onClick={handleLogout}>👉Déconnexion</button>
       </div>
       <main>
         <h1>Bienvenue sur ton Espace Perso !</h1>
@@ -48,8 +48,8 @@ const AccueilUser = () => {
           </div>
 
           <div className='info'>
-            <h2 style={{ textAlign: 'center' }}>Infos !</h2>
-            <ul>
+            <h2 style={{ textAlign: 'center' }}>⚠️ Infos !</h2>
+            <ul className='animation_1'>
               <li><strong>Prochain concert : le Samedi 21 mai avec Titi et son orchestre !</strong></li>
               <li><strong>Le concert de Kamélia est annulé.</strong></li>
               <li><strong>Inline Block trio sera en résidence le jeudi 17 juin.</strong></li>

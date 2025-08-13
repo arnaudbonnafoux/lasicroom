@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
+import '../styles/gestion_reservations.css';
 //import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -34,7 +35,8 @@ const Dashboard = () => {
 
       <main style={{height:'100vh'}}>
         <h1>Mes réservations</h1>
-        <table>
+        <div className='div_tableau'>
+        <table className='div_tableau'>
           <thead>
             <tr>
               <th>#</th>
@@ -58,6 +60,7 @@ const Dashboard = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </main>
       <Footer />
     </div>

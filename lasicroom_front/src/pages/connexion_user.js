@@ -65,7 +65,7 @@ function ConnexionUser() {
               onChange={(e) => setMotDePasse(e.target.value)}
               required
             /><br />
-            <button type="submit">Se connecter</button>
+            <button className='button_bleu' type="submit">Se connecter</button>
           </form>
         </div>
         <img src="/images/photo_2.jpg"

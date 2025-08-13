@@ -86,7 +86,7 @@ function Inscription() {
           <option value="admin">Admin</option>
         </select>
         */}
-            <button type="submit">S'inscrire</button>
+            <button className='button_bleu' type="submit">S'inscrire</button>
             {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
           </form>
         </div>

@@ -238,7 +238,7 @@ const GestionArtistes = () => {
                 />
                 <div className='modal_actions'>
                   <button className='button_form' type="submit">Valider</button>
-                  <button className='button_form button_supprimer' type="button" onClick={() => {
+                  <button className='button_form' type="button" onClick={() => {
                     setIsModalOpen(false);
                     setSelectedArtiste(null);
                   }}>Annuler</button>
@@ -272,8 +272,8 @@ const GestionArtistes = () => {
                     <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
                   ) : '—'}</td>
                   <td>
-                    <button className='button_table' onClick={() => handleEditClick(artiste)}>Modifier</button>
-                    <button className='button_table button_supprimer' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
+                    <button className='button_tab' style={{marginRight:'6px'}} onClick={() => handleEditClick(artiste)}>Modifier</button>
+                    <button className='button_form' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
                   </td>
                 </tr>
               ))}

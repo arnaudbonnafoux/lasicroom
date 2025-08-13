@@ -110,7 +110,7 @@ const Billetterie = () => {
 
         <button
           onClick={handlePayer}
-          className="btn_payer"
+          className="btn_payer button_bleu"
           disabled={!selectedConcert}
         >
           Payer
