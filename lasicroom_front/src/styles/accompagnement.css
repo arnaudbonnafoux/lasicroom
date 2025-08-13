@@ -72,7 +72,7 @@
 }
 
 /* Tablette */
-@media screen and (max-width:810px) and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
 
     .formulaire {
         text-align: center;

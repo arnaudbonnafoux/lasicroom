@@ -12,7 +12,6 @@ th,
 td {
   padding: 12px;
   border: 1px solid #ccc;
-  /*text-align: left;*/
 }
 
 .form_ajout_concert {
@@ -86,4 +85,17 @@ td {
   display: flex;
   gap: 10px;
   justify-content: center;
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .form_ajout_concert, .form_modif_concert {
+    width: 85%;
+  }
+  .input_form {
+    width: 75%;
+  }
+  .button_form {
+    font-size: 10px;
+  }
 }

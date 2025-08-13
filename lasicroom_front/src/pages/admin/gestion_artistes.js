@@ -272,8 +272,8 @@ const GestionArtistes = () => {
                     <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
                   ) : '—'}</td>
                   <td>
-                    <button className='button_tab' style={{marginRight:'6px'}} onClick={() => handleEditClick(artiste)}>Modifier</button>
-                    <button className='button_form' onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
+                    <button className='button_tab' onClick={() => handleEditClick(artiste)}>Modifier</button>
+                    <button className='button_tab' style={{marginTop:'6px'}} onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
                   </td>
                 </tr>
               ))}

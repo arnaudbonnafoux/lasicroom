@@ -40,7 +40,7 @@ h1 {
 }
 
 .button_bleu {
-  font-weight:bold;
+  font-weight: bold;
   border: none;
   padding: 0.5em 1em;
   cursor: pointer;
@@ -128,13 +128,21 @@ textarea {
 /* Animation */
 
 .animation_1 {
-    animation: clignote 5s infinite;
+  animation: clignote 5s infinite;
 }
 
 @keyframes clignote {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Mobile */
@@ -153,8 +161,8 @@ textarea {
     font-size: medium;
   }
 
-  table {
-    font-size: small;
+  th, td {
+    font-size: 10px;
   }
 
   p {
@@ -175,10 +183,34 @@ textarea {
     order: -1;
     align-self: flex-end;
   }
+
+  li {
+    padding: 6px 6px;
+    font-size: small;
+  }
+
+  .div_tableau {
+    min-width: 300px;
+    /* ajuste en fonction du nombre de colonnes */
+    border-collapse: collapse;
+  }
+
+  .button_rouge,
+  .button_bleu {
+    font-size: 10px;
+  }
+
+  .button_rouge {
+    margin-bottom: 6px;
+  }
+
+  .button_tab {
+    font-size: 10px;
+  }
 }
 
 /* Tablette */
-@media screen and (max-width: 810px) and (max-width : 1024px) {
+@media screen and (max-width : 1024px) {
 
   table {
     font-size: small;

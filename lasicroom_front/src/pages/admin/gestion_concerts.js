@@ -189,7 +189,7 @@ const GestionConcerts = () => {
       <HeaderAdmin />
       <div className='div_navbar'>
         <NavbarAdmin />
-        <button className='button_rouge' onClick={handleDeconnexion}>Déconnexion</button>
+        <button className='button_rouge' onClick={handleDeconnexion}>👉Déconnexion</button>
       </div>
 
       <main>
@@ -243,7 +243,7 @@ const GestionConcerts = () => {
                     <td>{concert.tarif_abonne} €</td>
                     <td>{concert.nom_artiste || '—'}</td>
                     <td>
-                      <button className='button_tab' onClick={() => handleEdit(concert)}>Modifier</button>
+                      <button className='button_tab'style={{marginRight:'6px'}} onClick={() => handleEdit(concert)}>Modifier</button>
                       <button className='button_tab' style={{marginTop:'6px'}} onClick={() => handleDelete(concert.id_concert)}>Supprimer</button>
                     </td>
                   </tr>

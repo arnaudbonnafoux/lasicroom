@@ -87,3 +87,30 @@ td {
   gap: 10px;
   justify-content: center;
 }
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .form_ajout_artiste, .form_modif_artiste {
+    width: 85%;
+  }
+  .input_form {
+    width: 75%;
+  }
+  .button_form {
+    font-size: 10px;
+  }
+}
+
+/* Tablette */
+@media screen and (max-width: 1024px) {
+  .form_ajout_artiste, .form_modif_artiste {
+    width: 85%;
+  }
+  .input_form {
+    width: 75%;
+  }
+  .button_form {
+    font-size: 12px;
+  }
+}
+

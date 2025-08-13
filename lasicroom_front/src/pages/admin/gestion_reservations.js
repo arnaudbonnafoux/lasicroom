@@ -116,8 +116,6 @@ const GestionReservations = () => {
         </div>
 
       </main>
-
-      <Footer />
     </div>
   );
 };

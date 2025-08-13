@@ -41,7 +41,7 @@ Mobile */
     .info,
     .image_présentation {
         text-align: justify;
-        font-size: small;
+        /*font-size: small;*/
         width: 95%;
     }
 
@@ -70,7 +70,7 @@ Mobile */
 }
 
 /* Tablette */
-@media screen and (max-width: 810px) and (max-width : 1024px) {
+@media screen and (max-width : 1024px) {
 
     .div_accueil,
     .div_live_streaming {
@@ -106,5 +106,12 @@ Mobile */
 
     h2 {
         font-size: large;
+    }
+}
+
+@media screen and (max-width : 1080px) {
+
+    iframe {
+        width: 450px;
     }
 }

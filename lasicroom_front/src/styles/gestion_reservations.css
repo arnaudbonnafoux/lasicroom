@@ -13,3 +13,16 @@ th, td {
   border: 1px solid #ccc;
   /*text-align: left;*/
 }
+
+/* Mobile */
+
+@media screen and (max-width: 767px) {
+
+.div_tableau {
+  min-width: 300px; /* ajuste en fonction du nombre de colonnes */
+  border-collapse: collapse;
+}
+
+}
+  
+
