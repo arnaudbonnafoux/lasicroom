@@ -54,9 +54,9 @@ Mobile */
         text-align: center;
     }
 
-    iframe {
-        width: 95%;
-    }
+    /*iframe {
+        max-width: 75%:
+    } */
 
     .div_frame {
         display: flex;
@@ -101,7 +101,7 @@ Mobile */
     }
 
     iframe {
-        width: 750 px;
+        max-width: 100%;
     }
 
     h2 {
@@ -112,6 +112,7 @@ Mobile */
 @media screen and (max-width : 1080px) {
 
     iframe {
-        width: 450px;
+        max-width: 100%;
     }
 }
+

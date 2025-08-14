@@ -79,9 +79,6 @@ const Billetterie = () => {
     <div>
       <HeaderUser />
       <NavbarUser />
-      {/*<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
-      </div>*/}
       <h1>Billetterie</h1>
       <div className="bloc">
         <label htmlFor="concert-select">Choisissez un concert :</label>

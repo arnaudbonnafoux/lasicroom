@@ -21,13 +21,13 @@ mobile
 
 @media screen and (max-width: 767px) {
     .titre {
-        font-size: x-large;
+        font-size: large;
     }
 }
 
 /* Tablettre */
 @media screen and (max-width: 1024px) {
     .titre {
-        font-size: xx-large;
+        font-size: x-large;
     }
 }

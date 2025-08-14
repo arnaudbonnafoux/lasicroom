@@ -13,7 +13,7 @@
 /* Mobile */
 @media screen and (max-width:767px) {
     .liens {
-        font-size: medium;
+        font-size: small;
     }
 
     .liens:hover {
