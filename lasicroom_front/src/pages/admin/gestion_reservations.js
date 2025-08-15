@@ -91,7 +91,8 @@ const GestionReservations = () => {
             <tbody>
               {reservations.map((reservation, index) => (
                 <tr key={reservation.id_reservation}>
-                  <td>{index + 1}</td>
+                  <td>{reservations.length - index}</td> {/* colonne # inversée */}
+                  {/*<td>{index + 1}</td>*/}
                   <td>{reservation.nom_utilisateur}</td>
                   <td>{reservation.email}</td>
                   <td>{reservation.titre_concert}</td>

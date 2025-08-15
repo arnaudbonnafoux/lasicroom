@@ -50,7 +50,8 @@ const Dashboard = () => {
           <tbody>
             {reservations.map((r, i) => (
               <tr key={r.id_reservation}>
-                <td>{i + 1}</td>
+                <td>{reservations.length - i}</td> {/* colonne # inversée */}
+                {/*<td>{i + 1}</td>*/}
                 <td>{r.concert}</td>
                 <td>{new Date(r.date_concert).toLocaleDateString()}</td>
                 <td>{r.type_tarif}</td>

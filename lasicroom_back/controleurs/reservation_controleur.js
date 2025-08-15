@@ -1,4 +1,6 @@
 const baseDeDonnees = require('../db');
+//const nodemailer = require('nodemailer');
+const envoyerEmailReservation = require('../email');
 
 // delete
 exports.supprimerReservation = async (req, res) => {
@@ -36,7 +38,65 @@ exports.supprimerReservation = async (req, res) => {
     }
 };
 
+//post + email
 
+exports.creerReservation = async (req, res) => {
+    const { id_concert, type_tarif, montant } = req.body;
+    const id_utilisateur = req.utilisateur.id;
+
+    try {
+        // 1️⃣ Vérification du concert
+        const verificationConcert = await baseDeDonnees.query(
+            `SELECT nb_places_restantes, titre FROM concert WHERE id_concert = $1`,
+            [id_concert]
+        );
+
+        if (verificationConcert.rowCount === 0) {
+            return res.status(404).json({ erreur: "Concert non trouvé." });
+        }
+
+        const placesRestantes = verificationConcert.rows[0].nb_places_restantes;
+        const titreConcert = verificationConcert.rows[0].titre;
+
+        if (placesRestantes <= 0) {
+            return res.status(409).json({ erreur: "Aucune place restante pour ce concert." });
+        }
+
+        // 2️⃣ Insertion de la réservation
+        const resultat = await baseDeDonnees.query(
+            `INSERT INTO reservation (id_utilisateur, id_concert, type_tarif, montant)
+             VALUES ($1, $2, $3, $4)
+             RETURNING *`,
+            [id_utilisateur, id_concert, type_tarif, montant]
+        );
+
+        const reservation = resultat.rows[0];
+
+        // 3️⃣ Récupérer les infos de l'utilisateur pour l'email
+        const userResult = await baseDeDonnees.query(
+            `SELECT nom, email FROM utilisateur WHERE id_utilisateur = $1`,
+            [id_utilisateur]
+        );
+        const utilisateur = userResult.rows[0];
+
+        // 4️⃣ Envoyer l'email via Mailtrap
+        await envoyerEmailReservation(utilisateur.email, {
+            nom: utilisateur.nom,
+            concert: titreConcert,
+            type_tarif,
+            montant
+        });
+
+        // 5️⃣ Retourner la réservation au front
+        res.status(201).json(reservation);
+
+    } catch (erreur) {
+        console.error("Erreur dans creerReservation :", erreur);
+        res.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
+    }
+};
+
+/*
 // post
 exports.creerReservation = async (req, res) => {
     const {
@@ -86,7 +146,7 @@ exports.creerReservation = async (req, res) => {
         console.error("Erreur dans creerReservation :", erreur);
         res.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
     }
-};
+};*/
 
 // get
 exports.obtenirReservations = async (req, res) => {
@@ -112,28 +172,6 @@ exports.obtenirReservations = async (req, res) => {
     }
 };
 
-/*
-exports.getReservationsByUser = async (req, res) => {
-  try {
-    const id_utilisateur = req.utilisateur.id;
-
-    const query = `
-      SELECT r.id_reservation, r.date_reservation, r.type_tarif, r.montant,
-             c.titre AS titre_concert,
-             c.date_concert
-      FROM reservation r
-      JOIN concert c ON r.id_concert = c.id_concert
-      WHERE r.id_utilisateur = $1
-      ORDER BY r.date_reservation DESC
-    `;
-
-    const { rows } = await baseDeDonnees.query(query, [id_utilisateur]);
-    res.json(rows);
-  } catch (err) {
-    console.error('Erreur getReservationsByUser:', err);
-    res.status(500).json({ message: "Erreur serveur lors de la récupération des réservations" });
-  }
-};*/
 
 exports.getReservationsByUser = async (req, res) => {
   try {

@@ -163,4 +163,5 @@ lasicroom_back/.vscode
 structure.txt
 fermeture_nginx.sh
 ouvrir_nginx.sh
+lasicroom_back/email.js
 

@@ -56,7 +56,7 @@ const Accueil = () => {
         <div className='div_live_streaming'>
           <div className='div_frame'>
             <h2 style={{ textAlign: 'center' }}>
-              Le direct live des balances
+              Découvre notre salle !
             </h2>
             <iframe
               style={{
