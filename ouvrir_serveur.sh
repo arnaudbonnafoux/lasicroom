@@ -1,31 +1,49 @@
 #!/bin/bash
 
-echo "🚀 Démarrage de Nginx et ouverture des ports 80 et 443..."
+# Couleurs pour le terminal
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
+RED="\033[1;31m"
+NC="\033[0m" # Reset
+
+echo -e "${YELLOW}🚀 Démarrage de Nginx et ouverture des ports 80 et 443...${NC}"
 
 # Autoriser les ports HTTP et HTTPS
 sudo ufw allow 80
 sudo ufw allow 443
 
-# Activer nginx au démarrage
+# Activer nginx au démarrage et le démarrer si non actif
 sudo systemctl enable nginx
+sudo systemctl restart nginx
 
-# Démarrer nginx
-sudo systemctl start nginx
+# Vérifier que Nginx fonctionne
+if ! systemctl is-active --quiet nginx; then
+    echo -e "${RED}❌ Nginx n'a pas pu démarrer.${NC}"
+    exit 1
+fi
 
-echo "✅ Nginx est lancé et les ports 80/443 sont ouverts."
+echo -e "${GREEN}✅ Nginx est lancé et les ports 80/443 sont ouverts.${NC}"
 
 # Construire le front React
-echo "🔨 Construction du front React..."
-cd /home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_front || { echo "Dossier front non trouvé !"; exit 1; }
-npm install
-npm run build
+FRONT_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_front"
+echo -e "${YELLOW}🔨 Construction du front React...${NC}"
+cd "$FRONT_DIR" || { echo -e "${RED}❌ Dossier front non trouvé !${NC}"; exit 1; }
 
-echo "✅ Front React construit."
+npm install
+if ! npm run build; then
+    echo -e "${RED}❌ La build React a échoué.${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}✅ Front React construit.${NC}"
 
 # Lancer le back Node.js
-echo "▶️ Lancement du serveur Node.js..."
-cd /home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back || { echo "Dossier back non trouvé !"; exit 1; }
-npm install
-npm run dev &
+BACK_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back"
+echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
+cd "$BACK_DIR" || { echo -e "${RED}❌ Dossier back non trouvé !${NC}"; exit 1; }
 
-echo "✅ Serveur Node.js lancé en arrière-plan."
+npm install
+# Lancer en arrière-plan avec nohup et logging
+nohup npm run dev > back.log 2>&1 &
+
+echo -e "${GREEN}✅ Serveur Node.js lancé en arrière-plan. Logs: $BACK_DIR/back.log${NC}"

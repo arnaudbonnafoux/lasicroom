@@ -1,22 +1,38 @@
 #!/bin/bash
 
-echo "🛑 Arrêt de Nginx..."
+# Couleurs pour le terminal
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
+RED="\033[1;31m"
+NC="\033[0m" # Reset
 
-# Arrêter nginx
-sudo systemctl stop nginx
+echo -e "${YELLOW}🛑 Arrêt de Nginx...${NC}"
 
-echo "✅ Nginx arrêté."
-
-echo "🛑 Arrêt du serveur Node.js..."
-
-# Trouver le PID du processus node lancé avec 'npm run dev'
-# Ici on cherche le processus 'node' qui tourne dans ton dossier back
-NODE_PID=$(pgrep -f "node.*/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back")
-
-if [ -z "$NODE_PID" ]; then
-  echo "⚠️ Serveur Node.js non trouvé."
+# Arrêter Nginx
+if sudo systemctl stop nginx; then
+    echo -e "${GREEN}✅ Nginx arrêté.${NC}"
 else
-  echo "Kill du processus Node.js (PID: $NODE_PID)..."
-  kill $NODE_PID
-  echo "✅ Serveur Node.js arrêté."
+    echo -e "${RED}❌ Impossible d'arrêter Nginx.${NC}"
+fi
+
+echo -e "${YELLOW}🛑 Arrêt du serveur Node.js...${NC}"
+
+# Trouver tous les PID des processus node dans ton dossier back
+BACK_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back"
+NODE_PIDS=$(pgrep -f "node.*$BACK_DIR")
+
+if [ -z "$NODE_PIDS" ]; then
+    echo -e "${YELLOW}⚠️ Aucun serveur Node.js trouvé.${NC}"
+else
+    for PID in $NODE_PIDS; do
+        echo -e "⏹ Kill du processus Node.js (PID: $PID)..."
+        kill $PID
+        # Attendre 5 secondes, puis forcer si nécessaire
+        sleep 5
+        if kill -0 $PID 2>/dev/null; then
+            echo -e "${RED}⚠️ Le processus $PID ne s'est pas arrêté. Kill -KILL...${NC}"
+            kill -9 $PID
+        fi
+        echo -e "${GREEN}✅ Processus Node.js $PID arrêté.${NC}"
+    done
 fi
