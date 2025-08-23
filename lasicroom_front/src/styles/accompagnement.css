@@ -27,6 +27,7 @@
 
 
 .formulaire {   
+    background-color: rgba(30, 144, 255, 0.050);
     padding: 24px;
     border-radius: 12px;
     display: inline-block;

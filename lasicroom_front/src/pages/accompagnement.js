@@ -138,7 +138,7 @@ const Accompagnement = () => {
               rows="4"
               value={formData.message}
               onChange={handleChange}
-              style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}
+              //style={{ boxShadow: '0 8px 16px rgba(0, 0, 0, 0.75)' }}
             ></textarea>
             {errors.message && <p style={{ color: 'red' }}>{errors.message}</p>}
           </div>

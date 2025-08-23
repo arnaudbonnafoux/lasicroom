@@ -4,7 +4,8 @@
   box-sizing: border-box;
   border-radius: 12px;
   /*background-color: #f9f9f9;*/
-  background-color: ghostwhite;
+  background-color: rgba(30, 144, 255, 0.050);
+  /*background-color: ghostwhite;*/
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

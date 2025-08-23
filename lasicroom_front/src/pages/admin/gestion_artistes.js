@@ -180,6 +180,7 @@ const GestionArtistes = () => {
           <input
             className='input_form'
             type="file"
+            placeholder='Photo'
             accept="image/*"
             onChange={(e) => setNewArtiste({ ...newArtiste, photo: e.target.files[0] })}
             required
@@ -209,6 +210,7 @@ const GestionArtistes = () => {
                 <input
                   className='input_form'
                   type="text"
+                  placeholder='Nom'
                   value={selectedArtiste.nom_artiste || ''}
                   onChange={e => setSelectedArtiste({ ...selectedArtiste, nom_artiste: e.target.value })}
                   required
@@ -216,23 +218,27 @@ const GestionArtistes = () => {
                 <input
                   className='input_form'
                   type="text"
+                  placeholder='Style musical'
                   value={selectedArtiste.style_musical || ''}
                   onChange={e => setSelectedArtiste({ ...selectedArtiste, style_musical: e.target.value })}
                 />
                 <textarea
                   className='textarea_form'
+                  placeholder='Descriptif'
                   value={selectedArtiste.description || ''}
                   onChange={e => setSelectedArtiste({ ...selectedArtiste, description: e.target.value })}
                 />
                 <input
                   className='input_form'
                   type="file"
+                  placeholder='Photo'
                   accept="image/*"
                   onChange={e => setUpdatedPhoto(e.target.files[0])}
                 />
                 <input
                   className='input_form'
                   type="text"
+                  placeholder='Lien vidéo'
                   value={selectedArtiste.lien_video || ''}
                   onChange={e => setSelectedArtiste({ ...selectedArtiste, lien_video: e.target.value })}
                 />
@@ -272,7 +278,7 @@ const GestionArtistes = () => {
                     <a href={artiste.lien_video} target="_blank" rel="noopener noreferrer">Voir</a>
                   ) : '—'}</td>
                   <td>
-                    <button className='button_tab' onClick={() => handleEditClick(artiste)}>Modifier</button>
+                    <button className='button_tab' style={{marginRight:'6px'}} onClick={() => handleEditClick(artiste)}>Modifier</button>
                     <button className='button_tab' style={{marginTop:'6px'}} onClick={() => handleDelete(artiste.id_artiste)}>Supprimer</button>
                   </td>
                 </tr>

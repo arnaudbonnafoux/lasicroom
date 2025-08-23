@@ -200,7 +200,7 @@ const GestionConcerts = () => {
           <h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>
           <input className='input_form' type="text" placeholder="Titre" value={titre} onChange={e => setTitre(e.target.value)} required />
           <textarea className='textarea_form' placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} required />
-          <input className='input_form' type="datetime-local" value={dateConcert} onChange={e => setDateConcert(e.target.value)} required />
+          <input className='input_form' type="datetime-local" placeholder='Date' value={dateConcert} onChange={e => setDateConcert(e.target.value)} required />
           <input className='input_form' type="number" placeholder="Places totales" value={nbPlacesTotal} onChange={e => setNbPlacesTotal(e.target.value)} required />
           <input className='input_form' type="number" placeholder="Tarif plein (€)" value={tarifPlein} onChange={e => setTarifPlein(e.target.value)} required />
           <input className='input_form' type="number" placeholder="Tarif abonné (€)" value={tarifAbonne} onChange={e => setTarifAbonne(e.target.value)} required />
@@ -278,6 +278,7 @@ const GestionConcerts = () => {
                 <input
                   className='input_form'
                   type="datetime-local"
+                  placeholder='Date'
                   value={dateConcert}
                   onChange={e => setDateConcert(e.target.value)}
                   required
