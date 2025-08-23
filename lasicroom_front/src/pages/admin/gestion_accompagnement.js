@@ -81,9 +81,10 @@ const GestionAccompagnement = () => {
               </tr>
             </thead>
             <tbody>
-              {demandes.map((demande) => (
+              {demandes.map((demande, index) => (
                 <tr key={demande.id_demande}>
-                  <td>{demande.id_demande}</td>
+                  {/*<td>{demande.id_demande}</td>*/}
+                  <td>{index + 1}</td>
                   <td>{demande.nom_artiste}</td>
                   <td>{demande.email_artiste}</td>
                   <td>{demande.style_musical}</td>

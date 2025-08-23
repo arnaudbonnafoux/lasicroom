@@ -1,12 +1,23 @@
 // import
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
+const morgan = require('morgan');
 require('dotenv').config();
 
 // Instanciation de l'application Express
 const app = express();
 
+app.use(morgan('dev'));
+
 app.use(express.json()); // Pour traiter les requêtes JSON
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // Activer plus tard si besoin
+    hsts: false                  // Désactive HSTS car HTTPS pas en prod
+  })
+);
 
 // Dossier statique pour les photos
 app.use('/photos_artistes', express.static(path.join(__dirname, 'photos_artistes')));

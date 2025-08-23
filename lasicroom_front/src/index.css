@@ -68,7 +68,7 @@ ul {
 }
 
 li {
-  color: rgba(220, 20, 60, 0.5);
+  /*color: rgba(220, 20, 60, 1);*/
   font-weight: 400;
   margin: 0 auto;
   padding: 6px 6px;

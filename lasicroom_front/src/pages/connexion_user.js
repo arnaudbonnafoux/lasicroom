@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
-import '../styles/connexion.css'
+import '../styles/connexion.css';
+
+// 🛡️ Import des fonctions de validation
+import { validateEmail, validatePassword } from '../utils/validation';
 
 function ConnexionUser() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const [erreur, setErreur] = useState('');
+  const [erreurs, setErreurs] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErreur('');
+    setErreurs({});
+
+    // ⚡ Validation locale
+    const newErrors = {};
+    newErrors.email = validateEmail(email);
+    newErrors.motDePasse = validatePassword(motDePasse);
+
+    const filteredErrors = Object.fromEntries(
+      Object.entries(newErrors).filter(([_, v]) => v !== null)
+    );
+
+    setErreurs(filteredErrors);
+
+    if (Object.keys(filteredErrors).length > 0) return; // Stop si erreurs
 
     try {
       const reponse = await fetch('/api/connexions', {
@@ -21,35 +37,35 @@ function ConnexionUser() {
         },
         body: JSON.stringify({ email, mot_de_passe: motDePasse }),
       });
+
       if (reponse.ok) {
         const donnees = await reponse.json();
-        // Stocke le token dans la session
+
         if (donnees.token) {
           sessionStorage.setItem('token', donnees.token);
-
-          sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur)); // modif
+          sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
         }
-        console.log('Utilisateur connecté :', donnees);
-        // Redirection vers la page billetterie après succès
+
+        console.log('✅ Utilisateur connecté :', donnees);
         navigate('/accueil_user');
       } else {
         const erreurReponse = await reponse.json();
-        setErreur(erreurReponse.message || 'Échec de la connexion');
+        setErreurs({ global: erreurReponse.message || 'Échec de la connexion' });
       }
     } catch (err) {
-      setErreur('Erreur réseau ou serveur');
+      setErreurs({ global: 'Erreur réseau ou serveur' });
     }
   };
 
   return (
     <div>
-      {/*<Header />*/}
       <Navbar />
       <main className='display_main'>
-
         <div>
           <h2 className='style_h2' style={{ textAlign: 'center', fontSize: 'xx-large' }}>Connexion</h2>
-          {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+
+          {erreurs.global && <p style={{ color: 'red' }}>{erreurs.global}</p>}
+
           <form onSubmit={handleSubmit} className='style_form'>
             <input
               type="email"
@@ -57,21 +73,30 @@ function ConnexionUser() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-            /><br />
+            />
+            {erreurs.email && <p style={{ color: 'red' }}>{erreurs.email}</p>}
+            <br />
+
             <input
               type="password"
               placeholder="Mot de passe"
               value={motDePasse}
               onChange={(e) => setMotDePasse(e.target.value)}
               required
-            /><br />
+            />
+            {erreurs.motDePasse && <p style={{ color: 'red' }}>{erreurs.motDePasse}</p>}
+            <br />
+
             <button className='button_bleu' type="submit">Se connecter</button>
           </form>
         </div>
-        <img src="/images/photo_2.jpg"
-          alt='Le public devant la scène' className='style_image' />
+
+        <img
+          src="/images/photo_2.jpg"
+          alt='Le public devant la scène'
+          className='style_image'
+        />
       </main>
-      {/*<Footer />*/}
     </div>
   );
 }
