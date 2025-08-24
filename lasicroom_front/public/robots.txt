@@ -1,3 +1,24 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for La sicRoom
+
 User-agent: *
-Disallow: /pages/admin
+# Autoriser l'indexation du site
+Allow: /
+
+# Bloquer les répertoires non pertinents pour le SEO
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /__tests__/
+Disallow: /documentation_technique/
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.sh$
+Disallow: /back.log
+
+# Empêcher l'accès aux fichiers sensibles
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /README.md
+Disallow: /LICENSE
+
+# Sitemap
+Sitemap: https://www.ip/sitemap.xml

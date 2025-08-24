@@ -17,6 +17,7 @@ const CardConcert = ({ concert, fullWidth = false }) => {
         className='image_card'
         src={`/${concert.photo}`}
         alt={concert.nom_artiste}
+        loading="lazy" 
       />
 
       {concert.lien_video && (

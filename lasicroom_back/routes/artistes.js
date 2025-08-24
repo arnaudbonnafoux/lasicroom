@@ -1,6 +1,8 @@
 const express = require('express');
 const routeur = express.Router();
 const artisteControleur = require('../controleurs/artiste_controleur');
+
+const compresserImage = require('../middlewares/compressionImage');
 const upload = require('../middlewares/multerConfig');
 
 const authMiddleware = require('../middlewares/authMiddleware');  // vérifie token JWT
@@ -10,8 +12,8 @@ const isAdmin = require('../middlewares/isAdmin');                // vérifie r�
 routeur.get('/', artisteControleur.obtenirArtiste);
 
 // Routes sécurisées : seul admin peut créer, modifier ou supprimer
-routeur.post('/', authMiddleware, isAdmin, upload.single('photo'), artisteControleur.creerArtiste);
-routeur.put('/:id', authMiddleware, isAdmin, upload.single('photo'), artisteControleur.mettreAJourArtiste);
+routeur.post('/', authMiddleware, isAdmin, upload.single('photo'), compresserImage, artisteControleur.creerArtiste);
+routeur.put('/:id', authMiddleware, isAdmin, upload.single('photo'), compresserImage, artisteControleur.mettreAJourArtiste);
 routeur.delete('/:id', authMiddleware, isAdmin, artisteControleur.supprimerArtiste);
 
 module.exports = routeur;
