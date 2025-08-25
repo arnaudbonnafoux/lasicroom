@@ -31,7 +31,7 @@
   User-agent: *
   Allow: /
 
-  Sitemap: https://90.0.91.102/sitemap.xml
+  Sitemap: https://ip/sitemap.xml
   ```
 
 * Ce fichier contrôle l’accès des robots aux pages du site et indique l’emplacement du sitemap.
@@ -67,7 +67,7 @@
 
 ## 6. Points à prévoir pour la mise en production
 
-* Remplacer l’IP publique (`https://90.0.91.102/`) par le **futur nom de domaine**.
+* Remplacer l’IP publique (`https://ip/`) par le **futur nom de domaine**.
 * Vérifier le sitemap et le robots.txt après la mise en ligne.
 * Éventuellement ajouter l’intégration de **Google Search Console** pour suivre l’indexation.
 

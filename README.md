@@ -1,13 +1,34 @@
-# Présentation
+# 🎶 La sicRoom – Application Web pour une S.M.A.C.
 
-Le projet consiste à développer une application web pour une salle de concert S.M.A.C., spécialisée dans les musiques actuelles : La sicRoom. Cette plateforme doit permettre de présenter la programmation musicale, vendre des billets en ligne, proposer un espace d’accompagnement pour les artistes, et rendre accessible du contenu multimédia (vidéos, live stream, ressources pédagogiques).
-Le site s’adresse à plusieurs types d’utilisateurs : le grand public, les artistes locaux, et les administrateurs de la salle.
+## 📌 Présentation  
 
-## Licence
+Le projet consiste à développer une application web pour une salle de concert **S.M.A.C.**, spécialisée dans les musiques actuelles : **La sicRoom**.  
 
-Ce projet est sous licence libre **Non-Commercial - ShareAlike**.  
-Voir le fichier [LICENSE](./LICENSE) pour les détails.  
-L’usage commercial est strictement interdit sans l’accord explicite de l’auteur (duanrA).
+Cette plateforme permet de :  
+- présenter la programmation musicale,  
+- vendre des billets en ligne,  
+- proposer un espace d’accompagnement pour les artistes locaux,  
+- rendre accessible du contenu multimédia *(vidéos, live stream, ressources pédagogiques)*.  
+
+Le site s’adresse à plusieurs types d’utilisateurs :  
+- **Grand public** : découvrir la salle et acheter des billets,  
+- **Artistes locaux** : bénéficier d’un espace dédié pour leur accompagnement,  
+- **Administrateurs** : gérer la billetterie et la programmation.  
+
+---
+
+## 🚀 Fonctionnalités principales  
+
+- 🎤 **Programmation** : affichage clair des concerts à venir.  
+- 🎟 **Billetterie en ligne** : achat et réservation sécurisés.  
+- 👩‍🎤 **Espace artistes** : dépôt de dossiers, suivi et accompagnement.  
+- 📺 **Contenu multimédia** : vidéos, live stream, supports pédagogiques.  
+- 🛠 **Interface admin** : gestion simplifiée de la salle et des événements.  
+
+
+
+
+
 
 
 

@@ -1,3 +1,30 @@
+# LasiRoom 
+lasicroom_back/node_modules
+lasicroom_front/node_modules
+lasicroom_back/.env
+.vscode/
+base_de_données/
+bash/
+bootstrap/
+figma/
+documentation/
+La sicRoom.session.sql
+
+docs/
+gen_arbo.sh
+lasicroom_front/gen_arbo.sh
+lasicroom_front/structure.txt
+
+lasicroom_back/structure.txt
+lasicroom_back/gen_arbo.sh
+lasicroom_back/script_licence.sh
+lasicroom_back/.vscode 
+
+structure.txt
+fermeture_nginx.sh
+ouvrir_nginx.sh
+lasicroom_back/email.js
+
 # Logs
 logs
 *.log
@@ -134,34 +161,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Arnaud
-lasicroom_back/node_modules
-lasicroom_front/node_modules
-lasicroom_back/.env
-.vscode/
-base_de_données/
-bash/
-bootstrap/
-figma/
-documentation/
-La sicRoom.session.sql
-lasicroom_back/lasicroom2.session.sql
-lasicroom_front/Postgres_1.session.sql
-Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
-Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
-docs/
-gen_arbo.sh
-lasicroom_front/gen_arbo.sh
-lasicroom_front/structure.txt
-
-lasicroom_back/structure.txt
-lasicroom_back/gen_arbo.sh
-lasicroom_back/script_licence.sh
-lasicroom_back/.vscode 
-
-structure.txt
-fermeture_nginx.sh
-ouvrir_nginx.sh
-lasicroom_back/email.js
 
