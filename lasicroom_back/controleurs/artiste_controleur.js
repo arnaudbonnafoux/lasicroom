@@ -2,7 +2,7 @@ const baseDeDonnees = require('../db');
 const xss = require('xss');
 const validator = require('validator');
 
-// GET
+// get
 exports.obtenirArtiste = async (req, res) => {
   try {
     const { nom } = req.query;
@@ -25,7 +25,7 @@ exports.obtenirArtiste = async (req, res) => {
   }
 };
 
-// POST
+// post
 exports.creerArtiste = async (req, res) => {
   try {
     let { nom_artiste, style_musical, description, lien_video } = req.body;
@@ -53,7 +53,7 @@ exports.creerArtiste = async (req, res) => {
   }
 };
 
-// PUT
+// put
 exports.mettreAJourArtiste = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,7 +86,7 @@ exports.mettreAJourArtiste = async (req, res) => {
   }
 };
 
-// DELETE
+// delete
 exports.supprimerArtiste = async (req, res) => {
   try {
     const { id } = req.params;

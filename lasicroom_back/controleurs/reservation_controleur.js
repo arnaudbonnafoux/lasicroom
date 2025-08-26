@@ -1,5 +1,4 @@
 const baseDeDonnees = require('../db');
-//const nodemailer = require('nodemailer');
 const envoyerEmailReservation = require('../email');
 
 // delete

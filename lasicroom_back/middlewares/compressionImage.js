@@ -29,37 +29,4 @@ const compresserImage = async (req, res, next) => {
 
 module.exports = compresserImage;
 
-/*const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
-
-const compresserImage = async (req, res, next) => {
-  if (!req.file) return next(); // pas de fichier => on passe
-
-  const inputPath = req.file.path;
-  const parsed = path.parse(req.file.filename);
-  const outputFilename = `optimise_${parsed.name}.webp`; // <-- extension webp
-  const outputPath = path.join(path.dirname(inputPath), outputFilename);
-
-  try {
-    await sharp(inputPath)
-      .resize(800)              // largeur max 800px
-      .webp({ quality: 70 })    // conversion WebP
-      .toFile(outputPath);
-
-    // Supprime l'image originale
-    fs.unlinkSync(inputPath);
-
-    // Met à jour req.file pour le controller
-    req.file.filename = outputFilename;
-    req.file.path = outputPath;
-
-    next();
-  } catch (err) {
-    console.error("Erreur compression image :", err);
-    next(err);
-  }
-};
-
-module.exports = compresserImage;*/
 

@@ -27,10 +27,6 @@ const GestionAccompagnement = () => {
       });
   }, [navigate]);
 
-  /*const handleDeconnexion = () => {
-    sessionStorage.removeItem('token');
-    navigate('/');
-  };*/
 
   const handleDelete = async (id) => {
     if (window.confirm('Confirmer la suppression de cette demande ?')) {
@@ -61,10 +57,7 @@ const GestionAccompagnement = () => {
     <div>
       <Header />
       <NavbarAdmin />
-      {/*}
-              <div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
-          <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
-        </div> */}
+
       <main>
         <h1>Gestion des demandes d'accompagnement</h1>
         <div className='div_tableau'>

@@ -7,10 +7,6 @@ import '../styles/accueil.css';
 
 const AccueilUser = () => {
   const navigate = useNavigate();
-
-  /*const handleLoginClick = () => {
-    navigate('/connexion_user');
-  };*/
   const handleLogout = () => {
     sessionStorage.removeItem('token');
     navigate('/'); // Retour à la racine

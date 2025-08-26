@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
   }
 
   try {
-    //const utilisateur = jwt.verify(token, process.env.JWT_SECRET);
     const utilisateur = jwt.verify(token, process.env.CLE_SECRETE);
 
 

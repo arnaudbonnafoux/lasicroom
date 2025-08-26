@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/options.css';
 
 const Options = () => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   return (
     <div className="options-modal-content">

@@ -37,7 +37,7 @@ app.use('/api/reservations', reservationRoutes);
 app.use('/api/accompagnements', accompagnementRoutes);
 app.use('/api/connexions', connexionRoutes);
 
-// Serveur lancé sur le port 3001
+// Backend lancé sur le port 3001
 const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || '0.0.0.0';
 

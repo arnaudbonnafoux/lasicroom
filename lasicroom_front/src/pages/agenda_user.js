@@ -34,9 +34,6 @@ const AgendaUser = () => {
     <div>
       <HeaderUser />
       <NavbarUser />
-      {/*<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
-      </div>*/}
 
       <main>
         <h1>Agenda des concerts</h1>

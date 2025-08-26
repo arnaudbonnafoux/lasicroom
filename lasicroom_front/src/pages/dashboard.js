@@ -20,18 +20,11 @@ const Dashboard = () => {
       .catch(console.error);
   }, [token]);
 
-  /*const handleLogout = () => {
-    sessionStorage.removeItem('token');
-    navigate('/'); // Retour à la racine
-  };*/
+
   return (
     <div>
       <HeaderUser />
       <NavbarUser />
-      {/*<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button className='button_supprimer' onClick={handleLogout}>Déconnexion</button>
-      </div>*/}
-
 
       <main style={{height:'100vh'}}>
         <h1>Mes réservations</h1>

@@ -57,19 +57,12 @@ const GestionReservations = () => {
     }
   };
 
-  /*const handleDeconnexion = () => {
-    sessionStorage.removeItem('token');
-    navigate('/');
-  };*/
 
   return (
     <div>
       <Header />
       <NavbarAdmin />
 
-        {/*<div style={{ display: 'flex', justifyContent: 'end', padding: '24px' }}>
-          <button className='button_supprimer' onClick={handleDeconnexion}>Déconnexion</button>
-        </div>*/}
       <main>
         <h1>Gestion des réservations</h1>
 

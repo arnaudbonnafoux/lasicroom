@@ -27,6 +27,8 @@ Pour le développement de cette application, nous avons choisi :
 - **React** pour le frontend  
 - **PostgreSQL** pour la gestion de la base de données  
 - **Nginx** comme serveur et proxy  
+- **ChatGPT** IA
+- **Copilot** IA 
 
 Le paradigme de programmation est basé sur le **modèle MVC** :  
 - **Model** : gestion des données avec PostgreSQL  

@@ -39,7 +39,7 @@ exports.connecterUtilisateur = async (req, res) => {
       { expiresIn: '2h' }
     );
 
-    // Réponse
+    
     res.json({
       message: "Connexion réussie.",
       token,

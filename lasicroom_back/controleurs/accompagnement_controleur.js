@@ -53,21 +53,6 @@ exports.creerDemande = async (req, res) => {
   }
 };
 
-/*
-// post
-exports.creerDemande = async (req, res) => {
-  const { nom_artiste, email_artiste, style_musical, message } = req.body;
-  try {
-    const resultat = await baseDeDonnees.query(
-      'INSERT INTO accompagnement (nom_artiste, email_artiste, style_musical, message) VALUES ($1, $2, $3, $4) RETURNING *',
-      [nom_artiste, email_artiste, style_musical, message]
-    );
-    res.status(201).json(resultat.rows[0]);
-  } catch (erreur) {
-    res.status(500).json({ erreur: 'Erreur lors de la création de la demande.' });
-  }
-};*/
-
 // delete
 exports.supprimerDemande = async (req, res) => {
   const { id } = req.params;

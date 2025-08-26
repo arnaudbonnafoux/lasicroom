@@ -70,10 +70,6 @@ const Billetterie = () => {
       alert("Erreur serveur ou réseau.");
     }
   };
-    /*const handleLogout = () => {
-    sessionStorage.removeItem('token');
-    navigate('/'); 
-  };*/
 
   return (
     <div>
