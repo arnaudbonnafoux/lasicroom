@@ -24,3 +24,4 @@ yarn-error.log*
 
 # Arnaud
 lasicroom_front/Postgres_1.session.sql
+lasicroom_back/back.log

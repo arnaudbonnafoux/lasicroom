@@ -80,3 +80,41 @@ Il initialise l’application Express, configure les middlewares globaux, et cha
    * Le port et l’hôte peuvent être personnalisés via les variables d’environnement `PORT` et `HOST`.
    * En console, l’URL locale et publique sont affichées pour simplifier le test en développement.
 
+
+---
+
+## 📄 back.log (Journalisation des requêtes)
+
+Le backend utilise le module **Morgan** pour **journaliser toutes les requêtes HTTP** traitées par Express. Ces informations sont précieuses pour suivre le fonctionnement du serveur et diagnostiquer d’éventuelles erreurs.
+
+### 📑 Contenu
+
+Le fichier [**`back.log`**](../lasicroom_back/back.log) contient, pour chaque requête :
+
+* **Méthode HTTP** : `GET`, `POST`, `PUT`, `DELETE`, etc.
+* **URL demandée** : le chemin de la requête, par exemple `/api/concerts`.
+* **Code de réponse HTTP** : `200`, `404`, `500`, etc.
+* **Temps de réponse** : durée en millisecondes pour traiter la requête.
+* **Taille de la réponse** : en octets, si disponible.
+
+Exemple d’extraits de `back.log` :
+
+```
+GET /api/concerts 200 45.154 ms - 4749
+GET /photos_artistes/the_rockers_1756037311848.webp 304 3.134 ms - -
+```
+
+### 🔹 Utilité
+
+* **Surveillance du backend** : savoir quelles routes sont utilisées et comment le serveur y répond.
+* **Analyse des performances** : identifier les requêtes longues ou lentes.
+* **Debugging** : repérer les erreurs ou comportements inattendus côté serveur.
+
+### 🔹 Remarques
+
+* Le fichier `back.log` est généré par **Morgan** et peut être consulté ou filtré avec des outils comme `tail`, `grep` ou `less`.
+* Bien que Nginx logue également toutes les requêtes, `back.log` fournit une vue **interne côté backend**, montrant exactement comment Express traite chaque requête.
+* Pour l’instant, le fichier est suffisant pour surveiller le backend sans analyser les logs Nginx.
+
+
+

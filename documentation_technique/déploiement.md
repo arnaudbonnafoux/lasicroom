@@ -44,3 +44,40 @@ Ce document décrit la configuration Nginx utilisée pour le projet **LasicRoom*
 ---
 
 > ✅ Cette configuration assure un serveur sécurisé, fonctionnel pour le frontend React et le backend Node.js, tout en respectant les bonnes pratiques de déploiement.
+Bien sûr ! Voici une proposition pour compléter ta documentation Nginx avec une section sur le **script de génération de logs** :
+
+---
+
+## 📄 Surveillance des logs Nginx
+
+Pour suivre l’activité du serveur et diagnostiquer les problèmes, un **script bash** a été ajouté à la racine du projet pour générer un fichier centralisant les logs Nginx.
+
+### 🔹 Script `generer_logs_nginx.sh`
+
+* **Objectif** : récupérer les logs d’accès (`access.log`) et d’erreur (`error.log`) de Nginx dans un seul fichier.
+* **Sortie** : `nginx_logs.txt` ou un autre fichier spécifié.
+* **Fonctionnalités** :
+
+  * Récupère les logs complets ou filtrés par période.
+  * Sépare les logs d’accès et les logs d’erreur avec des en-têtes clairs :
+
+    ```
+    === Nginx Access Log ===
+    === Nginx Error Log ===
+    ```
+  * Permet un suivi rapide de l’activité et des erreurs du serveur.
+
+### 🔹 Exemple d’utilisation
+
+```bash
+sudo ./generer_logs_nginx.sh
+```
+
+* Le fichier généré contiendra l’ensemble des requêtes et erreurs traitées par Nginx.
+* Possibilité de filtrer par période pour analyser uniquement une semaine ou un jour précis.
+
+### 🔹 Avantages
+
+* Permet de **surveiller le serveur** sans accéder directement aux fichiers Nginx.
+* Utile pour le **debug** et la **maintenance**.
+* Complète la journalisation côté backend (`back.log`) pour une vue complète du trafic et du traitement des requêtes.

@@ -25,6 +25,8 @@ fermeture_nginx.sh
 ouvrir_nginx.sh
 lasicroom_back/email.js
 
+nginx_logs
+
 # Logs
 logs
 *.log
