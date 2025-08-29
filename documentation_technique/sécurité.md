@@ -190,3 +190,19 @@
   * monitoring (ex. ELK Stack, Grafana),
   * alertes automatiques en cas de tentative d’attaque.
 
+Parfait 👍 Tu as déjà une super base de sécurisation documentée.
+Voici comment tu peux **intégrer Fail2Ban** dans la section *Améliorations futures* de ton document :
+
+---
+
+### 🛡️ Protection contre les scans et attaques automatisées (Fail2Ban)
+
+* **Actuel :** aucune défense active contre les scans de ports ou les tentatives d’accès anormales sur Nginx (ex. bots envoyant du trafic SMB sur le port 80/443).
+* **Limite :** même si les requêtes sont refusées, l’attaquant peut savoir l'existence dus erveur et continuer ses tests.
+* **Amélioration :** mise en place de **Fail2Ban** pour analyser les logs Nginx et bloquer automatiquement les IP malveillantes :
+
+  * Blocage des IP qui envoient du trafic invalide (ex. SMB sur HTTP).
+  * Réduction de la charge serveur en empêchant les bots insistants.
+  * Intégration avec UFW pour bannir directement les IP au niveau firewall.
+  * Paramétrage personnalisable (ex. `maxretry=1`, `bantime=3600` pour 1h de blocage).
+

@@ -14,7 +14,7 @@ import Dashboard from './pages/dashboard';
 import AgendaUser from './pages/agenda_user';
 
 
-// Cadre légale
+// Cadre légal
 import MentionsLegales from './pages/mentions_legales';
 import ConditionsUtilisation from './pages/conditions_utilisation';
 
@@ -33,6 +33,7 @@ import ConnexionUser from './pages/connexion_user';
 //Routes
 function App() {
   return (
+    // Router englobe toute l’application et active la navigation via les URLs
     <Router>
       <Routes>
         <Route path="/" element={<Accueil />} />

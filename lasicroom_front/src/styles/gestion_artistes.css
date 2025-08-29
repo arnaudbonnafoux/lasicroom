@@ -5,7 +5,6 @@
 
 .div_tableau table {
   min-width: 750px;
-  /* pas plus petit que 810px*/
   border-collapse: collapse;
 }
 
@@ -90,12 +89,16 @@ td {
 
 /* Mobile */
 @media screen and (max-width: 767px) {
-  .form_ajout_artiste, .form_modif_artiste {
+
+  .form_ajout_artiste,
+  .form_modif_artiste {
     width: 85%;
   }
+
   .input_form {
     width: 75%;
   }
+
   .button_form {
     font-size: 10px;
   }
@@ -103,14 +106,17 @@ td {
 
 /* Tablette */
 @media screen and (max-width: 1024px) {
-  .form_ajout_artiste, .form_modif_artiste {
+
+  .form_ajout_artiste,
+  .form_modif_artiste {
     width: 85%;
   }
+
   .input_form {
     width: 75%;
   }
+
   .button_form {
     font-size: 12px;
   }
 }
-

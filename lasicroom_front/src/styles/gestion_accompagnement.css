@@ -4,12 +4,11 @@
 }
 
 .div_tableau table {
-  min-width: 900px; /* ajuste en fonction du nombre de colonnes */
+  min-width: 900px; /* Ajuste en fonction du nombre de colonnes */
   border-collapse: collapse;
 }
 
 th, td {
   padding: 12px;
   border: 1px solid #ccc;
-  /*text-align: left;*/
 }

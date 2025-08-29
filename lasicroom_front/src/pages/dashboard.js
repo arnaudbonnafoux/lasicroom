@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import '../styles/gestion_reservations.css';
-//import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  //const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const token = sessionStorage.getItem('token');
 
@@ -26,34 +23,34 @@ const Dashboard = () => {
       <HeaderUser />
       <NavbarUser />
 
-      <main style={{height:'100vh'}}>
+      <main style={{ height: '100vh' }}>
         <h1>Mes réservations</h1>
         <div className='div_tableau'>
-        <table className='div_tableau'>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Concert</th>
-              <th>Date concert</th>
-              <th>Tarif</th>
-              <th>Montant (€)</th>
-              <th>Date réservation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reservations.map((r, i) => (
-              <tr key={r.id_reservation}>
-                <td>{reservations.length - i}</td> {/* colonne # inversée */}
-                {/*<td>{i + 1}</td>*/}
-                <td>{r.concert}</td>
-                <td>{new Date(r.date_concert).toLocaleDateString()}</td>
-                <td>{r.type_tarif}</td>
-                <td>{r.montant}</td>
-                <td>{new Date(r.date_reservation).toLocaleDateString()}</td>
+          <table className='div_tableau'>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Concert</th>
+                <th>Date concert</th>
+                <th>Tarif</th>
+                <th>Montant (€)</th>
+                <th>Date réservation</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {reservations.map((r, i) => (
+                <tr key={r.id_reservation}>
+                  <td>{reservations.length - i}</td> {/* colonne # inversée */}
+                  {/*<td>{i + 1}</td>*/}
+                  <td>{r.concert}</td>
+                  <td>{new Date(r.date_concert).toLocaleDateString()}</td>
+                  <td>{r.type_tarif}</td>
+                  <td>{r.montant}</td>
+                  <td>{new Date(r.date_reservation).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </main>
       <Footer />

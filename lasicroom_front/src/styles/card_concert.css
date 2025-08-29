@@ -3,9 +3,7 @@
   width: calc(20% - 24px);
   box-sizing: border-box;
   border-radius: 12px;
-  /*background-color: #f9f9f9;*/
   background-color: rgba(30, 144, 255, 0.050);
-  /*background-color: ghostwhite;*/
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -39,7 +37,6 @@
 }
 
 .video_link a {
-  /*color: #e63946;*/
   color: darkred;
   font-weight: bold;
   text-decoration: none;
@@ -57,9 +54,9 @@
   margin: 0.2rem 0;
   font-size: small;
 }
+
 .titre_concert {
-  /*color:  rgba(30, 144, 255, 1);*/
-  color:  rgb(17, 96, 176);
+  color: rgb(17, 96, 176);
   font-size: large;
 }
 
@@ -68,7 +65,6 @@
 }
 
 /* Mobile */
-
 @media screen and (max-width:767px) {
   .card_concert {
     width: 95%;
@@ -80,27 +76,42 @@
 }
 
 /* Tablette */
-
- @media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
 
   .card_concert {
     width: 75%;
   }
 
   .image_card {
-  width: 95%;
-  height: auto;
-  /*object-fit: cover;*/
-  border-radius: 12px;
-}
+    width: 95%;
+    height: auto;
+    border-radius: 12px;
+  }
 
   .card_concert.fullwidth {
     width: 85%;
   }
-
-  /*.card_concert {
-    width: calc(50% - 24px);
-    margin: 12px;
-    box-sizing: border-box;
-  }*/
 }
+/*
+Cette feuille de style CSS définit l’apparence et le comportement des cartes de concert dans l’interface.
+
+La classe .card_concert applique un padding, une largeur de 20 % (ajustée avec calc), 
+un fond légèrement coloré, des coins arrondis et un centrage du texte. 
+Les transitions rendent les effets de survol plus fluides. 
+L’image (.image_card) occupe 95 % de la largeur de la carte, 
+a une hauteur fixe de 200px et garde un ratio harmonieux 
+grâce à object-fit: cover.
+
+L’effet .animation_card:hover ajoute une ombre portée et un léger déplacement vers le haut 
+pour donner du relief à la carte au survol. 
+Quand la classe fullwidth est présente, la carte s’élargit à 75 % (max 800px) et est centrée, 
+avec l’image agrandie à 350px de haut.
+
+Les liens vidéo sont mis en valeur par une couleur rouge foncé et un style gras, 
+avec soulignement au survol. Les tarifs sont espacés et affichés en petit. 
+Les titres de concert et d’artiste sont stylisés pour ressortir visuellement.
+
+Des media queries adaptent la mise en page sur mobile (cartes en pleine largeur) et 
+tablette (cartes à 75 % ou 85 % selon le mode, images redimensionnées). 
+Cela garantit une bonne lisibilité et une expérience utilisateur cohérente sur tous les écrans.
+*/

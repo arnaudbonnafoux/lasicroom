@@ -6,7 +6,7 @@
 }
 
 .liens:hover {
-    color:rgba(30, 144, 255, 1) ;
+    color: rgba(30, 144, 255, 1);
     text-decoration: underline;
 }
 
@@ -17,6 +17,6 @@
     }
 
     .liens:hover {
-    text-decoration: underline;
-}
+        text-decoration: underline;
+    }
 }

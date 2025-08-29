@@ -39,7 +39,7 @@ const AccueilUser = () => {
               En plus de ces fonctionnalités de base, tu auras accès à notre <strong>live streaming</strong> qui te permettra de suivre les balances des groupes programmés à la SicRoom.
               Elles se déroulent généralement à 18h et sont une occasion de découvrir les coulisses et le off des groupes juste avant leur show...
               Bientôt, une rubrique sera consacrée à des ressources pédagogiques qui te permettront de recevoir des conseils de la part des sicos programmés chez nous !
-              Pour quitter cet espace, rends toi sur la page réservation et déconnecte toi. 
+              Pour quitter cet espace, rends toi sur la page réservation et déconnecte toi.
             </p>
           </div>
 

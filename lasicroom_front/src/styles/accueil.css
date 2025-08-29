@@ -23,15 +23,14 @@
     border-radius: 12px;
     width: 15%;
     background-color: rgba(30, 144, 255, 0.050);
-    /*background-color: ghostwhite;*/
 }
 
 /* 
 Média queries
-Mobile */
+Mobile 
+*/
 @media screen and (max-width:767px) {
 
-    /* jusqu'à 400px*/
     .div_accueil,
     .div_live_streaming {
         flex-direction: column;
@@ -42,7 +41,6 @@ Mobile */
     .info,
     .image_présentation {
         text-align: justify;
-        /*font-size: small;*/
         width: 95%;
     }
 
@@ -54,10 +52,6 @@ Mobile */
     .div_image {
         text-align: center;
     }
-
-    /*iframe {
-        max-width: 75%:
-    } */
 
     .div_frame {
         display: flex;
@@ -116,4 +110,3 @@ Mobile */
         max-width: 100%;
     }
 }
-

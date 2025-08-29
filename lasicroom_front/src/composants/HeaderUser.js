@@ -5,7 +5,7 @@ const HeaderUser = () => {
   return (
     <header>
       <div className='div_header'>
-        <img src="/images/dessin_1.jpg" alt="Logo" className='logo'/>
+        <img src="/images/dessin_1.jpg" alt="Logo" className='logo' />
         <h1 className='titre'>Espace Perso 😎</h1>
       </div>
     </header>

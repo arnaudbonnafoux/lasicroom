@@ -3,20 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import '../styles/connexion.css';
 
-// 🛡️ Import des fonctions de validation
+// Import des fonctions de validation
 import { validateEmail, validatePassword } from '../utils/validation';
 
 function Connexion() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const [erreurs, setErreurs] = useState({}); // plusieurs erreurs possibles
+  const [erreurs, setErreurs] = useState({}); // Plusieurs erreurs possibles
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErreurs({});
 
-    // ⚡ Validation côté client
+    // Validation côté client
     const newErrors = {};
     newErrors.email = validateEmail(email);
     newErrors.motDePasse = validatePassword(motDePasse);
@@ -27,7 +27,7 @@ function Connexion() {
 
     setErreurs(filteredErrors);
 
-    if (Object.keys(filteredErrors).length > 0) return; // stop si erreurs
+    if (Object.keys(filteredErrors).length > 0) return; // Stop si erreurs
 
     try {
       const reponse = await fetch('/api/connexions', {
@@ -61,7 +61,7 @@ function Connexion() {
       <main className='display_main'>
         <div>
           <h2 className='style_h2' style={{ textAlign: 'center', fontSize: 'xx-large' }}>Connexion</h2>
-          
+
           {erreurs.global && <p style={{ color: 'red' }}>{erreurs.global}</p>}
 
           <form onSubmit={handleSubmit} className='style_form'>

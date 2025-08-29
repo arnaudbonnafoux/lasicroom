@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import '../styles/connexion.css';
 
-// 🛡️ Import des fonctions de validation
+// Import des fonctions de validation
 import { validateEmail, validatePassword } from '../utils/validation';
 
 function ConnexionUser() {
@@ -16,7 +16,7 @@ function ConnexionUser() {
     e.preventDefault();
     setErreurs({});
 
-    // ⚡ Validation locale
+    // Validation locale
     const newErrors = {};
     newErrors.email = validateEmail(email);
     newErrors.motDePasse = validatePassword(motDePasse);

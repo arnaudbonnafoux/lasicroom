@@ -1,24 +1,3 @@
-/*.liens {
-    padding-right: 12px;
-    text-decoration: none;
-}
-
-.liens:hover {
-    text-decoration: underline;
-}
-
-@media screen and (max-width:767px) {
-    .liens {
-        font-size: 10px;
-        padding-right: 8px;
-    }
-    
-    .liens:hover {
-    text-decoration: underline;
-}
-}
-*/
-
 .navbar {
     display: flex;
     justify-content: space-between;

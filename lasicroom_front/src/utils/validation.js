@@ -1,5 +1,3 @@
-// src/utils/validation.js
-
 // Nom : lettres et espaces, max 50 caractères
 export const validateName = (name) => {
   if (!name || !/^[a-zA-ZÀ-ÿ\s]{1,50}$/.test(name)) {

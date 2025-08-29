@@ -48,7 +48,7 @@ const AgendaUser = () => {
         </section>
 
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-          <button style={{fontSize:'large'}} className='button_bleu' onClick={() => navigate('/billetterie')}>
+          <button style={{ fontSize: 'large' }} className='button_bleu' onClick={() => navigate('/billetterie')}>
             Réserver
           </button>
         </div>

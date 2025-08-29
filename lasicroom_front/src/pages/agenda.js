@@ -1,42 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; // Import des hooks React
+
+// Import des composants de l'application
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
 import CardConcert from '../composants/CardConcert';
 import Modal from '../composants/Modal';
 import Options from './options';
+
+// Import du CSS spécifique à cette page
 import '../styles/agenda.css';
 
+// Composant principal 
 const Agenda = () => {
-  const [concerts, setConcerts] = useState([]);
-  const [loading, setLoading] = useState(true);  // état de chargement
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // États
+  const [concerts, setConcerts] = useState([]); // Liste des concerts
+  const [loading, setLoading] = useState(true);  // État de chargement
+  const [isModalOpen, setIsModalOpen] = useState(false); // Gestion de l'ouverture/fermeture du modal
+
+  // useEffect
+  // Au montage du composant, on va chercher la liste des concerts via l'API
   useEffect(() => {
-    fetch('/api/concerts')
-      .then(res => res.json())
+    fetch('/api/concerts') // Appel API backend
+      .then(res => res.json())  // Conversion de la réponse en JSON
       .then(data => {
-        setConcerts(data);
-        setLoading(false); // chargement terminé
+        setConcerts(data); // Stocke les concerts récupérés
+        setLoading(false); // Chargement terminé
       })
       .catch(error => {
         console.error(error);
-        setLoading(false); // chargement terminé malgré l’erreur
+        setLoading(false); // Chargement terminé malgré l’erreur
       });
-  }, []);
+  }, []);  // [] → signifie que l'effet s'exécute uniquement au montage (comme componentDidMount)
 
-  if (loading) return <p>Chargement...</p>;
+  // Affichage si chargement
+  if (loading) return <p>Chargement...</p>; // Pendant le fetch, on affiche un message simple
 
+  // Rendu principal
   return (
     <div>
+      {/* En-tête et barre de navigation */}
       <Header />
       <Navbar />
 
       <main>
         <h1>Agenda des concerts</h1>
-        <section>
+
+         {/* Section des concerts */}
+        <section>          
           {concerts.length > 0 ? (
-            concerts.map(concert => (
+            // Si on a des concerts, on affiche une carte pour chacun (condition ternaire)
+            concerts.map(concert => ( // Fonction fléchée
               <CardConcert key={concert.id_concert} concert={concert} />
             ))
           ) : (
@@ -44,15 +59,18 @@ const Agenda = () => {
           )}
         </section>
 
+         {/* Bouton pour ouvrir la fenêtre de réservation */}
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-          <button style={{fontSize:'large'}} className='button_bleu' onClick={() => setIsModalOpen(true)}>Réserver</button>
+          <button style={{ fontSize: 'large' }} className='button_bleu' onClick={() => setIsModalOpen(true)}>Réserver</button>
         </div>
 
+        {/* Fenêtre modale contenant les options de réservation */}
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <Options />
         </Modal>
       </main>
-
+      
+      {/* Pied de page */}
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import '../styles/inscription.css';
 
-// 🛡️ Import des validations
+// Import des validations
 import { validateName, validateEmail, validatePassword } from '../utils/validation';
 
 function Inscription() {
@@ -16,7 +16,7 @@ function Inscription() {
   const gererSoumission = async (e) => {
     e.preventDefault();
 
-    // ⚡ Validation côté client
+    // Validation côté client
     const newErrors = {};
     newErrors.nom = validateName(nom);
     newErrors.email = validateEmail(email);
