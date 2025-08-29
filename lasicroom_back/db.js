@@ -1,4 +1,7 @@
+// Importe la classe Pool du module 'pg' pour gérer les connexions PostgreSQL
 const { Pool } = require('pg');
+
+// Charge les variables d'environnement depuis le fichier .env
 require('dotenv').config();
 
 const pool = new Pool({
@@ -9,4 +12,5 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
+// Exporte le pool pour permettre son utilisation dans les autres fichiers de l'application
 module.exports = pool;

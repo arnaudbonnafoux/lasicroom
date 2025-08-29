@@ -1,7 +1,7 @@
 const baseDeDonnees = require('../db');
-const envoyerEmailReservation = require('../email');
+const envoyerEmailReservation = require('../email');// Importe la fonction d'envoi d'email de confirmation
 
-// delete
+// Supprimer une réservation
 exports.supprimerReservation = async (req, res) => {
     const { id } = req.params;
 
@@ -37,15 +37,14 @@ exports.supprimerReservation = async (req, res) => {
     }
 };
 
-//post + email
-
+// Créer une réservation et envoyer un email
 exports.creerReservation = async (req, res) => {
     const { id_concert, type_tarif, montant } = req.body;
     const id_utilisateur = req.utilisateur.id;
-    
+
 
     try {
-        // 1️⃣ Vérification du concert
+        // Vérification du concert
         const verificationConcert = await baseDeDonnees.query(
             `SELECT nb_places_restantes, titre FROM concert WHERE id_concert = $1`,
             [id_concert]
@@ -62,7 +61,7 @@ exports.creerReservation = async (req, res) => {
             return res.status(409).json({ erreur: "Aucune place restante pour ce concert." });
         }
 
-        // 2️⃣ Insertion de la réservation
+        // Insertion de la réservation
         const resultat = await baseDeDonnees.query(
             `INSERT INTO reservation (id_utilisateur, id_concert, type_tarif, montant)
              VALUES ($1, $2, $3, $4)
@@ -72,14 +71,14 @@ exports.creerReservation = async (req, res) => {
 
         const reservation = resultat.rows[0];
 
-        // 3️⃣ Récupérer les infos de l'utilisateur pour l'email
+        // Récupérer les infos de l'utilisateur pour l'email
         const userResult = await baseDeDonnees.query(
             `SELECT nom, email FROM utilisateur WHERE id_utilisateur = $1`,
             [id_utilisateur]
         );
         const utilisateur = userResult.rows[0];
 
-        // 4️⃣ Envoyer l'email via Mailtrap
+        // Envoyer l'email via Mailtrap
         await envoyerEmailReservation(utilisateur.email, {
             nom: utilisateur.nom,
             concert: titreConcert,
@@ -87,7 +86,7 @@ exports.creerReservation = async (req, res) => {
             montant
         });
 
-        // 5️⃣ Retourner la réservation au front
+        // Retourner la réservation au front
         res.status(201).json(reservation);
 
     } catch (erreur) {
@@ -96,60 +95,9 @@ exports.creerReservation = async (req, res) => {
     }
 };
 
-/*
-// post
-exports.creerReservation = async (req, res) => {
-    const {
-        //id_utilisateur, modif
-        id_concert,
-        type_tarif,
-        montant
-    } = req.body;
-
-    const id_utilisateur = req.utilisateur.id;
-    // Test
-    //console.log('Requête reçue pour créer une réservation:', req.body);
-
-    
-
-    try {
-        const verificationConcert = await baseDeDonnees.query(
-            `SELECT nb_places_restantes FROM concert WHERE id_concert = $1`,
-            [id_concert]
-        );
-
-        if (verificationConcert.rowCount === 0) {
-            return res.status(404).json({ erreur: "Concert non trouvé." });
-        }
-
-        const placesRestantes = verificationConcert.rows[0].nb_places_restantes;
-
-        if (placesRestantes <= 0) {
-            return res.status(409).json({ erreur: "Aucune place restante pour ce concert." });
-        }
-
-        const resultat = await baseDeDonnees.query(
-            `INSERT INTO reservation (
-                id_utilisateur, id_concert, type_tarif, montant)
-             VALUES ($1, $2, $3, $4)
-             RETURNING *`,
-            [
-                id_utilisateur,
-                id_concert,
-                type_tarif,
-                montant
-            ]
-        );
-        res.status(201).json(resultat.rows[0]);
-
-    } catch (erreur) {
-        console.error("Erreur dans creerReservation :", erreur);
-        res.status(500).json({ erreur: "Erreur lors de la création de la réservation." });
-    }
-};*/
-
-// get
+// Récupérer toutes les réservations (admin)
 exports.obtenirReservations = async (req, res) => {
+    // Récupère toutes les réservations avec les infos utilisateur et concert associées
     try {
         const resultat = await baseDeDonnees.query(`
       SELECT 
@@ -172,12 +120,13 @@ exports.obtenirReservations = async (req, res) => {
     }
 };
 
-
+// Récupérer les réservations d'un utilisateur connecté
 exports.getReservationsByUser = async (req, res) => {
-  try {
-    const { id } = req.utilisateur;
+    try {
+        const { id } = req.utilisateur;
 
-    const query = `
+        // Récupère les réservations de l'utilisateur avec les infos du concert
+        const query = `
       SELECT r.id_reservation, r.date_reservation, r.type_tarif, r.montant,
              c.titre AS concert, c.date_concert
       FROM reservation r
@@ -186,12 +135,12 @@ exports.getReservationsByUser = async (req, res) => {
       ORDER BY r.date_reservation DESC
     `;
 
-    const { rows } = await baseDeDonnees.query(query, [id]);
-    res.json(rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Erreur serveur" });
-  }
+        const { rows } = await baseDeDonnees.query(query, [id]);
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Erreur serveur" });
+    }
 };
 
 

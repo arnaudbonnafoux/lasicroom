@@ -5,16 +5,24 @@
 ├── documentation_technique
 │   ├── accessibilité.md
 │   ├── backend.md
-│   ├── bd.md
+│   ├── base_de_donées.md
+│   ├── bd_structure.txt
+│   ├── cadre_légal.md
+│   ├── déploiement.md
+│   ├── diagrammeUML.png
 │   ├── frontend.md
 │   ├── optimisation.md
 │   ├── présentation.md
 │   ├── sécurité.md
 │   ├── SEO.md
-│   └── sommaire.md
+│   ├── sommaire.md
+│   ├── structure_backend.md
+│   ├── structure_frontend.md
+│   └── structure_générale.md
 ├── fermeture_nginx.sh
 ├── fermeture_serveur.sh
 ├── gen_arbo.sh
+├── generer_logs_nginx.sh
 ├── lasicroom_back
 │   ├── app.js
 │   ├── back.log
@@ -28,7 +36,6 @@
 │   ├── db.js
 │   ├── email.js
 │   ├── gen_arbo.sh
-│   ├── lasicroom2.session.sql
 │   ├── middlewares
 │   │   ├── authMiddleware.js
 │   │   ├── compressionImage.js
@@ -47,20 +54,19 @@
 │   │   ├── rasta_vibes_1756037415625.webp
 │   │   ├── symphonia_1756035895031.webp
 │   │   └── the_rockers_1756037311848.webp
-│   ├── routes
-│   │   ├── accompagnements.js
-│   │   ├── artistes.js
-│   │   ├── concerts.js
-│   │   ├── connexions.js
-│   │   ├── reservations.js
-│   │   ├── test_accomp.sh
-│   │   ├── test_artistes.sh
-│   │   ├── test_concerts.sh
-│   │   ├── test_connexions.sh
-│   │   ├── test_reservation.sh
-│   │   ├── test_utilisateurs.sh
-│   │   └── utilisateurs.js
-│   └── structure.txt
+│   └── routes
+│       ├── accompagnements.js
+│       ├── artistes.js
+│       ├── concerts.js
+│       ├── connexions.js
+│       ├── reservations.js
+│       ├── test_accomp.sh
+│       ├── test_artistes.sh
+│       ├── test_concerts.sh
+│       ├── test_connexions.sh
+│       ├── test_reservation.sh
+│       ├── test_utilisateurs.sh
+│       └── utilisateurs.js
 ├── lasicroom_front
 │   ├── build
 │   │   ├── asset-manifest.json
@@ -99,7 +105,6 @@
 │   ├── gen_arbo.sh
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── Postgres_1.session.sql
 │   ├── public
 │   │   ├── favicon.ico
 │   │   ├── images
@@ -126,72 +131,72 @@
 │   │   ├── robots.txt
 │   │   └── site.xml
 │   ├── README.md
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── composants
-│   │   │   ├── CardConcert.js
-│   │   │   ├── Footer.js
-│   │   │   ├── HeaderAdmin.js
-│   │   │   ├── Header.js
-│   │   │   ├── HeaderUser.js
-│   │   │   ├── Modal.js
-│   │   │   ├── NavbarAdmin.js
-│   │   │   ├── Navbar.js
-│   │   │   └── NavbarUser.js
-│   │   ├── gen_arbo.sh
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── pages
-│   │   │   ├── accompagnement.js
-│   │   │   ├── accueil.js
-│   │   │   ├── accueil_user.js
-│   │   │   ├── admin
-│   │   │   │   ├── gestion_accompagnement.js
-│   │   │   │   ├── gestion_artistes.js
-│   │   │   │   ├── gestion_concerts.js
-│   │   │   │   ├── gestion_connexion.js
-│   │   │   │   └── gestion_reservations.js
-│   │   │   ├── agenda.js
-│   │   │   ├── agenda_user.js
-│   │   │   ├── billetterie.js
-│   │   │   ├── conditions_utilisation.js
-│   │   │   ├── connexion.js
-│   │   │   ├── connexion_user.js
-│   │   │   ├── dashboard.js
-│   │   │   ├── inscription.js
-│   │   │   ├── mentions_legales.js
-│   │   │   └── options.js
-│   │   ├── structure.txt
-│   │   ├── styles
-│   │   │   ├── accompagnement.css
-│   │   │   ├── accueil.css
-│   │   │   ├── agenda.css
-│   │   │   ├── billetterie.css
-│   │   │   ├── card_concert.css
-│   │   │   ├── conditions_utilisation.css
-│   │   │   ├── connexion.css
-│   │   │   ├── footer.css
-│   │   │   ├── gestion_accompagnement.css
-│   │   │   ├── gestion_artistes.css
-│   │   │   ├── gestion_concerts.css
-│   │   │   ├── gestion_reservations.css
-│   │   │   ├── header.css
-│   │   │   ├── inscription.css
-│   │   │   ├── mentions_legales.css
-│   │   │   ├── modal.css
-│   │   │   ├── navbar_admin.css
-│   │   │   ├── navbar.css
-│   │   │   └── options.css
-│   │   └── utils
-│   │       └── validation.js
-│   └── structure.txt
+│   └── src
+│       ├── App.css
+│       ├── App.js
+│       ├── composants
+│       │   ├── CardConcert.js
+│       │   ├── Footer.js
+│       │   ├── HeaderAdmin.js
+│       │   ├── Header.js
+│       │   ├── HeaderUser.js
+│       │   ├── Modal.js
+│       │   ├── NavbarAdmin.js
+│       │   ├── Navbar.js
+│       │   └── NavbarUser.js
+│       ├── gen_arbo.sh
+│       ├── index.css
+│       ├── index.js
+│       ├── pages
+│       │   ├── accompagnement.js
+│       │   ├── accueil.js
+│       │   ├── accueil_user.js
+│       │   ├── admin
+│       │   │   ├── gestion_accompagnement.js
+│       │   │   ├── gestion_artistes.js
+│       │   │   ├── gestion_concerts.js
+│       │   │   ├── gestion_connexion.js
+│       │   │   └── gestion_reservations.js
+│       │   ├── agenda.js
+│       │   ├── agenda_user.js
+│       │   ├── billetterie.js
+│       │   ├── conditions_utilisation.js
+│       │   ├── connexion.js
+│       │   ├── connexion_user.js
+│       │   ├── dashboard.js
+│       │   ├── inscription.js
+│       │   ├── mentions_legales.js
+│       │   └── options.js
+│       ├── styles
+│       │   ├── accompagnement.css
+│       │   ├── accueil.css
+│       │   ├── agenda.css
+│       │   ├── billetterie.css
+│       │   ├── card_concert.css
+│       │   ├── conditions_utilisation.css
+│       │   ├── connexion.css
+│       │   ├── footer.css
+│       │   ├── gestion_accompagnement.css
+│       │   ├── gestion_artistes.css
+│       │   ├── gestion_concerts.css
+│       │   ├── gestion_reservations.css
+│       │   ├── header.css
+│       │   ├── inscription.css
+│       │   ├── mentions_legales.css
+│       │   ├── modal.css
+│       │   ├── navbar_admin.css
+│       │   ├── navbar.css
+│       │   └── options.css
+│       └── utils
+│           └── validation.js
 ├── La sicRoom.session.sql
 ├── LICENSE
+├── nginx_logs
+│   └── nginx_logs_2025-08-26_11-56-54.txt
 ├── ouvrir_nginx.sh
 ├── ouvrir_serveur.sh
 ├── README.md
 └── structure_générale.md
 
-21 directories, 170 files
+22 directories, 174 files
 ```

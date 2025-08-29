@@ -1,8 +1,9 @@
-const baseDeDonnees = require('../db');
-const validator = require('validator');
-const sanitizeHtml = require('sanitize-html');
+const baseDeDonnees = require('../db'); // Importe la connexion à la base de données
+const validator = require('validator'); // Librairie pour valider les champs (email, longueur, etc.)
+const sanitizeHtml = require('sanitize-html'); // Librairie pour nettoyer les entrées et éviter les attaques XSS
 
-// get
+
+// Récupère toutes les demandes d'accompagnement, triées par date d'envoi décroissante
 exports.listerDemandes = async (req, res) => {
   try {
     const resultat = await baseDeDonnees.query('SELECT * FROM accompagnement ORDER BY date_envoi DESC');
@@ -12,12 +13,12 @@ exports.listerDemandes = async (req, res) => {
   }
 };
 
-// post
+// Crée une nouvelle demande d'accompagnement
 exports.creerDemande = async (req, res) => {
   let { nom_artiste, email_artiste, style_musical, message } = req.body;
 
   try {
-    // ✅ Validation basique
+    // Validation des champs (présence, longueur, format)
     if (!nom_artiste || !validator.isLength(nom_artiste, { min: 1, max: 50 })) {
       return res.status(400).json({ erreur: "Nom artiste invalide" });
     }
@@ -34,26 +35,26 @@ exports.creerDemande = async (req, res) => {
       return res.status(400).json({ erreur: "Message trop long ou vide" });
     }
 
-    // ✅ Nettoyage XSS (empêche l'injection de balises <script>, etc.)
+    // Nettoyage XSS (empêche l'injection de balises <script>, etc.)
     nom_artiste = sanitizeHtml(nom_artiste, { allowedTags: [], allowedAttributes: {} });
     email_artiste = sanitizeHtml(email_artiste, { allowedTags: [], allowedAttributes: {} });
     style_musical = sanitizeHtml(style_musical, { allowedTags: [], allowedAttributes: {} });
     message = sanitizeHtml(message, { allowedTags: [], allowedAttributes: {} });
 
-    // ✅ Enregistrement en DB
+    // Enregistrement en base de données
     const resultat = await baseDeDonnees.query(
       'INSERT INTO accompagnement (nom_artiste, email_artiste, style_musical, message) VALUES ($1, $2, $3, $4) RETURNING *',
       [nom_artiste, email_artiste, style_musical, message]
     );
 
-    res.status(201).json(resultat.rows[0]);
+    res.status(201).json(resultat.rows[0]); // Renvoie la demande créée
   } catch (erreur) {
     console.error(erreur);
     res.status(500).json({ erreur: 'Erreur lors de la création de la demande.' });
   }
 };
 
-// delete
+// Supprime une demande d'accompagnement selon son identifiant
 exports.supprimerDemande = async (req, res) => {
   const { id } = req.params;
   try {

@@ -2,6 +2,8 @@
 
 Ce document décrit la configuration Nginx utilisée pour le projet **LasicRoom**. Elle inclut la redirection HTTP → HTTPS, la sécurité via headers, et la communication avec le backend Node.js et le frontend React.
 
+[Fichier de configuration Nginx](./configuration_nginx)
+
 ---
 
 ## 🔁 Redirection HTTP → HTTPS
@@ -44,7 +46,7 @@ Ce document décrit la configuration Nginx utilisée pour le projet **LasicRoom*
 ---
 
 > ✅ Cette configuration assure un serveur sécurisé, fonctionnel pour le frontend React et le backend Node.js, tout en respectant les bonnes pratiques de déploiement.
-Bien sûr ! Voici une proposition pour compléter ta documentation Nginx avec une section sur le **script de génération de logs** :
+
 
 ---
 

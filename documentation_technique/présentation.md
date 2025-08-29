@@ -14,7 +14,7 @@ Grâce à la plateforme, les visiteurs peuvent :
 ### Fonctionnalités principales  
 
 - **Billetterie en ligne** : pour acheter un billet, l’utilisateur doit créer un compte ou se connecter.  
-- **Espace personnel** : chaque utilisateur connecté dispose d’un tableau de bord lui permettant de gérer ses réservations.  
+- **Espace personnel** : chaque utilisateur connecté dispose d’un tableau de bord lui permettant de consulter ses réservations.  
 - **Simplicité et accessibilité** : l’application a été pensée pour les ERP de petite taille, avec une jauge n’excédant pas 300 places.  
 - **Administration** : une interface dédiée permet aux responsables de gérer facilement la billetterie et l’organisation des événements.  
 
@@ -27,8 +27,8 @@ Pour le développement de cette application, nous avons choisi :
 - **React** pour le frontend  
 - **PostgreSQL** pour la gestion de la base de données  
 - **Nginx** comme serveur et proxy  
-- **ChatGPT** IA
-- **Copilot** IA 
+- **ChatGPT** Génération et correction de code
+- **Copilot** Assistant technique
 
 Le paradigme de programmation est basé sur le **modèle MVC** :  
 - **Model** : gestion des données avec PostgreSQL  

@@ -1,12 +1,13 @@
 const baseDeDonnees = require('../db');
 const xss = require('xss');
-const validator = require('validator');
+//const validator = require('validator');
 
-// get
+// Récupérer un ou plusieurs artistes
 exports.obtenirArtiste = async (req, res) => {
   try {
-    const { nom } = req.query;
+    const { nom } = req.query; // Récupère le nom dans les paramètres de requête (optionnel)
 
+    // Si un nom est fourni, on le nettoie et on cherche l'artiste correspondant (LOWER => insensible à la casse)
     if (nom) {
       const nomNettoye = xss(nom.trim());
       const resultat = await baseDeDonnees.query(
@@ -16,6 +17,7 @@ exports.obtenirArtiste = async (req, res) => {
       return res.json(resultat.rows);
     }
 
+    // Sinon, on renvoie tous les artistes
     const tousLesArtistes = await baseDeDonnees.query('SELECT * FROM artiste');
     res.json(tousLesArtistes.rows);
 
@@ -25,14 +27,16 @@ exports.obtenirArtiste = async (req, res) => {
   }
 };
 
-// post
+// Créer un nouvel artiste
 exports.creerArtiste = async (req, res) => {
   try {
+    // Récupère et nettoie les champs du corps de la requête
     let { nom_artiste, style_musical, description, lien_video } = req.body;
     nom_artiste = xss(nom_artiste.trim());
     style_musical = xss(style_musical.trim());
     description = xss(description.trim());
     lien_video = lien_video ? xss(lien_video.trim()) : null;
+    // Récupère le chemin de la photo uploadée si présente
     const photo = req.file ? `photos_artistes/${req.file.filename}` : null;
 
     // validation simple
@@ -40,6 +44,7 @@ exports.creerArtiste = async (req, res) => {
       return res.status(400).json({ message: "Nom et description obligatoires." });
     }
 
+    // Insertion de l'artiste en base de données
     const resultat = await baseDeDonnees.query(
       `INSERT INTO artiste (nom_artiste, style_musical, description, photo, lien_video)
        VALUES ($1, $2, $3, $4, $5) RETURNING *`,
@@ -53,7 +58,7 @@ exports.creerArtiste = async (req, res) => {
   }
 };
 
-// put
+// Mettre à jour un artiste existant
 exports.mettreAJourArtiste = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,6 +68,7 @@ exports.mettreAJourArtiste = async (req, res) => {
     style_musical = xss(style_musical.trim());
     description = xss(description.trim());
     lien_video = lien_video ? xss(lien_video.trim()) : null;
+    // Prend la nouvelle photo si uploadée, sinon garde l'ancienne
     const photo = req.file ? `photos_artistes/${req.file.filename}` : req.body.photo;
 
     const resultat = await baseDeDonnees.query(
@@ -86,7 +92,7 @@ exports.mettreAJourArtiste = async (req, res) => {
   }
 };
 
-// delete
+// Supprimer un artiste
 exports.supprimerArtiste = async (req, res) => {
   try {
     const { id } = req.params;

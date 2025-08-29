@@ -6,7 +6,7 @@ const xss = require('xss');
 require('dotenv').config();
 const CLE_SECRETE = process.env.CLE_SECRETE;
 
-// get
+// Récupérer tous les utilisateurs
 exports.obtenirUtilisateur = async (req, res) => {
   try {
     const resultatRequete = await baseDeDonnees.query(
@@ -19,7 +19,7 @@ exports.obtenirUtilisateur = async (req, res) => {
   }
 };
 
-// get ID
+// Récupérer un utilisateur par son id
 exports.obtenirIdUtilisateur = async (req, res) => {
   const { id } = req.params;
   try {
@@ -40,7 +40,7 @@ exports.obtenirIdUtilisateur = async (req, res) => {
   }
 };
 
-// post
+// Créer un nouvel utilisateur
 exports.creerUtilisateur = async (req, res) => {
   let { nom, email, mot_de_passe, role } = req.body;
 
@@ -50,6 +50,7 @@ exports.creerUtilisateur = async (req, res) => {
   role = xss(role);
 
   try {
+    // Hachage du mot de passe avant stockage
     const motDePasseHashe = await bcrypt.hash(mot_de_passe, 10);
 
     const resultatRequete = await baseDeDonnees.query(
@@ -60,14 +61,16 @@ exports.creerUtilisateur = async (req, res) => {
     );
 
     const utilisateur = resultatRequete.rows[0];
-    delete utilisateur.mot_de_passe;
+    delete utilisateur.mot_de_passe; // On ne retourne jamais le mot de passe
 
+    // Génère un token JWT pour l'utilisateur créé
     const token = jwt.sign(
       { id: utilisateur.id_utilisateur, role: utilisateur.role },
       CLE_SECRETE,
       { expiresIn: '2h' }
     );
 
+    // Renvoie l'utilisateur créé et le token
     return res.status(201).json({ utilisateur, token });
 
   } catch (erreur) {
@@ -78,7 +81,7 @@ exports.creerUtilisateur = async (req, res) => {
   }
 };
 
-// put
+// Mettre à jour un utilisateur existant (règle inutilsée)
 exports.mettreAJourUtilisateur = async (req, res) => {
   const { id } = req.params;
   let { nom, email, role } = req.body;
@@ -112,7 +115,7 @@ exports.mettreAJourUtilisateur = async (req, res) => {
   }
 };
 
-// delete
+// Supprimer un utilisateur (Règle inutilisée)
 exports.supprimerUtilisateur = async (req, res) => {
   const { id } = req.params;
   try {
@@ -132,7 +135,27 @@ exports.supprimerUtilisateur = async (req, res) => {
     res.status(500).json({ erreur: "Erreur lors de la suppression de l'utilisateur." });
   }
 };
+/*
+Ce code constitue le contrôleur principal pour la gestion des utilisateurs dans une API Node.js. 
+Il utilise la base de données, bcrypt pour le hachage des mots de passe, 
+jsonwebtoken pour la génération de tokens JWT, et xss pour sécuriser les entrées utilisateur.
 
+La fonction obtenirUtilisateur récupère la liste de tous les utilisateurs (id, nom, email, rôle) 
+et la renvoie au format JSON. La fonction obtenirIdUtilisateur permet de récupérer les informations d’un utilisateur spécifique 
+à partir de son identifiant ; si l’utilisateur n’existe pas, une erreur 404 est renvoyée.
+
+Pour la création d’un utilisateur (creerUtilisateur), les champs nom, email et rôle sont nettoyés pour éviter les attaques XSS. 
+Le mot de passe est haché avec bcrypt avant d’être stocké. Après insertion en base, 
+un token JWT est généré et renvoyé avec les informations de l’utilisateur (le mot de passe n’est jamais retourné).
+
+La fonction mettreAJourUtilisateur permet de modifier les informations d’un utilisateur existant (nom, email, rôle), 
+après nettoyage XSS. Si l’utilisateur n’existe pas, une erreur 404 est renvoyée. Sinon, la mise à jour est confirmée avec les nouvelles données.
+
+Enfin, la fonction supprimerUtilisateur supprime un utilisateur selon son identifiant. 
+Si l’utilisateur n’est pas trouvé, une erreur 404 est renvoyée. Sinon, la suppression est confirmée par un message de succès. 
+Toutes les fonctions gèrent les erreurs serveur et renvoient des messages explicites en cas de problème. 
+Ce contrôleur applique de bonnes pratiques de sécurité et de gestion des données.
+ */
 
 
 

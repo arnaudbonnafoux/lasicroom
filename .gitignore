@@ -3,20 +3,19 @@
 gen_arbo.sh
 ouvrir_nginx.sh
 fermeture_nginx.sh
-lasicroom_front/gen_arbo.sh
 La sicRoom.session.sql
 
 # frontend
+lasicroom_front/gen_arbo.sh
 lasicroom_front/node_modules
 lasicroom_front/build
-
 lasicroom_front/.env
 
 # backend
 lasicroom_back/node_modules
+lasicroom_back/gen_arbo.sh
 lasicroom_back/.env
-lasicroom_back/email.js
-lasicroom_back/back.log
 
-# logs_nginx
+# logs
+lasicroom_back/back.log
 nginx_logs
