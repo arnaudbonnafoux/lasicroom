@@ -61,7 +61,7 @@ const Billetterie = () => {
 
       if (response.ok) {
         alert("Réservation effectuée avec succès !");
-        navigate('/dashboard'); // Ou une autre page après réservation MODIF 11/08/2025
+        navigate('/dashboard');
       } else {
         const erreur = await response.json();
         alert("Erreur lors de la réservation : " + (erreur.message || "inconnue"));

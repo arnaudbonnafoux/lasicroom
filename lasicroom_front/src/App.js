@@ -26,6 +26,7 @@ import GestionAccompagnement from './pages/admin/gestion_accompagnement';
 import GestionArtistes from './pages/admin/gestion_artistes';
 
 // Authentification
+import PrivateRoute from './composants/PrivateRoute';
 import Connexion from './pages/connexion';
 import Inscription from './pages/inscription';
 import ConnexionUser from './pages/connexion_user';
@@ -37,14 +38,23 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Accueil />} />
-        <Route path="accueil_user" element={<AccueilUser />} />
         <Route path="/agenda" element={<Agenda />} />
-        <Route path="/billetterie" element={<Billetterie />} />
         <Route path="/accompagnement" element={<Accompagnement />} />
         <Route path="/options" element={<Options />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/agenda_user" element={<AgendaUser />} />
 
+        {/*Espace personnel*/}
+        <Route path="accueil_user" element={
+          <PrivateRoute><AccueilUser /></PrivateRoute>
+          } />
+        <Route path="/billetterie" element={
+          <PrivateRoute><Billetterie /></PrivateRoute>
+          } />
+        <Route path="/dashboard" element={
+          <PrivateRoute><Dashboard /></PrivateRoute>
+          } />
+        <Route path="/agenda_user" element={
+          <PrivateRoute><AgendaUser /></PrivateRoute>
+          } />
 
         {/*Inscription et Authentification utilisateurs*/}
         <Route path="/connexion" element={<Connexion />} />
@@ -54,15 +64,23 @@ function App() {
         {/*Authentification_admin */}
         <Route path="/admin/connexion" element={<GestionConnexion />} />
 
-        {/* Cadre légale */}
+        {/* Cadre légal */}
         <Route path="/mentions_legales" element={<MentionsLegales />} />
         <Route path="/conditions_utilisation" element={<ConditionsUtilisation />} />
 
         {/* Admin */}
-        <Route path="/admin/concerts" element={<GestionConcerts />} />
-        <Route path="/admin/reservations" element={<GestionReservations />} />
-        <Route path="/admin/accompagnement" element={<GestionAccompagnement />} />
-        <Route path="/admin/artistes" element={<GestionArtistes />} />
+        <Route path="/admin/concerts" element={
+          <PrivateRoute><GestionConcerts /></PrivateRoute>
+          } />
+        <Route path="/admin/reservations" element={
+          <PrivateRoute><GestionReservations /></PrivateRoute>
+          } />
+        <Route path="/admin/accompagnement" element={
+          <PrivateRoute><GestionAccompagnement /></PrivateRoute>
+          } />
+        <Route path="/admin/artistes" element={
+          <PrivateRoute><GestionArtistes /></PrivateRoute>
+          } />
       </Routes>
     </Router>
   );

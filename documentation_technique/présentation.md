@@ -1,13 +1,19 @@
 # Présentation générale  
 
-[Structure de LasicRoom](./structure_générale.md)  
+🎶 *LasicRoom se veut une solution simple, efficace et adaptée aux structures locales, afin de mettre en valeur la richesse musicale de leur territoire.*
+
+---
 
 **LasicRoom** est le site officiel d’une **S.M.A.C.** (Salle de Musiques Actuelles), un lieu dédié à la découverte et à la diffusion des musiques actuelles.  
 
 Grâce à la plateforme, les visiteurs peuvent :  
 - découvrir la salle et son identité,  
 - consulter la programmation du trimestre en cours,  
-- accéder à un formulaire réservé aux musiciens locaux souhaitant être accompagnés dans leur parcours de professionnalisation.  
+- accéder à un formulaire réservé aux musiciens locaux souhaitant être accompagnés dans leur parcours de professionnalisation.
+
+[lasicRoom dev](https://lasicroom.local/)
+
+[LasicRoom auto-prod](https://90.0.91.102/)
 
 ---
 
@@ -27,8 +33,11 @@ Pour le développement de cette application, nous avons choisi :
 - **React** pour le frontend  
 - **PostgreSQL** pour la gestion de la base de données  
 - **Nginx** comme serveur et proxy  
+
+    [Nginx](./configuration_nginx)
+
 - **ChatGPT** Génération et correction de code
-- **Copilot** Assistant technique
+- **Copilot** Complétion
 
 Le paradigme de programmation est basé sur le **modèle MVC** :  
 - **Model** : gestion des données avec PostgreSQL  
@@ -37,4 +46,13 @@ Le paradigme de programmation est basé sur le **modèle MVC** :
 
 ---
 
-🎶 *LasicRoom se veut une solution simple, efficace et adaptée aux structures locales, afin de mettre en valeur la richesse musicale de leur territoire.*
+### Structure du projet ###
+
+[Structure de LasicRoom](./structure_générale.md) 
+
+---
+
+### Parcours
+
+[Parcours utilisateur](./parcours_utilisateur.md)
+

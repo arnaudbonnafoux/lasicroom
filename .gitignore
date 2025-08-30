@@ -19,3 +19,6 @@ lasicroom_back/.env
 # logs
 lasicroom_back/back.log
 nginx_logs
+
+# To do
+documentation_technique/to_do.md

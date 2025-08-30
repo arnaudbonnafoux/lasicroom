@@ -45,7 +45,25 @@
   * Moins persistant que `localStorage` → limite les risques d’exploitation.
   * Pas d’exposition via `document.cookie`.
 
+* **Composant `PrivateRoute`**
+
+  * Toutes les pages réservées aux utilisateurs connectés (ex. `/billetterie`, `/accueil_user`, `/dashboard`) sont encapsulées dans un composant `PrivateRoute`.
+  * Ce composant vérifie la présence du JWT dans le `sessionStorage`.
+  * En cas d’absence → redirection automatique vers `/connexion`.
+
+  ```jsx
+  import { Navigate } from 'react-router-dom';
+
+  function PrivateRoute({ children }) {
+    const token = sessionStorage.getItem('token');
+    return token ? children : <Navigate to="/connexion" replace />;
+  }
+
+  export default PrivateRoute;
+  ```
 ---
+
+[App.js](../lasicroom_front/src/App.js)
 
 ## 3. Sécurisation Reverse Proxy (Nginx)
 
