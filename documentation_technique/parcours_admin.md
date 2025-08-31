@@ -4,13 +4,13 @@
 
 1. Page Accueil (footer) 👉 Lien admin 👉 connexion 
 
-    [connexion admin](https://lasicroom.local/admin/connexion)
+    [Page accueil](https://lasicroom.local)
 
 3. Page Concerts 👉 Actions :
 
-    [Page Concert](https://lasicroom.local/admin/concerts)
+    [Page Concert](https://lasicroom.local/admin/concerts) 👉 Rediriger vers la page /admin/connexion
 
-    [code](../lasicroom_front/src/pages/admin/gestion_concerts.js)
+    [code frontend](../lasicroom_front/src/pages/admin/gestion_concerts.js)
 
 - Ajouter un concert
 - Modifier un concert

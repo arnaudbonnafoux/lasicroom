@@ -19,6 +19,7 @@ import MentionsLegales from './pages/mentions_legales';
 import ConditionsUtilisation from './pages/conditions_utilisation';
 
 // Admin
+import PrivateRouteAdmin from './composants/PrivateRouteAdmin';
 import GestionConnexion from './pages/admin/gestion_connexion';
 import GestionConcerts from './pages/admin/gestion_concerts';
 import GestionReservations from './pages/admin/gestion_reservations';
@@ -70,16 +71,16 @@ function App() {
 
         {/* Admin */}
         <Route path="/admin/concerts" element={
-          <PrivateRoute><GestionConcerts /></PrivateRoute>
+          <PrivateRouteAdmin><GestionConcerts /></PrivateRouteAdmin>
           } />
         <Route path="/admin/reservations" element={
-          <PrivateRoute><GestionReservations /></PrivateRoute>
+          <PrivateRouteAdmin><GestionReservations /></PrivateRouteAdmin>
           } />
         <Route path="/admin/accompagnement" element={
-          <PrivateRoute><GestionAccompagnement /></PrivateRoute>
+          <PrivateRouteAdmin><GestionAccompagnement /></PrivateRouteAdmin>
           } />
         <Route path="/admin/artistes" element={
-          <PrivateRoute><GestionArtistes /></PrivateRoute>
+          <PrivateRouteAdmin><GestionArtistes /></PrivateRouteAdmin>
           } />
       </Routes>
     </Router>

@@ -52,7 +52,11 @@ Le paradigme de programmation est basé sur le **modèle MVC** :
 
 ---
 
-### Parcours
+### Parcours (démo)
 
 [Parcours utilisateur](./parcours_utilisateur.md)
+
+[Parcdours admin](./parcours_admin.md)
+
+
 
