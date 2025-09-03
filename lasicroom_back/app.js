@@ -39,8 +39,8 @@ app.use('/api/accompagnements', accompagnementRoutes);
 app.use('/api/connexions', connexionRoutes);
 
 // Configuration du port et de l'hôte (par défaut : 3001 et 0.0.0.0)
-const PORT = process.env.PORT || 3001; //.env non utilisé. 
-const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3001; //.env non utilisée. 
+const HOST = process.env.HOST || '0.0.0.0'; //. .env non utlisée
 
 // Démarrage du serveur Express
 app.listen(PORT, HOST, () => {
