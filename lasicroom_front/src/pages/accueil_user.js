@@ -4,6 +4,7 @@ import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import '../styles/accueil.css';
+import LiveStream from '../composants/LiveStream';
 
 const AccueilUser = () => {
   const navigate = useNavigate();
@@ -58,7 +59,8 @@ const AccueilUser = () => {
             <h2 style={{ textAlign: 'center' }}>
               Le direct live des balances
             </h2>
-            <iframe
+            <LiveStream />
+            {/*<iframe
               style={{
                 marginTop: '10px',
                 marginBottom: '10px',
@@ -73,7 +75,7 @@ const AccueilUser = () => {
               allow="accelerometer; autoplay; clipboard-write; 
               encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
+            ></iframe>*/}
           </div>
           <div className='div_frame'>
             <h2 style={{ textAlign: 'center' }}>Playlist de nos artistes !</h2>

@@ -29,6 +29,7 @@ const utilisateurRoutes = require('./routes/utilisateurs');
 const reservationRoutes = require('./routes/reservations');
 const accompagnementRoutes = require('./routes/accompagnements');
 const connexionRoutes = require('./routes/connexions');
+const liveRoutes = require('./routes/live');
 
 // Définition des préfixes d'URL pour chaque groupe de routes
 app.use('/api/artistes', artisteRoutes);
@@ -37,6 +38,8 @@ app.use('/api/utilisateurs', utilisateurRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/accompagnements', accompagnementRoutes);
 app.use('/api/connexions', connexionRoutes);
+app.use('/api/live', liveRoutes);
+
 
 // Configuration du port et de l'hôte (par défaut : 3001 et 0.0.0.0)
 const PORT = process.env.PORT || 3001; //.env non utilisée. 
