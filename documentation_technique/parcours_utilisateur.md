@@ -32,3 +32,7 @@
 
     [Page accuei](https://lasicroom.local/accueil_user)
 
+6. Live streaming 
+
+    [Youtube Data API v3](../lasicroom_back/controleurs/live_controleur.js)
+
