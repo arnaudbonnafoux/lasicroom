@@ -1,17 +1,20 @@
 // Importation des modules
-const express = require('express'); // Framework web principal
-const path = require('path');
-const helmet = require('helmet');
-const morgan = require('morgan');
-require('dotenv').config();
+const express = require('express'); // Framework web pour créer l'API
+const path = require('path'); // Module Node pour gérer les chemins de fichiers
+const helmet = require('helmet'); // Sécurité HTTP (headers)
+const morgan = require('morgan'); // Middleware pour logging des requêtes HTTP
+require('dotenv').config(); // Chargement des variables d'environnement depuis .env
 
 // Instanciation de l'application Express
 const app = express();
 
+// Middleware généraux
 app.use(morgan('dev')); // Logs => lasicroom_back/back.log
 
-app.use(express.json()); // Parser le json dans les requêtes http
+app.use(express.json()); // Parser automatique du JSON dans le corps des requêtes POST/PUT
 
+
+// Sécurité HTTP avec Helmet
 app.use(
   helmet({
     contentSecurityPolicy: false, // Activer plus tard si besoin
@@ -19,10 +22,11 @@ app.use(
   })
 );
 
-// Dossier statique pour les photos
+// Dossier statique pour les photos d'artistes
 app.use('/photos_artistes', express.static(path.join(__dirname, 'photos_artistes'))); // __dirname => variable qui définit le chenmin absolue du dossier
 
-// Importation des modules de routes pour chaque ressource de l'API
+// Importation des routes de l'API
+// Chaque route gère un type de ressource
 const artisteRoutes = require('./routes/artistes');
 const concertRoutes = require('./routes/concerts');
 const utilisateurRoutes = require('./routes/utilisateurs');
@@ -41,11 +45,11 @@ app.use('/api/connexions', connexionRoutes);
 app.use('/api/live', liveRoutes);
 
 
-// Configuration du port et de l'hôte (par défaut : 3001 et 0.0.0.0)
-const PORT = process.env.PORT || 3001; //.env non utilisée. 
-const HOST = process.env.HOST || '0.0.0.0'; //. .env non utlisée
+// Configuration du port et de l'hôte
+const PORT = process.env.PORT || 3001; // Port par défaut : 3001
+const HOST = process.env.HOST || '0.0.0.0'; // Écoute toutes les interfaces réseau
 
-// Démarrage du serveur Express
+// Démarrage du serveur
 app.listen(PORT, HOST, () => {
-  console.log('http://localhost:3001'); // Le backend écoute Nginx en proxy à cette adresse : http://localhost:3001
-});
+  console.log('http://localhost:3001'); // Message console pour indiquer l'adresse du serveur
+}); 

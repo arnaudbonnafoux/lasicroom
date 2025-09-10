@@ -9,6 +9,7 @@
 │   ├── artiste_controleur.js
 │   ├── concert_controleur.js
 │   ├── connexion_controleur.js
+│   ├── live_controleur.js
 │   ├── reservation_controleur.js
 │   └── utilisateur_controleur.js
 ├── db.js
@@ -37,15 +38,17 @@
 │   ├── artistes.js
 │   ├── concerts.js
 │   ├── connexions.js
+│   ├── live.js
 │   ├── reservations.js
 │   ├── test_accomp.sh
 │   ├── test_artistes.sh
 │   ├── test_concerts.sh
 │   ├── test_connexions.sh
+│   ├── test_live.sh
 │   ├── test_reservation.sh
 │   ├── test_utilisateurs.sh
 │   └── utilisateurs.js
 └── structure_backend.md
 
-5 directories, 40 files
+5 directories, 43 files
 ```

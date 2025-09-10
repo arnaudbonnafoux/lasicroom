@@ -33,9 +33,9 @@
 │       │   ├── main.5cf95254.css
 │       │   └── main.5cf95254.css.map
 │       └── js
-│           ├── main.93a8505a.js
-│           ├── main.93a8505a.js.LICENSE.txt
-│           └── main.93a8505a.js.map
+│           ├── main.7ef4a93f.js
+│           ├── main.7ef4a93f.js.LICENSE.txt
+│           └── main.7ef4a93f.js.map
 ├── gen_arbo.sh
 ├── package.json
 ├── package-lock.json
@@ -74,10 +74,13 @@
 │   │   ├── HeaderAdmin.js
 │   │   ├── Header.js
 │   │   ├── HeaderUser.js
+│   │   ├── LiveStream.js
 │   │   ├── Modal.js
 │   │   ├── NavbarAdmin.js
 │   │   ├── Navbar.js
-│   │   └── NavbarUser.js
+│   │   ├── NavbarUser.js
+│   │   ├── PrivateRouteAdmin.js
+│   │   └── PrivateRoute.js
 │   ├── gen_arbo.sh
 │   ├── index.css
 │   ├── index.js
@@ -101,7 +104,6 @@
 │   │   ├── inscription.js
 │   │   ├── mentions_legales.js
 │   │   └── options.js
-│   ├── structure.txt
 │   ├── styles
 │   │   ├── accompagnement.css
 │   │   ├── accueil.css
@@ -126,5 +128,5 @@
 │       └── validation.js
 └── structure_frontend.md
 
-14 directories, 110 files
+14 directories, 112 files
 ```

@@ -6,14 +6,17 @@ import '../../styles/gestion_concerts.css';
 
 const GestionConcerts = () => {
   const navigate = useNavigate();
+
+  // États principaux
   const [concerts, setConcerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // États pour la gestion de l'édition
   const [editMode, setEditMode] = useState(false);
   const [editingConcertId, setEditingConcertId] = useState(null);
 
-  // Form state
+  // États pour le formulaire de création / édition
   const [titre, setTitre] = useState('');
   const [description, setDescription] = useState('');
   const [dateConcert, setDateConcert] = useState('');
@@ -22,16 +25,19 @@ const GestionConcerts = () => {
   const [tarifAbonne, setTarifAbonne] = useState('');
   const [nomArtiste, setNomArtiste] = useState('');
 
-  // Modale open state
+  // État pour la modale d'édition
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Token admin pour authentification
   const token = sessionStorage.getItem('token');
 
+   // Déconnexion : suppression du token et redirection
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
   };
 
+  // Fonction pour récupérer les concerts depuis l'API
   const fetchConcerts = async () => {
     try {
       const res = await fetch('/api/concerts');
@@ -45,10 +51,12 @@ const GestionConcerts = () => {
     }
   };
 
+  // Chargement des concerts au montage du composant
   useEffect(() => {
     fetchConcerts();
   }, []);
 
+  //Réinitialisation du formulaire après ajout / édition / annulation
   const resetForm = () => {
     setEditMode(false);
     setEditingConcertId(null);
@@ -61,6 +69,7 @@ const GestionConcerts = () => {
     setNomArtiste('');
   };
 
+  // Gestion de la soumission du formulaire (ajout ou modification)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -93,6 +102,7 @@ const GestionConcerts = () => {
           }),
         });
 
+        // 🔒 Vérification des droits
         if (creationRes.status === 401 || creationRes.status === 403) {
           alert("Vous n’êtes pas autorisé.");
           handleDeconnexion();
@@ -104,6 +114,7 @@ const GestionConcerts = () => {
         idArtiste = newArtiste.id_artiste;
       }
 
+      //Préparation des données du concert
       const concertPayload = {
         titre,
         description,
@@ -117,9 +128,11 @@ const GestionConcerts = () => {
         id_artiste: idArtiste,
       };
 
+      // Déterminer URL et méthode selon ajout ou édition
       const url = editMode ? `/api/concerts/${editingConcertId}` : '/api/concerts';
       const method = editMode ? 'PUT' : 'POST';
 
+      // Envoi des données au serveur
       const res = await fetch(url, {
         method,
         headers: {
@@ -146,6 +159,7 @@ const GestionConcerts = () => {
     }
   };
 
+  // Pré-remplissage du formulaire pour l’édition
   const handleEdit = (concert) => {
     setEditMode(true);
     setEditingConcertId(concert.id_concert);
@@ -159,6 +173,7 @@ const GestionConcerts = () => {
     setIsModalOpen(true);
   };
 
+   // Suppression d’un concert
   const handleDelete = async (id) => {
     if (!window.confirm("Confirmer la suppression du concert ?")) return;
 
@@ -195,7 +210,7 @@ const GestionConcerts = () => {
       <main>
         <h1>Gestion des concerts</h1>
 
-        {/* Formulaire d'ajout - reste inchangé */}
+        {/* Formulaire d'ajout / édition */}
         <form onSubmit={handleSubmit} className="form_ajout_concert">
           <h2 className='style_h2'>{editMode ? "Modifier un concert" : "Ajouter un concert"}</h2>
           <input className='input_form' type="text" placeholder="Titre" value={titre} onChange={e => setTitre(e.target.value)} required />
@@ -209,6 +224,7 @@ const GestionConcerts = () => {
           {editMode && <button className='button_form' type="button" onClick={() => { resetForm(); setIsModalOpen(false); }}>Annuler</button>}
         </form>
 
+         {/* Liste des concerts existants */}
         <h2 className='style_h2'>Liste des concerts</h2>
         {loading && <p>Chargement...</p>}
         {error && <p style={{ color: 'red' }}>Erreur : {error}</p>}

@@ -1,5 +1,6 @@
 # racine
 .vscode
+get_ips.sh
 gen_arbo.sh
 ouvrir_nginx.sh
 fermeture_nginx.sh

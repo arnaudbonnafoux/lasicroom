@@ -48,7 +48,7 @@ Le paradigme de programmation est basé sur le **modèle MVC** :
 
 ### Structure du projet ###
 
-[Structure de LasicRoom](./structure_générale.md) 
+[Structure de LasicRoom](../structure_générale.md) 
 
 ---
 

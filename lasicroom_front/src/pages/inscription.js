@@ -3,18 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import '../styles/inscription.css';
 
-// Import des validations
+// Import des fonctions de validation
 import { validateName, validateEmail, validatePassword } from '../utils/validation';
 
 function Inscription() {
+// États pour stocker les valeurs saisies par l’utilisateur
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const [erreurs, setErreurs] = useState({}); // ✅ plusieurs erreurs possibles
+
+  // État pour gérer les messages d’erreur (peut contenir plusieurs erreurs)
+  const [erreurs, setErreurs] = useState({}); 
+
+  // Hook de navigation de React Router (permet de rediriger après l’inscription)
   const navigate = useNavigate();
 
-  const gererSoumission = async (e) => {
-    e.preventDefault();
+  // Fonction appelée lors de la soumission du formulaire
+  const gererSoumission = async (e) => { 
+    e.preventDefault(); // Empêche le rechargement de la page par défaut
 
     // Validation côté client
     const newErrors = {};
@@ -27,12 +33,12 @@ function Inscription() {
       Object.entries(newErrors).filter(([_, v]) => v !== null)
     );
 
-    setErreurs(filteredErrors);
+    setErreurs(filteredErrors); // Mise à jour des erreurs
 
     // Si des erreurs, stop
     if (Object.keys(filteredErrors).length > 0) return;
 
-    // ✅ Si tout est valide → appel API
+    // Si tout est valide → appel API 
     try {
       const reponse = await fetch('/api/utilisateurs', {
         method: 'POST',
@@ -41,20 +47,25 @@ function Inscription() {
           nom,
           email,
           mot_de_passe: motDePasse,
-          role: 'utilisateur',
+          role: 'utilisateur', // Rôle par défaut
         }),
       });
 
-      const donnees = await reponse.json();
+      const donnees = await reponse.json(); // Réponse JSON du backend
 
       if (reponse.ok && donnees.utilisateur) {
+        // Sauvegarde utilisateur et token dans la session
         sessionStorage.setItem('utilisateur', JSON.stringify(donnees.utilisateur));
         sessionStorage.setItem('token', donnees.token);
+
+        // Redirection vers la billetterie
         navigate('/billetterie');
       } else {
+        // Erreur renvoyée par le serveur
         setErreurs({ global: donnees.message || 'Erreur lors de l’inscription.' });
       }
     } catch (err) {
+      // Erreur si le serveur n’est pas accessible
       console.error('Erreur de connexion au serveur:', err);
       setErreurs({ global: "Erreur de connexion au serveur." });
     }
