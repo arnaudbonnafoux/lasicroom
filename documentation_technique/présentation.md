@@ -37,7 +37,7 @@ Pour le développement de cette application, nous avons choisi :
     [Nginx](./configuration_nginx)
 
 - **ChatGPT** Génération et correction de code
-- **Copilot** Complétion
+- **Copilot** auto-complétion
 
 Le paradigme de programmation est basé sur le **modèle MVC** :  
 - **Model** : gestion des données avec PostgreSQL  

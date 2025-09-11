@@ -9,5 +9,3 @@
 ## [Accessibilté](accessibilité.md)
 ## [Optimisation](optimisation.md)
 ## [SEO](SEO.md)
-
-

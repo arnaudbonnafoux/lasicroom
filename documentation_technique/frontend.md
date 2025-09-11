@@ -45,6 +45,8 @@ Les techniques principales utilisées sont :
 Le fichier **`App.js`** est le **point central du frontend**.
 Il définit la structure globale de la **SPA** et configure le système de navigation grâce à **`react-router-dom`**.
 
+[app.js](../lasicroom_front/src/App.js)
+
 ### 📑 Rôle principal
 
 1. **Imports et configuration**

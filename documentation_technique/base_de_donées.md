@@ -7,8 +7,7 @@
 3. Avant d'accéder à la page billetterie, il doit **s’inscrire** ou **se connecter**.  
    Une fois connecté, il accède à son **espace personnel**.  
 4. Sur la page de réservation :  
-   - choix du **concert**,  
-   - choix du **nombre de places**,  
+   - choix du **concert**,   
    - choix du **type de tarif** : *plein* ou *abonné*.  
 5. L’utilisateur accède ensuite à son **tableau de bord**, qui récapitule l’ensemble de ses réservations.  
 

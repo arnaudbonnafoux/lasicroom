@@ -1,52 +1,56 @@
 # 🔁 Redirection HTTP vers HTTPS
 server {
-    listen 80;
-    listen [::]:80;
-    server_name _;
+    listen 80; # Écoute sur le port HTTP
+    listen [::]:80; # Écoute en IPv6 aussi sur le port HTTP
+    server_name _; # "_" signifie : pour n’importe quel nom de domaine
 
-    return 301 https://$host$request_uri;
+    return 301 https://$host$request_uri; # Redirige tout le trafic HTTP vers HTTPS
 }
 
-# 🔒 HTTPS
+# 🔒 HTTPS (sécurisé)
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name _;
+    listen 443 ssl; # Écoute sur le port HTTPS (IPv4)
+    listen [::]:443 ssl; # Écoute sur le port HTTPS (IPv6)
+    server_name _;  # "_" = valeur par défaut si aucun autre "server_name" ne correspond
 
-    # 📄 Certificat SSL (auto-signé pour dev, ou certif valide en prod)
+        # 📄 Certificat SSL (ici auto-signé en dev, sinon Let's Encrypt ou autre en prod)
     ssl_certificate /etc/nginx/certs/selfsigned.crt;
     ssl_certificate_key /etc/nginx/certs/selfsigned.key;
 
+    # 📂 Racine du site (build React déjà compilé)
     root /home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_front/build;
-    index index.html;
+    index index.html; # Fichier par défaut à servir si aucun fichier n’est spécifié
 
-    # 🔐 Content Security Policy
+    # 🔐 Politique CSP (Content Security Policy)
+    # Restreint les sources de scripts, styles, images, etc. pour limiter les attaques XSS
     add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self' https://www.youtube.com https://widget.deezer.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" always;
 
-    # 🔒 Headers de sécurité généraux
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-Frame-Options "DENY" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-    add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+    # 🔒 Autres en-têtes de sécurité
+    add_header X-Content-Type-Options "nosniff" always; # Empêche l'interprétation incorrecte du type MIME
+    add_header X-Frame-Options "DENY" always; # Interdit l’intégration du site dans une iframe
+    add_header X-XSS-Protection "1; mode=block" always; # Active l’anti-XSS du navigateur
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always; # Contrôle l’envoi du header "Referer"
+    add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always; # Désactive certaines API du navigateur
 
 
-    # 📦 API backend Node.js
+    # 📦 Redirection du trafic vers l’API backend Node.js (ex : Express)
     location /api/ {
-        proxy_pass http://localhost:3001;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://localhost:3001; # Redirige /api/ vers le backend Node.js
+        proxy_http_version 1.1; # Utilise HTTP/1.1 pour maintenir les connexions
+        proxy_set_header Host $host; # Passe l’host du client
+        proxy_set_header X-Real-IP $remote_addr;# Passe l’IP réelle du client
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # Passe la chaîne des IP
+        proxy_set_header X-Forwarded-Proto $scheme; # Indique si HTTPS ou HTTP
     }
 
-    # 🖼️ Accès aux images
+    # 🖼️ Gestion des images uploadées (servies par le backend)
     location /photos_artistes/ {
         proxy_pass http://localhost:3001;
     }
 
-    # 🌐 Routes React
+    # 🌐 Gestion des routes React (SPA)
+    # Si le fichier demandé n’existe pas (ex : /dashboard, /profile),
+    # Nginx renvoie "index.html" pour que React gère le routage côté client
     location / {
         try_files $uri /index.html;
     }
