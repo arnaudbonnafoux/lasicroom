@@ -129,6 +129,8 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
 * **Utilisateur** `1,n` → **Réservation** `n,1` → **Concert** `n,1` → **Artiste**
 * **Accompagnement** est indépendante.
 
+* [Diagramme UML](/documentation_technique/diagrammeUML.png)
+
 ---
 
 ## ✅ Points forts de la modélisation

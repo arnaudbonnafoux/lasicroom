@@ -13,7 +13,7 @@ Grâce à la plateforme, les visiteurs peuvent :
 
 [lasicRoom dev](https://lasicroom.local/)
 
-[LasicRoom auto-prod](https://90.0.91.102/)
+[LasicRoom auto-prod](https://90.0.94.33/)
 
 ---
 
@@ -26,7 +26,7 @@ Grâce à la plateforme, les visiteurs peuvent :
 
 ---
 
-### Technologies et paradigme de programmation
+### Technologies, ressources pédagogiques et paradigme de programmation
 
 Pour le développement de cette application, nous avons choisi :  
 - **Node.js** et **Express** pour le backend  
@@ -34,10 +34,13 @@ Pour le développement de cette application, nous avons choisi :
 - **PostgreSQL** pour la gestion de la base de données  
 - **Nginx** comme serveur et proxy  
 
-    [Nginx](./configuration_nginx)
+    [Config Nginx](./configuration_nginx)
 
-- **ChatGPT** Génération et correction de code
-- **Copilot** auto-complétion
+- **ChatGPT (sans abonnement)** Génération et correction de code avec commentaires didactiques.
+- **Copilot (sans abonnement)** auto-complétion
+- [Site MDN](https://developer.mozilla.org/fr/)
+- [Site Tout JavaScript](https://www.toutjavascript.com/livre/scripts.php)
+- [Plateforme W3School](https://profile.w3schools.com)
 
 Le paradigme de programmation est basé sur le **modèle MVC** :  
 - **Model** : gestion des données avec PostgreSQL  

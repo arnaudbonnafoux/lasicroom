@@ -9,3 +9,5 @@
 ## [Accessibilté](accessibilité.md)
 ## [Optimisation](optimisation.md)
 ## [SEO](SEO.md)
+## [Parcours utilisateur (démo)](/documentation_technique/parcours_utilisateur.md)
+## [Parcours admin (démo)](/documentation_technique/parcours_admin.md)

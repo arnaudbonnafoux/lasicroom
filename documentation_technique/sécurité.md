@@ -208,9 +208,6 @@
   * monitoring (ex. ELK Stack, Grafana),
   * alertes automatiques en cas de tentative d’attaque.
 
-Parfait 👍 Tu as déjà une super base de sécurisation documentée.
-Voici comment tu peux **intégrer Fail2Ban** dans la section *Améliorations futures* de ton document :
-
 ---
 
 ### 🛡️ Protection contre les scans et attaques automatisées (Fail2Ban)

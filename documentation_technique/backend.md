@@ -1,13 +1,13 @@
 # Backend (Node.js / Express)
 
-[Structure du backend](structure_backend.md)
+[Structure du backend](/lasicroom_back/structure_backend.md)
 
 ## 📌 Présentation
 
 Le backend se compose d'une **API RESTful** conçue avec le framework **Express**, permettant la gestion des données entre la base de données et l'interface utilisateur.
 La communication avec le frontend s'effectue via **Nginx**, configuré en proxy, ce qui empêche l’exposition directe du backend au public.
 
-À chaque réservation, un email de confirmation est envoyé à la plateforme **Mailtrap** via le module interne `email.js` situé à la racine du backend.
+À chaque réservation, un email de confirmation est envoyé à la plateforme [Mailtrap](https://mailtrap.io/inboxes/3967029/messages) via le module interne [`email.js`](/lasicroom_back/email.js) situé à la racine du backend.
 
 ---
 
@@ -78,8 +78,6 @@ Il initialise l’application Express, configure les middlewares globaux, et cha
 
    * Le serveur écoute par défaut sur **`http://localhost:3001`**.
    * Le port et l’hôte peuvent être personnalisés via les variables d’environnement `PORT` et `HOST`.
-   * En console, l’URL locale et publique sont affichées pour simplifier le test en développement.
-
 
 ---
 

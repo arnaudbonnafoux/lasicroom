@@ -1,6 +1,6 @@
 # 🎨 Frontend (React)
 
-[Structure du frontend](./structure_frontend.md)
+
 
 L’interface utilisateur a été conçue avec **Figma**.
 Le graphisme se veut **sobre et minimaliste**, en cohérence avec l’identité des structures représentées (associations, S.M.A.C. de petite taille, etc.).
@@ -14,13 +14,15 @@ Le site a été pensé pour être **simple d’utilisation**, afin de rester acc
 
 ## ⚛️ React
 
+[Structure du frontend](/lasicroom_front/structure_frontend.md)
+
 Le frontend repose sur **React**, permettant de développer une **SPA** (Single Page Application) robuste et sécurisée.
 Les principaux concepts fondamentaux y sont utilisés :
 
 * **JSX**
 * **Hooks** : `useState`, `useEffect`, `useNavigate`, etc.
-* **Props**
-* **Routing** avec `react-router-dom` (voir `App.js`)
+* **Props** : Données passées d’un composant parent à un composant enfant (immutable dans le composant enfant).
+* **Routing** avec `react-router-dom` (voir[`App.js`](/lasicroom_front/src/App.js))
 * **Appels API** avec Axios et Fetch pour communiquer avec le backend
 * Rendu dynamique via `.map()`
 * Gestion du token via `sessionStorage()`

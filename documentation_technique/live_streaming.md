@@ -15,6 +15,8 @@ Permettre aux utilisateurs connectés de visionner un live streaming depuis la c
   - `node-fetch` pour interroger l’API YouTube
   - `dotenv` pour stocker les clés
   - `helmet`, `morgan` pour la sécurité et les logs
+  - [`live_controleur.js`](/lasicroom_back/controleurs/live_controleur.js)
+  - [`live.js`](/lasicroom_back/routes/live.js)
 
 ### Frontend (React)
 - Composant `LiveStream.js` :
@@ -24,6 +26,7 @@ Permettre aux utilisateurs connectés de visionner un live streaming depuis la c
 - Page `AccueilUser.js` :
   - Page protégée (accessible uniquement aux utilisateurs connectés)
   - Intègre le composant `LiveStream` dans la section live streaming
+  - [`LiveStream.js`](/lasicroom_front/src/composants/LiveStream.js)
 
 ---
 

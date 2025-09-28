@@ -34,7 +34,7 @@ const AccueilUser = () => {
           </div>
 
           <div className='texte'>
-            <h2 style={{ textAlign: 'center' }}>Un espcae perso !?</h2>
+            <h2 style={{ textAlign: 'center' }}>Un espace perso !?</h2>
             <p style={{ padding: '12px' }}>
               Grâce à cet espace, tu as la possibilité d'accéder à la billetterie sans te connecter et surtout à un récapitulatif de toutes tes réservations.
               En plus de ces fonctionnalités de base, tu auras accès à notre <strong>live streaming</strong> qui te permettra de suivre les balances des groupes programmés à la SicRoom.
@@ -57,7 +57,7 @@ const AccueilUser = () => {
         <div className='div_live_streaming'>
           <div className='div_frame'>
             <h2 style={{ textAlign: 'center' }}>
-              Le direct live des balances
+              Le direct live des balances !
             </h2>
             <LiveStream />
             {/*<iframe
