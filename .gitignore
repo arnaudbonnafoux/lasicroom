@@ -5,6 +5,7 @@ gen_arbo.sh
 ouvrir_nginx.sh
 fermeture_nginx.sh
 La sicRoom.session.sql
+geoip_log.sh
 
 # frontend
 lasicroom_front/gen_arbo.sh

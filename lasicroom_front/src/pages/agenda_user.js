@@ -26,10 +26,6 @@ const AgendaUser = () => {
 
   if (loading) return <p>Chargement...</p>;
 
-  /*const handleLogout = () => {
-    sessionStorage.removeItem('token');
-    navigate('/'); // Retour à la racine
-  };*/
   return (
     <div>
       <HeaderUser />

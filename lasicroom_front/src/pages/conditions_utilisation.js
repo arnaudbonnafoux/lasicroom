@@ -24,13 +24,12 @@ const ConditionsUtilisation = () => {
           <p><strong>4. Responsabilité :</strong>
             La sicRoom décline toute responsabilité en cas d’interruption, de dysfonctionnement ou d’inaccessibilité temporaire du site, notamment en raison de maintenance ou de force majeure.</p>
 
-          <p><strong>5. Données personnelles :</strong>
-            Conformément au Règlement Général sur la Protection des Données (RGPD), vos données personnelles sont utilisées uniquement pour la gestion de votre compte, le traitement de vos réservations et, si vous y avez consenti, l’envoi d’informations par e-mail. Vous pouvez exercer vos droits à tout moment (accès, rectification, suppression) en nous contactant.</p>
+          <p><strong>5. Données personnelles & cookies:</strong>
+            Conformément au Règlement Général sur la Protection des Données (RGPD), vos données personnelles sont utilisées uniquement pour la gestion de votre compte, 
+            le traitement de vos réservations et, si vous y avez consenti, l’envoi d’informations par e-mail. 
+            Vous pouvez exercer vos droits à tout moment (accès, rectification, suppression) en nous contactant. Le site n'utlise pas de cookies</p>
 
-          <p><strong>6. Cookies :</strong>
-            Ce site utilise uniquement des cookies strictement nécessaires à son bon fonctionnement (connexion utilisateur, sécurité, préférences de navigation). Aucun cookie de suivi publicitaire ou d’analyse n’est utilisé.</p>
-
-          <p><strong>7. Droit applicable :</strong>
+          <p><strong>6. Droit applicable :</strong>
             Le site et ses conditions d’utilisation sont régis par le droit français. En cas de litige, les tribunaux compétents de Paris seront seuls habilités.</p>
         </section>
       </main>
