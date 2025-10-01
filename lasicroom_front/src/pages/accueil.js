@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
 import Header from '../composants/Header';
+import HelmetWrapper from '../composants/HelmetWrapper';
 import '../styles/accueil.css';
 
 const Accueil = () => {
@@ -14,6 +15,10 @@ const Accueil = () => {
 
   return (
     <div>
+      <HelmetWrapper
+        title="Accueil - La Sicroom"
+        description="Découvrez la programmation musicale de la sicRoom et réservez vos places en ligne."
+      />
       <Header />
       <div className='div_navbar'>
         <Navbar />

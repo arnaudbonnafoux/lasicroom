@@ -7,6 +7,7 @@ import Header from '../composants/Header';
 import CardConcert from '../composants/CardConcert';
 import Modal from '../composants/Modal';
 import Options from './options';
+import HelmetWrapper from '../composants/HelmetWrapper';
 
 // Import du CSS spécifique à cette page
 import '../styles/agenda.css';
@@ -40,6 +41,10 @@ const Agenda = () => {
   // Rendu principal
   return (
     <div>
+      <HelmetWrapper
+        title="Agenda - La Sicroom"
+        description="Consultez le calendrier des concerts et événements à La Sicroom. Réservez vos places en ligne facilement."
+      />
       {/* En-tête et barre de navigation */}
       <Header />
       <Navbar />

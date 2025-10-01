@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../composants/Header';
 import Footer from '../composants/Footer';
 import Navbar from '../composants/Navbar';
+import HelmetWrapper from '../composants/HelmetWrapper';
 import '../styles/accompagnement.css';
 
 // Import des validations
@@ -62,6 +63,10 @@ const Accompagnement = () => {
 
   return (
     <div>
+      <HelmetWrapper
+        title="Accompagnement - La Sicroom"
+        description="Découvrez les services d'accompagnement de La Sicroom pour les artistes et les événements musicaux."
+      />
       <Header />
       <Navbar />
 
