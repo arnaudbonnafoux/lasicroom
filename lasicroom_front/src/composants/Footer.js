@@ -20,7 +20,7 @@ const Footer = () => {
       <div className='div_liens'>
         <Link to="/mentions_legales" className='liens_footer'>Mentions légales</Link>
         <Link to="/conditions_utilisation" className='liens_footer'>CGU</Link>
-        <Link to="/admin/connexion" className='liens_footer'>Admin</Link>
+        {/*<Link to="/admin/connexion" className='liens_footer'>Admin</Link>*/}
       </div>
 
       <p style={{ textAlign: 'center', color: '#f5f5f5', fontSize: '10px', paddingBottom: '10px' }} className="licence">&copy; 2025 duanrA</p>
