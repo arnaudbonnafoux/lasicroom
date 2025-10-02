@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; // Import des hooks React
 
-import { useNavigate } from 'react-router-dom'; // ⚠️
+import { useNavigate } from 'react-router-dom';
 
 // Import des composants de l'application
 import Navbar from '../composants/Navbar';
@@ -37,9 +37,9 @@ const Agenda = () => {
       });
   }, []);  // [] → signifie que l'effet s'exécute uniquement au montage (comme componentDidMount)
 
-    const navigate = useNavigate(); //⚠️
+    const navigate = useNavigate();
   
-    const handleLoginClick = () => { //⚠️
+    const handleLoginClick = () => {
       navigate('/connexion_user');
     };
 
@@ -56,9 +56,9 @@ const Agenda = () => {
       />
       {/* En-tête et barre de navigation */}
       <Header />
-      <div className='div_navbar'> {/*⚠️*/}
+      <div className='div_navbar'>
         <Navbar />
-        <button className='button_bleu' onClick={handleLoginClick}>👉 Connexion</button> {/*⚠️*/}
+        <button className='button_bleu' onClick={handleLoginClick}>👉 Connexion</button>
       </div>
       <main>
         <h1>Agenda des concerts</h1>

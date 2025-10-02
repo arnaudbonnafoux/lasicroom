@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; //⚠️
+import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
@@ -13,11 +13,11 @@ const Dashboard = () => {
    // Récupération du token d’authentification stocké en session
   const token = sessionStorage.getItem('token');
 
-  const navigate = useNavigate();//⚠️
+  const navigate = useNavigate();
   const handleLogout = () => {
     sessionStorage.removeItem('token');
     navigate('/'); // Retour à la racine
-  }; //⚠️
+  };
 
   // Chargement des réservations utilisateur au montage du composant
   useEffect(() => {

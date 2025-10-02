@@ -14,8 +14,8 @@ const AgendaUser = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem('token');
-    navigate('/'); // Retour à la racine
-  }; // ⚠️
+    navigate('/');
+  };
 
   useEffect(() => {
     fetch('/api/concerts')
@@ -41,9 +41,9 @@ const AgendaUser = () => {
       />
 
       <HeaderUser />
-      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>{/*⚠️*/}
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
         <NavbarUser />
-        <button className='button_rouge' onClick={handleLogout}>👉 Déconnexion</button>{/*⚠️*/}
+        <button className='button_rouge' onClick={handleLogout}>👉 Déconnexion</button>
       </div>
 
       <main>

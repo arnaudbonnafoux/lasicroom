@@ -7,9 +7,9 @@ import HeaderAdmin from '../../composants/HeaderAdmin';
 const GestionAccompagnement = () => {
   const [demandes, setDemandes] = useState([]);
 
-  const navigate = useNavigate(); //⚠️
+  const navigate = useNavigate();
   // Déconnexion : suppression du token et redirection
-  const handleDeconnexion = () => { //⚠️
+  const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
   };

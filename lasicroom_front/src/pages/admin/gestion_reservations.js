@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';//⚠️
+import { useNavigate } from 'react-router-dom';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 //import Footer from '../../composants/Footer';
 import Header from '../../composants/HeaderAdmin';
@@ -9,9 +9,9 @@ const GestionReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate(); //⚠️
+  const navigate = useNavigate(); 
   // Déconnexion : suppression du token et redirection
-  const handleDeconnexion = () => { //⚠️
+  const handleDeconnexion = () => { 
     sessionStorage.removeItem('token');
     navigate('/');
   };

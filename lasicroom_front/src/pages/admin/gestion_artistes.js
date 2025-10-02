@@ -5,9 +5,9 @@ import '../../styles/gestion_artistes.css';
 import HeaderAdmin from '../../composants/HeaderAdmin';
 
 const GestionArtistes = () => {
-  const navigate = useNavigate(); //⚠️
+  const navigate = useNavigate(); 
 
-  // Déconnexion : suppression du token et redirection ⚠️
+  // Déconnexion : suppression du token et redirection
   const handleDeconnexion = () => {
     sessionStorage.removeItem('token');
     navigate('/');
@@ -146,10 +146,10 @@ const GestionArtistes = () => {
   return (
     <div>
       <HeaderAdmin />
-      <div className='div_navbar'> {/*⚠️*/}
+      <div className='div_navbar'>
       <NavbarAdmin />
         <button className='button_rouge' onClick={handleDeconnexion}>👉 Déconnexion</button>
-      </div> {/*⚠️*/}
+      </div>
 
       <main>
         <h1>Gestion des artistes</h1>
