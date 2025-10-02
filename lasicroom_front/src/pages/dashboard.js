@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; //⚠️
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import '../styles/gestion_reservations.css';
+import HelmetWrapper from '../composants/HelmetWrapper';
 
 const Dashboard = () => {
   // État qui contient toutes les réservations de l’utilisateur
@@ -10,6 +12,12 @@ const Dashboard = () => {
 
    // Récupération du token d’authentification stocké en session
   const token = sessionStorage.getItem('token');
+
+  const navigate = useNavigate();//⚠️
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    navigate('/'); // Retour à la racine
+  }; //⚠️
 
   // Chargement des réservations utilisateur au montage du composant
   useEffect(() => {
@@ -24,8 +32,15 @@ const Dashboard = () => {
 
   return (
     <div>
+      <HelmetWrapper
+        title="Dashboard - Espace personnel"
+        description="Découvrez les services d'accompagnement de La Sicroom pour les artistes et les événements musicaux."
+      />
       <HeaderUser />
-      <NavbarUser />
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <NavbarUser />
+        <button className='button_rouge' onClick={handleLogout}>👉 Déconnexion</button>
+      </div>
 
       <main style={{ height: '100vh' }}>
         <h1>Mes réservations</h1>

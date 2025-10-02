@@ -5,11 +5,17 @@ import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import CardConcert from '../composants/CardConcert';
 import '../styles/agenda.css';
+import HelmetWrapper from '../composants/HelmetWrapper';
 
 const AgendaUser = () => {
   const [concerts, setConcerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    navigate('/'); // Retour à la racine
+  }; // ⚠️
 
   useEffect(() => {
     fetch('/api/concerts')
@@ -28,8 +34,17 @@ const AgendaUser = () => {
 
   return (
     <div>
+      <HelmetWrapper
+        title="Agenda - Espace personnel"
+        description="Consultez le calendrier des concerts et 
+        événements à La Sicroom. Réservez vos places en ligne facilement."
+      />
+
       <HeaderUser />
-      <NavbarUser />
+      <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>{/*⚠️*/}
+        <NavbarUser />
+        <button className='button_rouge' onClick={handleLogout}>👉 Déconnexion</button>{/*⚠️*/}
+      </div>
 
       <main>
         <h1>Agenda des concerts</h1>

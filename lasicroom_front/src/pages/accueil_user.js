@@ -5,20 +5,26 @@ import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
 import '../styles/accueil.css';
 import LiveStream from '../composants/LiveStream';
+import HelmetWrapper from '../composants/HelmetWrapper';
 
 const AccueilUser = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     sessionStorage.removeItem('token');
-    navigate('/'); // Retour à la racine
+    navigate('/');
   };
   return (
     <div>
+      <HelmetWrapper
+        title="Accueil - Espace Personnel"
+        description="Découvrez la programmation musicale de la sicRoom et réservez vos places en ligne."
+      />
+
       <HeaderUser />
       <div className='div_navbar' style={{ display: 'flex', justifyContent: 'space-between' }}>
         <NavbarUser />
 
-        <button className='button_rouge' onClick={handleLogout}>👉Déconnexion</button>
+        <button className='button_rouge' onClick={handleLogout}>👉 Déconnexion</button>
       </div>
       <main>
         <h1>Bienvenue sur ton Espace Perso !</h1>
@@ -37,8 +43,8 @@ const AccueilUser = () => {
             <h2 style={{ textAlign: 'center' }}>Un espace perso !?</h2>
             <p style={{ padding: '12px' }}>
               Grâce à cet espace, tu as la possibilité d'accéder à la billetterie sans te connecter et surtout à un récapitulatif de toutes tes réservations.
-              En plus de ces fonctionnalités de base, tu auras accès à notre <strong>live streaming</strong> qui te permettra de suivre les balances des groupes programmés à la SicRoom.
-              Elles se déroulent généralement <strong>à 18h</strong>et sont une occasion de découvrir les coulisses et le off des groupes juste avant leur show...
+              En plus de ces fonctionnalités de base, tu auras accès à notre <strong>live streaming</strong> qui te permettra de suivre les balances des groupes programmés à la sicRoom.
+              Elles se déroulent généralement <strong>à 18h</strong> et sont une occasion de découvrir les coulisses et le off des groupes juste avant leur show...
             </p>
           </div>
 

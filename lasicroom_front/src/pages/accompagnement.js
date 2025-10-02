@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ⚠️
 import axios from 'axios';
 import Header from '../composants/Header';
 import Footer from '../composants/Footer';
@@ -10,6 +11,13 @@ import '../styles/accompagnement.css';
 import { validateName, validateEmail, validateStyle, validateText } from '../utils/validation';
 
 const Accompagnement = () => {
+
+  const navigate = useNavigate(); // ⚠️
+
+  const handleLoginClick = () => {  // ⚠️
+    navigate('/connexion_user');
+  };
+
   const [formData, setFormData] = useState({
     nom_artiste: '',
     email_artiste: '',
@@ -68,7 +76,10 @@ const Accompagnement = () => {
         description="Découvrez les services d'accompagnement de La Sicroom pour les artistes et les événements musicaux."
       />
       <Header />
-      <Navbar />
+      <div className='div_navbar'> {/*⚠️*/}
+        <Navbar />
+        <button className='button_bleu' onClick={handleLoginClick}>👉 Connexion</button>{/*⚠️*/}
+      </div> 
 
       <h1>Accompagnement</h1>
       <div className='div_accompagnement'>

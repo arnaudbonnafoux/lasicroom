@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';//⚠️
 import NavbarAdmin from '../../composants/NavbarAdmin';
 //import Footer from '../../composants/Footer';
 import Header from '../../composants/HeaderAdmin';
@@ -8,7 +8,13 @@ import '../../styles/gestion_reservations.css'
 const GestionReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
-  //const navigate = useNavigate();
+
+  const navigate = useNavigate(); //⚠️
+  // Déconnexion : suppression du token et redirection
+  const handleDeconnexion = () => { //⚠️
+    sessionStorage.removeItem('token');
+    navigate('/');
+  };
 
   useEffect(() => {
     fetchReservations();
@@ -61,7 +67,10 @@ const GestionReservations = () => {
   return (
     <div>
       <Header />
-      <NavbarAdmin />
+      <div className='div_navbar'>
+        <NavbarAdmin />
+        <button className='button_rouge' onClick={handleDeconnexion}>👉 Déconnexion</button>
+      </div>
 
       <main>
         <h1>Gestion des réservations</h1>

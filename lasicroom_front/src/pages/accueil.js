@@ -16,13 +16,14 @@ const Accueil = () => {
   return (
     <div>
       <HelmetWrapper
-        title="Accueil - La Sicroom"
+        title="Accueil - La sicRoom"
         description="Découvrez la programmation musicale de la sicRoom et réservez vos places en ligne."
       />
+      
       <Header />
       <div className='div_navbar'>
         <Navbar />
-        <button className='button_bleu' onClick={handleLoginClick}>👉Connexion</button>
+        <button className='button_bleu' onClick={handleLoginClick}>👉 Connexion</button>
       </div>
 
       <main>

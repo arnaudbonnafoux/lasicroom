@@ -204,7 +204,7 @@ const GestionConcerts = () => {
       <HeaderAdmin />
       <div className='div_navbar'>
         <NavbarAdmin />
-        <button className='button_rouge' onClick={handleDeconnexion}>👉Déconnexion</button>
+        <button className='button_rouge' onClick={handleDeconnexion}>👉 Déconnexion</button>
       </div>
 
       <main>

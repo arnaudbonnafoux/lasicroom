@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../composants/HeaderAdmin';
 import NavbarAdmin from '../../composants/NavbarAdmin';
+import HeaderAdmin from '../../composants/HeaderAdmin';
 
 const GestionAccompagnement = () => {
   const [demandes, setDemandes] = useState([]);
-  const navigate = useNavigate();
+
+  const navigate = useNavigate(); //⚠️
+  // Déconnexion : suppression du token et redirection
+  const handleDeconnexion = () => { //⚠️
+    sessionStorage.removeItem('token');
+    navigate('/');
+  };
 
   useEffect(() => {
     const token = sessionStorage.getItem('token'); // On récupère le token de session
@@ -55,8 +62,11 @@ const GestionAccompagnement = () => {
 
   return (
     <div>
-      <Header />
+      <HeaderAdmin />
+      <div className='div_navbar'>
       <NavbarAdmin />
+        <button className='button_rouge' onClick={handleDeconnexion}>👉 Déconnexion</button>
+      </div>
 
       <main>
         <h1>Gestion des demandes d'accompagnement</h1>

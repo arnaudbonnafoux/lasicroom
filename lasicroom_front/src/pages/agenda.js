@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'; // Import des hooks React
 
+import { useNavigate } from 'react-router-dom'; // ⚠️
+
 // Import des composants de l'application
 import Navbar from '../composants/Navbar';
 import Footer from '../composants/Footer';
@@ -35,6 +37,12 @@ const Agenda = () => {
       });
   }, []);  // [] → signifie que l'effet s'exécute uniquement au montage (comme componentDidMount)
 
+    const navigate = useNavigate(); //⚠️
+  
+    const handleLoginClick = () => { //⚠️
+      navigate('/connexion_user');
+    };
+
   // Affichage si chargement
   if (loading) return <p>Chargement...</p>; // Pendant le fetch, on affiche un message simple
 
@@ -43,12 +51,15 @@ const Agenda = () => {
     <div>
       <HelmetWrapper
         title="Agenda - La Sicroom"
-        description="Consultez le calendrier des concerts et événements à La Sicroom. Réservez vos places en ligne facilement."
+        description="Consultez le calendrier des concerts et 
+        événements à La Sicroom. Réservez vos places en ligne facilement."
       />
       {/* En-tête et barre de navigation */}
       <Header />
-      <Navbar />
-
+      <div className='div_navbar'> {/*⚠️*/}
+        <Navbar />
+        <button className='button_bleu' onClick={handleLoginClick}>👉 Connexion</button> {/*⚠️*/}
+      </div>
       <main>
         <h1>Agenda des concerts</h1>
 
