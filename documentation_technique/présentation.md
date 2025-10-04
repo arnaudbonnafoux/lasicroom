@@ -55,7 +55,13 @@ Le paradigme de programmation est basé sur le **modèle MVC** :
 
 [Structure de LasicRoom](../structure_générale.md) 
 
-[Github](https://github.com/Ilaria-Digital-School/Projet.Arnaud.Bonnafoux.2025.git)
+[Dépôt Github](https://github.com/Ilaria-Digital-School/Projet.Arnaud.Bonnafoux.2025.git)
+
+---
+
+### Critères d'évaluation ###
+
+[Critères d'évaluation](/documentation_technique/⚠️%20Critères%20d_évaluation%20-%20Webecom%20REFERENTIEL%20de%20compétences%20-%20France%20Compétences.pdf)
 
 ---
 
