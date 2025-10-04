@@ -28,6 +28,8 @@ Grâce à la plateforme, les visiteurs peuvent :
 
 ### Technologies, ressources pédagogiques et paradigme de programmation
 
+[Cahier des charges](/documentation_technique/Projet%20-%20Développement%20du%20site%20web%20de%20La%20sicRoom%20–%20Salle%20de%20concert%20SMAC.pdf)
+
 Pour le développement de cette application, nous avons choisi :  
 - **Node.js** et **Express** pour le backend  
 - **React** pour le frontend  
@@ -52,6 +54,8 @@ Le paradigme de programmation est basé sur le **modèle MVC** :
 ### Structure du projet ###
 
 [Structure de LasicRoom](../structure_générale.md) 
+
+[Github](https://github.com/Ilaria-Digital-School/Projet.Arnaud.Bonnafoux.2025.git)
 
 ---
 

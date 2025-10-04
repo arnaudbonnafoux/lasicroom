@@ -33,9 +33,9 @@
 │       │   ├── main.5cf95254.css
 │       │   └── main.5cf95254.css.map
 │       └── js
-│           ├── main.7ef4a93f.js
-│           ├── main.7ef4a93f.js.LICENSE.txt
-│           └── main.7ef4a93f.js.map
+│           ├── main.d6dd6e8f.js
+│           ├── main.d6dd6e8f.js.LICENSE.txt
+│           └── main.d6dd6e8f.js.map
 ├── gen_arbo.sh
 ├── package.json
 ├── package-lock.json
@@ -74,6 +74,7 @@
 │   │   ├── HeaderAdmin.js
 │   │   ├── Header.js
 │   │   ├── HeaderUser.js
+│   │   ├── HelmetWrapper.js
 │   │   ├── LiveStream.js
 │   │   ├── Modal.js
 │   │   ├── NavbarAdmin.js
@@ -128,5 +129,5 @@
 │       └── validation.js
 └── structure_frontend.md
 
-14 directories, 112 files
+14 directories, 113 files
 ```

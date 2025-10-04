@@ -5,6 +5,7 @@
 ├── documentation_technique
 │   ├── accessibilité.md
 │   ├── backend.md
+│   ├── backup_lasicroom2.sql
 │   ├── base_de_donées.md
 │   ├── bd_structure.txt
 │   ├── cadre_légal.md
@@ -17,6 +18,8 @@
 │   ├── parcours_admin.md
 │   ├── parcours_utilisateur.md
 │   ├── présentation.md
+│   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
+│   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
 │   ├── regex_validation.js_front.md
 │   ├── sécurité.md
 │   ├── SEO.md
@@ -26,7 +29,7 @@
 ├── fermeture_serveur.sh
 ├── gen_arbo.sh
 ├── generer_logs_nginx.sh
-├── get_ips.sh
+├── geoip_log.sh
 ├── lasicroom_back
 │   ├── app.js
 │   ├── back.log
@@ -107,9 +110,9 @@
 │   │       │   ├── main.5cf95254.css
 │   │       │   └── main.5cf95254.css.map
 │   │       └── js
-│   │           ├── main.7ef4a93f.js
-│   │           ├── main.7ef4a93f.js.LICENSE.txt
-│   │           └── main.7ef4a93f.js.map
+│   │           ├── main.d6dd6e8f.js
+│   │           ├── main.d6dd6e8f.js.LICENSE.txt
+│   │           └── main.d6dd6e8f.js.map
 │   ├── gen_arbo.sh
 │   ├── package.json
 │   ├── package-lock.json
@@ -148,6 +151,7 @@
 │   │   │   ├── HeaderAdmin.js
 │   │   │   ├── Header.js
 │   │   │   ├── HeaderUser.js
+│   │   │   ├── HelmetWrapper.js
 │   │   │   ├── LiveStream.js
 │   │   │   ├── Modal.js
 │   │   │   ├── NavbarAdmin.js
@@ -204,11 +208,10 @@
 ├── La sicRoom.session.sql
 ├── LICENSE
 ├── nginx_logs
-│   └── nginx_logs_2025-08-31_10-07-39.txt
 ├── ouvrir_nginx.sh
 ├── ouvrir_serveur.sh
 ├── README.md
 └── structure_générale.md
 
-22 directories, 186 files
+22 directories, 189 files
 ```
