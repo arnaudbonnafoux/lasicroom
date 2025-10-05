@@ -13,9 +13,9 @@ server {
     listen [::]:443 ssl; # Écoute sur le port HTTPS (IPv6)
     server_name _;  # "_" = valeur par défaut si aucun autre "server_name" ne correspond
 
-        # 📄 Certificat SSL (ici auto-signé en dev, sinon Let's Encrypt ou autre en prod)
-    ssl_certificate /etc/nginx/certs/selfsigned.crt;
-    ssl_certificate_key /etc/nginx/certs/selfsigned.key;
+    # 📄 Certificat SSL avec Let's Encrypt
+    ssl_certificate /etc/letsencrypt/live/lasicroom.duckdns.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/lasicroom.duckdns.org/privkey.pem;
 
     # 📂 Racine du site (build React déjà compilé)
     root /home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_front/build;

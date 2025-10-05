@@ -1,4 +1,5 @@
-# 🎶 La sicRoom – Application Web pour une S.M.A.C.
+# 🎶 La sicRoom – Application Web pour une S.M.A.C. 😎
+[La sicRoom](https://lasicroom.duckdns.org/)
 
 ## 📌 Présentation  
 
@@ -24,6 +25,7 @@ Le site s’adresse à plusieurs types d’utilisateurs :
 - 👩‍🎤 **Espace artistes** : dépôt de dossiers, suivi et accompagnement.  
 - 📺 **Contenu multimédia** : vidéos, live stream, supports pédagogiques.  
 - 🛠 **Interface admin** : gestion simplifiée de la salle et des événements.  
+
 
 
 

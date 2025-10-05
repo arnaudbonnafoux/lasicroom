@@ -13,7 +13,7 @@ Grâce à la plateforme, les visiteurs peuvent :
 
 [lasicRoom dev](https://lasicroom.local/)
 
-[LasicRoom auto-prod](https://90.0.94.33/)
+[LasicRoom prod](https://lasicroom.duckdns.org/)
 
 ---
 

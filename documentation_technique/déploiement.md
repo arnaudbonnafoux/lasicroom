@@ -8,66 +8,72 @@ Ce document décrit la configuration Nginx utilisée pour le projet **LasicRoom*
 
 ## 🔁 Redirection HTTP → HTTPS
 
-- Toutes les requêtes sur le port 80 sont automatiquement redirigées vers HTTPS.
-- Garantit que la communication est toujours sécurisée.
+* Toutes les requêtes sur le port 80 sont automatiquement redirigées vers HTTPS.
+* Garantit que la communication est toujours sécurisée.
 
 ---
 
 ## 🔒 Serveur HTTPS
 
-- Écoute sur le port 443 avec SSL.
-- Utilise un certificat auto-signé pour le développement (en production, remplacer par un certificat valide).
-- Racine du serveur : le dossier `build` du frontend React.
+* Écoute sur le port 443 avec SSL.
+* Utilise un **certificat SSL valide** généré par **Let’s Encrypt** pour sécuriser les connexions.
+* Le certificat est associé à un **nom de domaine gratuit** configuré via **DuckDNS** (ex. `lasicroom.duckdns.org`).
+* La racine du serveur est le dossier `build` du frontend React.
+* Pour le développement local, un certificat auto-signé peut être utilisé, mais en production, il est recommandé d’utiliser le certificat Let’s Encrypt.
 
 ---
 
 ## 🔐 Sécurité
 
-- **Content Security Policy (CSP)** : limite les sources de scripts, styles, images, médias et frames.  
-- **Headers complémentaires** : protection contre le sniffing, clickjacking, XSS et restrictions des permissions navigateur.
+* **Content Security Policy (CSP)** : limite les sources de scripts, styles, images, médias et frames.
+* **Headers complémentaires** : protection contre le sniffing, le clickjacking, les attaques XSS et restrictions des permissions navigateur.
 
 ---
 
 ## 📦 Proxy vers le backend Node.js
 
-- Les requêtes vers `/api/` sont transmises au backend Node.js (port 3001).  
-- Les headers sont configurés pour conserver l’IP client et le protocole original.  
+* Les requêtes vers `/api/` sont transmises au backend Node.js (port 3001).
+* Les headers sont configurés pour conserver l’IP client et le protocole original.
 
 ### Accès aux images
 
-- Le chemin `/photos_artistes/` est également proxifié vers le backend.
+* Le chemin `/photos_artistes/` est également proxifié vers le backend.
 
 ---
 
 ## 🌐 Frontend React
 
-- Toutes les routes non gérées par Nginx sont redirigées vers `index.html` pour permettre le **routing côté client**.
+* Toutes les routes non gérées par Nginx sont redirigées vers `index.html` pour permettre le **routing côté client**.
 
 ---
 
-> ✅ Cette configuration assure un serveur sécurisé, fonctionnel pour le frontend React et le backend Node.js, tout en respectant les bonnes pratiques de déploiement.
-
+> ✅ Cette configuration assure un serveur sécurisé et fonctionnel pour le frontend React et le backend Node.js, tout en respectant les bonnes pratiques de déploiement.
 
 ---
 
 ## 📄 Surveillance des logs Nginx
 
-Pour suivre l’activité du serveur et diagnostiquer les problèmes, un **script bash** a été ajouté à la racine du projet pour générer un fichier centralisant les logs Nginx.
+Pour suivre l’activité du serveur et diagnostiquer les problèmes, un **script Bash** a été ajouté à la racine du projet pour générer un fichier centralisant les logs Nginx.
 
 ### 🔹 Script `generer_logs_nginx.sh`
 
-* **Objectif** : récupérer les logs d’accès (`access.log`) et d’erreur (`error.log`) de Nginx dans un seul fichier.
-* **Sortie** : `nginx_logs.txt` ou un autre fichier spécifié.
-* **Fonctionnalités** :
+**Objectif** : récupérer les logs d’accès (`access.log`) et d’erreur (`error.log`) de Nginx dans un seul fichier.
+**Sortie** : `nginx_logs.txt` (ou un fichier spécifié).
 
-  * Récupère les logs complets ou filtrés par période.
-  * Sépare les logs d’accès et les logs d’erreur avec des en-têtes clairs :
+**Fonctionnalités** :
 
-    ```
-    === Nginx Access Log ===
-    === Nginx Error Log ===
-    ```
-  * Permet un suivi rapide de l’activité et des erreurs du serveur.
+* Récupère les logs complets ou filtrés par période.
+
+* Sépare les logs d’accès et les logs d’erreur avec des en-têtes clairs :
+
+  ```
+  === Nginx Access Log ===
+  === Nginx Error Log ===
+  ```
+
+* Permet un suivi rapide de l’activité et des erreurs du serveur.
+
+---
 
 ### 🔹 Exemple d’utilisation
 
@@ -77,6 +83,8 @@ sudo ./generer_logs_nginx.sh
 
 * Le fichier généré contiendra l’ensemble des requêtes et erreurs traitées par Nginx.
 * Possibilité de filtrer par période pour analyser uniquement une semaine ou un jour précis.
+
+---
 
 ### 🔹 Avantages
 

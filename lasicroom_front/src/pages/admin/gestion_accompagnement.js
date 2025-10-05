@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../composants/HeaderAdmin';
+//import HeaderAdmin from '../../composants/HeaderAdmin';
 import NavbarAdmin from '../../composants/NavbarAdmin';
 import HeaderAdmin from '../../composants/HeaderAdmin';
 
