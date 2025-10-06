@@ -47,6 +47,8 @@ Le backend utilise quatre middlewares principaux :
 Le fichier **`app.js`** constitue le **cœur du backend**.
 Il initialise l’application Express, configure les middlewares globaux, et charge les routes principales de l’API.
 
+[app.js](/lasicroom_back/app.js)
+
 ### 📑 Contenu et rôle principal :
 
 1. **Imports & configuration**

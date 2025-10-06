@@ -1,5 +1,7 @@
 # 🎟 Fonctionnement de la billetterie
 
+[Backup BD](/documentation_technique/backup_lasicroom2.sql)
+
 ## 🔄 Parcours utilisateur
 
 1. L’utilisateur consulte **l’agenda** via le site (affichage des concerts à venir).  

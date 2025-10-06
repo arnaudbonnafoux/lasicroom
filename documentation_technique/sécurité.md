@@ -27,7 +27,13 @@
 * **Hachage des mots de passe (bcrypt)**
 
   * Les mots de passe sont **hachés avec bcrypt** avant insertion en base.
+
+  [Table utilisateur](/La%20sicRoom.session.sql)
+
   * Vérification par `bcrypt.compare` lors de la connexion.
+
+  [connexion_controleur.js](/lasicroom_back/controleurs/connexion_controleur.js)
+
   * Protection contre la fuite de mots de passe en clair.
 
 ---
@@ -39,6 +45,8 @@
   * Validation côté front avant envoi au backend.
   * Les champs sensibles (email, mot de passe, nom, style musical) passent par des regex.
   * Nettoyage des textes libres pour interdire les balises HTML `< >`.
+
+  [validation.js](/lasicroom_front/src/utils/validation.js)
 
 * **Utilisation de `sessionStorage` pour le JWT**
 
@@ -70,7 +78,7 @@
 ### 🔁 Redirection HTTPS
 
 * Redirection forcée de HTTP vers HTTPS (port 80 → 443).
-* Certificat SSL **auto-signé** utilisé en développement et en production (sans domaine).
+* Certificat SSL via Let's Encrypt
 
 ### 🔐 Content Security Policy (CSP)
 
@@ -161,7 +169,7 @@
 * **Injection SQL :** requêtes paramétrées avec placeholders.
 * **CSRF :** réduit car API + JWT en sessionStorage.
 * **Clickjacking :** bloqué (CSP + `X-Frame-Options`).
-* **HTTPS :** activé via SSL (auto-signé).
+* **HTTPS :** activé via SSL
 * **Fuites de données :** limitées via `Referrer-Policy` et `Permissions-Policy`.
 * **Mots de passe :** hachés avec `bcrypt`.
 * **Journalisation :** `morgan` pour les requêtes HTTP + `console.error` pour les erreurs.
@@ -174,11 +182,6 @@
 
 ## ⚠️ Limites actuelles et améliorations futures
 
-### 🔑 Certificat SSL
-
-* **Actuel :** certificat auto-signé (nécessite d’ignorer un avertissement navigateur).
-* **Limite :** pas de confiance par défaut → pas adapté à un site public.
-* **Amélioration :** utiliser un certificat valide (ex. Let's Encrypt) dès qu’un nom de domaine ou sous-domaine est disponible.
 
 ### 📜 HSTS (HTTP Strict Transport Security)
 
@@ -221,3 +224,4 @@
   * Intégration avec UFW pour bannir directement les IP au niveau firewall.
   * Paramétrage personnalisable (ex. `maxretry=1`, `bantime=3600` pour 1h de blocage).
 
+[geoip_log.sh](/geoip_log.sh)

@@ -19,7 +19,7 @@ Le site a été pensé pour être **simple d’utilisation**, afin de rester acc
 Le frontend repose sur **React**, permettant de développer une **SPA** (Single Page Application) robuste et sécurisée.
 Les principaux concepts fondamentaux y sont utilisés :
 
-* **JSX**
+* **JSX** : Syntaxe qui mélange HTML et JavaScript. 
 * **Hooks** : `useState`, `useEffect`, `useNavigate`, etc.
 * **Props** : Données passées d’un composant parent à un composant enfant (immutable dans le composant enfant).
 * **Routing** avec `react-router-dom` (voir[`App.js`](/lasicroom_front/src/App.js))
