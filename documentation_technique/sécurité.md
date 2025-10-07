@@ -15,8 +15,12 @@
 
 * **Helmet**
 
+Helmet est un middleware pour Express.js (et frameworks similaires) qui ajoute automatiquement des en-têtes HTTP de sécurité aux réponses envoyées par ton serveur.
   * Ajout automatique d’en-têtes HTTP de sécurité.
   * Exemples : `X-DNS-Prefetch-Control`, `X-Content-Type-Options`, `Referrer-Policy`.
+
+  referrer : Le terme referrer ou “referer”, désigne l’adresse de la page web d’où provient la requête.
+
 
 * **Authentification JWT et sécurisation des routes REST**
 

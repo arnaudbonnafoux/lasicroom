@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
     // Vérifie et décode le token avec la clé secrète
     const decoded = jwt.verify(token, CLE_SECRETE);
 
-    /* Test
-    console.log("🔓 Token décodé :", decoded);*/
+    // Test
+    //console.log("🔓 Token décodé :", decoded);
 
     req.utilisateur = decoded;  // Ajoute les infos du token décodé à la requête (ex : id, rôle)
 

@@ -12,6 +12,7 @@ La communication avec le frontend s'effectue via **Nginx**, configuré en proxy,
 ---
 
 ## 🛠 Middleware
+Fonction intermédiaire qui intercepte les requêtes HTTP entre le client et le serveur pour analyser, modifier ou compléter ces requêtes avant qu’elles atteignent la route finale (ou avant que la réponse soit renvoyée).
 
 Le backend utilise quatre middlewares principaux :
 
@@ -60,7 +61,7 @@ Il initialise l’application Express, configure les middlewares globaux, et cha
 
    * Création de l’instance de l’application.
    * Activation du parsing JSON pour recevoir et traiter les requêtes.
-   * Sécurisation avec `helmet` (certaines règles comme `contentSecurityPolicy` et `hsts` sont désactivées en développement).
+   * Sécurisation avec `helmet`.
    * Journalisation des requêtes via `morgan`.
 
 3. **Gestion des fichiers statiques**
