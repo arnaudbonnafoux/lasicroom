@@ -10,5 +10,6 @@
 ## [Optimisation](optimisation.md)
 ## [SEO](SEO.md)
 ## [Déploiement](/documentation_technique/déploiement.md)
+## [Cadre légal](/documentation_technique/cadre_légal.md)
 ## [Parcours utilisateur (démo)](/documentation_technique/parcours_utilisateur.md)
 ## [Parcours admin (démo)](/documentation_technique/parcours_admin.md)
