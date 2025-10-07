@@ -17,8 +17,8 @@ app.use(express.json()); // Parser automatique du JSON dans le corps des requêt
 // Sécurité HTTP avec Helmet
 app.use(
   helmet({
-    contentSecurityPolicy: false, // Activer plus tard si besoin
-    hsts: false                  // Désactive HSTS car HTTPS pas en prod
+    contentSecurityPolicy: true, // Active CSP
+    hsts: true                  //  Active HSTS 
   })
 );
 
