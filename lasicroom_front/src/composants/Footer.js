@@ -23,7 +23,7 @@ const Footer = () => {
         {/*<Link to="/admin/connexion" className='liens_footer'>Admin</Link>*/}
       </div>
 
-      <p style={{ textAlign: 'center', color: '#f5f5f5', fontSize: '10px', paddingBottom: '10px' }} className="licence">&copy; 2025 duanrA</p>
+      <p style={{ textAlign: 'center', color: '#f5f5f5', fontSize: '10px', paddingBottom: '10px' }} className="licence">&copy; 2025 duan rA</p>
     </footer>
   );
 };
