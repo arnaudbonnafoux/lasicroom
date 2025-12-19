@@ -106,7 +106,8 @@ exports.obtenirReservations = async (req, res) => {
         u.email,
         c.titre AS titre_concert,
         r.type_tarif,
-        r.montant
+        r.montant,
+        r.quantite
       FROM reservation r
       JOIN utilisateur u ON r.id_utilisateur = u.id_utilisateur
       JOIN concert c ON r.id_concert = c.id_concert
@@ -128,7 +129,7 @@ exports.getReservationsByUser = async (req, res) => {
         // Récupère les réservations de l'utilisateur avec les infos du concert
         const query = `
       SELECT r.id_reservation, r.date_reservation, r.type_tarif, r.montant,
-             c.titre AS concert, c.date_concert
+             r.quantite, c.titre AS concert, c.date_concert
       FROM reservation r
       JOIN concert c ON r.id_concert = c.id_concert
       WHERE r.id_utilisateur = $1

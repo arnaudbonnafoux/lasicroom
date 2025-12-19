@@ -54,6 +54,7 @@ const Dashboard = () => {
                 <th>Concert</th>
                 <th>Date concert</th>
                 <th>Tarif</th>
+                <th>Quantité</th>
                 <th>Montant (€)</th>
                 <th>Date réservation</th>
               </tr>
@@ -69,6 +70,7 @@ const Dashboard = () => {
                   <td>{r.concert}</td>
                   <td>{new Date(r.date_concert).toLocaleDateString()}</td>
                   <td>{r.type_tarif}</td>
+                  <td>{r.quantite || 1}</td>
                   <td>{r.montant}</td>
                   <td>{new Date(r.date_reservation).toLocaleDateString()}</td>
                 </tr>

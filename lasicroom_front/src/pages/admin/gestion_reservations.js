@@ -86,6 +86,7 @@ const GestionReservations = () => {
                 <th>Email</th>
                 <th>Concert</th>
                 <th>Type de tarif</th>
+                <th>Quantité</th>
                 <th>Montant (€)</th>
                 <th>Actions</th>
               </tr>
@@ -99,6 +100,7 @@ const GestionReservations = () => {
                   <td>{reservation.email}</td>
                   <td>{reservation.titre_concert}</td>
                   <td>{reservation.type_tarif}</td>
+                  <td>{reservation.quantite || 1}</td>
                   <td>{parseFloat(reservation.montant).toFixed(2)}</td>
                   <td>
                     <button className='button_tab' onClick={() => handleDelete(reservation.id_reservation)}>
@@ -109,7 +111,7 @@ const GestionReservations = () => {
               ))}
               {reservations.length === 0 && (
                 <tr>
-                  <td colSpan="7" style={{ textAlign: 'center' }}>
+                  <td colSpan="8" style={{ textAlign: 'center' }}>
                     Aucune réservation trouvée.
                   </td>
                 </tr>

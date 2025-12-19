@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Route : définit une correspondance entre une URL et un composant
 import './App.css';
 
+// 🛒 Panier Context Provider
+import { PanierProvider } from './contexts/PanierContext';
 
 // 📄 Pages "utilisateurs classiques"
 import Accueil from './pages/accueil';
@@ -15,6 +17,7 @@ import Accompagnement from './pages/accompagnement';
 import Options from './pages/options';
 import Dashboard from './pages/dashboard';
 import AgendaUser from './pages/agenda_user';
+import Panier from './pages/panier';
 
 
 // 📜 Cadre légal
@@ -42,9 +45,11 @@ import ConnexionUser from './pages/connexion_user';
 // 🚏 Définition des routes principales de l’application
 function App() {
   return (
-    // Router englobe toute l’application et active la navigation via les URLs
-    <Router>
-      <Routes>
+    // PanierProvider enveloppe toute l'app pour partager l'état du panier
+    <PanierProvider>
+      {/* Router englobe toute l'application et active la navigation via les URLs */}
+      <Router>
+        <Routes>
         {/* 🏠 Pages publiques accessibles sans connexion */}
         <Route path="/" element={<Accueil />} />
         <Route path="/agenda" element={<Agenda />} />
@@ -57,6 +62,9 @@ function App() {
           } />
         <Route path="/billetterie" element={
           <PrivateRoute><Billetterie /></PrivateRoute>
+          } />
+        <Route path="/panier" element={
+          <PrivateRoute><Panier /></PrivateRoute>
           } />
         <Route path="/dashboard" element={
           <PrivateRoute><Dashboard /></PrivateRoute>
@@ -91,7 +99,8 @@ function App() {
           <PrivateRouteAdmin><GestionArtistes /></PrivateRouteAdmin>
           } />
       </Routes>
-    </Router>
+      </Router>
+    </PanierProvider>
   );
 }
 

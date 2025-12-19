@@ -34,6 +34,7 @@ const reservationRoutes = require('./routes/reservations');
 const accompagnementRoutes = require('./routes/accompagnements');
 const connexionRoutes = require('./routes/connexions');
 const liveRoutes = require('./routes/live');
+const panierRoutes = require('./routes/panier');
 
 // Définition des préfixes d'URL pour chaque groupe de routes
 app.use('/api/artistes', artisteRoutes);
@@ -43,6 +44,7 @@ app.use('/api/reservations', reservationRoutes);
 app.use('/api/accompagnements', accompagnementRoutes);
 app.use('/api/connexions', connexionRoutes);
 app.use('/api/live', liveRoutes);
+app.use('/api/panier', panierRoutes);
 
 
 // Configuration du port et de l'hôte

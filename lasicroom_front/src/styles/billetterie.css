@@ -59,6 +59,76 @@ label {
     cursor: not-allowed;
 }
 
+/* Infos de stock */
+.info-stock {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(255, 140, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Calcul du prix */
+.calcul-prix {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(30, 144, 255, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Conteneur des boutons */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-ajouter-panier,
+.btn-voir-panier-bottom {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-ajouter-panier {
+    background-color: #1e90ff;
+    color: white;
+}
+
+.btn-ajouter-panier:hover:not(:disabled) {
+    background-color: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.4);
+}
+
+.btn-ajouter-panier:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-voir-panier-bottom {
+    background-color: #ff8c00;
+    color: white;
+}
+
+.btn-voir-panier-bottom:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+}
+
 /* Tablette */
 @media screen and (max-width: 1024px) {
     .bloc {
