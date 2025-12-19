@@ -254,21 +254,15 @@ exports.supprimerArticle = async (req, res) => {
 /**
  * 💳 CHECKOUT : VALIDER LE PANIER ET CRÉER LES RÉSERVATIONS
  * POST /api/panier/checkout
- * Crée une réservation pour chaque article du panier
- * Puis vide le panier
+ * ⚠️ NE CRÉE PLUS LES RÉSERVATIONS DIRECTEMENT
+ * Crée une commande Stripe à la place (workflow: Panier → Commande → Paiement Stripe → Réservations)
  */
 exports.checkout = async (req, res) => {
     const id_utilisateur = req.utilisateur.id;
-    const { paiement_id } = req.body; // ID du paiement Stripe (optionnel mais recommandé)
-
-    const client = await baseDeDonnees.connect();
 
     try {
-        // Démarrer une transaction pour assurer l'atomicité
-        await client.query('BEGIN');
-
         // Récupérer le panier complet de l'utilisateur
-        const resultPanier = await client.query(
+        const resultPanier = await baseDeDonnees.query(
             `SELECT 
                 p.id_panier,
                 p.id_concert,
@@ -285,83 +279,36 @@ exports.checkout = async (req, res) => {
         );
 
         if (resultPanier.rowCount === 0) {
-            await client.query('ROLLBACK');
             return res.status(400).json({ erreur: "Le panier est vide" });
         }
 
         const articles = resultPanier.rows;
-        const reservations = [];
         let montantTotal = 0;
 
-        // Récupérer les infos de l'utilisateur
-        const resultUser = await client.query(
-            `SELECT nom, email FROM utilisateur WHERE id_utilisateur = $1`,
-            [id_utilisateur]
-        );
-
-        const utilisateur = resultUser.rows[0];
-
-        // BOUCLE : créer une réservation pour chaque article du panier
+        // Vérifier qu'il y a assez de places pour tous les articles
         for (const article of articles) {
-            // Vérifier qu'il y a encore assez de places
             if (article.quantite > article.nb_places_restantes) {
-                await client.query('ROLLBACK');
                 return res.status(409).json({
                     erreur: `Plus assez de places pour ${article.titre}. Places restantes: ${article.nb_places_restantes}`
                 });
             }
-
-            // Calculer le montant de cette réservation
-            const montant = article.quantite * article.prix_unitaire;
-            montantTotal += montant;
-
-            // Créer la réservation
-            const resultReservation = await client.query(
-                `INSERT INTO reservation (id_utilisateur, id_concert, type_tarif, montant, quantite)
-                 VALUES ($1, $2, $3, $4, $5)
-                 RETURNING id_reservation`,
-                [id_utilisateur, article.id_concert, article.type_tarif, montant, article.quantite]
-            );
-
-            const reservation = resultReservation.rows[0];
-            reservations.push({
-                id_reservation: reservation.id_reservation,
-                concert: article.titre,
-                type_tarif: article.type_tarif,
-                quantite: article.quantite,
-                montant: montant
-            });
-
-            // Réduire les places restantes du concert
-            await client.query(
-                `UPDATE concert 
-                 SET nb_places_restantes = nb_places_restantes - $1 
-                 WHERE id_concert = $2`,
-                [article.quantite, article.id_concert]
-            );
+            montantTotal += article.quantite * article.prix_unitaire;
         }
 
-        // Supprimer tous les articles du panier
-        await client.query(
-            `DELETE FROM panier WHERE id_utilisateur = $1`,
-            [id_utilisateur]
-        );
-
-        // Commit de la transaction
-        await client.query('COMMIT');
-
-        // 📧 Envoyer un email de confirmation (optionnel, à adapter selon votre système)
-        // await envoyerEmailCheckout(utilisateur.email, reservations);
-
-        res.status(201).json({
-            message: "Commande confirmée avec succès",
+        // Retourner les infos pour que le frontend appelle l'API Stripe
+        res.json({
+            message: "Panier validé. Procédez au paiement.",
             montant_total: parseFloat(montantTotal.toFixed(2)),
-            nombre_reservations: reservations.length,
-            reservations: reservations
+            nombre_articles: articles.length,
+            articles: articles.map(a => ({
+                concert: a.titre,
+                type_tarif: a.type_tarif,
+                quantite: a.quantite,
+                prix_unitaire: a.prix_unitaire
+            }))
         });
 
     } catch (erreur) {
-        await client.query('ROLLBACK');
         console.error("Erreur dans checkout :", erreur);
         res.status(500).json({ erreur: "Erreur lors de la validation du panier" });
 

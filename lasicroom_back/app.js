@@ -17,8 +17,17 @@ app.use(express.json()); // Parser automatique du JSON dans le corps des requêt
 // Sécurité HTTP avec Helmet
 app.use(
   helmet({
-    contentSecurityPolicy: true, // Active CSP
-    hsts: true                  //  Active HSTS 
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://js.stripe.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        connectSrc: ["'self'", "https://api.stripe.com"],
+        frameSrc: ["https://js.stripe.com"]
+      }
+    },
+    hsts: true
   })
 );
 
@@ -35,6 +44,7 @@ const accompagnementRoutes = require('./routes/accompagnements');
 const connexionRoutes = require('./routes/connexions');
 const liveRoutes = require('./routes/live');
 const panierRoutes = require('./routes/panier');
+const stripeRoutes = require('./routes/stripe');
 
 // Définition des préfixes d'URL pour chaque groupe de routes
 app.use('/api/artistes', artisteRoutes);
@@ -45,6 +55,7 @@ app.use('/api/accompagnements', accompagnementRoutes);
 app.use('/api/connexions', connexionRoutes);
 app.use('/api/live', liveRoutes);
 app.use('/api/panier', panierRoutes);
+app.use('/api/stripe', stripeRoutes);
 
 
 // Configuration du port et de l'hôte

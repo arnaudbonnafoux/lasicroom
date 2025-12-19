@@ -13,8 +13,13 @@
 │   ├── ⚠️ Critères d_évaluation - Webecom REFERENTIEL de compétences - France Compétences.pdf
 │   ├── déploiement.md
 │   ├── diagrammeUML.png
+│   ├── examen_url_identifiants
 │   ├── frontend.md
+│   ├── IMPLEMENTATION_STRIPE_RESUME.md
 │   ├── live_streaming.md
+│   ├── migration_commande_stripe.sql
+│   ├── migration_panier.sql
+│   ├── migration_quantite_reservation.sql
 │   ├── optimisation.md
 │   ├── parcours_admin.md
 │   ├── parcours_utilisateur.md
@@ -24,6 +29,7 @@
 │   ├── regex_validation.js_front.md
 │   ├── sécurité.md
 │   ├── SEO.md
+│   ├── SETUP_STRIPE.md
 │   ├── sommaire.md
 │   └── to_do.md
 ├── fermeture_nginx.sh
@@ -40,7 +46,9 @@
 │   │   ├── concert_controleur.js
 │   │   ├── connexion_controleur.js
 │   │   ├── live_controleur.js
+│   │   ├── panier_controleur.js
 │   │   ├── reservation_controleur.js
+│   │   ├── stripe_controleur.js
 │   │   └── utilisateur_controleur.js
 │   ├── db.js
 │   ├── email.js
@@ -69,7 +77,9 @@
 │   │   ├── concerts.js
 │   │   ├── connexions.js
 │   │   ├── live.js
+│   │   ├── panier.js
 │   │   ├── reservations.js
+│   │   ├── stripe.js
 │   │   ├── test_accomp.sh
 │   │   ├── test_artistes.sh
 │   │   ├── test_concerts.sh
@@ -108,12 +118,12 @@
 │   │   ├── site.xml
 │   │   └── static
 │   │       ├── css
-│   │       │   ├── main.5cf95254.css
-│   │       │   └── main.5cf95254.css.map
+│   │       │   ├── main.9caf7b5a.css
+│   │       │   └── main.9caf7b5a.css.map
 │   │       └── js
-│   │           ├── main.ac3b1290.js
-│   │           ├── main.ac3b1290.js.LICENSE.txt
-│   │           └── main.ac3b1290.js.map
+│   │           ├── main.dc21e57e.js
+│   │           ├── main.dc21e57e.js.LICENSE.txt
+│   │           └── main.dc21e57e.js.map
 │   ├── gen_arbo.sh
 │   ├── package.json
 │   ├── package-lock.json
@@ -159,7 +169,11 @@
 │   │   │   ├── Navbar.js
 │   │   │   ├── NavbarUser.js
 │   │   │   ├── PrivateRouteAdmin.js
-│   │   │   └── PrivateRoute.js
+│   │   │   ├── PrivateRoute.js
+│   │   │   └── StripeFormulaire.js
+│   │   ├── contexts
+│   │   │   ├── PanierContext.js
+│   │   │   └── StripeContext.js
 │   │   ├── gen_arbo.sh
 │   │   ├── index.css
 │   │   ├── index.js
@@ -182,7 +196,8 @@
 │   │   │   ├── dashboard.js
 │   │   │   ├── inscription.js
 │   │   │   ├── mentions_legales.js
-│   │   │   └── options.js
+│   │   │   ├── options.js
+│   │   │   └── panier.js
 │   │   ├── styles
 │   │   │   ├── accompagnement.css
 │   │   │   ├── accueil.css
@@ -202,7 +217,9 @@
 │   │   │   ├── modal.css
 │   │   │   ├── navbar_admin.css
 │   │   │   ├── navbar.css
-│   │   │   └── options.css
+│   │   │   ├── options.css
+│   │   │   ├── panier.css
+│   │   │   └── stripe_formulaire.css
 │   │   └── utils
 │   │       └── validation.js
 │   └── structure_frontend.md
@@ -214,5 +231,5 @@
 ├── README.md
 └── structure_générale.md
 
-22 directories, 190 files
+23 directories, 206 files
 ```

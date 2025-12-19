@@ -3,13 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
+import PaiementPage from './PaiementPage';
 import { usePanier } from '../contexts/PanierContext';
+import { useStripe } from '../contexts/StripeContext';
 import '../styles/panier.css';
 
 const Panier = () => {
     const navigate = useNavigate();
     const { articles, total, modifierQuantite, supprimerArticle, checkout, chargerPanier } = usePanier();
+    const { creerPaymentIntent } = useStripe();
     const [isCheckingOut, setIsCheckingOut] = useState(false);
+    const [afficherFormulairePaiement, setAfficherFormulairePaiement] = useState(false);
 
     /**
      * 👋 DÉCONNEXION
@@ -52,19 +56,54 @@ const Panier = () => {
     };
 
     /**
-     * 💳 FINALISER L'ACHAT
+     * 💳 FINALISER L'ACHAT (appelle le backend pour créer une commande Stripe)
      */
     const handleCheckout = async () => {
         if (window.confirm(`Confirmer la commande pour ${total}€ ?`)) {
             setIsCheckingOut(true);
-            const resultat = await checkout();
-            setIsCheckingOut(false);
 
-            if (resultat && resultat.message) {
-                alert(`✓ Commande réussie !\n${resultat.nombre_reservations} réservation(s) créée(s) pour ${resultat.montant_total}€`);
-                navigate('/dashboard');
+            // 1️⃣ Valider le panier côté backend (vérifier les quantités, prix)
+            const resultCheckout = await checkout();
+
+            if (!resultCheckout || !resultCheckout.message) {
+                setIsCheckingOut(false);
+                return;
             }
+
+            // 2️⃣ Créer une intent de paiement Stripe
+            const montantTotal = parseFloat(total);
+            const resultPayment = await creerPaymentIntent(montantTotal, articles.length);
+
+            if (resultPayment.success) {
+                // 3️⃣ Sauvegarder le clientSecret en sessionStorage pour le formulaire
+                sessionStorage.setItem('clientSecret', resultPayment.clientSecret);
+                sessionStorage.setItem('montantTotal', montantTotal.toString());
+                sessionStorage.setItem('utilisateurNom', sessionStorage.getItem('utilisateur') ? JSON.parse(sessionStorage.getItem('utilisateur')).nom : 'Utilisateur');
+
+                // 4️⃣ Afficher le formulaire de paiement
+                setAfficherFormulairePaiement(true);
+            } else {
+                alert(`Erreur : ${resultPayment.error}`);
+            }
+
+            setIsCheckingOut(false);
         }
+    };
+
+    /**
+     * ✅ SUCCÈS DU PAIEMENT
+     */
+    const handlePaiementSuccess = (idCommande) => {
+        sessionStorage.removeItem('clientSecret');
+        alert(`✅ Paiement réussi ! Commande #${idCommande}\nVous allez être redirigé vers vos réservations.`);
+        navigate('/dashboard');
+    };
+
+    /**
+     * ❌ ANNULER LE PAIEMENT
+     */
+    const handlePaiementCancel = () => {
+        setAfficherFormulairePaiement(false);
     };
 
     /**
@@ -197,6 +236,14 @@ const Panier = () => {
                     </>
                 )}
             </main>
+
+            {/* 💳 PAGE DE PAIEMENT (affichage conditionnel) */}
+            {afficherFormulairePaiement && (
+                <PaiementPage 
+                    onSuccess={handlePaiementSuccess}
+                    onCancel={handlePaiementCancel}
+                />
+            )}
 
             <Footer />
         </div>

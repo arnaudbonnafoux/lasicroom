@@ -1,12 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// Router : permet la navigation via l’URL
-// Routes : conteneur de toutes les routes de l’app
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+// Router : permet la navigation via l'URL
+// Routes : conteneur de toutes les routes de l'app
 // Route : définit une correspondance entre une URL et un composant
 import './App.css';
 
 // 🛒 Panier Context Provider
 import { PanierProvider } from './contexts/PanierContext';
+
+// 💳 Stripe Context Provider
+import { StripeProvider } from './contexts/StripeContext';
 
 // 📄 Pages "utilisateurs classiques"
 import Accueil from './pages/accueil';
@@ -43,13 +48,20 @@ import ConnexionUser from './pages/connexion_user';
 
 
 // 🚏 Définition des routes principales de l’application
+// ⚠️ À faire : ajouter REACT_APP_STRIPE_PUBLISHABLE_KEY dans ton .env
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
 function App() {
   return (
     // PanierProvider enveloppe toute l'app pour partager l'état du panier
     <PanierProvider>
-      {/* Router englobe toute l'application et active la navigation via les URLs */}
-      <Router>
-        <Routes>
+      {/* StripeProvider pour la gestion des paiements */}
+      <StripeProvider>
+        {/* Elements provider pour les composants Stripe - utilise le clientSecret quand fourni */}
+        <Elements stripe={stripePromise}>
+          {/* Router englobe toute l'application et active la navigation via les URLs */}
+          <Router>
+            <Routes>
         {/* 🏠 Pages publiques accessibles sans connexion */}
         <Route path="/" element={<Accueil />} />
         <Route path="/agenda" element={<Agenda />} />
@@ -100,6 +112,8 @@ function App() {
           } />
       </Routes>
       </Router>
+    </Elements>
+    </StripeProvider>
     </PanierProvider>
   );
 }
