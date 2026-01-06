@@ -15,7 +15,7 @@
 │   ├── diagrammeUML.png
 │   ├── examen_url_identifiants
 │   ├── frontend.md
-│   ├── IMPLEMENTATION_STRIPE_RESUME.md
+│   ├── implementation_finale_resume.md
 │   ├── live_streaming.md
 │   ├── migration_commande_stripe.sql
 │   ├── migration_panier.sql
@@ -29,7 +29,7 @@
 │   ├── regex_validation.js_front.md
 │   ├── sécurité.md
 │   ├── SEO.md
-│   ├── SETUP_STRIPE.md
+│   ├── setup_stripe.md
 │   ├── sommaire.md
 │   └── to_do.md
 ├── fermeture_nginx.sh
@@ -118,12 +118,12 @@
 │   │   ├── site.xml
 │   │   └── static
 │   │       ├── css
-│   │       │   ├── main.9caf7b5a.css
-│   │       │   └── main.9caf7b5a.css.map
+│   │       │   ├── main.98b92795.css
+│   │       │   └── main.98b92795.css.map
 │   │       └── js
-│   │           ├── main.dc21e57e.js
-│   │           ├── main.dc21e57e.js.LICENSE.txt
-│   │           └── main.dc21e57e.js.map
+│   │           ├── main.c2c67e93.js
+│   │           ├── main.c2c67e93.js.LICENSE.txt
+│   │           └── main.c2c67e93.js.map
 │   ├── gen_arbo.sh
 │   ├── package.json
 │   ├── package-lock.json
@@ -169,8 +169,7 @@
 │   │   │   ├── Navbar.js
 │   │   │   ├── NavbarUser.js
 │   │   │   ├── PrivateRouteAdmin.js
-│   │   │   ├── PrivateRoute.js
-│   │   │   └── StripeFormulaire.js
+│   │   │   └── PrivateRoute.js
 │   │   ├── contexts
 │   │   │   ├── PanierContext.js
 │   │   │   └── StripeContext.js
@@ -197,6 +196,7 @@
 │   │   │   ├── inscription.js
 │   │   │   ├── mentions_legales.js
 │   │   │   ├── options.js
+│   │   │   ├── paiementpage.js
 │   │   │   └── panier.js
 │   │   ├── styles
 │   │   │   ├── accompagnement.css
@@ -218,6 +218,7 @@
 │   │   │   ├── navbar_admin.css
 │   │   │   ├── navbar.css
 │   │   │   ├── options.css
+│   │   │   ├── paiement_page.css
 │   │   │   ├── panier.css
 │   │   │   └── stripe_formulaire.css
 │   │   └── utils
@@ -231,5 +232,5 @@
 ├── README.md
 └── structure_générale.md
 
-23 directories, 206 files
+23 directories, 207 files
 ```

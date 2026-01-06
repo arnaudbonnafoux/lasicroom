@@ -87,9 +87,55 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
 
 ---
 
-### 4. **Réservation** (`reservation`)
+### 4. **Panier** (`panier`)
 
-* Centralise les réservations faites par les utilisateurs.
+* Gère les articles en attente d'achat pour chaque utilisateur.
+* Colonnes principales :
+
+  * `id_panier` *(PK)*
+  * `id_utilisateur` *(FK → utilisateur.id\_utilisateur, ON DELETE CASCADE)*
+  * `id_concert` *(FK → concert.id\_concert, ON DELETE CASCADE)*
+  * `type_tarif` *(CHECK: 'plein' ou 'abonne')*
+  * `quantite` *(INT, NOT NULL, DEFAULT 1)*
+  * `prix_unitaire` *(NUMERIC(6,2), NOT NULL)*
+  * `date_ajout` *(TIMESTAMP, DEFAULT NOW)*
+
+🔗 Relations :
+
+* 1 utilisateur peut avoir plusieurs articles en panier (`1,n`).
+* Un panier contient plusieurs concerts (`n,n`).
+
+---
+
+### 5. **Commande** (`commande`)
+
+* Enregistre les commandes de paiement via Stripe.
+* Colonnes principales :
+
+  * `id_commande` *(PK)*
+  * `id_utilisateur` *(FK → utilisateur.id\_utilisateur, ON DELETE CASCADE)*
+  * `montant_total` *(NUMERIC(10,2), NOT NULL)*
+  * `nombre_articles` *(INT, NOT NULL)*
+  * `paiement_id` *(VARCHAR 255, FK → Stripe PaymentIntent ID)*
+  * `paiement_statut` *(CHECK: 'pending', 'success', 'failed', 'refunded')*
+  * `date_commande` *(TIMESTAMP, DEFAULT NOW)*
+  * `date_paiement` *(TIMESTAMP, nullable)*
+
+⚙️ Index :
+
+* Index sur `id_utilisateur` pour requêtes rapides par utilisateur.
+* Index sur `paiement_id` pour vérification du statut.
+
+🔗 Relations :
+
+* 1 utilisateur peut créer plusieurs commandes (`1,n`).
+* Une commande déclenche N réservations après paiement.
+
+---
+
+### 6. **Réservation** (`reservation`)
+
+* Centralise les réservations faites par les utilisateurs (après paiement confirmé).
 * Colonnes principales :
 
   * `id_reservation` *(PK)*
@@ -98,6 +144,7 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
   * `id_concert` *(FK → concert.id\_concert, ON DELETE CASCADE)*
   * `type_tarif` *(CHECK: 'plein' ou 'abonne')*
   * `montant` *(NUMERIC(6,2))*
+  * `quantite` *(INT, DEFAULT 1)*
 
 ⚙️ Trigger :
 
@@ -109,7 +156,7 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
 
 ---
 
-### 5. **Accompagnement** (`accompagnement`)
+### 7. **Accompagnement** (`accompagnement`)
 
 * Permet aux artistes locaux de demander un suivi professionnel.
 * Colonnes principales :
@@ -128,7 +175,7 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
 
 ## 📐 Schéma conceptuel (cardinalités)
 
-* **Utilisateur** `1,n` → **Réservation** `n,1` → **Concert** `n,1` → **Artiste**
+* **Utilisateur** `1,n` → **Panier** (avant paiement) ou **Commande** → **Réservation** `n,1` → **Concert** `n,1` → **Artiste**
 * **Accompagnement** est indépendante.
 
 * [Diagramme UML](/documentation_technique/diagrammeUML.png)
@@ -141,4 +188,6 @@ La base de données gère l’ensemble des fonctionnalités du site **LasicRoom*
 * Trigger pour garantir la mise à jour des places restantes.
 * Gestion des rôles (`utilisateur` / `admin`).
 * Séparation claire entre la programmation (`concert`, `artiste`) et les demandes locales (`accompagnement`).
+* **Intégration Stripe** : table `commande` pour tracer les paiements et synchroniser avec PaymentIntent.
+* **Panier éphémère** : permet aux utilisateurs de modifier leur sélection avant paiement.
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../composants/NavbarUser';
 import Footer from '../composants/Footer';
 import HeaderUser from '../composants/HeaderUser';
-import PaiementPage from './PaiementPage';
+import Paiementpage from './paiementpage';
 import { usePanier } from '../contexts/PanierContext';
 import { useStripe } from '../contexts/StripeContext';
 import '../styles/panier.css';
@@ -239,7 +239,7 @@ const Panier = () => {
 
             {/* 💳 PAGE DE PAIEMENT (affichage conditionnel) */}
             {afficherFormulairePaiement && (
-                <PaiementPage 
+                <Paiementpage 
                     onSuccess={handlePaiementSuccess}
                     onCancel={handlePaiementCancel}
                 />

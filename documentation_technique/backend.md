@@ -39,8 +39,7 @@ Le backend utilise quatre middlewares principaux :
 * `validator` : validation des entrées utilisateur
 * `sanitize` : nettoyage des données entrantes
 * `fs` : gestion des fichiers côté serveur
-* `xss` : protection contre les attaques XSS
-
+* `xss` : protection contre les attaques XSS* **`stripe`** *(NOUVEAU)* : intégration paiement Stripe
 ---
 
 ## ⚙️ app.js (Point d’entrée de l’application)

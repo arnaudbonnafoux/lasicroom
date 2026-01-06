@@ -78,10 +78,69 @@ Il définit la structure globale de la **SPA** et configure le système de navig
 
 * `/` → **Accueil**
 * `/agenda` → **Agenda**
-* `/billetterie` → **Billetterie**
-* `/dashboard` → **Dashboard utilisateur**
+* `/billetterie` → **Billetterie** (ajout au panier)
+* `/panier` → **Panier** (consultation et paiement)
+* `/dashboard` → **Dashboard utilisateur** (réservations)
 * `/admin/concerts` → **Gestion des concerts (admin)**
 * `/mentions_legales` → **Mentions légales**
+
+---
+
+## 🛒 Contextes et gestion d'état (Context API)
+
+Le frontend utilise **React Context API** pour gérer l'état global :
+
+### **PanierContext** (`contexts/PanierContext.js`)
+
+Gère le panier d'achat (avant paiement).
+
+**Fonctions principales :**
+* `ajouterAuPanier(id_concert, type_tarif, quantite)` - Ajoute un concert au panier
+* `modifierQuantite(id_panier, quantite)` - Change la quantité
+* `supprimerArticle(id_panier)` - Supprime un article
+* `checkout()` - Valide le panier avant paiement
+* `chargerPanier()` - Récupère le panier de l'utilisateur
+
+**État :**
+* `articles` - Liste des articles en panier
+* `total` - Montant total
+* `loading` - État de chargement
+
+---
+
+### **StripeContext** (`contexts/StripeContext.js`)
+
+Gère le flux de paiement Stripe.
+
+**Fonctions principales :**
+* `creerPaymentIntent(montant, nombre_articles)` - Crée une commande + obtient clientSecret
+* `confirmPayment(paiement_id)` - Confirme le paiement au backend
+
+**État :**
+* `clientSecret` - Clé secrète du paiement Stripe
+* `montantTotal` - Montant du paiement
+* `idCommande` - Numéro de commande créée
+* `isLoading` - État de traitement
+* `error` - Message d'erreur éventuel
+
+---
+
+## 💳 Module de paiement Stripe
+
+[Guide complet setup_stripe.md](/documentation_technique/setup_stripe.md)
+
+### **Page de paiement** (`pages/paiementpage.js`)
+
+Page dédiée au paiement avec son propre wrapper `Elements` Stripe.
+
+**Caractéristiques :**
+* Utilise `PaymentElement` de Stripe (plus flexible que CardElement)
+* Affiche automatiquement les options de paiement disponibles :
+  - 💳 Carte bancaire (champs séparés)
+  - 🔗 **Stripe Link** (paiement rapide avec email)
+  - 📱 Autres portefeuilles numériques (selon config Stripe)
+* Configuration d'apparence personnalisée (couleurs, polices, etc.)
+* Gestion complète du flux de paiement avec confirmPayment()
 
 ---
 
