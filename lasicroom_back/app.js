@@ -13,6 +13,13 @@ const {
   formLimiter,
 } = require("./middlewares/rateLimitMiddleware");
 
+// Importation des middlewares CSRF
+const {
+  cookieMiddleware,
+  csrfProtection,
+  attachCsrfToken,
+} = require("./middlewares/csrfMiddleware");
+
 // Instanciation de l'application Express
 const app = express();
 
@@ -20,6 +27,11 @@ const app = express();
 app.use(morgan("dev")); // Logs => lasicroom_back/back.log
 
 app.use(express.json()); // Parser automatique du JSON dans le corps des requêtes POST/PUT
+
+// 🔐 Middleware CSRF
+app.use(cookieMiddleware); // Parser les cookies (nécessaire pour CSRF)
+app.use(csrfProtection); // Protection CSRF
+app.use(attachCsrfToken); // Attacher le token CSRF aux réponses
 
 // Sécurité HTTP avec Helmet
 app.use(
