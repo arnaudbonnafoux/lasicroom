@@ -43,7 +43,7 @@ const validateInscription = [
     .withMessage("Email invalide")
     .normalizeEmail(),
 
-  body("motdepasse")
+  body("mot_de_passe")
     .notEmpty()
     .withMessage("Le mot de passe est requis")
     .custom((value) => {
@@ -55,11 +55,11 @@ const validateInscription = [
       return true;
     }),
 
-  body("confirmation_motdepasse")
+  body("confirmation_mot_de_passe")
     .notEmpty()
     .withMessage("La confirmation est requise")
     .custom((value, { req }) => {
-      if (value !== req.body.motdepasse) {
+      if (value !== req.body.mot_de_passe) {
         throw new Error("Les mots de passe ne correspondent pas");
       }
       return true;
@@ -78,7 +78,7 @@ const validateConnexion = [
     .withMessage("Email invalide")
     .normalizeEmail(),
 
-  body("motdepasse")
+  body("mot_de_passe")
     .notEmpty()
     .withMessage("Le mot de passe est requis")
     .isLength({ min: 1 })
