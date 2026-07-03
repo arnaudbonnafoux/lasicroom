@@ -1,7 +1,8 @@
 const baseDeDonnees = require('../db');
 const xss = require('xss');
+const { sendPaginatedResponse } = require('../middlewares/paginationMiddleware');
 
-// Créer un nouveau concert
+// Creer un nouveau concert
 exports.creerConcert = async (req, res) => {
   let {
     titre,
@@ -18,7 +19,7 @@ exports.creerConcert = async (req, res) => {
   description = xss(description);
 
   try {
-    // Insère le concert en base de données, initialise nb_places_restantes au total
+    // Insere le concert en base de donnees, initialise nb_places_restantes au total
     const resultat = await baseDeDonnees.query(
       `INSERT INTO concert (
         titre, description, date_concert,
@@ -44,7 +45,7 @@ exports.creerConcert = async (req, res) => {
   }
 };
 
-// Mettre à jour un concert existant
+// Mettre a jour un concert existant
 exports.mettreAJourConcert = async (req, res) => {
   const { id } = req.params;
   let { titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste } = req.body;
@@ -61,12 +62,12 @@ exports.mettreAJourConcert = async (req, res) => {
       [titre, description, date_concert, nb_places_total, tarif_plein, tarif_abonne, id_artiste, id]
     );
     if (resultat.rowCount === 0) {
-      return res.status(404).json({ message: "Concert non trouvé." });
+      return res.status(404).json({ message: "Concert non trouve." });
     }
     res.json(resultat.rows[0]);
   } catch (erreur) {
     console.error("Erreur dans mettreAJourConcert :", erreur);
-    res.status(500).json({ erreur: "Erreur lors de la mise à jour du concert." });
+    res.status(500).json({ erreur: "Erreur lors de la mise a jour du concert." });
   }
 };
 
@@ -79,18 +80,25 @@ exports.supprimerConcert = async (req, res) => {
       [id]
     );
     if (resultat.rowCount === 0) {
-      return res.status(404).json({ message: "Concert non trouvé." });
+      return res.status(404).json({ message: "Concert non trouve." });
     }
-    res.json({ message: "Concert supprimé avec succès." });
+    res.json({ message: "Concert supprime avec succes." });
   } catch (erreur) {
     console.error("Erreur dans supprimerConcert :", erreur);
     res.status(500).json({ erreur: "Erreur lors de la suppression du concert." });
   }
 };
 
-// Récupérer tous les concerts (avec infos artiste associées => jointure)
+// Recuperer tous les concerts (avec infos artiste associees + pagination)
 exports.obtenirConcerts = async (req, res) => {
   try {
+    const { pagination } = res.locals;
+
+    // Recuperer le nombre total de concerts
+    const countResult = await baseDeDonnees.query('SELECT COUNT(*) as total FROM concert');
+    const totalCount = parseInt(countResult.rows[0].total);
+
+    // Recuperer les concerts avec pagination
     const resultat = await baseDeDonnees.query(`
       SELECT 
         concert.id_concert,
@@ -109,13 +117,13 @@ exports.obtenirConcerts = async (req, res) => {
         artiste.lien_video
       FROM concert
       LEFT JOIN artiste ON concert.id_artiste = artiste.id_artiste 
-      ORDER BY concert.id_concert
-    `); /* LEFT JOIN = « jointure gauche » : on garde tous les enregistrements
-     de la table de gauche (ici, concert), même s’il n’y a pas de correspondance 
-     dans la table de droite.*/
-    res.json(resultat.rows);
+      ORDER BY concert.date_concert ASC, concert.id_concert ASC
+      LIMIT $1 OFFSET $2
+    `, [pagination.limit, pagination.offset]);
+    
+    sendPaginatedResponse(res, resultat.rows, totalCount, pagination);
   } catch (erreur) {
     console.error("Erreur dans obtenirConcerts :", erreur);
-    res.status(500).json({ erreur: "Erreur lors de la récupération des concerts." });
+    res.status(500).json({ erreur: "Erreur lors de la recuperation des concerts." });
   }
 };
