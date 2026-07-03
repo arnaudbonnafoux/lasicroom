@@ -25,7 +25,7 @@ fi
 echo -e "${GREEN}✅ Nginx est lancé et les ports 80/443 sont ouverts.${NC}"
 
 # Construire le front React
-FRONT_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_front"
+FRONT_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_front"
 echo -e "${YELLOW}🔨 Construction du front React...${NC}"
 cd "$FRONT_DIR" || { echo -e "${RED}❌ Dossier front non trouvé !${NC}"; exit 1; }
 
@@ -38,7 +38,7 @@ fi
 echo -e "${GREEN}✅ Front React construit.${NC}"
 
 # Lancer le back Node.js
-BACK_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back"
+BACK_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_back"
 echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
 cd "$BACK_DIR" || { echo -e "${RED}❌ Dossier back non trouvé !${NC}"; exit 1; }
 

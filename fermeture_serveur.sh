@@ -18,7 +18,7 @@ fi
 echo -e "${YELLOW}🛑 Arrêt du serveur Node.js...${NC}"
 
 # Trouver tous les PID des processus node dans le dossier back
-BACK_DIR="/home/arnaud/Bureau/lasicroom_projet_fil_rouge/lasicroom_back"
+BACK_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_back"
 NODE_PIDS=$(pgrep -f "node.*$BACK_DIR")
 
 if [ -z "$NODE_PIDS" ]; then
