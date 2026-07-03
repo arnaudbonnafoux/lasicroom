@@ -43,7 +43,7 @@ echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
 cd "$BACK_DIR" || { echo -e "${RED}❌ Dossier back non trouvé !${NC}"; exit 1; }
 
 npm install
-# Lancer en arrière-plan avec nohup et logging
-nohup npm run dev > back.log 2>&1 &
+# Lancer en arrière-plan avec nohup et logging (production use node directement, pas npm run dev)
+nohup node app.js > back.log 2>&1 &
 
 echo -e "${GREEN}✅ Serveur Node.js lancé en arrière-plan. Logs: $BACK_DIR/back.log${NC}"
