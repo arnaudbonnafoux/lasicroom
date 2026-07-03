@@ -1,0 +1,7 @@
+ id_artiste | nom_artiste |                     photo                      
+------------+-------------+------------------------------------------------
+          2 | The Rockers | photos_artistes/the_rockers_1756037311848.webp
+          4 | MC Flow     | photos_artistes/mc_flow_1756037340340.webp
+          8 | Rasta Vibes | photos_artistes/rasta_vibes_1756037415625.webp
+(3 lignes)
+

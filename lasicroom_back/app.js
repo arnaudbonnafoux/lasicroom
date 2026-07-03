@@ -16,7 +16,7 @@ const {
 // Importation des middlewares CSRF
 const {
   cookieMiddleware,
-  csrfProtection,
+  csrfProtectionSelective,
   attachCsrfToken,
 } = require("./middlewares/csrfMiddleware");
 
@@ -30,7 +30,7 @@ app.use(express.json()); // Parser automatique du JSON dans le corps des requêt
 
 // 🔐 Middleware CSRF
 app.use(cookieMiddleware); // Parser les cookies (nécessaire pour CSRF)
-app.use(csrfProtection); // Protection CSRF
+app.use(csrfProtectionSelective); // Protection CSRF sélective (exempts routes publiques)
 app.use(attachCsrfToken); // Attacher le token CSRF aux réponses
 
 // Sécurité HTTP avec Helmet

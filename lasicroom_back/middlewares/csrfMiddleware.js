@@ -14,16 +14,47 @@ const csrfProtection = csrf({
   },
 });
 
+// Routes publiques exemptées du CSRF (connexion, inscription, GET public)
+const publicRoutes = [
+  /^\/api\/connexions$/, // POST connexion
+  /^\/api\/utilisateurs$/, // POST inscription
+  /^\/api\/panier\/ajouter$/, // POST public pour ajouter au panier (user non-authentifié)
+];
+
+// Middleware pour appliquer CSRF sélectivement
+// Exempts les routes publiques, applique CSRF aux autres
+const csrfProtectionSelective = (req, res, next) => {
+  // Vérifier si la route est publique
+  const isPublicRoute = publicRoutes.some((pattern) => pattern.test(req.path));
+
+  // Si c'est une route publique ET une méthode safe (GET, HEAD, OPTIONS), skip CSRF
+  if (isPublicRoute && ["GET", "HEAD", "OPTIONS"].includes(req.method)) {
+    return next();
+  }
+
+  // Si c'est une route POST/PUT/DELETE publique, skip CSRF (pour connexion/inscription)
+  // Elles sont protégées par rate limiting et validation d'input
+  if (isPublicRoute && ["POST", "PUT", "DELETE"].includes(req.method)) {
+    return next();
+  }
+
+  // Pour toutes les autres routes (protégées), appliquer CSRF
+  csrfProtection(req, res, next);
+};
+
 // Middleware pour attacher le token CSRF à la réponse (en headers)
 // Les clients récupèrent ce token et le renvoient dans les requêtes POST/PUT/DELETE
 const attachCsrfToken = (req, res, next) => {
-  res.locals.csrfToken = req.csrfToken();
-  res.set("X-CSRF-Token", req.csrfToken());
+  if (req.csrfToken) {
+    res.locals.csrfToken = req.csrfToken();
+    res.set("X-CSRF-Token", req.csrfToken());
+  }
   next();
 };
 
 module.exports = {
   cookieMiddleware,
   csrfProtection,
+  csrfProtectionSelective,
   attachCsrfToken,
 };
