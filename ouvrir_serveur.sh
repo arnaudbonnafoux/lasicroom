@@ -38,7 +38,7 @@ fi
 echo -e "${GREEN}✅ Front React construit.${NC}"
 
 # Lancer le back Node.js
-BACK_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_back"
+BACK_DIR=""
 echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
 cd "$BACK_DIR" || { echo -e "${RED}❌ Dossier back non trouvé !${NC}"; exit 1; }
 
