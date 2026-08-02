@@ -67,7 +67,7 @@ export const creerUtilisateur = async (
   // 🔐 Nettoyage XSS
   nom = xss(nom);
   email = xss(email);
-  role = xss(role || "user");
+  role = xss(role || "utilisateur");
 
   try {
     // Hachage du mot de passe avant stockage

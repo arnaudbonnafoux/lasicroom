@@ -39,7 +39,7 @@ const validateInscription = [
     .withMessage("Le nom est requis")
     .isLength({ min: 2, max: 100 })
     .withMessage("Le nom doit avoir entre 2 et 100 caractères")
-    .escape(), // prévenir XSS
+    .escape(),
 
   body("email")
     .trim()
@@ -52,21 +52,18 @@ const validateInscription = [
   body("mot_de_passe")
     .notEmpty()
     .withMessage("Le mot de passe est requis")
+    .isLength({ min: 8 })
+    .withMessage("Le mot de passe doit avoir au moins 8 caractères")
     .custom((value: string) => {
-      if (!passwordSchema.validate(value)) {
-        throw new Error(
-          "Le mot de passe doit contenir: 12+ caractères, majuscule, minuscule, chiffre, caractère spécial",
-        );
+      // Validation simplifiée : au moins 1 majuscule, 1 minuscule, 1 chiffre
+      if (!/[A-Z]/.test(value)) {
+        throw new Error("Doit contenir au moins 1 majuscule");
       }
-      return true;
-    }),
-
-  body("confirmation_mot_de_passe")
-    .notEmpty()
-    .withMessage("La confirmation est requise")
-    .custom((value: string, { req }) => {
-      if (value !== req.body.mot_de_passe) {
-        throw new Error("Les mots de passe ne correspondent pas");
+      if (!/[a-z]/.test(value)) {
+        throw new Error("Doit contenir au moins 1 minuscule");
+      }
+      if (!/[0-9]/.test(value)) {
+        throw new Error("Doit contenir au moins 1 chiffre");
       }
       return true;
     }),
