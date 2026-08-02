@@ -1,27 +1,59 @@
-import React from 'react';
-import '../styles/card_concert.css';
+import React, { FC } from "react";
+import "../styles/card_concert.css";
 
-// Composant fonctionnel pour afficher une carte de concert
-const CardConcert = ({ concert, fullWidth = false }) => {
+/**
+ * Concert Card Props
+ */
+interface Concert {
+  titre: string;
+  nom_artiste: string;
+  date_concert: string;
+  tarif_plein: number;
+  tarif_abonne?: number;
+  photo: string;
+  lien_video?: string;
+}
+
+interface CardConcertProps {
+  concert: Concert;
+  fullWidth?: boolean;
+}
+
+/**
+ * 🎭 CardConcert Component
+ * Affiche une carte de présentation pour un concert
+ */
+const CardConcert: FC<CardConcertProps> = ({
+  concert,
+  fullWidth = false,
+}): React.ReactElement => {
   return (
     // La classe fullwidth est ajoutée si la prop fullWidth est vraie
-    <div className={`card_concert animation_card ${fullWidth ? 'fullwidth' : ''}`}>
+    <div
+      className={`card_concert animation_card ${fullWidth ? "fullwidth" : ""}`}
+    >
       {/* Nom de la soirée */}
-      <h2 className='titre_concert'>{concert.titre}</h2> 
+      <h2 className="titre_concert">{concert.titre}</h2>
       {/* Affiche le nom de l'artiste */}
-      <h3 className='titre_artiste'>{concert.nom_artiste}</h3>
+      <h3 className="titre_artiste">{concert.nom_artiste}</h3>
       {/* Affiche la date du concert, formatée selon la locale */}
       <p>{new Date(concert.date_concert).toLocaleDateString()}</p>
 
       {/* Affiche les tarifs */}
       <div className="tarifs">
-        <p><strong>Plein tarif :</strong> {concert.tarif_plein} €</p>
-        <p><strong>Tarif abonné :</strong> {concert.tarif_abonne} €</p>
+        <p>
+          <strong>Plein tarif :</strong> {concert.tarif_plein} €
+        </p>
+        {concert.tarif_abonne && (
+          <p>
+            <strong>Tarif abonné :</strong> {concert.tarif_abonne} €
+          </p>
+        )}
       </div>
 
       {/* Affiche l'image du concert ou de l'artiste */}
       <img
-        className='image_card'
+        className="image_card"
         src={`/${concert.photo}`}
         alt={concert.nom_artiste}
         loading="lazy" // Optimise le chargement de l'image
