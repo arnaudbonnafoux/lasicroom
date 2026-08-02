@@ -1,10 +1,11 @@
 {
   "name": "lasicroom_back",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "nodemon --exec ts-node app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -38,6 +39,17 @@
     "xss": "^1.0.15"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/cookie-parser": "^1.4.10",
+    "@types/csurf": "^1.11.5",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.1.2",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pg": "^8.20.3",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
   }
 }
