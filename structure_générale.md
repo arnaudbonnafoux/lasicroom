@@ -1,236 +1,286 @@
-# Structure du projet
+# 📁 Structure du projet - La sicRoom
+
+## 🎯 Vue d'ensemble
 
 ```
 .
-├── documentation_technique
-│   ├── accessibilité.md
-│   ├── backend.md
-│   ├── backup_lasicroom2.sql
-│   ├── base_de_donées.md
-│   ├── bd_structure.txt
-│   ├── cadre_légal.md
-│   ├── configuration_nginx
-│   ├── ⚠️ Critères d_évaluation - Webecom REFERENTIEL de compétences - France Compétences.pdf
-│   ├── déploiement.md
-│   ├── diagrammeUML.png
-│   ├── examen_url_identifiants
-│   ├── frontend.md
-│   ├── implementation_finale_resume.md
-│   ├── live_streaming.md
-│   ├── migration_commande_stripe.sql
-│   ├── migration_panier.sql
-│   ├── migration_quantite_reservation.sql
-│   ├── optimisation.md
-│   ├── parcours_admin.md
-│   ├── parcours_utilisateur.md
-│   ├── présentation.md
-│   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
-│   ├── Projet - Développement du site web de La sicRoom – Salle de concert SMAC.pdf
-│   ├── regex_validation.js_front.md
-│   ├── sécurité.md
-│   ├── SEO.md
-│   ├── setup_stripe.md
-│   ├── sommaire.md
-│   └── to_do.md
-├── fermeture_nginx.sh
-├── fermeture_serveur.sh
-├── gen_arbo.sh
-├── generer_logs_nginx.sh
-├── geoip_log.sh
-├── lasicroom_back
-│   ├── app.js
-│   ├── back.log
-│   ├── controleurs
-│   │   ├── accompagnement_controleur.js
-│   │   ├── artiste_controleur.js
-│   │   ├── concert_controleur.js
-│   │   ├── connexion_controleur.js
-│   │   ├── live_controleur.js
-│   │   ├── panier_controleur.js
-│   │   ├── reservation_controleur.js
-│   │   ├── stripe_controleur.js
-│   │   └── utilisateur_controleur.js
-│   ├── db.js
-│   ├── email.js
-│   ├── gen_arbo.sh
-│   ├── middlewares
-│   │   ├── authMiddleware.js
-│   │   ├── compressionImage.js
-│   │   ├── isAdmin.js
-│   │   └── multerConfig.js
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── photos_artistes
-│   │   ├── cri__1756036168191.webp
-│   │   ├── dj_nocturne_1756037914055.webp
-│   │   ├── erwan_1756036216689.webp
-│   │   ├── indie_sound_1756036080084.webp
-│   │   ├── jessica_redux_1756037986646.webp
-│   │   ├── mc_flow_1756037340340.webp
-│   │   ├── metalcorex_1756036118606.webp
-│   │   ├── rasta_vibes_1756037415625.webp
-│   │   ├── symphonia_1756035895031.webp
-│   │   └── the_rockers_1756037311848.webp
-│   ├── routes
-│   │   ├── accompagnements.js
-│   │   ├── artistes.js
-│   │   ├── concerts.js
-│   │   ├── connexions.js
-│   │   ├── live.js
-│   │   ├── panier.js
-│   │   ├── reservations.js
-│   │   ├── stripe.js
-│   │   ├── test_accomp.sh
-│   │   ├── test_artistes.sh
-│   │   ├── test_concerts.sh
-│   │   ├── test_connexions.sh
-│   │   ├── test_live.sh
-│   │   ├── test_reservation.sh
-│   │   ├── test_utilisateurs.sh
-│   │   └── utilisateurs.js
-│   └── structure_backend.md
-├── lasicroom_front
-│   ├── build
-│   │   ├── asset-manifest.json
-│   │   ├── favicon.ico
-│   │   ├── images
-│   │   │   ├── cart-shopping-solid.svg
-│   │   │   ├── dessin_1.jpg
-│   │   │   ├── link-solid.svg
-│   │   │   ├── location-pin-solid.svg
-│   │   │   ├── music-solid.svg
-│   │   │   ├── nettoie_toutes_images.sh
-│   │   │   ├── optimiser_images.sh
-│   │   │   ├── phone-solid.svg
-│   │   │   ├── photo_10.jpg
-│   │   │   ├── photo_1.jpg
-│   │   │   ├── photo_2.jpg
-│   │   │   ├── play-solid.svg
-│   │   │   ├── renommer_photos.sh
-│   │   │   ├── square-envelope-solid.svg
-│   │   │   ├── user-group-solid.svg
-│   │   │   └── user-solid.svg
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   ├── robots.txt
-│   │   ├── site.xml
-│   │   └── static
-│   │       ├── css
-│   │       │   ├── main.98b92795.css
-│   │       │   └── main.98b92795.css.map
-│   │       └── js
-│   │           ├── main.c2c67e93.js
-│   │           ├── main.c2c67e93.js.LICENSE.txt
-│   │           └── main.c2c67e93.js.map
-│   ├── gen_arbo.sh
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── public
-│   │   ├── favicon.ico
-│   │   ├── images
-│   │   │   ├── cart-shopping-solid.svg
-│   │   │   ├── dessin_1.jpg
-│   │   │   ├── link-solid.svg
-│   │   │   ├── location-pin-solid.svg
-│   │   │   ├── music-solid.svg
-│   │   │   ├── nettoie_toutes_images.sh
-│   │   │   ├── optimiser_images.sh
-│   │   │   ├── phone-solid.svg
-│   │   │   ├── photo_10.jpg
-│   │   │   ├── photo_1.jpg
-│   │   │   ├── photo_2.jpg
-│   │   │   ├── play-solid.svg
-│   │   │   ├── renommer_photos.sh
-│   │   │   ├── square-envelope-solid.svg
-│   │   │   ├── user-group-solid.svg
-│   │   │   └── user-solid.svg
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   ├── robots.txt
-│   │   └── site.xml
-│   ├── README.md
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── composants
-│   │   │   ├── CardConcert.js
-│   │   │   ├── Footer.js
-│   │   │   ├── HeaderAdmin.js
-│   │   │   ├── Header.js
-│   │   │   ├── HeaderUser.js
-│   │   │   ├── HelmetWrapper.js
-│   │   │   ├── LiveStream.js
-│   │   │   ├── Modal.js
-│   │   │   ├── NavbarAdmin.js
-│   │   │   ├── Navbar.js
-│   │   │   ├── NavbarUser.js
-│   │   │   ├── PrivateRouteAdmin.js
-│   │   │   └── PrivateRoute.js
-│   │   ├── contexts
-│   │   │   ├── PanierContext.js
-│   │   │   └── StripeContext.js
-│   │   ├── gen_arbo.sh
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── pages
-│   │   │   ├── accompagnement.js
-│   │   │   ├── accueil.js
-│   │   │   ├── accueil_user.js
-│   │   │   ├── admin
-│   │   │   │   ├── gestion_accompagnement.js
-│   │   │   │   ├── gestion_artistes.js
-│   │   │   │   ├── gestion_concerts.js
-│   │   │   │   ├── gestion_connexion.js
-│   │   │   │   └── gestion_reservations.js
-│   │   │   ├── agenda.js
-│   │   │   ├── agenda_user.js
-│   │   │   ├── billetterie.js
-│   │   │   ├── conditions_utilisation.js
-│   │   │   ├── connexion.js
-│   │   │   ├── connexion_user.js
-│   │   │   ├── dashboard.js
-│   │   │   ├── inscription.js
-│   │   │   ├── mentions_legales.js
-│   │   │   ├── options.js
-│   │   │   ├── paiementpage.js
-│   │   │   └── panier.js
-│   │   ├── styles
-│   │   │   ├── accompagnement.css
-│   │   │   ├── accueil.css
-│   │   │   ├── agenda.css
-│   │   │   ├── billetterie.css
-│   │   │   ├── card_concert.css
-│   │   │   ├── conditions_utilisation.css
-│   │   │   ├── connexion.css
-│   │   │   ├── footer.css
-│   │   │   ├── gestion_accompagnement.css
-│   │   │   ├── gestion_artistes.css
-│   │   │   ├── gestion_concerts.css
-│   │   │   ├── gestion_reservations.css
-│   │   │   ├── header.css
-│   │   │   ├── inscription.css
-│   │   │   ├── mentions_legales.css
-│   │   │   ├── modal.css
-│   │   │   ├── navbar_admin.css
-│   │   │   ├── navbar.css
-│   │   │   ├── options.css
-│   │   │   ├── paiement_page.css
-│   │   │   ├── panier.css
-│   │   │   └── stripe_formulaire.css
-│   │   └── utils
-│   │       └── validation.js
-│   └── structure_frontend.md
-├── La sicRoom.session.sql
-├── LICENSE
-├── nginx_logs
-├── ouvrir_nginx.sh
-├── ouvrir_serveur.sh
-├── README.md
-└── structure_générale.md
-
-23 directories, 207 files
+├── .copilot-instructions.md        # Directives de sécurité pour l'IA
+├── .gitignore                      # Configuration Git
+├── LICENSE                         # Licence du projet
+├── README.md                       # Documentation du projet
+├── structure_générale.md           # Ce fichier
+│
+├── 📜 Scripts de déploiement
+│   ├── ouverture_site.sh          # ✅ Démarre Nginx + Frontend + Backend
+│   ├── fermeture_site.sh          # ✅ Arrête tout le stack
+│   └── generer_logs_nginx.sh      # Utilitaire - Archive logs Nginx
+│
+├── 📚 Documentation technique
+│   └── documentation_technique/
+│       ├── accessibilité.md
+│       ├── backend.md
+│       ├── base_de_donées.md
+│       ├── cadre_légal.md
+│       ├── configuration_nginx
+│       ├── déploiement.md
+│       ├── frontend.md
+│       ├── HTTPS_DEPLOYMENT.md
+│       ├── implementation_finale_resume.md
+│       ├── live_streaming.md
+│       ├── optimisation.md
+│       ├── parcours_admin.md
+│       ├── parcours_utilisateur.md
+│       ├── présentation.md
+│       ├── PRODUCTION_READINESS.md
+│       ├── sécurité.md
+│       ├── SEO.md
+│       ├── setup_stripe.md
+│       ├── sommaire.md
+│       ├── backup_lasicroom2.sql
+│       ├── migration_*.sql (3 fichiers de migration)
+│       ├── bd_structure.txt
+│       ├── diagrammeUML.png
+│       ├── regex_validation.md
+│       └── PDFs de référence
+│
+├── 🏗️ Backend TypeScript (Express + PostgreSQL)
+│   └── lasicroom_back/
+│       ├── tsconfig.json           # Configuration TypeScript strict
+│       ├── package.json            # Dépendances backend
+│       ├── package-lock.json
+│       ├── app.ts                  # 🔴 Entry point Express
+│       ├── db.ts                   # Connexion PostgreSQL
+│       ├── email.ts                # Nodemailer SMTP
+│       │
+│       ├── 📂 dist/                # ✅ Compilé TypeScript (généré)
+│       │   ├── app.js
+│       │   ├── db.js
+│       │   ├── email.js
+│       │   ├── controleurs/        # 9 contrôleurs compilés
+│       │   ├── middlewares/        # 8 middlewares compilés
+│       │   ├── routes/             # 9 routes compilées
+│       │   ├── types/              # Types TypeScript compilés
+│       │   └── *.js.map            # Source maps
+│       │
+│       ├── controleurs/            # 🔴 Logique métier TypeScript
+│       │   ├── accompagnement_controleur.ts
+│       │   ├── artiste_controleur.ts
+│       │   ├── concert_controleur.ts
+│       │   ├── connexion_controleur.ts
+│       │   ├── live_controleur.ts
+│       │   ├── panier_controleur.ts
+│       │   ├── reservation_controleur.ts
+│       │   ├── stripe_controleur.ts
+│       │   └── utilisateur_controleur.ts
+│       │
+│       ├── routes/                 # 🔴 Endpoints API TypeScript
+│       │   ├── accompagnements.ts
+│       │   ├── artistes.ts
+│       │   ├── concerts.ts
+│       │   ├── connexions.ts
+│       │   ├── live.ts
+│       │   ├── panier.ts
+│       │   ├── reservations.ts
+│       │   ├── stripe.ts
+│       │   ├── utilisateurs.ts
+│       │   └── test_*.sh           # Tests API curl
+│       │
+│       ├── middlewares/            # 🔴 Middleware TypeScript
+│       │   ├── authMiddleware.ts
+│       │   ├── compressionImage.ts # Sharp - WebP 800px
+│       │   ├── csrfMiddleware.ts
+│       │   ├── isAdmin.ts
+│       │   ├── multerConfig.ts     # Upload fichiers
+│       │   ├── paginationMiddleware.ts
+│       │   ├── rateLimitMiddleware.ts (4 limiters)
+│       │   └── validationMiddleware.ts
+│       │
+│       ├── types/                  # 🔴 Définitions TypeScript
+│       │   └── index.ts            # 6 interfaces
+│       │
+│       ├── photos_artistes/        # Stockage images (WebP)
+│       ├── back.log                # Logs serveur
+│       └── structure_backend.md    # Documentation backend
+│
+├── 🎨 Frontend React + TypeScript
+│   └── lasicroom_front/
+│       ├── tsconfig.json           # Configuration TypeScript
+│       ├── package.json            # Dépendances frontend
+│       ├── package-lock.json       # (--legacy-peer-deps)
+│       │
+│       ├── 📂 build/               # ✅ Build de production (généré)
+│       │   ├── index.html
+│       │   ├── manifest.json
+│       │   ├── robots.txt
+│       │   ├── site.xml
+│       │   ├── static/
+│       │   │   ├── css/            # Styles minifiés
+│       │   │   ├── js/             # Code optimisé 112.92 KB
+│       │   │   └── media/
+│       │   └── images/
+│       │
+│       ├── 📂 public/              # Fichiers statiques
+│       │   ├── index.html          # Template HTML
+│       │   ├── manifest.json       # PWA manifest
+│       │   ├── robots.txt
+│       │   ├── site.xml
+│       │   ├── favicon.ico
+│       │   ├── logo192.png, logo512.png
+│       │   └── images/             # SVG et images
+│       │
+│       ├── 📂 src/                 # 🔴 Source TypeScript/TSX
+│       │   ├── App.tsx             # 🔴 Component racine
+│       │   ├── index.tsx           # 🔴 Entry point React
+│       │   ├── App.css
+│       │   ├── index.css
+│       │   │
+│       │   ├── composants/         # 🔴 Composants réutilisables
+│       │   │   ├── CardConcert.tsx
+│       │   │   ├── Footer.tsx
+│       │   │   ├── Header.tsx, HeaderAdmin.tsx, HeaderUser.tsx
+│       │   │   ├── HelmetWrapper.tsx
+│       │   │   ├── LiveStream.tsx
+│       │   │   ├── Modal.tsx
+│       │   │   ├── Navbar.tsx, NavbarAdmin.tsx, NavbarUser.tsx
+│       │   │   ├── PrivateRoute.tsx (User protection)
+│       │   │   └── PrivateRouteAdmin.tsx (Admin protection)
+│       │   │
+│       │   ├── contexts/           # 🔴 State Management (Context API)
+│       │   │   ├── PanierContext.tsx
+│       │   │   └── StripeContext.tsx
+│       │   │
+│       │   ├── pages/              # 🔴 Pages principales
+│       │   │   ├── accueil.tsx
+│       │   │   ├── accueil_user.tsx
+│       │   │   ├── accompagnement.tsx
+│       │   │   ├── agenda.tsx, agenda_user.tsx
+│       │   │   ├── billetterie.tsx
+│       │   │   ├── connexion.tsx, connexion_user.tsx
+│       │   │   ├── inscription.tsx
+│       │   │   ├── panier.tsx
+│       │   │   ├── paiementpage.tsx (Stripe)
+│       │   │   ├── dashboard.tsx (Admin)
+│       │   │   ├── options.tsx
+│       │   │   ├── conditions_utilisation.tsx
+│       │   │   ├── mentions_legales.tsx
+│       │   │   └── admin/
+│       │   │       ├── gestion_concerts.tsx
+│       │   │       ├── gestion_artistes.tsx
+│       │   │       ├── gestion_reservations.tsx
+│       │   │       ├── gestion_accompagnement.tsx
+│       │   │       └── gestion_connexion.tsx
+│       │   │
+│       │   ├── styles/             # Styles CSS
+│       │   │   └── (22 fichiers CSS)
+│       │   │
+│       │   └── utils/              # 🔴 Utilitaires TypeScript
+│       │       └── validation.ts   # Validation formulaires
+│       │
+│       ├── README.md
+│       └── structure_frontend.md
+│
+└── .vscode/                        # Configuration VS Code (local)
 ```
+
+---
+
+## 🔄 Migration TypeScript - État Actuel ✅
+
+### Backend (30 fichiers .ts)
+- **app.ts**: Configuration Express + middleware chains
+- **9 Contrôleurs**: Logique métier complètement typée
+- **9 Routes**: API REST avec validation express-validator
+- **8 Middlewares**: auth, CSRF, rate-limiting, compression, etc.
+- **Types centralisés**: `types/index.ts` (6 interfaces)
+- **Build**: `tsc` → `dist/` (30 fichiers .js générés)
+
+### Frontend (37 fichiers .tsx/.ts)
+- **App.tsx, index.tsx**: Entry points React typés
+- **13 Composants**: Tous en .tsx avec interfaces TypeScript
+- **16 Pages**: Accueil, billetterie, dashboard admin, etc.
+- **5 Pages Admin**: Gestion concerts, artistes, réservations
+- **2 Contexts**: PanierContext, StripeContext
+- **Validation**: `utils/validation.ts` (5 fonctions)
+- **Build**: `npm run build` → `build/` (112.92 KB gzipped)
+
+### Configuration TypeScript
+- **Backend tsconfig**: Strict: true, CommonJS, ES2020 target
+- **Frontend tsconfig**: Strict: false, ESNext
+- **npm scripts**:
+  - Backend: `build` (tsc), `dev` (ts-node nodemon), `start` (node dist/app.js)
+  - Frontend: `start`, `build`, `test` (avec --legacy-peer-deps)
+
+---
+
+## 📊 Stack Technique
+
+### Backend
+- **Framework**: Express.js 5.1.0
+- **Database**: PostgreSQL 14+ (pg library)
+- **Auth**: JWT (2h expiration) + bcrypt (10 rounds)
+- **Security**: helmet, csurf, express-validator, express-rate-limit
+- **File Upload**: multer + sharp (WebP 800px, quality 70)
+- **Email**: nodemailer SMTP
+- **Payments**: Stripe API integration
+
+### Frontend
+- **Framework**: React 19.1.0 + TypeScript 5.6.0
+- **Router**: react-router-dom 6.26.0
+- **State**: React Context API (PanierContext, StripeContext)
+- **Styling**: Bootstrap 5.3.7 + CSS custom
+- **Payments**: @stripe/react-stripe-js
+- **HTTP**: axios 1.10.0
+- **SEO**: react-helmet
+
+---
+
+## 🚀 Déploiement
+
+**Scripts automatisés:**
+```bash
+./ouverture_site.sh    # ✅ Full stack: Nginx + React build + Node.js
+./fermeture_site.sh    # ✅ Clean shutdown
+```
+
+**Build production:**
+```bash
+cd lasicroom_back && npm run build     # TypeScript → dist/
+cd ../lasicroom_front && npm run build # React → build/
+```
+
+---
+
+## 📌 Branches Git
+
+- **main**: Production (HEAD: sécurisation dépôt)
+- **dev**: ✅ Full TypeScript migration (ready to push)
+- feature/backend-typescript-migration
+- feature/frontend-typescript-migration
+
+---
+
+## 🔒 Sécurité
+
+- ✅ `.env` files excluded (.gitignore)
+- ✅ Parameterized SQL queries (XSS prevention)
+- ✅ JWT token validation on all protected routes
+- ✅ Role-based access control (admin/user)
+- ✅ CSRF token middleware (selective exemption)
+- ✅ Rate limiting (4 tiers: general, login, stripe, form)
+- ✅ Helmet CSP for Stripe/Bootstrap integration
+- ✅ bcrypt password hashing (10 salt rounds)
+
+---
+
+## 📝 Notes de migration
+
+**Supprimé (legacy):**
+- ❌ 69 fichiers .js (backend + frontend) → remplacés par .ts/.tsx
+- ❌ ouvrir_serveur.sh, fermeture_serveur.sh (remplacés par full-stack scripts)
+- ❌ mail.txt (feedback archive)
+
+**Ajouté:**
+- ✅ tsconfig.json (backend + frontend)
+- ✅ dist/ (backend compilé) → ajouté à .gitignore
+- ✅ @types/* packages (11 paquets)
+- ✅ Validation TypeScript stricte
