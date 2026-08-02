@@ -36,3 +36,5 @@ else
         echo -e "${GREEN}✅ Processus Node.js $PID arrêté.${NC}"
     done
 fi
+
+echo -e "${GREEN}🛑 Tous les services ont été arrêtés.${NC}"

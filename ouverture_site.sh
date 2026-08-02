@@ -29,7 +29,7 @@ FRONT_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_front"
 echo -e "${YELLOW}🔨 Construction du front React...${NC}"
 cd "$FRONT_DIR" || { echo -e "${RED}❌ Dossier front non trouvé !${NC}"; exit 1; }
 
-npm install
+npm install --legacy-peer-deps
 if ! npm run build; then
     echo -e "${RED}❌ La build React a échoué.${NC}"
     exit 1
@@ -37,13 +37,19 @@ fi
 
 echo -e "${GREEN}✅ Front React construit.${NC}"
 
-# Lancer le back Node.js
+# Compiler et lancer le back Node.js (TypeScript)
 BACK_DIR="/home/dev_arnaud/Documents/github_repos/lasicroom/lasicroom_back"
-echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
+echo -e "${YELLOW}🔨 Compilation du back TypeScript...${NC}"
 cd "$BACK_DIR" || { echo -e "${RED}❌ Dossier back non trouvé !${NC}"; exit 1; }
 
-npm install
-# Lancer en arrière-plan avec nohup et logging (production use node directement, pas npm run dev)
-nohup node app.js > back.log 2>&1 &
+npm install --legacy-peer-deps
+if ! npm run build; then
+    echo -e "${RED}❌ La compilation TypeScript du backend a échoué.${NC}"
+    exit 1
+fi
+
+echo -e "${YELLOW}▶️ Lancement du serveur Node.js...${NC}"
+# Lancer en arrière-plan avec nohup et logging (utilise dist/app.js compilé)
+nohup node dist/app.js > back.log 2>&1 &
 
 echo -e "${GREEN}✅ Serveur Node.js lancé en arrière-plan. Logs: $BACK_DIR/back.log${NC}"
