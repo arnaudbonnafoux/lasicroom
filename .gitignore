@@ -2,13 +2,8 @@
 .vscode
 get_ips.sh
 gen_arbo.sh
-ouvrir_nginx.sh
-fermeture_nginx.sh
 La sicRoom.session.sql
 geoip_log.sh
-fermeture_site.sh
-ouverture_site.sh
-mail.txt
 
 # frontend
 lasicroom_front/gen_arbo.sh
