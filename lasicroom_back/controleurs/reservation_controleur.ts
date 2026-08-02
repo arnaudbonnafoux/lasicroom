@@ -156,3 +156,24 @@ export const obtenirMesReservations = async (
       .json({ erreur: "Erreur lors de la récupération des réservations." });
   }
 };
+
+// Récupérer toutes les réservations (admin only)
+export const obtenirReservations = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    const resultat = await pool.query(
+      `SELECT r.*, c.titre, c.date_concert, u.nom, u.email FROM reservation r
+       JOIN concert c ON r.id_concert = c.id_concert
+       JOIN utilisateur u ON r.id_utilisateur = u.id_utilisateur
+       ORDER BY c.date_concert DESC`,
+    );
+    res.json(resultat.rows);
+  } catch (erreur) {
+    console.error("Erreur dans obtenirReservations :", erreur);
+    res
+      .status(500)
+      .json({ erreur: "Erreur lors de la récupération des réservations." });
+  }
+};
