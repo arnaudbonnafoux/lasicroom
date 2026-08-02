@@ -4,7 +4,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const multer_1 = __importDefault(require("multer"));
-// TODO: Migrer la configuration de Multer
-const upload = (0, multer_1.default)({ dest: "photos_artistes/" });
-exports.default = upload;
+const path_1 = __importDefault(require("path"));
+// Fonction pour "nettoyer" le nom de l'artiste
+const sanitizeFileName = (name) => {
+    return name
+        .toLowerCase()
+        .normalize("NFD") // Décompose accents
+        .replace(/[\u0300-\u036f]/g, "") // Supprime accents
+        .replace(/\s+/g, "_") // Remplace espaces par "_"
+        .replace(/[^a-z0-9_-]/g, ""); // Supprime caractères spéciaux
+};
+// Configuration du stockage des fichiers avec multer
+const storage = multer_1.default.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "photos_artistes");
+    },
+    // Génère un nom de fichier unique et propre pour chaque upload
+    filename: (req, file, cb) => {
+        const ext = path_1.default.extname(file.originalname);
+        // Nettoie le nom de l'artiste ou utilise "artiste" par défaut
+        const nomArtiste = req.body.nom_artiste
+            ? sanitizeFileName(req.body.nom_artiste)
+            : "artiste";
+        const timestamp = Date.now(); // Ajoute un timestamp pour éviter les doublons
+        cb(null, `${nomArtiste}_${timestamp}${ext}`); // Construit le nom final du fichier
+    },
+});
+const upload = (0, multer_1.default)({ storage }); // Instanciation de multer
+exports.default = upload; // Exportation du module vers les routes Express
 //# sourceMappingURL=multerConfig.js.map
