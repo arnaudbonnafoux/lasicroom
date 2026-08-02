@@ -96,8 +96,11 @@ const AccueilUser = () => {
                 borderRadius: "12px",
                 border: "none",
               }}
-              allow="accelerometer; autoplay; clipboard-write; 
-              encrypted-media; gyroscope; picture-in-picture; web-share"
+              width="560"
+              height="315"
+              src="https://widget.deezer.com/widget/dark/playlist/1973876342"
+              title="Playlist Deezer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
           </div>
