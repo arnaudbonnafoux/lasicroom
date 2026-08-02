@@ -55,7 +55,10 @@ export const obtenirConcerts = async (
 ): Promise<void> => {
   try {
     const resultat = await pool.query(
-      "SELECT * FROM concert ORDER BY date_concert ASC",
+      `SELECT c.*, a.nom_artiste, a.photo, a.lien_video
+       FROM concert c
+       JOIN artiste a ON c.id_artiste = a.id_artiste
+       ORDER BY c.date_concert ASC`,
     );
     res.json(resultat.rows);
   } catch (erreur) {
@@ -74,7 +77,10 @@ export const obtenirConcertById = async (
   const { id } = req.params;
   try {
     const resultat = await pool.query(
-      "SELECT * FROM concert WHERE id_concert = $1",
+      `SELECT c.*, a.nom_artiste, a.photo, a.lien_video
+       FROM concert c
+       JOIN artiste a ON c.id_artiste = a.id_artiste
+       WHERE c.id_concert = $1`,
       [id],
     );
 

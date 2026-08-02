@@ -68,8 +68,8 @@ app.use(
 // Dossier statique pour les photos d'artistes
 app.use(
   "/photos_artistes",
-  express.static(path.join(__dirname, "photos_artistes")),
-); // __dirname => variable qui définit le chemin absolu du dossier
+  express.static(path.join(__dirname, "..", "photos_artistes")),
+); // Remonte d'un dossier depuis dist/ => lasicroom_back/
 
 // 🚨 Appliquer les rate limiters
 // Rate limiting général sur /api
