@@ -1,7 +1,9 @@
 import express from "express";
+import * as connexionControleur from "../controleurs/connexion_controleur";
 
 const routeur = express.Router();
 
-// TODO: Migrer les routes des connexions
+// Route de connexion (publique)
+routeur.post("/", connexionControleur.connecterUtilisateur);
 
 export default routeur;

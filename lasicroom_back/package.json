@@ -39,6 +39,7 @@
     "xss": "^1.0.15"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
     "@types/csurf": "^1.11.5",
     "@types/express": "^5.0.6",
