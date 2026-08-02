@@ -1,9 +1,13 @@
-# racine
-.vscode
-get_ips.sh
-gen_arbo.sh
-La sicRoom.session.sql
-geoip_log.sh
+# racine - ignore tous les fichiers sauf LICENSE et README.md
+/*
+!.gitignore
+!LICENSE
+!README.md
+!/lasicroom_back
+!/lasicroom_front
+!/documentation_technique
+!/.copilot-instructions.md
+!/.aigenore
 
 # frontend
 lasicroom_front/gen_arbo.sh
