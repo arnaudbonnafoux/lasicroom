@@ -18,6 +18,7 @@ lasicroom_front/.env
 
 # backend
 lasicroom_back/node_modules
+lasicroom_back/dist
 lasicroom_back/gen_arbo.sh
 lasicroom_back/.env
 
