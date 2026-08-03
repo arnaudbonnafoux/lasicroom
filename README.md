@@ -13,7 +13,6 @@ Ce projet utilise **deux branches distinctes** :
 - Version **JavaScript** classique (JS vanilla)
 - **Stable** et prête pour la production
 - Mises à jour indépendantes
-- ⚠️ **Ne sera jamais fusionnée avec dev**
 
 ### 🟦 `dev` - Développement TypeScript
 
@@ -21,7 +20,6 @@ Ce projet utilise **deux branches distinctes** :
 - Fonctionnalités expérimentales
 - Tests unitaires avec Vitest
 - Stack moderne : Express 5 + React 19 + PostgreSQL 14
-- ⚠️ **Ne sera jamais fusionnée avec main**
 
 **Choix de votre branche selon vos besoins :**
 
@@ -67,7 +65,9 @@ Le site s’adresse à plusieurs types d’utilisateurs :
 ## 🛠 Tech Stack
 
 ### `dev` - TypeScript (Recommandé)
+
 **Backend :**
+
 - Express.js 5.1.0 (TypeScript)
 - PostgreSQL 14 avec pg
 - JWT pour l'authentification
@@ -75,6 +75,7 @@ Le site s’adresse à plusieurs types d’utilisateurs :
 - Tests unitaires : Vitest
 
 **Frontend :**
+
 - React 19.1.0 (TypeScript)
 - React Router 6.26.0
 - Bootstrap 5.3.7
@@ -82,6 +83,7 @@ Le site s’adresse à plusieurs types d’utilisateurs :
 - Build optimisé : 112.92 kB gzipped JS
 
 ### `main` - JavaScript Classique
+
 - Stack JavaScript vanilla
 - Configuration production stable
 - Moins de dépendances
@@ -93,11 +95,13 @@ Le site s’adresse à plusieurs types d’utilisateurs :
 ### Branche `dev` (TypeScript)
 
 #### Prérequis
+
 - Node.js 18+
 - PostgreSQL 14+
 - npm 9+
 
 #### Backend
+
 ```bash
 cd lasicroom_back
 npm install --legacy-peer-deps
@@ -108,6 +112,7 @@ npm test          # Tests Vitest
 ```
 
 #### Frontend
+
 ```bash
 cd lasicroom_front
 npm install --legacy-peer-deps
@@ -116,7 +121,9 @@ npm start         # Dev server
 ```
 
 #### Configuration
+
 Créer `.env` dans `lasicroom_back/` :
+
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/lasicroom2
 JWT_SECRET=your_secret_key
@@ -125,6 +132,7 @@ YOUTUBE_API_KEY=your_youtube_key  # Pour live streaming
 ```
 
 ### Branche `main`
+
 ```bash
 # Similar setup but with JavaScript stack
 cd lasicroom_back
@@ -137,6 +145,7 @@ npm start
 ## 📚 Documentation
 
 Consultez le dossier `documentation_technique/` :
+
 - **[/core/](documentation_technique/core)** - Architecture et tech stack
 - **[/deployments/](documentation_technique/deployments)** - Guides de déploiement
 - **[/assets/](documentation_technique/assets)** - Ressources (diagrams, PDFs)
@@ -145,21 +154,20 @@ Consultez le dossier `documentation_technique/` :
 
 ## ✅ État du Projet
 
-| Feature | main | dev |
-|---------|------|-----|
-| TypeScript | ❌ | ✅ |
-| Express 5 | ❌ | ✅ |
-| React 19 | ❌ | ✅ |
-| Tests unitaires | ❌ | ✅ (Vitest) |
-| Stripe intégré | ✅ | ✅ |
-| Production ready | ✅ | ✅ |
+| Feature          | main | dev         |
+| ---------------- | ---- | ----------- |
+| TypeScript       | ❌   | ✅          |
+| Express 5        | ❌   | ✅          |
+| React 19         | ❌   | ✅          |
+| Tests unitaires  | ❌   | ✅ (Vitest) |
+| Stripe intégré   | ✅   | ✅          |
+| Production ready | ✅   | ✅          |
 
 ---
 
 ## 📝 Notes
 
-- **Pas de merge** entre `main` et `dev` - branches indépendantes
-- Chaque branche peut évoluer de manière autonome
+- Branches indépendantes : chaque branche peut évoluer de manière autonome
 - Documentation synchronisée entre les branches
 
 ---
