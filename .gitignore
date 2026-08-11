@@ -10,29 +10,19 @@
 !/.aigenore
 
 # frontend
-lasicroom_front/gen_arbo.sh
 lasicroom_front/node_modules
 lasicroom_front/build
 lasicroom_front/.env
 
 # backend
 lasicroom_back/node_modules
-lasicroom_back/dist
-lasicroom_back/gen_arbo.sh
 lasicroom_back/.env
 
 # logs
 lasicroom_back/back.log
-nginx_logs
 
 # Doc technique
-documentation_technique/to_do.md
-documentation_technique/Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
-documentation_technique/examen_url_identifiants
-documentation_technique/.clés_api_stripedocumentation_technique/bd_structure.txt
 
 # Sécurité & Configuration locale
 .aigenore
 .copilot-instructions.md
-lasicroom_back/.env.example
-lasicroom_front/.env.exampledocumentation_technique/.clés_api_stripe
