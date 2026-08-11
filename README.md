@@ -4,13 +4,6 @@
 
 ---
 
-## 🌳 Deux Branches
-
-- **`main`** : JavaScript stable, production-ready
-- **`dev`** : TypeScript moderne (Express 5, React 19, Vitest) - Recommandé
-
----
-
 ## À propos
 
 Plateforme web pour la salle de concert **La sicRoom** (SMAC). Gestion complète : programmation, billetterie en ligne, espace artistes, contenu multimédia.
@@ -23,7 +16,7 @@ Plateforme web pour la salle de concert **La sicRoom** (SMAC). Gestion complète
 
 Node.js 18+, PostgreSQL 14+, npm 9+
 
-### Backend (`dev` - TypeScript)
+### Backend
 
 ```bash
 cd lasicroom_back
@@ -63,7 +56,7 @@ Voir [`documentation_technique/README.md`](documentation_technique/README.md) po
 
 ---
 
-## ✅ Tech Stack (`dev`)
+## ✅ Tech Stack
 
 | Backend                | Frontend              |
 | ---------------------- | --------------------- |
@@ -74,4 +67,4 @@ Voir [`documentation_technique/README.md`](documentation_technique/README.md) po
 
 ---
 
-**Note :** Branches indépendantes, chaque branche évolue autonomement.
+**Stack :** TypeScript (Express 5 + React 19) — branche unique `main`.
