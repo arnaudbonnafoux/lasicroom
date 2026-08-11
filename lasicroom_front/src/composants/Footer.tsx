@@ -54,7 +54,7 @@ const Footer: FC = (): React.ReactElement => {
         }}
         className="licence"
       >
-        &copy; 2025 duan rA
+        &copy; 2026 Projet duan rA
       </p>
     </footer>
   );
