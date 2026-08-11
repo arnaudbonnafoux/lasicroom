@@ -6,6 +6,7 @@ ouvrir_nginx.sh
 fermeture_nginx.sh
 La sicRoom.session.sql
 geoip_log.sh
+dépot_git_école.md
 
 # frontend
 lasicroom_front/gen_arbo.sh
@@ -27,6 +28,7 @@ documentation_technique/to_do.md
 documentation_technique/Projet - Développement du site web de La sicRoom – Salle de concert SMAC.docx
 documentation_technique/examen_url_identifiants
 documentation_technique/.clés_api_stripedocumentation_technique/bd_structure.txt
+
 # Sécurité & Configuration locale
 .aigenore
 .copilot-instructions.md
