@@ -1,13 +1,13 @@
-# racine
-.vscode
-dépot_git_école.md
-.aigenore
-.copilot-instructions.md
-*.sh
-
-# système
-.DS_Store
-Thumbs.db
+# racine - ignore tous les fichiers sauf LICENSE et README.md
+/*
+!.gitignore
+!LICENSE
+!README.md
+!/lasicroom_back
+!/lasicroom_front
+!/documentation_technique
+!/.copilot-instructions.md
+!/.aigenore
 
 # frontend
 lasicroom_front/node_modules
@@ -27,6 +27,8 @@ lasicroom_back/.env
 # logs
 lasicroom_back/back.log
 
-# caches / coverage
-.cache/
-coverage/
+# Doc technique
+
+# Sécurité & Configuration locale
+.aigenore
+.copilot-instructions.md
