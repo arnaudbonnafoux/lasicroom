@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavbarUser from "../composants/NavbarUser";
 import Footer from "../composants/Footer";
 import HeaderUser from "../composants/HeaderUser";
-import Paiementpage from "./paiementpage";
 import { usePanier } from "../contexts/PanierContext";
-import { useStripe } from "../contexts/StripeContext";
 import "../styles/panier.css";
 
 const Panier = () => {
@@ -18,10 +16,7 @@ const Panier = () => {
     checkout,
     chargerPanier,
   } = usePanier();
-  const { creerPaymentIntent } = useStripe();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [afficherFormulairePaiement, setAfficherFormulairePaiement] =
-    useState(false);
 
   /**
    * 👋 DÉCONNEXION
@@ -70,7 +65,7 @@ const Panier = () => {
     if (window.confirm(`Confirmer la commande pour ${total}€ ?`)) {
       setIsCheckingOut(true);
 
-      // 1️⃣ Valider le panier côté backend (vérifier les quantités, prix)
+      // 1️⃣ Créer les réservations directement côté backend
       const resultCheckout = await checkout();
 
       if (!resultCheckout || !resultCheckout.message) {
@@ -78,50 +73,10 @@ const Panier = () => {
         return;
       }
 
-      // 2️⃣ Créer une intent de paiement Stripe
-      const montantTotal = total;
-      const resultPayment = await creerPaymentIntent(
-        montantTotal,
-        articles.length,
-      );
-
-      if (resultPayment.success) {
-        // 3️⃣ Sauvegarder le clientSecret en sessionStorage pour le formulaire
-        sessionStorage.setItem("clientSecret", resultPayment.clientSecret);
-        sessionStorage.setItem("montantTotal", montantTotal.toString());
-        sessionStorage.setItem(
-          "utilisateurNom",
-          sessionStorage.getItem("utilisateur")
-            ? JSON.parse(sessionStorage.getItem("utilisateur")).nom
-            : "Utilisateur",
-        );
-
-        // 4️⃣ Afficher le formulaire de paiement
-        setAfficherFormulairePaiement(true);
-      } else {
-        alert(`Erreur : ${resultPayment.error}`);
-      }
-
+      alert(resultCheckout.message);
+      navigate("/dashboard");
       setIsCheckingOut(false);
     }
-  };
-
-  /**
-   * ✅ SUCCÈS DU PAIEMENT
-   */
-  const handlePaiementSuccess = (idCommande) => {
-    sessionStorage.removeItem("clientSecret");
-    alert(
-      `✅ Paiement réussi ! Commande #${idCommande}\nVous allez être redirigé vers vos réservations.`,
-    );
-    navigate("/dashboard");
-  };
-
-  /**
-   * ❌ ANNULER LE PAIEMENT
-   */
-  const handlePaiementCancel = () => {
-    setAfficherFormulairePaiement(false);
   };
 
   /**
@@ -276,14 +231,6 @@ const Panier = () => {
           </>
         )}
       </main>
-
-      {/* 💳 PAGE DE PAIEMENT (affichage conditionnel) */}
-      {afficherFormulairePaiement && (
-        <Paiementpage
-          onSuccess={handlePaiementSuccess}
-          onCancel={handlePaiementCancel}
-        />
-      )}
 
       <Footer />
     </div>

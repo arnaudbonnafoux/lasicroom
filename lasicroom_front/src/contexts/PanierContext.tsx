@@ -3,6 +3,8 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useEffect,
+  useMemo,
   ReactNode,
   FC,
 } from "react";
@@ -64,15 +66,29 @@ export const usePanier = (): PanierContextType => {
 export const PanierProvider: FC<PanierProviderProps> = ({
   children,
 }): React.ReactElement => {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [total, setTotal] = useState<number>(0);
+  const [articles, setArticles] = useState<Article[]>(() => {
+    try {
+      const sauvegarde = sessionStorage.getItem("panierArticles");
+      return sauvegarde ? (JSON.parse(sauvegarde) as Article[]) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
 
-  /**
-   * 📥 CHARGER LE PANIER DEPUIS LE SERVEUR
-   */
-  const chargerPanier = useCallback(async (): Promise<void> => {
+  const total = useMemo(
+    () => articles.reduce((somme, article) => somme + article.sous_total, 0),
+    [articles],
+  );
+
+  useEffect(() => {
+    sessionStorage.setItem("panierArticles", JSON.stringify(articles));
+  }, [articles]);
+
+  const recupererTokenCsrf = useCallback(async (): Promise<string | null> => {
     const token = sessionStorage.getItem("token");
-    if (!token) return;
+
+    if (!token) return null;
 
     try {
       const response = await fetch("/api/panier", {
@@ -81,13 +97,53 @@ export const PanierProvider: FC<PanierProviderProps> = ({
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setArticles(data.articles || []);
-        setTotal(data.total || 0);
+      const headerToken = response.headers.get("X-CSRF-Token");
+      if (headerToken) {
+        setCsrfToken(headerToken);
       }
+
+      // Le panier est maintenu localement dans sessionStorage.
+
+      return headerToken;
+    } catch (error) {
+      console.error("Erreur lors de la récupération du token CSRF :", error);
+      return null;
+    }
+  }, []);
+
+  const obtenirHeadersMutations =
+    useCallback(async (): Promise<HeadersInit> => {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("Utilisateur non authentifié");
+      }
+
+      let tokenCsrf = csrfToken;
+      if (!tokenCsrf) {
+        tokenCsrf = await recupererTokenCsrf();
+      }
+
+      if (!tokenCsrf) {
+        throw new Error("Token CSRF introuvable");
+      }
+
+      return {
+        Authorization: `Bearer ${token}`,
+        "X-CSRF-Token": tokenCsrf,
+      };
+    }, [csrfToken, recupererTokenCsrf]);
+
+  /**
+   * 📥 CHARGER LE PANIER DEPUIS LE SERVEUR
+   */
+  const chargerPanier = useCallback(async (): Promise<void> => {
+    try {
+      const sauvegarde = sessionStorage.getItem("panierArticles");
+      setArticles(sauvegarde ? (JSON.parse(sauvegarde) as Article[]) : []);
     } catch (error) {
       console.error("Erreur lors du chargement du panier :", error);
+      setArticles([]);
     }
   }, []);
 
@@ -108,7 +164,7 @@ export const PanierProvider: FC<PanierProviderProps> = ({
       }
 
       try {
-        const response = await fetch("/api/panier", {
+        const response = await fetch("/api/panier/ajouter", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -122,14 +178,51 @@ export const PanierProvider: FC<PanierProviderProps> = ({
         });
 
         if (response.ok) {
-          const dataResponse = await fetch("/api/panier", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          if (dataResponse.ok) {
-            const data = await dataResponse.json();
-            setArticles(data.articles || []);
-            setTotal(data.total || 0);
+          const concertResponse = await fetch(`/api/concerts/${id_concert}`);
+          if (!concertResponse.ok) {
+            throw new Error("Impossible de récupérer le concert ajouté.");
           }
+
+          const concert = await concertResponse.json();
+          const typeTarifNormalise =
+            type_tarif === "abonne" ? "reduit" : type_tarif;
+          const prixUnitaire =
+            type_tarif === "abonne"
+              ? Number(concert.tarif_abonne)
+              : Number(concert.tarif_plein);
+
+          setArticles((precedents) => {
+            const articleExistant = precedents.find(
+              (article) =>
+                article.id_concert === id_concert &&
+                article.type_tarif === typeTarifNormalise,
+            );
+
+            if (articleExistant) {
+              return precedents.map((article) =>
+                article.id_panier === articleExistant.id_panier
+                  ? {
+                      ...article,
+                      quantite: article.quantite + quantite,
+                      sous_total: (article.quantite + quantite) * prixUnitaire,
+                    }
+                  : article,
+              );
+            }
+
+            const nouvelArticle: Article = {
+              id_panier: Date.now(),
+              id_concert,
+              titre: concert.titre,
+              date_concert: concert.date_concert,
+              type_tarif: typeTarifNormalise === "reduit" ? "reduit" : "plein",
+              quantite,
+              prix_unitaire: prixUnitaire,
+              sous_total: prixUnitaire * quantite,
+            };
+
+            return [...precedents, nouvelArticle];
+          });
           return true;
         } else {
           const erreur = await response.json();
@@ -150,35 +243,19 @@ export const PanierProvider: FC<PanierProviderProps> = ({
    */
   const modifierQuantite = useCallback(
     async (id_panier: number, quantite: number): Promise<boolean> => {
-      const token = sessionStorage.getItem("token");
-
-      if (!token) return false;
-
       try {
-        const response = await fetch(`/api/panier/${id_panier}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ quantite }),
-        });
-
-        if (response.ok) {
-          const dataResponse = await fetch("/api/panier", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          if (dataResponse.ok) {
-            const data = await dataResponse.json();
-            setArticles(data.articles || []);
-            setTotal(data.total || 0);
-          }
-          return true;
-        } else {
-          const erreur = await response.json();
-          alert("Erreur : " + (erreur.erreur || "Erreur inconnue"));
-          return false;
-        }
+        setArticles((precedents) =>
+          precedents.map((article) =>
+            article.id_panier === id_panier
+              ? {
+                  ...article,
+                  quantite,
+                  sous_total: article.prix_unitaire * quantite,
+                }
+              : article,
+          ),
+        );
+        return true;
       } catch (error) {
         console.error("Erreur lors de la modification :", error);
         alert("Erreur réseau ou serveur");
@@ -193,33 +270,11 @@ export const PanierProvider: FC<PanierProviderProps> = ({
    */
   const supprimerArticle = useCallback(
     async (id_panier: number): Promise<boolean> => {
-      const token = sessionStorage.getItem("token");
-
-      if (!token) return false;
-
       try {
-        const response = await fetch(`/api/panier/${id_panier}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          const dataResponse = await fetch("/api/panier", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          if (dataResponse.ok) {
-            const data = await dataResponse.json();
-            setArticles(data.articles || []);
-            setTotal(data.total || 0);
-          }
-          return true;
-        } else {
-          const erreur = await response.json();
-          alert("Erreur : " + (erreur.erreur || "Erreur inconnue"));
-          return false;
-        }
+        setArticles((precedents) =>
+          precedents.filter((article) => article.id_panier !== id_panier),
+        );
+        return true;
       } catch (error) {
         console.error("Erreur lors de la suppression :", error);
         alert("Erreur réseau ou serveur");
@@ -233,27 +288,10 @@ export const PanierProvider: FC<PanierProviderProps> = ({
    * 🗑️ VIDER COMPLÈTEMENT LE PANIER
    */
   const viderPanier = useCallback(async (): Promise<boolean> => {
-    const token = sessionStorage.getItem("token");
-
-    if (!token) return false;
-
     try {
-      const response = await fetch("/api/panier", {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        setArticles([]);
-        setTotal(0);
-        return true;
-      } else {
-        const erreur = await response.json();
-        alert("Erreur : " + (erreur.erreur || "Erreur inconnue"));
-        return false;
-      }
+      setArticles([]);
+      sessionStorage.removeItem("panierArticles");
+      return true;
     } catch (error) {
       console.error("Erreur lors du vidage :", error);
       alert("Erreur réseau ou serveur");
@@ -278,33 +316,49 @@ export const PanierProvider: FC<PanierProviderProps> = ({
     }
 
     try {
-      const response = await fetch("/api/panier/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const headers = await obtenirHeadersMutations();
 
-      if (response.ok) {
-        const data = await response.json();
-        setArticles([]);
-        setTotal(0);
-        return data;
-      } else {
-        const erreur = await response.json();
-        alert(
-          "Erreur lors de la finalisation : " +
-            (erreur.erreur || "Erreur inconnue"),
-        );
-        return false;
+      for (const article of articles) {
+        for (let index = 0; index < article.quantite; index += 1) {
+          const response = await fetch("/api/reservations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              ...headers,
+            },
+            body: JSON.stringify({
+              id_concert: article.id_concert,
+              type_tarif:
+                article.type_tarif === "reduit" ? "abonne" : article.type_tarif,
+              montant: article.prix_unitaire,
+            }),
+          });
+
+          if (!response.ok) {
+            const erreur = await response.json();
+            throw new Error(
+              erreur.erreur ||
+                erreur.message ||
+                "Erreur lors de la création de la réservation",
+            );
+          }
+        }
       }
+
+      setArticles([]);
+      sessionStorage.removeItem("panierArticles");
+
+      return {
+        message: "Réservations créées avec succès.",
+      };
     } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Erreur réseau ou serveur";
+      alert(message);
       console.error("Erreur lors du checkout :", error);
-      alert("Erreur réseau ou serveur");
       return false;
     }
-  }, [articles]);
+  }, [articles, obtenirHeadersMutations]);
 
   const value: PanierContextType = {
     articles,

@@ -45,8 +45,8 @@ export const creerReservation = async (
 
     // Créer la réservation
     const resultat = await pool.query(
-      `INSERT INTO reservation (id_utilisateur, id_concert, type_tarif, montant, statut)
-       VALUES ($1, $2, $3, $4, 'confirmée')
+      `INSERT INTO reservation (id_utilisateur, id_concert, type_tarif, montant)
+       VALUES ($1, $2, $3, $4)
        RETURNING *`,
       [id_utilisateur, id_concert, type_tarif, montant],
     );
@@ -57,19 +57,26 @@ export const creerReservation = async (
       [id_concert],
     );
 
-    // Envoyer email de confirmation
+    // Envoyer email de confirmation sans bloquer la réservation si le mail échoue
     const reservation = resultat.rows[0];
-    const utilisateur = await pool.query(
-      `SELECT email, nom FROM utilisateur WHERE id_utilisateur = $1`,
-      [id_utilisateur],
-    );
+    try {
+      const utilisateur = await pool.query(
+        `SELECT email, nom FROM utilisateur WHERE id_utilisateur = $1`,
+        [id_utilisateur],
+      );
 
-    if (utilisateur.rows && utilisateur.rows.length > 0) {
-      await envoyerEmailReservation(utilisateur.rows[0].email, {
-        nom: utilisateur.rows[0].nom,
-        concert: titreConcert,
-        places: 1,
-      });
+      if (utilisateur.rows && utilisateur.rows.length > 0) {
+        await envoyerEmailReservation(utilisateur.rows[0].email, {
+          nom: utilisateur.rows[0].nom,
+          concert: titreConcert,
+          places: 1,
+        });
+      }
+    } catch (erreurEmail) {
+      console.error(
+        "Erreur lors de l'envoi de l'email de réservation :",
+        erreurEmail,
+      );
     }
 
     res.status(201).json({
@@ -144,7 +151,7 @@ export const obtenirMesReservations = async (
       `SELECT r.*, c.titre, c.date_concert FROM reservation r
        JOIN concert c ON r.id_concert = c.id_concert
        WHERE r.id_utilisateur = $1
-       ORDER BY c.date_concert DESC`,
+       ORDER BY r.date_reservation DESC, r.id_reservation DESC`,
       [id_utilisateur],
     );
 
@@ -167,7 +174,7 @@ export const obtenirReservations = async (
       `SELECT r.*, c.titre, c.date_concert, u.nom, u.email FROM reservation r
        JOIN concert c ON r.id_concert = c.id_concert
        JOIN utilisateur u ON r.id_utilisateur = u.id_utilisateur
-       ORDER BY c.date_concert DESC`,
+       ORDER BY r.date_reservation DESC, r.id_reservation DESC`,
     );
     res.json(resultat.rows);
   } catch (erreur) {
