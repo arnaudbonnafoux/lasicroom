@@ -5,15 +5,14 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": false,
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "allowJs": true,
-    "suppressImplicitAnyIndexErrors": true
+    "allowJs": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"]
