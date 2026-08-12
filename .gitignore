@@ -23,12 +23,14 @@ yarn-error.log*
 # backend
 lasicroom_back/node_modules
 lasicroom_back/.env
+lasicroom_back/dist/
 
 # logs
 lasicroom_back/back.log
 
 # Doc technique
 documentation_technique/resume_commandes_git_chat.md
+documentation_technique/letsencrypt_debian.md
 
 # Sécurité & Configuration locale
 .aigenore
