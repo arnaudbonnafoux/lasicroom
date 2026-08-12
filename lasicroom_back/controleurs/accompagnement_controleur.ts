@@ -7,7 +7,9 @@ export const obtenirAccompagnements = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const resultat = await pool.query("SELECT * FROM accompagnement");
+    const resultat = await pool.query(
+      "SELECT * FROM accompagnement ORDER BY date_envoi DESC, id_demande DESC",
+    );
     res.json(resultat.rows);
   } catch (erreur) {
     console.error("Erreur dans obtenirAccompagnements :", erreur);
@@ -22,13 +24,25 @@ export const creerAccompagnement = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
-  const { titre, description, prix } = req.body;
+  const { nom_artiste, email_artiste, style_musical, message } = req.body;
+
+  if (!nom_artiste || !email_artiste) {
+    res
+      .status(400)
+      .json({ erreur: "Les champs nom_artiste et email_artiste sont requis." });
+    return;
+  }
 
   try {
     const resultat = await pool.query(
-      `INSERT INTO accompagnement (titre, description, prix)
-       VALUES ($1, $2, $3) RETURNING *`,
-      [titre, description, prix],
+      `INSERT INTO accompagnement (nom_artiste, email_artiste, style_musical, message)
+       VALUES ($1, $2, $3, $4) RETURNING *`,
+      [
+        nom_artiste,
+        email_artiste,
+        style_musical && style_musical.trim() !== "" ? style_musical : null,
+        message && message.trim() !== "" ? message : null,
+      ],
     );
 
     res.status(201).json(resultat.rows[0]);
@@ -49,7 +63,7 @@ export const supprimerAccompagnement = async (
 
   try {
     const resultat = await pool.query(
-      "DELETE FROM accompagnement WHERE id_accompagnement = $1 RETURNING *",
+      "DELETE FROM accompagnement WHERE id_demande = $1 RETURNING *",
       [id],
     );
 

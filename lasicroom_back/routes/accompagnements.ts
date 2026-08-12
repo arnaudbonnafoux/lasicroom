@@ -5,15 +5,20 @@ import isAdmin from "../middlewares/isAdmin";
 
 const routeur = express.Router();
 
-// Routes publiques
-routeur.get("/", accompagnementControleur.obtenirAccompagnements);
+// Route publique pour récupérer un token CSRF avant soumission du formulaire.
+routeur.get("/csrf-token", (_req, res) => {
+  res.json({ ok: true });
+});
+
+// Route publique (formulaire site)
+routeur.post("/", accompagnementControleur.creerAccompagnement);
 
 // Routes admin
-routeur.post(
+routeur.get(
   "/",
   authMiddleware,
   isAdmin,
-  accompagnementControleur.creerAccompagnement,
+  accompagnementControleur.obtenirAccompagnements,
 );
 routeur.delete(
   "/:id",

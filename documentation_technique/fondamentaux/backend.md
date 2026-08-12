@@ -58,6 +58,10 @@ Les middlewares sont des fonctions intermédiaires qui interceptent les requête
    - Protection CSRF avec tokens
    - `csrfProtectionSelective`: Exemption automatique des routes publiques
    - Routes exemptées: `/api/connexions`, `/api/utilisateurs`, `/api/panier/ajouter`
+   - Route utilitaire publique: `GET /api/accompagnements/csrf-token` pour récupérer un token avant soumission du formulaire public
+   - Flux accompagnements:
+     - `POST /api/accompagnements` (public) mais protégé par CSRF
+     - `GET /api/accompagnements` et `DELETE /api/accompagnements/:id` réservés admin (JWT requis)
    - Token attaché en `X-CSRF-Token` dans les réponses
    - Validation obligatoire sur `POST/PUT/DELETE`
 
@@ -146,7 +150,7 @@ Il initialise l’application Express, configure les middlewares globaux, et cha
    - `/api/concerts` → routes liées aux concerts
    - `/api/utilisateurs` → gestion des utilisateurs
    - `/api/reservations` → gestion des réservations
-   - `/api/accompagnements` → gestion des accompagnements
+   - `/api/accompagnements` → formulaire public (`POST`) + gestion admin (`GET`, `DELETE`)
    - `/api/connexions` → authentification et connexions utilisateurs
 
 5. **Démarrage du serveur**

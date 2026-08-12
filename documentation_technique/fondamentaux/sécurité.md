@@ -32,6 +32,12 @@ Middleware `csrfMiddleware.js` avec **csurf**:
 - Le token est automatiquement attaché en header `X-CSRF-Token`
 - Format: `application/x-www-form-urlencoded` ou `application/json` acceptés
 
+Flux accompagnements:
+
+- `GET /api/accompagnements/csrf-token` : route publique pour initialiser le cookie CSRF et récupérer `X-CSRF-Token`
+- `POST /api/accompagnements` : route publique de soumission, CSRF obligatoire
+- `GET /api/accompagnements` et `DELETE /api/accompagnements/:id` : routes admin (JWT requis), CSRF obligatoire sur `DELETE`
+
 ### ✅ Validation robuste des entrées (Phase 4)
 
 Middleware `validationMiddleware.js` avec **express-validator + password-validator**:
@@ -261,7 +267,7 @@ Configuration Nginx pour optimiser le caching côté client:
 
 - **XSS :** filtrage des entrées côté back et front + CSP via Nginx.
 - **Injection SQL :** requêtes paramétrées avec placeholders.
-- **CSRF :** réduit car API + JWT en sessionStorage.
+- **CSRF :** protection active via `csurf` + cookie + header `X-CSRF-Token`.
 - **Clickjacking :** bloqué (CSP + `X-Frame-Options`).
 - **HTTPS :** activé via SSL
 - **Fuites de données :** limitées via `Referrer-Policy` et `Permissions-Policy`.
@@ -277,9 +283,9 @@ Configuration Nginx pour optimiser le caching côté client:
 
 ### 📜 HSTS (HTTP Strict Transport Security)
 
-- **Actuel :** non activé.
-- **Limite :** le navigateur peut encore tenter une connexion HTTP si l’utilisateur tape `http://`.
-- **Amélioration :** activer HSTS (`Strict-Transport-Security`) en production avec certificat valide pour forcer HTTPS définitivement.
+- **Actuel :** activé (Helmet/Nginx).
+- **Point d’attention :** vérifier régulièrement la validité du certificat TLS et la cohérence des directives HSTS en production.
+- **Amélioration :** envisager le preload HSTS après validation complète du domaine et des sous-domaines.
 
 ### 🔐 Stockage du JWT
 
@@ -289,9 +295,9 @@ Configuration Nginx pour optimiser le caching côté client:
 
 ### 🔒 Protection CSRF
 
-- **Actuel :** dépend de l’architecture (API + JWT dans `sessionStorage`) → faible exposition.
-- **Limite :** pas de mécanisme CSRF explicite.
-- **Amélioration :** si JWT bascule en cookie HttpOnly, prévoir un **token CSRF** dédié pour sécuriser encore plus les requêtes sensibles.
+- **Actuel :** mécanisme explicite en place avec `csurf`.
+- **Limite :** risque d’erreurs d’intégration front si le header `X-CSRF-Token` n’est pas envoyé sur les mutations.
+- **Amélioration :** centraliser la récupération/envoi du token CSRF dans des utilitaires frontend communs pour éviter les régressions.
 
 ### 📊 Journalisation et monitoring
 

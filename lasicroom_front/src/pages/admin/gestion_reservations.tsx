@@ -8,6 +8,7 @@ import "../../styles/gestion_reservations.css";
 const GestionReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
 
   const navigate = useNavigate();
   // Déconnexion : suppression du token et redirection
@@ -27,6 +28,11 @@ const GestionReservations = () => {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       });
+
+      const headerToken = response.headers.get("X-CSRF-Token");
+      if (headerToken) {
+        setCsrfToken(headerToken);
+      }
 
       if (!response.ok) {
         if (response.status === 401) {
@@ -51,6 +57,7 @@ const GestionReservations = () => {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          ...(csrfToken ? { "X-CSRF-Token": csrfToken } : {}),
         },
       });
 
@@ -98,9 +105,9 @@ const GestionReservations = () => {
                   <td>{reservations.length - index}</td>{" "}
                   {/* colonne # inversée */}
                   {/*<td>{index + 1}</td>*/}
-                  <td>{reservation.nom_utilisateur}</td>
+                  <td>{reservation.nom || reservation.nom_utilisateur}</td>
                   <td>{reservation.email}</td>
-                  <td>{reservation.titre_concert}</td>
+                  <td>{reservation.titre || reservation.titre_concert}</td>
                   <td>{reservation.type_tarif}</td>
                   <td>{reservation.quantite || 1}</td>
                   <td>{parseFloat(reservation.montant).toFixed(2)}</td>

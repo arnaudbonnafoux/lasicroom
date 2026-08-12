@@ -32,6 +32,7 @@ interface ErrorsType {
 
 const Accompagnement = () => {
   const navigate = useNavigate();
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
 
   const handleLoginClick = () => {
     navigate("/connexion_user");
@@ -45,6 +46,20 @@ const Accompagnement = () => {
   });
 
   const [errors, setErrors] = useState<ErrorsType>({});
+
+  const obtenirCsrfToken = async (): Promise<string> => {
+    if (csrfToken) return csrfToken;
+
+    const response = await fetch("/api/accompagnements/csrf-token");
+    const token = response.headers.get("X-CSRF-Token");
+
+    if (!token) {
+      throw new Error("Token CSRF introuvable. Rechargez la page.");
+    }
+
+    setCsrfToken(token);
+    return token;
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -75,7 +90,13 @@ const Accompagnement = () => {
 
     // Si tout est valide -> envoi API
     try {
-      await axios.post("/api/accompagnements", formData);
+      const token = await obtenirCsrfToken();
+
+      await axios.post("/api/accompagnements", formData, {
+        headers: {
+          "X-CSRF-Token": token,
+        },
+      });
       alert("Demande envoyée avec succès !");
       setFormData({
         nom_artiste: "",
@@ -86,7 +107,9 @@ const Accompagnement = () => {
       setErrors({});
     } catch (error) {
       console.error(error);
-      alert("Erreur lors de l’envoi du formulaire.");
+      alert(
+        "Erreur lors de l’envoi du formulaire. Rechargez la page et réessayez.",
+      );
     }
   };
 
