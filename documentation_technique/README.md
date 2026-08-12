@@ -6,34 +6,34 @@ Index principal de la documentation du projet.
 
 **Nouvel arrivant ?** Commencez par :
 
-1. Lire [Outils Backend](core/backend.md)
-2. Lire [Outils Frontend](core/frontend.md)
-3. Consulter [Déploiement](deployments/déploiement.md)
+1. Lire [Outils Backend](fondamentaux/backend.md)
+2. Lire [Outils Frontend](fondamentaux/frontend.md)
+3. Consulter [Déploiement](deploiement/déploiement.md)
 
 ## 📁 Structure de la Documentation
 
-### `/core/` - Fondamentaux
+### `/fondamentaux/` - Fondamentaux
 
-- **[backend.md](core/backend.md)** - Tech stack backend (Express, TypeScript, PostgreSQL)
-- **[frontend.md](core/frontend.md)** - Tech stack frontend (React, Vite, Stripe)
-- **[sécurité.md](core/sécurité.md)** - Aspects sécurité (JWT, CSRF, rate limiting)
-- **[base_de_donées.md](core/base_de_donées.md)** - Schema PostgreSQL et relations
-- **[SEO.md](core/SEO.md)** - Optimisation SEO et sitemap
+- **[backend.md](fondamentaux/backend.md)** - Tech stack backend (Express, TypeScript, PostgreSQL)
+- **[frontend.md](fondamentaux/frontend.md)** - Tech stack frontend (React, Vite, Stripe)
+- **[sécurité.md](fondamentaux/sécurité.md)** - Aspects sécurité (JWT, CSRF, rate limiting)
+- **[base_de_donées.md](fondamentaux/base_de_donées.md)** - Schema PostgreSQL et relations
+- **[SEO.md](fondamentaux/SEO.md)** - Optimisation SEO et sitemap
 
-### `/deployments/` - Déploiement
+### `/deploiement/` - Déploiement
 
-- **[déploiement.md](deployments/déploiement.md)** - Guide de déploiement complet
-- **[HTTPS_DEPLOYMENT.md](deployments/HTTPS_DEPLOYMENT.md)** - Configuration HTTPS et SSL
-- **[setup_stripe.md](deployments/setup_stripe.md)** - Intégration Stripe
-- **[live_streaming.md](deployments/live_streaming.md)** - Streaming YouTube en direct
-- **[nginx.conf](deployments/nginx.conf)** - Configuration Nginx
+- **[déploiement.md](deploiement/déploiement.md)** - Guide de déploiement complet
+- **[HTTPS_DEPLOYMENT.md](deploiement/HTTPS_DEPLOYMENT.md)** - Configuration HTTPS et SSL
+- **[setup_stripe.md](deploiement/setup_stripe.md)** - Intégration Stripe
+- **[live_streaming.md](deploiement/live_streaming.md)** - Streaming YouTube en direct
+- **[nginx.conf](deploiement/nginx.conf)** - Configuration Nginx
 
-### `/assets/` - Ressources
+### `/ressources/` - Ressources
 
 - **diagrammeUML.png** - Diagramme UML du projet
 - **PDFs** - Documentation de projet et critères d'évaluation
 
-### `/sql_migrations/` - Migrations Base de Données
+### `/migrations_sql/` - Migrations Base de Données
 
 - Migration quantité réservation
 - Migration panier
@@ -43,16 +43,16 @@ Index principal de la documentation du projet.
 ## 🔧 Tâches Courantes
 
 **Je veux déployer le projet**
-→ Lire [déploiement.md](deployments/déploiement.md)
+→ Lire [déploiement.md](deploiement/déploiement.md)
 
 **Je veux ajouter une fonctionnalité**
-→ Lire [backend.md](core/backend.md) ou [frontend.md](core/frontend.md)
+→ Lire [backend.md](fondamentaux/backend.md) ou [frontend.md](fondamentaux/frontend.md)
 
 **Je veux comprendre la base de données**
-→ Lire [base_de_donées.md](core/base_de_donées.md)
+→ Lire [base_de_donées.md](fondamentaux/base_de_donées.md)
 
 **Je veux intégrer Stripe**
-→ Lire [setup_stripe.md](deployments/setup_stripe.md)
+→ Lire [setup_stripe.md](deploiement/setup_stripe.md)
 
 ## 📝 Notes
 
