@@ -28,6 +28,7 @@ lasicroom_back/.env
 lasicroom_back/back.log
 
 # Doc technique
+documentation_technique/resume_commandes_git_chat.md
 
 # Sécurité & Configuration locale
 .aigenore
