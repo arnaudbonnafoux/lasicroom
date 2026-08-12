@@ -11,6 +11,36 @@ La communication avec le frontend s'effectue via **Nginx**, configuré en proxy,
 
 ---
 
+## 🔭 Proposition d'amélioration (évolution MVC progressive)
+
+Objectif : renforcer la maintenabilité du backend en clarifiant la séparation des responsabilités, sans réécriture complète.
+
+### Architecture cible
+
+`Route -> Controller -> Service -> Repository -> PostgreSQL`
+
+- **Route** : exposition des endpoints et branchement des middlewares
+- **Controller** : adaptation HTTP (req/res), validation des entrées, mapping des erreurs
+- **Service** : logique métier (règles de réservation, panier, paiement)
+- **Repository** : accès base de données (SQL paramétré, transactions)
+
+### Plan de migration recommandé
+
+1. Extraire la logique métier des contrôleurs vers un dossier `services/`.
+2. Introduire un dossier `repositories/` pour centraliser les requêtes SQL.
+3. Réduire les contrôleurs à un rôle d'orchestrateur HTTP.
+4. Ajouter des tests unitaires ciblés sur services/repositories (en priorité sur réservation et Stripe).
+5. Migrer module par module pour limiter le risque de régression.
+
+### Gains attendus
+
+- Code plus lisible et plus facile à faire évoluer
+- Tests plus rapides et plus stables
+- Réduction des effets de bord lors des changements fonctionnels
+- Meilleure préparation à une montée en charge de l'équipe ou du produit
+
+---
+
 ## 🛠 Middleware
 
 Les middlewares sont des fonctions intermédiaires qui interceptent les requêtes HTTP entre le client et le serveur pour analyser, modifier ou compléter ces requêtes avant qu'elles atteignent la route finale (ou avant que la réponse soit renvoyée).

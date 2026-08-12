@@ -54,6 +54,9 @@ Index principal de la documentation du projet.
 **Je veux intégrer Stripe**
 → Lire [setup_stripe.md](deploiement/setup_stripe.md)
 
+**Je veux voir les améliorations prévues**
+→ Lire [backend.md](fondamentaux/backend.md) (section "Proposition d'amélioration")
+
 ## 📝 Notes
 
 - Documentation pour **TypeScript** (migration complétée)
