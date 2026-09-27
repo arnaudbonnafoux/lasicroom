@@ -6,7 +6,7 @@
 
 ## À propos
 
-Plateforme web pour la salle de concert **La sicRoom** (SMAC). Gestion complète : programmation, billetterie en ligne, espace artistes, contenu multimédia.
+Plateforme web pour la salle de concert **La sicRoom**. Gestion complète : programmation, billetterie en ligne, espace artistes, contenu multimédia.
 
 ---
 
